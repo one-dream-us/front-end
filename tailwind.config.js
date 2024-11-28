@@ -6,7 +6,7 @@ export default {
       colors: {
         primary: '#00DE5A',
         secondary: '#03C75A',
-        'custom-black': '#333333',
+        'custom-black': '#1A1A1A',
         'custom-green-light': '#92DE9E',
         'custom-green': `#5BBF6A`,
         'custom-green-dark': '#2A5931',
@@ -14,7 +14,7 @@ export default {
         'custom-cream-light': '#FAFFF4',
         'custom-coral-dark': '#FB8888',
         'custom-blue-light': '#C5ECFF',
-        'custom-gray-dark': '#1A1A1A',
+        'custom-gray-dark': '#333333',
         'custom-gray-medium': '#656565',
         'custom-gray': '#8D8D8D',
         'custom-gray-light': '#E7E7E7',
