@@ -8,7 +8,7 @@ export default {
         secondary: '#03C75A',
         'custom-black': '#1A1A1A',
         'custom-green-light': '#92DE9E',
-        'custom-green': `#5BBF6A`,
+        'custom-green': '#5BBF6A',
         'custom-green-dark': '#2A5931',
         'custom-yellow-light': '#FFFBE3',
         'custom-cream-light': '#FAFFF4',
