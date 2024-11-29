@@ -27,6 +27,7 @@ export default {
         'custom-gray-300': '#e0e0e0',
         'custom-gray-200': '#eeeeee',
         'custom-gray-100': '#f5f5f5',
+        'custom-kakao-yellow':'#FEE500',
       },
     },
   },
