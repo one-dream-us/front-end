@@ -1,6 +1,5 @@
-import { HttpResponse } from './../../node_modules/msw/src/core/HttpResponse';
-import { http } from './../../node_modules/msw/src/core/http';
 import { contentCardDataList } from './data/contentCard';
+import { http, HttpResponse } from 'msw';
 
 export const handlers = [
   http.get('/contents', () => {
