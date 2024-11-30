@@ -1,7 +1,19 @@
 import ContentCard from '@/components/common/contentCard/ContentCard';
+import { ContentCardTypes } from '@/types/interface';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
+  const [contents, setContents] = useState<ContentCardTypes[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const contents = (await axios.get('/contents')).data;
+      setContents(contents);
+    })();
+  }, []);
+
   return (
     <div className='w-full'>
       {/* 배너 */}
@@ -30,7 +42,11 @@ const Home = () => {
       </section>
 
       {/* 컨텐츠 카드 */}
-      <ContentCard />
+      <div>
+        {contents.map((item) => (
+          <ContentCard key={item.id} {...item} />
+        ))}
+      </div>
     </div>
   );
 };
