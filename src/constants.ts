@@ -1,7 +1,8 @@
+import { myScrapMenu } from './types/types';
 export const HeaderMenuList = [
   { id: 1, title: '서비스 소개', to: '/' },
   { id: 2, title: '컨텐츠', to: '/' },
-  { id: 3, title: '마이 페이지', to: '/mypage' },
+  { id: 3, title: 'MY스크랩', to: '/my-scrap' },
 ];
 
 export const FormLink =
@@ -15,4 +16,4 @@ export const FooterMenuList = [
 
 export const ProfileLabels = ['스크랩', '키워드', '본 콘텐츠'];
 
-export const MenuItems = ['스크랩', '단어장'];
+export const MenuItems: myScrapMenu[] = ['스크랩', '단어장'];
