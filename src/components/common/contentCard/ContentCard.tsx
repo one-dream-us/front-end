@@ -18,9 +18,9 @@ export default function ContentCard({
 
       <div className='flex w-full flex-col items-start justify-start gap-y-2'>
         {/* tag */}
-        <div className='line-clamp-1 flex items-center justify-normal gap-x-1'>
+        <div className='line-clamp-1'>
           {tag.map((item) => (
-            <span key={item.id} className='rounded-lg border px-2 py-1 text-xs'>
+            <span key={item.id} className='mx-1 rounded-lg border px-2 py-1 text-xs'>
               #{item.title}
             </span>
           ))}
