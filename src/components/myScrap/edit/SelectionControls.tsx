@@ -10,7 +10,7 @@ import {
 
 export default function SelectionControls() {
   const [isAllChecked, setIsAllChecked] = useAtom(isAllCheckedAtom);
-  const setSelectedIdList = useSetAtom(selectedIdListAtom);
+  const [selectedIdList, setSelectedIdList] = useAtom(selectedIdListAtom);
   const setIsEditing = useSetAtom(isEditingAtom);
   const allIdList = useAtomValue(allIdListAtom);
   const actionBtnTexts = ['취소', '지우기'];
@@ -32,12 +32,17 @@ export default function SelectionControls() {
           <button
             key={text}
             type='button'
-            className={`edit-btn ${index === 0 ? 'w-[38px]' : 'w-[49px]'}`}
+            className={`edit-btn ${index === 0 ? 'w-[38px]' : 'w-[49px]'} ${
+              text === '지우기' && selectedIdList.length === 0
+                ? 'cursor-not-allowed opacity-50'
+                : ''
+            }`}
             onClick={() =>
               index === 0
                 ? handleCancelClick(setSelectedIdList, setIsEditing)
                 : setIsDelModalOpen(true)
             }
+            disabled={text === '지우기' && selectedIdList.length === 0}
           >
             {text}
           </button>
