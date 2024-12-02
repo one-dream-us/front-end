@@ -1,5 +1,4 @@
-import { useAtomValue } from 'jotai';
-import { isEditingAtom } from '@/store/atom';
+import useMyScrapStore from '@/hooks/myScrap/useMyScrapStore';
 import Checkbox from '../Checkbox';
 import IconBtn from './IconBtn';
 import ViewAgainBtn from './ViewAgainBtn';
@@ -17,7 +16,7 @@ export default function ScrapedTermCard({
   term: string;
   definition: string;
 }) {
-  const isEditing = useAtomValue(isEditingAtom);
+  const isEditing = useMyScrapStore((state) => state.isEditing);
 
   return (
     <article

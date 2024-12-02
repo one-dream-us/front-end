@@ -1,5 +1,4 @@
-import { useSetAtom } from 'jotai';
-import { isDelModalOpenAtom } from '@/store/atom';
+import useMyScrapStore from '@/hooks/myScrap/useMyScrapStore';
 
 export default function DeleteModal({
   isOpen,
@@ -10,7 +9,7 @@ export default function DeleteModal({
   onDelete: () => void;
   itemName: string;
 }) {
-  const setIsDelModalOpen = useSetAtom(isDelModalOpenAtom);
+  const setIsDelModalOpen = useMyScrapStore((state) => state.setIsDelModalOpen);
   if (!isOpen) return null;
 
   return (

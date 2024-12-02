@@ -1,12 +1,12 @@
-export function handleEditClick(setIsEditing: React.Dispatch<React.SetStateAction<boolean>>) {
+export function handleEditClick(setIsEditing: (value: boolean) => void) {
   setIsEditing(true);
 }
 
 export const handleCheckAllChange = (
   e: React.ChangeEvent<HTMLInputElement>,
-  setIsAllChecked: React.Dispatch<React.SetStateAction<boolean>>,
+  setIsAllChecked: (value: boolean) => void,
   allIdList: number[],
-  setSelectedIdList: React.Dispatch<React.SetStateAction<number[]>>,
+  setSelectedIdList: (value: number[]) => void,
 ) => {
   const isChecked = e.target.checked;
   setIsAllChecked(isChecked);
@@ -14,8 +14,8 @@ export const handleCheckAllChange = (
 };
 
 export function handleCancelClick(
-  setSelectedIdList: React.Dispatch<React.SetStateAction<number[]>>,
-  setIsEditing: React.Dispatch<React.SetStateAction<boolean>>,
+  setSelectedIdList: (value: number[]) => void,
+  setIsEditing: (value: boolean) => void,
 ) {
   setSelectedIdList([]);
   setIsEditing(false);
@@ -25,9 +25,9 @@ export function handleCheckboxChange(
   e: React.ChangeEvent<HTMLInputElement>,
   selectedIdList: number[],
   id: number,
-  setSelectedIdList: React.Dispatch<React.SetStateAction<number[]>>,
+  setSelectedIdList: (value: number[]) => void,
   allIdList: number[],
-  setIsAllChecked: React.Dispatch<React.SetStateAction<boolean>>,
+  setIsAllChecked: (value: boolean) => void,
 ) {
   let updatedSelectedIdList = [...selectedIdList];
   if (e.target.checked) {

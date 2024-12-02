@@ -1,7 +1,7 @@
 import Button from '@/components/common/Button';
-import { myPageMenu } from '@/types/types';
+import { myScrapMenu } from '@/types/types';
 
-export default function EmptyState({ activeMenu }: { activeMenu: myPageMenu }) {
+export default function EmptyState({ activeMenu }: { activeMenu: myScrapMenu }) {
   const isScrap = activeMenu === '스크랩';
 
   return (

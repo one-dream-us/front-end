@@ -1,20 +1,17 @@
 import { handleCheckAllChange, handleCancelClick } from '@/handlers/myScrap/handleEdits';
-import { useAtomValue, useSetAtom, useAtom } from 'jotai';
-import {
-  selectedIdListAtom,
-  isEditingAtom,
-  allIdListAtom,
-  isDelModalOpenAtom,
-  isAllCheckedAtom,
-} from '@/store/atom';
+import useSelectionControls from '@/hooks/myScrap/useSelectionControls';
 
 export default function SelectionControls() {
-  const [isAllChecked, setIsAllChecked] = useAtom(isAllCheckedAtom);
-  const [selectedIdList, setSelectedIdList] = useAtom(selectedIdListAtom);
-  const setIsEditing = useSetAtom(isEditingAtom);
-  const allIdList = useAtomValue(allIdListAtom);
+  const {
+    isAllChecked,
+    setIsAllChecked,
+    selectedIdList,
+    setSelectedIdList,
+    setIsEditing,
+    allIdList,
+    setIsDelModalOpen,
+  } = useSelectionControls();
   const actionBtnTexts = ['취소', '지우기'];
-  const setIsDelModalOpen = useSetAtom(isDelModalOpenAtom);
 
   return (
     <div className='my-5 flex h-6 items-center justify-between'>

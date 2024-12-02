@@ -1,12 +1,8 @@
-import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { selectedIdListAtom, allIdListAtom, isAllCheckedAtom } from '@/store/atom';
 import { handleCheckboxChange } from '@/handlers/myScrap/handleEdits';
+import { useSelectedIdList } from '@/hooks/myScrap/useSelectedIdList';
 
 export default function Checkbox({ id }: { id: number }) {
-  const [selectedIdList, setSelectedIdList] = useAtom(selectedIdListAtom);
-  const allIdList = useAtomValue(allIdListAtom);
-  const setIsAllChecked = useSetAtom(isAllCheckedAtom);
-
+  const { selectedIdList, setSelectedIdList, allIdList, setIsAllChecked } = useSelectedIdList();
   return (
     <input
       type='checkbox'

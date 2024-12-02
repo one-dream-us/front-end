@@ -1,9 +1,8 @@
 import EditBtn from './EditBtn';
 import SelectionControls from './SelectionControls';
-import { useAtomValue } from 'jotai';
-import { isEditingAtom } from '@/store/atom';
+import useMyScrapStore from '@/hooks/myScrap/useMyScrapStore';
 
 export default function EditSection() {
-  const isEditing = useAtomValue(isEditingAtom);
+  const isEditing = useMyScrapStore((state) => state.isEditing);
   return <>{!isEditing ? <EditBtn /> : <SelectionControls />}</>;
 }

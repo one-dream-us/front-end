@@ -1,11 +1,7 @@
 import DeleteModal from './edit/DeleteModal';
-import { handleDelete } from '@/handlers/myScrap/handleDelete';
+import useScrapModalHandlers from '@/hooks/myScrap/useScrapModalHandlers';
 import CompleteModal from './edit/CompleteModal';
 import { myScrapMenu } from '@/types/types';
-import { useAtom, useAtomValue } from 'jotai';
-import { isDelModalOpenAtom, isComModalOpenAtom, selectedIdListAtom } from '@/store/atom';
-import useDeleteScrapCon from '@/hooks/myScrap/useDeleteScrapCon';
-import useDeleteScrapTerm from '@/hooks/myScrap/useDeleteScrapTerm';
 
 export default function ScrapedItemModals({
   itemName,
@@ -14,29 +10,15 @@ export default function ScrapedItemModals({
   itemName: myScrapMenu;
   refetch: () => void;
 }) {
-  const [isDelModalOpen, setIsDelModalOpen] = useAtom(isDelModalOpenAtom);
-  const [isComModalOpen, setIsComModalOpen] = useAtom(isComModalOpenAtom);
-  const selectedIdList = useAtomValue(selectedIdListAtom);
-  const { deleteScrapContent } = useDeleteScrapCon({
-    selectedIdList,
+  const { isDelModalOpen, isComModalOpen, handleDeleteAction } = useScrapModalHandlers(
+    itemName,
     refetch,
-  });
-  const { deleteScrapTerm } = useDeleteScrapTerm({
-    selectedIdList,
-    refetch,
-  });
+  );
+
   return (
     <>
       {isDelModalOpen && (
-        <DeleteModal
-          isOpen={isDelModalOpen}
-          onDelete={() => {
-            handleDelete(itemName, deleteScrapContent, deleteScrapTerm);
-            setIsDelModalOpen(false);
-            setIsComModalOpen(true);
-          }}
-          itemName={itemName}
-        />
+        <DeleteModal isOpen={isDelModalOpen} onDelete={handleDeleteAction} itemName={itemName} />
       )}
       {isComModalOpen && <CompleteModal isOpen={isComModalOpen} itemName={itemName} />}
     </>

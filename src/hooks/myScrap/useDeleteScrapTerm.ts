@@ -1,8 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import myScrapApi from '@/services/myScrapApi';
-import { useSetAtom } from 'jotai';
-import { selectedIdListAtom, allIdListAtom, isAllCheckedAtom } from '@/store/atom';
-import { reset } from '@/utils/myScrapUtils';
+import { useResetScrap } from './useResetScrap';
 
 export default function useDeleteScrapTerm({
   selectedIdList,
@@ -11,16 +9,13 @@ export default function useDeleteScrapTerm({
   selectedIdList: number[];
   refetch: () => void;
 }) {
-  const setSelectedIdList = useSetAtom(selectedIdListAtom);
-  const setAllIdList = useSetAtom(allIdListAtom);
-  const setIsAllChecked = useSetAtom(isAllCheckedAtom);
-
+  const reset = useResetScrap();
   const mutation = useMutation({
     mutationFn: async () => await myScrapApi.deleteScrapedTerm(selectedIdList),
     onSuccess: () => {
       console.log('스크랩 단어 삭제 성공');
       refetch();
-      reset(setSelectedIdList, setAllIdList, setIsAllChecked);
+      reset();
     },
     onError: (error: Error) => {
       console.error('스크랩 단어 삭제 실패:', error);

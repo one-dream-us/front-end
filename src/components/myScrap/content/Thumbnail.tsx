@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
-import { isEditingAtom } from '@/store/atom';
+import useMyScrapStore from '@/hooks/myScrap/useMyScrapStore';
 import Checkbox from '../Checkbox';
-import { useAtomValue } from 'jotai';
 
 export default function Thumbnail({ src, alt, id }: { src: string; alt: string; id: number }) {
-  const isEditing = useAtomValue(isEditingAtom);
+  const isEditing = useMyScrapStore((state) => state.isEditing);
 
   return (
     <div className='relative h-full w-[168px]'>

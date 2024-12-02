@@ -1,9 +1,8 @@
-import { useSetAtom } from 'jotai';
-import { isComModalOpenAtom } from '@/store/atom';
+import useMyScrapStore from '@/hooks/myScrap/useMyScrapStore';
 import closeIcon from '@/assets/icons/close.svg';
 
 export default function CompleteModal({ isOpen, itemName }: { isOpen: boolean; itemName: string }) {
-  const setIsComModalOpen = useSetAtom(isComModalOpenAtom);
+  const setIsComModalOpen = useMyScrapStore((state) => state.setIsComModalOpen);
   if (!isOpen) return null;
 
   return (
