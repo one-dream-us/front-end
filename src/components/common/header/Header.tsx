@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom';
 import logo from '@/assets/imgs/main_logo.svg';
 import { HeaderMenuList } from '@/constants';
+import { useState } from 'react';
+import Drawer from './Drawer';
 
 export default function Header() {
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  const handleShowSlider = () => setShowSidebar((prev) => !prev);
+
   return (
     <header className='fixed left-0 top-0 z-[999] flex h-20 w-full items-center justify-between bg-white px-5 py-12 md:px-20 lg:px-32'>
       <div className='flex items-center justify-start'>
@@ -23,9 +29,29 @@ export default function Header() {
         </ul>
       </div>
 
-      <Link to={'/login'}>
+      <Link className='hidden md:block' to={'/login'}>
         <button>login</button>
       </Link>
+
+      <button onClick={handleShowSlider} className='z-[999] block md:hidden'>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          fill='none'
+          viewBox='0 0 24 24'
+          strokeWidth={1.5}
+          stroke='currentColor'
+          className='size-7'
+        >
+          <path
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            d={
+              showSidebar ? 'M6 18 18 6M6 6l12 12' : 'M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
+            }
+          />
+        </svg>
+      </button>
+      <Drawer showSidebar={showSidebar} handleShowSlider={handleShowSlider} />
     </header>
   );
 }
