@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import '@/assets/fonts/font.css';
+import '@/styles/styles.css';
 
 const enableMocking = async () => {
   // if (process.env.NODE_ENV !== 'development') {

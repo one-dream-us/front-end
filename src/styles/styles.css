@@ -1,0 +1,6 @@
+.edit-btn {
+  @apply rounded-[10px] bg-gray-300 text-xs text-white;
+}
+.checkbox {
+  @apply h-5 w-5 rounded-[4px];
+}

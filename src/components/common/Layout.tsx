@@ -1,13 +1,15 @@
 import { Outlet } from 'react-router-dom';
-import Header from '../header/Header';
+import Header from './Header';
+import Footer from './Footer';
 
 export default function Layout() {
   return (
-    <div className='w-full h-screen'>
+    <div className='min-h-screen w-full'>
       <Header />
-      <main className='w-full h-full pt-24'>
+      <main className='h-full w-full pt-24'>
         <Outlet />
       </main>
+      <Footer />
     </div>
   );
 }
