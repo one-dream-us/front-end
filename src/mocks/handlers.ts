@@ -1,6 +1,6 @@
 import { contentCardDataList } from './data/contentCard';
-import scrapedContents from '@/mocks/data/ScrapedContents.json';
-import scrapedTerms from '@/mocks/data/ScrapedTerms.json';
+import scrapedContents from '@/mocks/data/scrapedContents.json';
+import scrapedTerms from '@/mocks/data/scrapedTerms.json';
 import { http, HttpResponse } from 'msw';
 
 export const handlers = [
