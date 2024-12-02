@@ -2,10 +2,13 @@ import useScrapedContents from './useScrapedContents';
 import useScrapedTerms from './useScrapedTerms';
 
 export function useContentDisplay(activeMenu: string) {
+  const scrapedContents = useScrapedContents();
+  const scrapedTerms = useScrapedTerms();
+
   if (activeMenu === '스크랩') {
-    return useScrapedContents();
+    return scrapedContents;
   } else if (activeMenu === '단어장') {
-    return useScrapedTerms();
+    return scrapedTerms;
   }
 
   return { data: null, isLoading: false };
