@@ -22,11 +22,14 @@ const Home = () => {
       </section>
 
       {/* 컨텐츠 소개? */}
-      <section className='mb-6 flex items-end justify-between px-4'>
+      <section className='mb-6 flex flex-col items-start gap-y-5 px-4'>
         <div>
           <HomeHeading mainTitle='최근 업로드된 동영상' subTitle='Recent upload' />
         </div>
-        <Link className='flex items-center justify-center text-sm text-gray-600' to={'/'}>
+        <Link
+          className='flex items-center justify-center rounded-3xl border bg-custom-gray-light px-5 py-2 text-xs text-black lg:text-lg'
+          to={'/'}
+        >
           <span>전체보기</span>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -42,7 +45,7 @@ const Home = () => {
       </section>
 
       {/* 컨텐츠 카드 */}
-      <div>
+      <div className='flex flex-col items-center gap-y-10 px-4 lg:inline-flex lg:flex-row lg:gap-x-6 lg:overflow-x-auto'>
         {contents.map((item) => (
           <ContentCard key={item.id} {...item} />
         ))}
