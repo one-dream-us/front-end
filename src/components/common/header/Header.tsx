@@ -1,13 +1,22 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, Navigate } from 'react-router-dom';
 import logo from '@/assets/imgs/main_logo.svg';
 import { HeaderMenuList } from '@/constants';
 import { useState } from 'react';
 import Drawer from './Drawer';
+import { useUserInfoQuery } from '@/hooks/auth/useUserInfoQuery';
 
 export default function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
 
+  const { isLoading, data } = useUserInfoQuery();
+  console.log(data);
+
+  const { pathname } = useLocation();
+
   const handleShowSlider = () => setShowSidebar((prev) => !prev);
+  if (pathname === '/login' && data) {
+    return <Navigate to={'/'} />;
+  }
 
   return (
     <header className='fixed left-0 top-0 z-[999] flex h-20 w-full items-center justify-between bg-white px-5 py-12 md:px-20 lg:px-32'>
@@ -23,14 +32,16 @@ export default function Header() {
         <ul className='hidden items-center justify-center gap-5 text-custom-gray md:flex md:gap-10 lg:gap-x-16'>
           {HeaderMenuList.map((item) => (
             <li key={item.id}>
-              <Link to={item.to}>{item.title}</Link>
+              <Link className={pathname === item.to ? 'font-bold text-black' : ''} to={item.to}>
+                {item.title}
+              </Link>
             </li>
           ))}
         </ul>
       </div>
 
-      <Link className='hidden md:block' to={'/login'}>
-        <button>login</button>
+      <Link className='hidden md:block' to={data ? '' : '/login'}>
+        <button>{isLoading ? 'loading...' : data ? 'my page' : 'login'}</button>
       </Link>
 
       <button onClick={handleShowSlider} className='z-[999] block md:hidden'>
@@ -51,7 +62,7 @@ export default function Header() {
           />
         </svg>
       </button>
-      <Drawer showSidebar={showSidebar} handleShowSlider={handleShowSlider} />
+      <Drawer pathname={pathname} showSidebar={showSidebar} handleShowSlider={handleShowSlider} />
     </header>
   );
 }
