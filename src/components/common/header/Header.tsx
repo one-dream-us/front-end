@@ -44,12 +44,12 @@ export default function Header() {
         <>
           {/* desktop */}
           <div className={`hidden h-9 w-9 rounded-full bg-custom-gray lg:block`}></div>
-          {/* tablet */}
+          {/* tablet
           <div
-            className={`hidden h-11 w-11 items-center justify-center bg-custom-gray-light md:flex lg:hidden`}
+            className={`flex h-11 w-11 items-center justify-center bg-custom-gray-light lg:hidden`}
           >
             <div className='h-6 w-6 bg-custom-gray'></div>
-          </div>
+          </div> */}
         </>
       ) : (
         <Link
@@ -61,24 +61,31 @@ export default function Header() {
       )}
 
       <button onClick={handleShowSlider} className='z-[999] block md:hidden'>
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          viewBox='0 0 24 24'
-          strokeWidth={1.5}
-          stroke='currentColor'
-          className='size-7'
+        <div
+          className={`flex h-11 w-11 items-center justify-center bg-custom-gray-light lg:hidden`}
         >
-          <path
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            d={
-              showSidebar ? 'M6 18 18 6M6 6l12 12' : 'M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
-            }
-          />
-        </svg>
+          <div className='flex h-6 w-6 items-center justify-center bg-custom-gray'>
+            {showSidebar && (
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={1.5}
+                stroke='currentColor'
+                className='size-7'
+              >
+                <path strokeLinecap='round' strokeLinejoin='round' d='M6 18 18 6M6 6l12 12' />
+              </svg>
+            )}
+          </div>
+        </div>
       </button>
-      <Drawer pathname={pathname} showSidebar={showSidebar} handleShowSlider={handleShowSlider} />
+      <Drawer
+        data={data}
+        pathname={pathname}
+        showSidebar={showSidebar}
+        handleShowSlider={handleShowSlider}
+      />
     </header>
   );
 }

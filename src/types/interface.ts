@@ -33,3 +33,13 @@ export interface ScrapedTermData {
   term: string;
   definition: string;
 }
+
+export interface UserInfoData {
+  name: string;
+  nickname: string;
+  email: string;
+  role: string;
+  provider: string;
+  createdAt: string;
+  updatedAt: string;
+}
