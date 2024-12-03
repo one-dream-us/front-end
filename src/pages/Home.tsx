@@ -1,4 +1,5 @@
 import ContentCard from '@/components/common/contentCard/ContentCard';
+import ServiceIntroBanner from '@/components/common/home/ServiceIntroBanner';
 import { ContentCardTypes } from '@/types/interface';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -50,6 +51,7 @@ const Home = () => {
           <ContentCard key={item.id} {...item} />
         ))}
       </div>
+      <ServiceIntroBanner />
     </div>
   );
 };
