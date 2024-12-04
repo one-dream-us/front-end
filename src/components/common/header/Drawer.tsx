@@ -24,17 +24,19 @@ export default function Drawer({
       <div className='relative h-full w-full px-8'>
         <div className='absolute top-[142px] flex items-center justify-start'>
           {data ? (
-            <div className='flex h-[60px] w-[217px] items-center justify-between'>
-              <div className='h-[60px] w-[60px] rounded-full bg-custom-gray-medium'></div>
-              <div className='flex h-[55px] w-[137px] flex-col items-start justify-between'>
-                <span className='text-[15px] font-bold text-custom-gray-medium'>Money</span>
-                <div className='flex w-full items-center justify-start gap-x-3'>
-                  <span>내가 본 콘텐츠</span>
-                  <span>|</span>
-                  <span>129</span>
+            <Link to={'/profile'}>
+              <div className='flex h-[60px] w-[217px] items-center justify-between'>
+                <div className='h-[60px] w-[60px] rounded-full bg-custom-gray-medium'></div>
+                <div className='flex h-[55px] w-[137px] flex-col items-start justify-between'>
+                  <span className='text-[15px] font-bold text-custom-gray-medium'>Money</span>
+                  <div className='flex w-full items-center justify-start gap-x-3'>
+                    <span>내가 본 콘텐츠</span>
+                    <span>|</span>
+                    <span>129</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ) : (
             <>
               <Link to={'/login'}>

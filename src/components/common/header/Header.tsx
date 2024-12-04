@@ -41,22 +41,22 @@ export default function Header() {
       </div>
 
       {data ? (
-        <>
+        <Link to={'/profile'}>
           {/* desktop */}
           <div className={`hidden h-9 w-9 rounded-full bg-custom-gray lg:block`}></div>
-          {/* tablet
+          {/* tablet */}
           <div
-            className={`flex h-11 w-11 items-center justify-center bg-custom-gray-light lg:hidden`}
+            className={`hidden h-11 w-11 items-center justify-center bg-custom-gray-light md:flex lg:hidden`}
           >
             <div className='h-6 w-6 bg-custom-gray'></div>
-          </div> */}
-        </>
+          </div>
+        </Link>
       ) : (
         <Link
           className={`hidden h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-gray-medium py-2 md:flex ${isLoading && 'animate-pulse'}`}
           to={'/login'}
         >
-          <button>{isLoading ? '' : data ? 'my page' : 'login'}</button>
+          <button>{isLoading ? '' : 'login'}</button>
         </Link>
       )}
 
