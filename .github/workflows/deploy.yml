@@ -18,10 +18,10 @@ jobs:
         with:
           node-version: '21.1.0'
 
-     - name: .env setting
-        run: 
-          echo "VITE_BACKEND_SERVER_URL: ${{ secrets.VITE_BACKEND_SERVER_URL }}" >> .env
-          echo "VITE_KAKAO_API_KEY: ${{ secrets.VITE_KAKAO_API_KEY }}" >> .env
+      - name: .env setting
+        run: |
+          echo "VITE_BACKEND_SERVER_URL=${{ secrets.VITE_BACKEND_SERVER_URL }}" >> .env
+          echo "VITE_KAKAO_API_KEY=${{ secrets.VITE_KAKAO_API_KEY }}" >> .env
 
       - name: Install dependencies
         run: yarn install
