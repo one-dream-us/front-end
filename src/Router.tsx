@@ -3,7 +3,7 @@ import Login from './pages/Login';
 import Layout from './components/common/Layout';
 import Home from './pages/Home';
 import MyScrapPage from './pages/MyScrapPage';
-import Contents from './pages/Contents';
+import ContentDetail from './pages/ContentDetail';
 import Profile from './pages/Profile';
 import ProtectedRoute from './components/common/ProtectedRoute';
 
@@ -14,7 +14,7 @@ const AppRoutes = (): JSX.Element => {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/my-scrap' element={<MyScrapPage />} />
-        <Route path='/contents' element={<Contents />} />
+        <Route path='/content/:id' element={<ContentDetail />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path='/profile' element={<Profile />} />

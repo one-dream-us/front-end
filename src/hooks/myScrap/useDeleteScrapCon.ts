@@ -10,8 +10,11 @@ export default function useDeleteScrapCon({
   refetch: () => void;
 }) {
   const reset = useResetScrap();
+
   const mutation = useMutation({
-    mutationFn: async () => await myScrapApi.deleteScrapedContent(selectedIdList),
+    mutationFn: async () => {
+      await Promise.all(selectedIdList.map((id) => myScrapApi.deleteScrapedContent(id)));
+    },
     onSuccess: () => {
       console.log('스크랩 콘텐츠 삭제 성공');
       refetch();
