@@ -1,7 +1,7 @@
 export interface ContentCardTypes {
   id: number;
-  thumbnail: string;
-  tag: {
+  thumbnailSrc: string;
+  keywords: {
     id: number;
     title: string;
   }[];
@@ -19,10 +19,20 @@ export interface ButtonProps {
   className?: string;
 }
 
+export interface ToastProps {
+  src: string;
+  altText: string;
+  text: string;
+  setIsComModalOpen: (isComModalOpen: boolean) => void;
+}
+
 // My Scrap
 export interface ScrapedContentData {
   id: number;
-  keywords: string[];
+  keywords: {
+    id: number;
+    title: string;
+  }[];
   title: string;
   date: string;
   thumbnailSrc: string;
@@ -42,4 +52,14 @@ export interface UserInfoData {
   provider: string;
   createdAt: string;
   updatedAt: string;
+}
+
+// Content Detail
+export interface ContentDetail {
+  contentId: string;
+  summary_text: string;
+  full_text: {
+    time: string;
+    text: string;
+  }[];
 }

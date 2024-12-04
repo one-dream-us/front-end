@@ -694,6 +694,11 @@
   resolved "https://registry.yarnpkg.com/@types/tough-cookie/-/tough-cookie-4.0.5.tgz#cb6e2a691b70cb177c6e3ae9c1d2e8b2ea8cd304"
   integrity sha512-/Ad8+nIOV7Rl++6f1BdKxFSMgmoqEoYbHRpPcx3JEfv8VRsQe9Z4mCXeJBzxs7mbHY/XOZZuXlRNfhpVPbs6ZA==
 
+"@types/youtube@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@types/youtube/-/youtube-0.1.0.tgz#0e116bd0a8ddb93daf1372fb5e07f576cf9fe5cc"
+  integrity sha512-Pg33m3X2mFgdmhtvzOlAfUfgOa3341N3/2JCrVY/mXVxb4hagcqqEG6w4vGCfB64StQNWHSj/T8Eotb1Rko/FQ==
+
 "@typescript-eslint/eslint-plugin@8.16.0", "@typescript-eslint/eslint-plugin@^8.14.0":
   version "8.16.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-8.16.0.tgz#ac56825bcdf3b392fc76a94b1315d4a162f201a6"

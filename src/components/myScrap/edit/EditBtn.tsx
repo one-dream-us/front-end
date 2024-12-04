@@ -6,7 +6,7 @@ export default function EditBtn() {
   const contentsLen = useMyScrapStore((state) => state.allIdList).length;
 
   return (
-    <div className='flex justify-between items-center'>
+    <div className='flex items-center justify-between'>
       <span className='text-xs font-semibold'>
         스크랩 수<span className='ml-2 font-bold'>{contentsLen}</span>
       </span>

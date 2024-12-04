@@ -1,5 +1,5 @@
 import Thumbnail from './Thumbnail';
-import KeywordTags from './KeywordTags';
+import KeywordTags from '@/components/common/contentCard/KeywordTags';
 import ScrapInfo from './ScrapInfo';
 import { ScrapedContentData } from '@/types/interface';
 import { useAllScrapedIds } from '@/hooks/myScrap/useAllScrapedIds';

@@ -19,7 +19,7 @@ export default function Header() {
   }
 
   return (
-    <header className='fixed left-0 top-0 z-[999] flex h-[52px] w-full items-center justify-between bg-white px-4 text-sm md:px-6 md:py-[11px] lg:h-20 lg:px-32 lg:py-6'>
+    <header className='fixed left-0 top-0 z-[999] flex h-[52px] w-full items-center justify-between bg-white px-4 text-sm md:px-6 md:py-[11px] desktop:h-20 desktop:px-32'>
       <div className='flex items-center justify-start'>
         <Link
           className='mr-10 flex items-center justify-center gap-x-1 text-xl font-extrabold'
@@ -48,7 +48,7 @@ export default function Header() {
           <div
             className={`flex h-11 w-11 items-center justify-center bg-custom-gray-light lg:hidden`}
           >
-            <div className='h-6 w-6 bg-custom-gray'></div>
+            <div className='w-6 h-6 bg-custom-gray'></div>
           </div> */}
         </>
       ) : (
