@@ -10,8 +10,11 @@ export default function useDeleteScrapTerm({
   refetch: () => void;
 }) {
   const reset = useResetScrap();
+
   const mutation = useMutation({
-    mutationFn: async () => await myScrapApi.deleteScrapedTerm(selectedIdList),
+    mutationFn: async () => {
+      await Promise.all(selectedIdList.map((id) => myScrapApi.deleteScrapedTerm(id)));
+    },
     onSuccess: () => {
       console.log('스크랩 단어 삭제 성공');
       refetch();
