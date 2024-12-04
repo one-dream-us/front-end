@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function WithDrawSuccess() {
   return (
-    <div className='mt-[40px] px-4 md:px-6 lg:px-[129px]'>
+    <div className='desktop:px-[129px] mt-[40px] px-4 md:px-6'>
       <h1 className='mb-[72px] text-[22px] font-bold'>회원 탈퇴</h1>
 
       <div className='m-auto mb-[72px] flex h-[241px] w-[164px] flex-col items-center justify-start md:h-[300px] md:w-[352px]'>

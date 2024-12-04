@@ -1,7 +1,7 @@
 export default function HomeBanner() {
   return (
-    <section className='mb-[40px] flex h-[200px] w-full items-center justify-start bg-custom-gray-light px-4 md:mb-[60px] md:h-[268px] md:justify-end md:px-6 lg:mb-[80px] lg:h-[502px]'>
-      <div className='h-[90px] w-[278px] md:h-[174px] md:w-[444px] lg:h-[193px]'>
+    <section className='desktop:mb-[80px] desktop:h-[502px] mb-[40px] flex h-[200px] w-full items-center justify-start bg-custom-gray-light px-4 md:mb-[60px] md:h-[268px] md:justify-end md:px-6'>
+      <div className='desktop:h-[193px] h-[90px] w-[278px] md:h-[174px] md:w-[444px]'>
         <h3 className='text-sm text-custom-gray-600'>Our Mission</h3>
         <h1 className='text-[22px] font-extrabold md:mb-3'>
           투자를 매일 쉽고 재미있게 <br /> 데일리 투자 스터디를 돕습니다.

@@ -29,7 +29,7 @@ export default function Header() {
           <h1 className='hidden md:block'>이게머니</h1>
         </Link>
 
-        <ul className='hidden items-center justify-center text-custom-gray md:flex md:gap-8 lg:gap-x-16'>
+        <ul className='desktop:gap-x-16 hidden items-center justify-center text-custom-gray md:flex md:gap-8'>
           {HeaderMenuList.map((item) => (
             <li key={item.id}>
               <Link className={pathname === item.to ? 'font-bold text-black' : ''} to={item.to}>
@@ -43,10 +43,10 @@ export default function Header() {
       {data ? (
         <Link to={'/profile'}>
           {/* desktop */}
-          <div className={`hidden h-9 w-9 rounded-full bg-custom-gray lg:block`}></div>
+          <div className={`desktop:block hidden h-9 w-9 rounded-full bg-custom-gray`}></div>
           {/* tablet */}
           <div
-            className={`hidden h-11 w-11 items-center justify-center bg-custom-gray-light md:flex lg:hidden`}
+            className={`desktop:hidden hidden h-11 w-11 items-center justify-center bg-custom-gray-light md:flex`}
           >
             <div className='h-6 w-6 bg-custom-gray'></div>
           </div>
@@ -62,7 +62,7 @@ export default function Header() {
 
       <button onClick={handleShowSlider} className='z-[999] block md:hidden'>
         <div
-          className={`flex h-11 w-11 items-center justify-center bg-custom-gray-light lg:hidden`}
+          className={`desktop:hidden flex h-11 w-11 items-center justify-center bg-custom-gray-light`}
         >
           <div className='flex h-6 w-6 items-center justify-center bg-custom-gray'>
             {showSidebar && (

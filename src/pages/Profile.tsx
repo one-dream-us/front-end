@@ -1,11 +1,11 @@
 export default function Profile() {
   return (
-    <div className='m-auto mt-[40px] w-full px-4 lg:px-[128px]'>
+    <div className='desktop:px-[128px] m-auto mt-[40px] w-full px-4'>
       <h1 className='mb-6 text-[22px] font-bold'>프로필</h1>
 
-      <div className='block lg:flex lg:items-center lg:justify-center lg:gap-x-[58px]'>
+      <div className='desktop:flex desktop:items-center desktop:justify-center desktop:gap-x-[58px] block'>
         <div>
-          <div className='m-auto mb-2 flex h-[385px] w-[201px] flex-col items-center justify-between lg:h-[177px] lg:w-[254px]'>
+          <div className='desktop:h-[177px] desktop:w-[254px] m-auto mb-2 flex h-[385px] w-[201px] flex-col items-center justify-between'>
             <div className='h-[127px]'>
               <div className='mb-3 h-[88px] w-[88px] rounded-full bg-custom-gray-medium'></div>
               <h3 className='text-center text-lg font-bold text-custom-gray-medium'>Money</h3>
@@ -15,7 +15,7 @@ export default function Profile() {
               스크랩 178 | 본 콘텐츠 <span className='text-custom-gray-medium'>124</span>
             </div>
 
-            <div className='flex h-[198px] w-full flex-col items-center justify-between rounded-lg border p-4 lg:hidden'>
+            <div className='desktop:hidden flex h-[198px] w-full flex-col items-center justify-between rounded-lg border p-4'>
               <div className='flex h-[42px] w-[169px] flex-col items-start justify-between text-xs'>
                 <span>이메일</span>
                 <span className='text-custom-gray-dark'>money@kakao.com</span>
@@ -35,12 +35,12 @@ export default function Profile() {
 
           <div
             role='button'
-            className='m-auto flex h-[30px] w-[200px] items-center justify-center rounded-lg bg-custom-gray text-xs lg:mt-[32px]'
+            className='desktop:mt-[32px] m-auto flex h-[30px] w-[200px] items-center justify-center rounded-lg bg-custom-gray text-xs'
           >
             로그아웃
           </div>
         </div>
-        <div className='hidden rounded-lg border-2 p-8 lg:flex lg:h-[241px] lg:w-[811px] lg:flex-col lg:items-start lg:justify-between'>
+        <div className='desktop:flex desktop:h-[241px] desktop:w-[811px] desktop:flex-col desktop:items-start desktop:justify-between hidden rounded-lg border-2 p-8'>
           <div className='flex h-[42px] w-[169px] flex-col items-start justify-between text-xs'>
             <span>이메일</span>
             <span className='text-custom-gray-dark'>money@kakao.com</span>
@@ -60,7 +60,7 @@ export default function Profile() {
 
       <div
         role='button'
-        className='m-auto mb-[60px] mt-[130px] h-[18px] w-[44px] text-xs text-custom-gray-medium underline underline-offset-2 lg:absolute lg:bottom-[180px] lg:right-[128px]'
+        className='desktop:absolute desktop:bottom-[180px] desktop:right-[128px] m-auto mb-[60px] mt-[130px] h-[18px] w-[44px] text-xs text-custom-gray-medium underline underline-offset-2'
       >
         회원탈퇴
       </div>
