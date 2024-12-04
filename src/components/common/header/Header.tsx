@@ -19,7 +19,7 @@ export default function Header() {
   }
 
   return (
-    <header className='fixed left-0 top-0 z-[999] flex h-[52px] w-full items-center justify-between bg-white px-4 text-sm md:px-6 md:py-[11px] desktop:h-20 desktop:px-32'>
+    <header className='desktop:h-20 desktop:px-32 fixed left-0 top-0 z-[999] flex h-[52px] w-full items-center justify-between bg-white px-4 text-sm md:px-6 md:py-[11px]'>
       <div className='flex items-center justify-start'>
         <Link
           className='mr-10 flex items-center justify-center gap-x-1 text-xl font-extrabold'
@@ -29,7 +29,7 @@ export default function Header() {
           <h1 className='hidden md:block'>이게머니</h1>
         </Link>
 
-        <ul className='hidden items-center justify-center text-custom-gray md:flex md:gap-8 lg:gap-x-16'>
+        <ul className='desktop:gap-x-16 hidden items-center justify-center text-custom-gray md:flex md:gap-8'>
           {HeaderMenuList.map((item) => (
             <li key={item.id}>
               <Link className={pathname === item.to ? 'font-bold text-black' : ''} to={item.to}>
@@ -41,28 +41,28 @@ export default function Header() {
       </div>
 
       {data ? (
-        <>
+        <Link to={'/profile'}>
           {/* desktop */}
-          <div className={`hidden h-9 w-9 rounded-full bg-custom-gray lg:block`}></div>
-          {/* tablet
+          <div className={`desktop:block hidden h-9 w-9 rounded-full bg-custom-gray`}></div>
+          {/* tablet */}
           <div
-            className={`flex h-11 w-11 items-center justify-center bg-custom-gray-light lg:hidden`}
+            className={`desktop:hidden hidden h-11 w-11 items-center justify-center bg-custom-gray-light md:flex`}
           >
-            <div className='w-6 h-6 bg-custom-gray'></div>
-          </div> */}
-        </>
+            <div className='h-6 w-6 bg-custom-gray'></div>
+          </div>
+        </Link>
       ) : (
         <Link
           className={`hidden h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-gray-medium py-2 md:flex ${isLoading && 'animate-pulse'}`}
           to={'/login'}
         >
-          <button>{isLoading ? '' : data ? 'my page' : 'login'}</button>
+          <button>{isLoading ? '' : 'login'}</button>
         </Link>
       )}
 
       <button onClick={handleShowSlider} className='z-[999] block md:hidden'>
         <div
-          className={`flex h-11 w-11 items-center justify-center bg-custom-gray-light lg:hidden`}
+          className={`desktop:hidden flex h-11 w-11 items-center justify-center bg-custom-gray-light`}
         >
           <div className='flex h-6 w-6 items-center justify-center bg-custom-gray'>
             {showSidebar && (

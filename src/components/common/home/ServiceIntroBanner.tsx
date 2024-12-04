@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function ServiceIntroBanner() {
   return (
-    <section className='mt-[60px] flex h-[190px] w-full flex-col items-center justify-center bg-custom-gray-dark text-center md:h-[223px] lg:mt-20'>
+    <section className='desktop:mt-20 mt-[60px] flex h-[190px] w-full flex-col items-center justify-center bg-custom-gray-dark text-center md:h-[223px]'>
       <h1 className='mb-2 text-lg font-bold text-custom-yellow-light'>
         우리의 시작, Our Beginning
       </h1>

@@ -4,6 +4,9 @@ import Layout from './components/common/Layout';
 import Home from './pages/Home';
 import MyScrapPage from './pages/MyScrapPage';
 import ContentDetail from './pages/ContentDetail';
+import Profile from './pages/Profile';
+import ProtectedRoute from './components/common/ProtectedRoute';
+import WithDrawSuccess from './pages/WithDrawSuccess';
 
 const AppRoutes = (): JSX.Element => {
   return (
@@ -13,6 +16,11 @@ const AppRoutes = (): JSX.Element => {
         <Route path='/login' element={<Login />} />
         <Route path='/my-scrap' element={<MyScrapPage />} />
         <Route path='/content/:id' element={<ContentDetail />} />
+        <Route path='/withdraw-success' element={<WithDrawSuccess />} />
+
+        <Route element={<ProtectedRoute />}>
+          <Route path='/profile' element={<Profile />} />
+        </Route>
       </Route>
     </Routes>
   );

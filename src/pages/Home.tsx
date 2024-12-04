@@ -27,7 +27,7 @@ const Home = () => {
           <span>최근 업로드된 영상</span>
         </div>
         <Link
-          className='flex items-center justify-center rounded-3xl border bg-custom-gray-light px-5 py-2 text-xs text-black lg:text-lg'
+          className='desktop:text-lg flex items-center justify-center rounded-3xl border bg-custom-gray-light px-5 py-2 text-xs text-black'
           to={'/'}
         >
           <span>전체보기</span>
@@ -45,7 +45,7 @@ const Home = () => {
       </section>
 
       {/* 컨텐츠 카드 */}
-      <div className='flex flex-col items-center gap-y-10 px-4 lg:inline-flex lg:flex-row lg:gap-x-6 lg:overflow-x-auto'>
+      <div className='desktop:inline-flex desktop:flex-row desktop:gap-x-6 desktop:overflow-x-auto flex flex-col items-center gap-y-10 px-4'>
         {contents.map((item) => (
           <ContentCard key={item.id} {...item} />
         ))}

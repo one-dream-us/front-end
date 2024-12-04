@@ -4,9 +4,9 @@ import Footer from './Footer';
 
 export default function Layout() {
   return (
-    <div className='flex flex-col justify-between w-full min-h-screen'>
+    <div className='flex min-h-screen w-full flex-col justify-between'>
       <Header />
-      <main className='h-full w-full pt-[52px] lg:pt-[80px]'>
+      <main className='desktop:pt-[80px] h-full w-full pt-[52px]'>
         <Outlet />
       </main>
       <Footer />
