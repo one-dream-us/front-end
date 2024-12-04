@@ -1,9 +1,8 @@
 import logoWithName from '@/assets/imgs/logo_with_name.svg';
 import { FooterMenuList } from '@/constants';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
-  const { pathname } = useLocation();
   return (
     <footer className='desktop:h-[120px] flex h-[140px] w-full items-center justify-center bg-custom-gray-lighter px-4 text-custom-gray-dark md:px-6'>
       <div className='desktop:items-end flex h-[79px] w-full items-center justify-between sm:max-w-[720px] md:h-[85px] md:max-w-[1186px]'>
