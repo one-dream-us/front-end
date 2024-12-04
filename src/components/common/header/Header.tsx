@@ -19,17 +19,17 @@ export default function Header() {
   }
 
   return (
-    <header className='fixed left-0 top-0 z-[999] flex h-20 w-full items-center justify-between bg-white px-5 py-12 md:px-20 lg:px-32'>
+    <header className='fixed left-0 top-0 z-[999] flex h-[52px] w-full items-center justify-between bg-white px-4 text-sm md:px-6 md:py-[11px] lg:h-20 lg:px-32 lg:py-6'>
       <div className='flex items-center justify-start'>
         <Link
-          className='mr-20 flex items-center justify-center gap-x-1 text-xl font-extrabold'
+          className='mr-10 flex items-center justify-center gap-x-1 text-xl font-extrabold'
           to={'/'}
         >
           <img src={logo} alt='' />
           <h1 className='hidden md:block'>이게머니</h1>
         </Link>
 
-        <ul className='hidden items-center justify-center gap-5 text-custom-gray md:flex md:gap-10 lg:gap-x-16'>
+        <ul className='hidden items-center justify-center text-custom-gray md:flex md:gap-8 lg:gap-x-16'>
           {HeaderMenuList.map((item) => (
             <li key={item.id}>
               <Link className={pathname === item.to ? 'font-bold text-black' : ''} to={item.to}>
@@ -40,29 +40,52 @@ export default function Header() {
         </ul>
       </div>
 
-      <Link className='hidden md:block' to={data ? '' : '/login'}>
-        <button>{isLoading ? 'loading...' : data ? 'my page' : 'login'}</button>
-      </Link>
+      {data ? (
+        <>
+          {/* desktop */}
+          <div className={`hidden h-9 w-9 rounded-full bg-custom-gray lg:block`}></div>
+          {/* tablet
+          <div
+            className={`flex h-11 w-11 items-center justify-center bg-custom-gray-light lg:hidden`}
+          >
+            <div className='h-6 w-6 bg-custom-gray'></div>
+          </div> */}
+        </>
+      ) : (
+        <Link
+          className={`hidden h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-gray-medium py-2 md:flex ${isLoading && 'animate-pulse'}`}
+          to={'/login'}
+        >
+          <button>{isLoading ? '' : data ? 'my page' : 'login'}</button>
+        </Link>
+      )}
 
       <button onClick={handleShowSlider} className='z-[999] block md:hidden'>
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          viewBox='0 0 24 24'
-          strokeWidth={1.5}
-          stroke='currentColor'
-          className='size-7'
+        <div
+          className={`flex h-11 w-11 items-center justify-center bg-custom-gray-light lg:hidden`}
         >
-          <path
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            d={
-              showSidebar ? 'M6 18 18 6M6 6l12 12' : 'M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
-            }
-          />
-        </svg>
+          <div className='flex h-6 w-6 items-center justify-center bg-custom-gray'>
+            {showSidebar && (
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={1.5}
+                stroke='currentColor'
+                className='size-7'
+              >
+                <path strokeLinecap='round' strokeLinejoin='round' d='M6 18 18 6M6 6l12 12' />
+              </svg>
+            )}
+          </div>
+        </div>
       </button>
-      <Drawer pathname={pathname} showSidebar={showSidebar} handleShowSlider={handleShowSlider} />
+      <Drawer
+        data={data}
+        pathname={pathname}
+        showSidebar={showSidebar}
+        handleShowSlider={handleShowSlider}
+      />
     </header>
   );
 }

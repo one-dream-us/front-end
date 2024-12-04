@@ -1,4 +1,6 @@
 import ContentCard from '@/components/common/contentCard/ContentCard';
+import HomeBanner from '@/components/common/home/HomeBanner';
+import ServiceIntroBanner from '@/components/common/home/ServiceIntroBanner';
 import { ContentCardTypes } from '@/types/interface';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -17,14 +19,12 @@ const Home = () => {
   return (
     <div className='w-full'>
       {/* 배너 */}
-      <section className='mb-10 flex h-48 flex-col items-start justify-center bg-custom-gray-light px-4'>
-        <HomeHeading mainTitle='똑똑해지도록 돕습니다.' subTitle='Our Mission' />
-      </section>
+      <HomeBanner />
 
       {/* 컨텐츠 소개? */}
       <section className='mb-6 flex flex-col items-start gap-y-5 px-4'>
         <div>
-          <HomeHeading mainTitle='최근 업로드된 동영상' subTitle='Recent upload' />
+          <span>최근 업로드된 영상</span>
         </div>
         <Link
           className='flex items-center justify-center rounded-3xl border bg-custom-gray-light px-5 py-2 text-xs text-black lg:text-lg'
@@ -50,20 +50,10 @@ const Home = () => {
           <ContentCard key={item.id} {...item} />
         ))}
       </div>
+      {/* 서비스 소개 배너 */}
+      <ServiceIntroBanner />
     </div>
   );
 };
 
 export default Home;
-
-const HomeHeading = ({ subTitle, mainTitle }: { subTitle: string; mainTitle: string }) => {
-  return (
-    <>
-      <h3 className='text-custom-gray-600'>{subTitle}</h3>
-      <h1 className='text-xl font-extrabold'>
-        금융을 더 빠르게 <br />
-        {mainTitle}
-      </h1>
-    </>
-  );
-};

@@ -28,6 +28,7 @@ export default {
         'custom-gray-200': '#eeeeee',
         'custom-gray-100': '#f5f5f5',
         'custom-kakao-yellow':'#FEE500',
+        'custom-green-money':'#79FF8D'
       },
     },
   },
