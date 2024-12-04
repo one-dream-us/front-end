@@ -27,8 +27,20 @@ export default {
         'custom-gray-300': '#e0e0e0',
         'custom-gray-200': '#eeeeee',
         'custom-gray-100': '#f5f5f5',
-        'custom-kakao-yellow':'#FEE500',
-        'custom-green-money':'#79FF8D'
+        'custom-kakao-yellow': '#FEE500',
+        'custom-green-money': '#79FF8D',
+      },
+      height: {
+        'custom-video-md': 'calc(212px + ((424 - 212) * ((100vw - 375px) / (768 - 375))))',
+      },
+      margin: {
+        'custom-video-md': 'calc(230px + ((424 - 212) * ((100vw - 375px) / (768 - 375))))',
+      },
+      screens: {
+        desktop: { min: '1440px' },
+      },
+      boxShadow: {
+        custom: '0px 4px 8px rgba(0, 0, 0, 0.3)',
       },
     },
   },
