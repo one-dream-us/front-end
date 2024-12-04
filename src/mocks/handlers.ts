@@ -1,18 +1,17 @@
-import { contentCardDataList } from './data/contentCard';
-import scrapedContents from '@/mocks/data/scrapedContents.json';
+import contents from './data/contents';
 import scrapedTerms from '@/mocks/data/scrapedTerms.json';
 import { http, HttpResponse } from 'msw';
 
 export const handlers = [
   http.get('/contents', () => {
-    return HttpResponse.json(contentCardDataList);
+    return HttpResponse.json(contents);
   }),
 
-  http.get('/scraped-contents', () => {
-    return HttpResponse.json(scrapedContents);
+  http.get('/scrap/content', () => {
+    return HttpResponse.json(contents);
   }),
 
-  http.get('/scraped-terms', () => {
+  http.get('/scrap/term', () => {
     return HttpResponse.json(scrapedTerms);
   }),
 
@@ -21,9 +20,7 @@ export const handlers = [
     if (!Array.isArray(ids) || ids.length === 0) {
       return new HttpResponse(null, { status: 400, statusText: 'Invalid or missing ids array' });
     }
-    const updatedScrapedContents = [...scrapedContents].filter(
-      (content) => !ids.includes(content.id),
-    );
+    const updatedScrapedContents = [...contents].filter((content) => !ids.includes(content.id));
     return HttpResponse.json(updatedScrapedContents);
   }),
 
