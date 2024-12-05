@@ -1,10 +1,7 @@
 export interface ContentCardTypes {
   id: number;
   thumbnailSrc: string;
-  keywords: {
-    id: number;
-    title: string;
-  }[];
+  keywords: string[];
   title: string;
   description: string;
   date: string;
@@ -28,20 +25,24 @@ export interface ToastProps {
 
 // My Scrap
 export interface ScrapedContentData {
-  id: number;
-  keywords: {
+  scrapId: number;
+  content: {
     id: number;
     title: string;
-  }[];
-  title: string;
-  date: string;
-  thumbnailSrc: string;
+    contentUrl: string;
+    thumbnailUrl: string;
+    createdAt: string;
+    author: 'string';
+  };
 }
 
 export interface ScrapedTermData {
-  id: number;
-  term: string;
-  definition: string;
+  scrapId: number;
+  dictionary: {
+    id: number;
+    term: string;
+    details: string;
+  };
 }
 
 export interface UserInfoData {
@@ -56,10 +57,28 @@ export interface UserInfoData {
 
 // Content Detail
 export interface ContentDetail {
-  contentId: string;
-  summary_text: string;
-  full_text: {
-    time: string;
-    text: string;
-  }[];
+  id: number;
+  title: string;
+  contentUrl: string;
+  thumbnailUrl: string;
+  createdAt: string;
+  viewCount: string;
+  scrapCount: string;
+  tags: string[];
+  summaryText: string;
+  author: string;
+  scriptParagraphs: ScriptParagraph[];
+}
+
+export interface ScriptParagraph {
+  id: number;
+  timestamp: string;
+  paragraphText: string;
+  dictionaries: Dictionary[];
+}
+
+export interface Dictionary {
+  id: number;
+  term: string;
+  details: string;
 }

@@ -3,7 +3,7 @@ export default function ScrapDateNCount({
   scrapCount,
 }: {
   date: string;
-  scrapCount: number;
+  scrapCount: string;
 }) {
   return (
     <div className='flex h-[14px] items-center text-xs text-gray-400'>
