@@ -82,3 +82,7 @@ export interface Dictionary {
   term: string;
   details: string;
 }
+
+export interface ContentCardData extends Omit<ContentDetail, 'author' | 'scriptParagraphs'> {
+  videoId: string;
+}
