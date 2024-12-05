@@ -1,11 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
-import myScrapApi from '@/services/myScrapApi';
-import useScrapedContents from '../myScrap/useScrapedContents';
+import scrapApi from '@/services/scrapApi';
+import useScrapedContents from '../scrap/useScrapedContents';
 
-export default function useScrapContent(contentId: number) {
+export default function useAddScrap(contentId: number) {
   const { refetch } = useScrapedContents();
+
   const mutation = useMutation({
-    mutationFn: async () => await myScrapApi.addScrapContent(contentId),
+    mutationFn: async () => await scrapApi.addScrapContent(contentId),
     onSuccess: () => {
       console.log('스크랩 콘텐츠 추가 성공');
       refetch();
