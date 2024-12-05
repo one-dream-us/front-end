@@ -3,17 +3,8 @@ import useScrapModalHandlers from '@/hooks/myScrap/useScrapModalHandlers';
 import CompleteModal from './edit/CompleteModal';
 import { myScrapMenu } from '@/types/types';
 
-export default function ScrapedItemModals({
-  itemName,
-  refetch,
-}: {
-  itemName: myScrapMenu;
-  refetch: () => void;
-}) {
-  const { isDelModalOpen, isComModalOpen, handleDeleteAction } = useScrapModalHandlers(
-    itemName,
-    refetch,
-  );
+export default function ScrapedItemModals({ itemName }: { itemName: myScrapMenu }) {
+  const { isDelModalOpen, isComModalOpen, handleDeleteAction } = useScrapModalHandlers(itemName);
 
   return (
     <>
