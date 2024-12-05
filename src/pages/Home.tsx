@@ -2,7 +2,7 @@ import ContentCard from '@/components/common/contentCard/ContentCard';
 import HomeBanner from '@/components/common/home/HomeBanner';
 import ServiceIntroBanner from '@/components/common/home/ServiceIntroBanner';
 import { ContentCardTypes } from '@/types/interface';
-import axios from 'axios';
+import client from '@/utils/client';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ const Home = () => {
 
   useEffect(() => {
     (async () => {
-      const contents = (await axios.get('/contents')).data;
+      const contents = (await client.get('/contents')).data;
       setContents(contents);
     })();
   }, []);
@@ -27,7 +27,7 @@ const Home = () => {
           <span>최근 업로드된 영상</span>
         </div>
         <Link
-          className='desktop:text-lg flex items-center justify-center rounded-3xl border bg-custom-gray-light px-5 py-2 text-xs text-black'
+          className='flex items-center justify-center rounded-3xl border bg-custom-gray-light px-5 py-2 text-xs text-black desktop:text-lg'
           to={'/'}
         >
           <span>전체보기</span>
@@ -45,7 +45,7 @@ const Home = () => {
       </section>
 
       {/* 컨텐츠 카드 */}
-      <div className='desktop:inline-flex desktop:flex-row desktop:gap-x-6 desktop:overflow-x-auto flex flex-col items-center gap-y-10 px-4'>
+      <div className='flex flex-col items-center gap-y-10 px-4 desktop:inline-flex desktop:flex-row desktop:gap-x-6 desktop:overflow-x-auto'>
         {contents.map((item) => (
           <ContentCard key={item.id} {...item} />
         ))}

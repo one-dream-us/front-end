@@ -1,4 +1,5 @@
-export function convertTimeToSeconds(time: string) {
-  const [minutes, seconds] = time.split(':').map(Number);
-  return Number(minutes * 60 + seconds);
+export function convertTimeToSeconds(timestamp: string): string {
+  const [minute, second] = timestamp.split(':').slice(1);
+
+  return `${minute}:${second}`;
 }
