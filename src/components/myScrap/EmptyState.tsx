@@ -1,8 +1,10 @@
 import Button from '@/components/common/Button';
 import { myScrapMenu } from '@/types/types';
+import { useNavigate } from 'react-router-dom';
 
 export default function EmptyState({ activeMenu }: { activeMenu: myScrapMenu }) {
   const isScrap = activeMenu === '스크랩';
+  const navigate = useNavigate();
 
   return (
     <div className='flex w-full flex-col items-center'>
@@ -20,7 +22,10 @@ export default function EmptyState({ activeMenu }: { activeMenu: myScrapMenu }) 
           className='mb-[88px] mt-8'
         />
       </div>
-      <Button text={isScrap ? '콘텐츠 모으러 가기' : '단어 주우러 가기'} />
+      <Button
+        text={isScrap ? '콘텐츠 모으러 가기' : '단어 주우러 가기'}
+        onClick={() => navigate('/contents')}
+      />
     </div>
   );
 }
