@@ -5,7 +5,7 @@ export function handleScriptClick(
   index: number,
   setVideoTime: (time: number) => void,
 ) {
-  setVideoTime(convertTimeToSeconds(time));
+  setVideoTime(Number(convertTimeToSeconds(time)));
   const element = document.querySelector(`#script-${index}`);
   element?.scrollIntoView({
     behavior: 'smooth',
