@@ -22,12 +22,12 @@ const Home = () => {
       <HomeBanner />
 
       {/* 컨텐츠 소개? */}
-      <section className='flex flex-col gap-y-5 items-start px-4 mb-6'>
+      <section className='mb-6 flex flex-col items-start gap-y-5 px-4'>
         <div>
           <span>최근 업로드된 영상</span>
         </div>
         <Link
-          className='flex justify-center items-center py-2 px-5 text-xs text-black rounded-3xl border bg-custom-gray-light desktop:text-lg'
+          className='flex items-center justify-center rounded-3xl border bg-custom-gray-light px-5 py-2 text-xs text-black desktop:text-lg'
           to={'/'}
         >
           <span>전체보기</span>
@@ -45,7 +45,7 @@ const Home = () => {
       </section>
 
       {/* 컨텐츠 카드 */}
-      <div className='flex flex-col gap-y-10 items-center px-4 desktop:inline-flex desktop:flex-row desktop:gap-x-6 desktop:overflow-x-auto'>
+      <div className='flex flex-col items-center gap-y-10 px-4 desktop:inline-flex desktop:flex-row desktop:gap-x-6 desktop:overflow-x-auto'>
         {contents.map((item) => (
           <ContentCard key={item.id} {...item} />
         ))}
