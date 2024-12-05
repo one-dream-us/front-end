@@ -10,6 +10,15 @@ const authApi = {
       console.log(e);
     }
   },
+  withDraw: async () => {
+    try {
+      await client.delete('/user/withdraw');
+      location.href = '/withdraw-success';
+    } catch {
+      alert('다시 시도해주세요');
+      location.href = '/';
+    }
+  },
 };
 
 export default authApi;
