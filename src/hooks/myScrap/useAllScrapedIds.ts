@@ -6,7 +6,7 @@ export function useAllScrapedIds(scrapedItems: ScrapedContentData[] | ScrapedTer
   const setAllIdList = useMyScrapStore((state) => state.setAllIdList);
 
   useEffect(() => {
-    const ids = scrapedItems.map((item) => item.id);
+    const ids = scrapedItems.map((item) => item.scrapId);
     setAllIdList(ids);
   }, [scrapedItems]);
 }
