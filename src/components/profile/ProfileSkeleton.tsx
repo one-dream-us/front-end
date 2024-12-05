@@ -7,11 +7,11 @@ export default function ProfileSkeleton() {
         <div>
           <div className='m-auto mb-2 flex h-[385px] w-[201px] flex-col items-center justify-between desktop:h-[177px] desktop:w-[254px]'>
             <div className='h-[127px]'>
-              <div className='m-auto mb-3 h-[88px] w-[88px] rounded-full bg-custom-gray-medium'></div>
+              <div className='m-auto mb-3 h-[88px] w-[88px] animate-pulse rounded-full bg-custom-gray-medium'></div>
               <div className='h-[19] w-[60px] animate-pulse rounded-lg bg-custom-gray-medium'></div>
             </div>
 
-            <div className='flex h-[14px] w-[143px] items-center justify-between'>
+            <div className='flex h-[14px] w-[143px] animate-pulse items-center justify-between'>
               <div className='h-[14px] w-[60px] rounded-lg bg-custom-gray-medium'></div>
               <span>|</span>
               <div className='h-[14px] w-[60px] rounded-lg bg-custom-gray-medium'></div>
