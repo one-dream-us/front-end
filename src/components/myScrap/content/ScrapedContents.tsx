@@ -1,28 +1,33 @@
 import Thumbnail from './Thumbnail';
-import KeywordTags from '@/components/common/contentCard/KeywordTags';
 import ScrapInfo from './ScrapInfo';
-import { ScrapedContentData } from '@/types/interface';
+import EmptyState from '../EmptyState';
 import { useAllScrapedIds } from '@/hooks/myScrap/useAllScrapedIds';
-import useScrapedContents from '@/hooks/myScrap/useScrapedContents';
+import useScrapedContents from '@/hooks/scrap/useScrapedContents';
 import ScrapedItemModals from '../ScrapItemModals';
+import { myScrapMenu } from '@/types/types';
+import { ScrapedContentData } from '@/types/interface';
+import { formatDate } from '@/utils/myScrapUtils';
 
-export default function ScrapedContents({ scrapedItems }: { scrapedItems: ScrapedContentData[] }) {
-  useAllScrapedIds(scrapedItems);
-  const { refetch } = useScrapedContents();
+export default function ScrapedContents({ activeMenu }: { activeMenu: myScrapMenu }) {
+  const { scrapedContents = [], isLoading } = useScrapedContents();
+  useAllScrapedIds(scrapedContents);
+
+  if (isLoading || scrapedContents.length === 0) {
+    return <EmptyState activeMenu={activeMenu} />;
+  }
 
   return (
-    <div className='flex min-h-[336px] flex-col justify-center gap-y-5'>
-      {scrapedItems.map((item) => (
-        <article key={item.id} className='flex h-[94px] gap-x-2.5'>
-          <Thumbnail src={item.thumbnailSrc} alt={item.title} id={item.id} />
-          <div className='flex w-[165px] flex-col gap-y-1'>
-            <KeywordTags keywords={item.keywords} />
-            <p className='h-[52px] text-sm font-bold'>{item.title}</p>
-            <ScrapInfo date={item.date} />
+    <div className='flex flex-col justify-center gap-y-5'>
+      {scrapedContents.map(({ scrapId, content }: ScrapedContentData) => (
+        <article key={scrapId} className='flex h-[94px] gap-x-2.5'>
+          <Thumbnail src={content.thumbnailUrl} alt={content.title} id={scrapId} />
+          <div className='flex w-[165px] flex-col justify-center gap-y-1'>
+            <p className='h-[52px] text-sm font-bold'>{content.title}</p>
+            <ScrapInfo date={formatDate(content.createdAt)} />
           </div>
         </article>
       ))}
-      <ScrapedItemModals itemName='스크랩' refetch={refetch} />
+      <ScrapedItemModals itemName='스크랩' />
     </div>
   );
 }

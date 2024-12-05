@@ -8,9 +8,10 @@ export default function MenuWithUnderbar() {
   const [activeMenu, setActiveMenu] = useState<myScrapMenu>(MenuItems[0]);
   const setSelectedIdList = useMyScrapStore((state) => state.setSelectedIdList);
   const setIsAllChecked = useMyScrapStore((state) => state.setIsAllChecked);
+  const setAllIdList = useMyScrapStore((state) => state.setAllIdList);
 
   return (
-    <div className='flex flex-col items-center w-full'>
+    <div className='flex w-full flex-col items-center'>
       <ul className='flex h-[44px] w-full border-b border-b-gray-500 text-sm'>
         {MenuItems.map((item) => (
           <li
@@ -19,6 +20,7 @@ export default function MenuWithUnderbar() {
               setActiveMenu(item);
               setSelectedIdList([]);
               setIsAllChecked(false);
+              setAllIdList([]);
             }}
             className={`relative w-1/2 cursor-pointer text-center text-sm font-bold leading-[44px] ${
               activeMenu === item
