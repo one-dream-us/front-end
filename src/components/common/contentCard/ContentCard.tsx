@@ -11,22 +11,22 @@ export default function ContentCard({
   title,
 }: ContentCardTypes) {
   return (
-    <div className='desktop:block desktop:h-96 desktop:max-w-96 desktop:shrink-0 h-96 max-w-96 sm:block md:flex md:h-[200px] md:max-w-[720px] md:gap-x-4'>
+    <div className='h-96 max-w-96 sm:block md:flex md:h-[200px] md:max-w-[720px] md:gap-x-4 desktop:block desktop:h-96 desktop:max-w-96 desktop:shrink-0'>
       <img
-        className='desktop:h-48 mb-5 h-48 w-full rounded-lg bg-custom-gray-light md:h-full'
+        className='mb-5 w-full h-48 rounded-lg bg-custom-gray-light md:h-full desktop:h-48'
         src={thumbnailSrc}
         alt='${title} 영상의 썸네일'
       />
 
-      <div className='desktop:justify-start flex w-full flex-col items-start gap-y-2 sm:justify-start md:justify-between'>
+      <div className='flex flex-col gap-y-2 items-start w-full sm:justify-start md:justify-between desktop:justify-start'>
         {/* tag */}
-        <KeywordTags keywords={keywords} />
+        <KeywordTags tags={keywords} />
 
         {/* content title */}
-        <h1 className='line-clamp-2 text-xl font-extrabold'>{title}</h1>
+        <h1 className='text-xl font-extrabold line-clamp-2'>{title}</h1>
 
         {/* content desc */}
-        <span className='line-clamp-2 text-sm'>{description}</span>
+        <span className='text-sm line-clamp-2'>{description}</span>
 
         {/* date */}
         <ScrapDateNCount date={date} scrapCount={scrapCount} />

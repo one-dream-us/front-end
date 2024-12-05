@@ -5,7 +5,7 @@ export interface ContentCardTypes {
   title: string;
   description: string;
   date: string;
-  scrapCount: number;
+  scrapCount: string;
 }
 
 // Common
