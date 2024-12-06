@@ -1,24 +1,22 @@
 import Modal from 'react-modal';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useLoginModalStore from '@/store/useLoginModalStore';
 
 Modal.setAppElement('#root');
 
-export default function LoginModal({
-  isModalOpen,
-  setIsModalOpen,
-}: {
-  isModalOpen: boolean;
-  setIsModalOpen: (isModalOpen: boolean) => void;
-}) {
+export default function LoginModal() {
   const [isChecked, setIsChecked] = useState(false);
-  const toggleModal = (isModalOpen: boolean) => setIsModalOpen(isModalOpen);
+  const isLoginModalOpen = useLoginModalStore((state) => state.isLoginModalOpen);
+  const setIsLoginModalOpen = useLoginModalStore((state) => state.setIsLoginModalOpen);
+  const toggleModal = (isModalOpen: boolean) => setIsLoginModalOpen(isModalOpen);
   const navigate = useNavigate();
+
   return (
     <Modal
-      isOpen={isModalOpen}
+      isOpen={isLoginModalOpen}
       onRequestClose={() => toggleModal(false)}
-      className='shadow-login flex h-[230px] w-[343px] flex-col rounded-[10px] bg-custom-gray-lighter px-7 py-6 outline-none md:w-[372px]'
+      className='flex h-[230px] w-[343px] flex-col rounded-[10px] bg-custom-gray-lighter px-7 py-6 shadow-login outline-none md:w-[372px]'
       overlayClassName='fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-[500] '
     >
       <h2 className='mb-2 h-[54px] text-lg font-bold text-custom-black'>
@@ -31,7 +29,7 @@ export default function LoginModal({
       <div className='mb-5 flex items-center gap-x-1.5'>
         <input
           type='checkbox'
-          className='checked:bg-checked h-5 w-5 text-custom-gray-dark checked:appearance-none checked:rounded-[3px]'
+          className='h-5 w-5 text-custom-gray-dark checked:appearance-none checked:rounded-[3px] checked:bg-checked'
           checked={isChecked}
           onChange={() => setIsChecked(!isChecked)}
         />
@@ -40,7 +38,7 @@ export default function LoginModal({
       <div className='flex gap-x-2 self-center'>
         <button
           onClick={() => toggleModal(false)}
-          className='hover:bg-hover-30 h-[44px] w-[140px] cursor-pointer whitespace-nowrap rounded bg-custom-gray-300 px-[59px] py-3 text-xs font-medium text-custom-gray-600'
+          className='h-[44px] w-[140px] cursor-pointer whitespace-nowrap rounded bg-custom-gray-300 px-[59px] py-3 text-xs font-medium text-custom-gray-600 hover:bg-hover-30'
         >
           닫기
         </button>
@@ -49,7 +47,7 @@ export default function LoginModal({
             toggleModal(false);
             navigate('/login');
           }}
-          className={`hover:bg-hover-80 hover:text-green-hover h-[44px] w-[140px] whitespace-nowrap rounded py-3 text-xs font-medium ${isChecked ? 'bg-custom-gray-dark text-custom-green-money' : 'bg-custom-gray-600 text-custom-gray-300'}`}
+          className={`h-[44px] w-[140px] whitespace-nowrap rounded py-3 text-xs font-medium hover:bg-hover-80 hover:text-green-hover ${isChecked ? 'bg-custom-gray-dark text-custom-green-money' : 'bg-custom-gray-600 text-custom-gray-300'}`}
           disabled={!isChecked}
         >
           로그인 하기

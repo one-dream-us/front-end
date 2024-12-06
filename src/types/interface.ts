@@ -86,3 +86,10 @@ export interface Dictionary {
 export interface ContentCardData extends Omit<ContentDetail, 'author' | 'scriptParagraphs'> {
   videoId: string;
 }
+
+export interface ContentListData {
+  contents: ContentCardData[];
+  hasNext: boolean;
+  nextCursor: any;
+  totalElements: number;
+}

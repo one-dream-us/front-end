@@ -10,15 +10,10 @@ export function toggleExpandDef(
 
 export function formatDate(dateString: string): string {
   const date = new Date(dateString);
-  const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-    weekday: 'short',
-  };
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
 
-  const formattedDate = new Intl.DateTimeFormat('ko-KR', options).format(date);
-  const [year, month, day] = formattedDate.replace(/\./g, '').split(' ');
-
-  return `${year}년 ${month}월 ${day}일`;
+  const formattedDate = `${year}.${month}.${day}`;
+  return formattedDate;
 }
