@@ -41,6 +41,10 @@ export default {
       },
       boxShadow: {
         custom: '0px 4px 8px rgba(0, 0, 0, 0.3)',
+        login: '0px 6px 12px rgba(0, 0, 0, 0.3)',
+      },
+      backgroundImage: {
+        checked: "url('@/assets/icons/check.svg')",
       },
     },
   },
