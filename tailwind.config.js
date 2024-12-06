@@ -29,6 +29,9 @@ export default {
         'custom-gray-100': '#f5f5f5',
         'custom-kakao-yellow': '#FEE500',
         'custom-green-money': '#79FF8D',
+        'hover-30': '#CBCBCB',
+        'hover-80': '#4D4D4D',
+        'green-hover': '#A7FFB4',
       },
       height: {
         'custom-video-md': 'calc(212px + ((424 - 212) * ((100vw - 375px) / (768 - 375))))',

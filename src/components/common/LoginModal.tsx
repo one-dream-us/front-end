@@ -40,7 +40,7 @@ export default function LoginModal({
       <div className='flex gap-x-2 self-center'>
         <button
           onClick={() => toggleModal(false)}
-          className='h-[44px] w-[140px] whitespace-nowrap rounded bg-custom-gray-300 px-[59px] py-3 text-xs font-medium text-custom-gray-600'
+          className='hover:bg-hover-30 h-[44px] w-[140px] cursor-pointer whitespace-nowrap rounded bg-custom-gray-300 px-[59px] py-3 text-xs font-medium text-custom-gray-600'
         >
           닫기
         </button>
@@ -49,7 +49,7 @@ export default function LoginModal({
             toggleModal(false);
             navigate('/login');
           }}
-          className={`h-[44px] w-[140px] whitespace-nowrap rounded py-3 text-xs font-medium ${isChecked ? 'bg-custom-gray-dark text-primary' : 'cursor-not-allowed bg-custom-gray-600 text-custom-gray-300'}`}
+          className={`hover:bg-hover-80 hover:text-green-hover h-[44px] w-[140px] whitespace-nowrap rounded py-3 text-xs font-medium ${isChecked ? 'bg-custom-gray-dark text-custom-green-money' : 'bg-custom-gray-600 text-custom-gray-300'}`}
           disabled={!isChecked}
         >
           로그인 하기
