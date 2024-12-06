@@ -7,6 +7,7 @@ import ContentDetail from './pages/ContentDetail';
 import Profile from './pages/Profile';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import WithDrawSuccess from './pages/WithDrawSuccess';
+import ContentList from './pages/ContentList';
 
 const AppRoutes = (): JSX.Element => {
   return (
@@ -17,6 +18,7 @@ const AppRoutes = (): JSX.Element => {
         <Route path='/my-scrap' element={<MyScrapPage />} />
         <Route path='/content/:id' element={<ContentDetail />} />
         <Route path='/withdraw-success' element={<WithDrawSuccess />} />
+        <Route path='/contents' element={<ContentList />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path='/profile' element={<Profile />} />
