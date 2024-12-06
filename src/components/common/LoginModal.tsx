@@ -19,7 +19,7 @@ export default function LoginModal({
       isOpen={isModalOpen}
       onRequestClose={() => toggleModal(false)}
       className='shadow-login flex h-[230px] w-[343px] flex-col rounded-[10px] bg-custom-gray-lighter px-7 py-6 outline-none md:w-[372px]'
-      overlayClassName='fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center'
+      overlayClassName='fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-[500] '
     >
       <h2 className='mb-2 h-[54px] text-lg font-bold text-custom-black'>
         <div>로그인이 필요한 서비스입니다.</div>
