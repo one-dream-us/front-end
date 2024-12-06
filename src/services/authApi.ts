@@ -4,7 +4,7 @@ const authApi = {
   getInfo: async () => (await client.get('/users/info')).data,
   logout: async () => {
     try {
-      await client.post('/users/logout');
+      await client.post('/user/logout');
       location.href = '/';
     } catch (e) {
       console.log(e);
@@ -12,7 +12,7 @@ const authApi = {
   },
   withDraw: async () => {
     try {
-      await client.delete('/users/withdraw');
+      await client.delete('/user/withdraw');
       location.href = '/withdraw-success';
     } catch {
       alert('다시 시도해주세요');

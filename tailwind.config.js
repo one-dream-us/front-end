@@ -29,6 +29,9 @@ export default {
         'custom-gray-100': '#f5f5f5',
         'custom-kakao-yellow': '#FEE500',
         'custom-green-money': '#79FF8D',
+        'hover-30': '#CBCBCB',
+        'hover-80': '#4D4D4D',
+        'green-hover': '#A7FFB4',
       },
       height: {
         'custom-video-md': 'calc(212px + ((424 - 212) * ((100vw - 375px) / (768 - 375))))',
@@ -41,6 +44,10 @@ export default {
       },
       boxShadow: {
         custom: '0px 4px 8px rgba(0, 0, 0, 0.3)',
+        login: '0px 6px 12px rgba(0, 0, 0, 0.3)',
+      },
+      backgroundImage: {
+        checked: "url('@/assets/icons/check.svg')",
       },
     },
   },
