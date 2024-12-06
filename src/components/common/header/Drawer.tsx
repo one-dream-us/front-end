@@ -1,19 +1,29 @@
 import { HeaderMenuList } from '@/constants';
+import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
+import { useUserInfoQuery } from '@/hooks/auth/useUserInfoQuery';
 import authApi from '@/services/authApi';
-import { UserInfoData } from '@/types/interface';
+import { formatUserName } from '@/utils/formatUserName';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Drawer({
   showSidebar,
   handleShowSlider,
   pathname,
-  data,
 }: {
   showSidebar: boolean;
   handleShowSlider: () => void;
   pathname: string;
-  data: UserInfoData | undefined;
 }) {
+  const { data: logged, isLoading } = useAuthCheckQuery();
+  const { refetch, data: info } = useUserInfoQuery(false);
+
+  useEffect(() => {
+    if (logged && !isLoading) {
+      refetch();
+    }
+  }, [logged, isLoading]);
+
   return (
     <div
       onClick={handleShowSlider}
@@ -23,16 +33,18 @@ export default function Drawer({
     >
       <div className='relative h-full w-full px-8'>
         <div className='absolute top-[142px] flex items-center justify-start'>
-          {data ? (
+          {logged ? (
             <Link to={'/profile'}>
               <div className='flex h-[60px] w-[217px] items-center justify-between'>
                 <div className='h-[60px] w-[60px] rounded-full bg-custom-gray-medium'></div>
                 <div className='flex h-[55px] w-[137px] flex-col items-start justify-between'>
-                  <span className='text-[15px] font-bold text-custom-gray-medium'>Money</span>
+                  <span className='text-[15px] font-bold text-custom-gray-medium'>
+                    {formatUserName(info?.email || '')}
+                  </span>
                   <div className='flex w-full items-center justify-start gap-x-3'>
                     <span>내가 본 콘텐츠</span>
                     <span>|</span>
-                    <span>129</span>
+                    <span>0</span>
                   </div>
                 </div>
               </div>
@@ -64,7 +76,7 @@ export default function Drawer({
           ))}
         </ul>
 
-        {data && (
+        {logged && (
           <button
             onClick={authApi.logout}
             className='absolute bottom-[103px] text-sm text-custom-gray-medium'

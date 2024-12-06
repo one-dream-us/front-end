@@ -3,13 +3,12 @@ import logo from '@/assets/imgs/main_logo.svg';
 import { HeaderMenuList } from '@/constants';
 import { useState } from 'react';
 import Drawer from './Drawer';
-import { useUserInfoQuery } from '@/hooks/auth/useUserInfoQuery';
+import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
 
 export default function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
 
-  const { isLoading, data } = useUserInfoQuery();
-  console.log(data);
+  const { isLoading, data } = useAuthCheckQuery();
 
   const { pathname } = useLocation();
 
@@ -19,7 +18,7 @@ export default function Header() {
   }
 
   return (
-    <header className='desktop:h-20 desktop:px-32 fixed left-0 top-0 z-[999] flex h-[52px] w-full items-center justify-between bg-white px-4 text-sm md:px-6 md:py-[11px]'>
+    <header className='fixed left-0 top-0 z-[999] flex h-[52px] w-full items-center justify-between bg-white px-4 text-sm md:px-6 md:py-[11px] desktop:h-20 desktop:px-32'>
       <div className='flex items-center justify-start'>
         <Link
           className='mr-10 flex items-center justify-center gap-x-1 text-xl font-extrabold'
@@ -29,7 +28,7 @@ export default function Header() {
           <h1 className='hidden md:block'>이게머니</h1>
         </Link>
 
-        <ul className='desktop:gap-x-16 hidden items-center justify-center text-custom-gray md:flex md:gap-8'>
+        <ul className='hidden items-center justify-center text-custom-gray md:flex md:gap-8 desktop:gap-x-16'>
           {HeaderMenuList.map((item) => (
             <li key={item.id}>
               <Link className={pathname === item.to ? 'font-bold text-black' : ''} to={item.to}>
@@ -43,10 +42,10 @@ export default function Header() {
       {data ? (
         <Link to={'/profile'}>
           {/* desktop */}
-          <div className={`desktop:block hidden h-9 w-9 rounded-full bg-custom-gray`}></div>
+          <div className={`hidden h-9 w-9 rounded-full bg-custom-gray desktop:block`}></div>
           {/* tablet */}
           <div
-            className={`desktop:hidden hidden h-11 w-11 items-center justify-center bg-custom-gray-light md:flex`}
+            className={`hidden h-11 w-11 items-center justify-center bg-custom-gray-light md:flex desktop:hidden`}
           >
             <div className='h-6 w-6 bg-custom-gray'></div>
           </div>
@@ -62,7 +61,7 @@ export default function Header() {
 
       <button onClick={handleShowSlider} className='z-[999] block md:hidden'>
         <div
-          className={`desktop:hidden flex h-11 w-11 items-center justify-center bg-custom-gray-light`}
+          className={`flex h-11 w-11 items-center justify-center bg-custom-gray-light desktop:hidden`}
         >
           <div className='flex h-6 w-6 items-center justify-center bg-custom-gray'>
             {showSidebar && (
@@ -80,12 +79,7 @@ export default function Header() {
           </div>
         </div>
       </button>
-      <Drawer
-        data={data}
-        pathname={pathname}
-        showSidebar={showSidebar}
-        handleShowSlider={handleShowSlider}
-      />
+      <Drawer pathname={pathname} showSidebar={showSidebar} handleShowSlider={handleShowSlider} />
     </header>
   );
 }

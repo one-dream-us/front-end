@@ -2,9 +2,10 @@ import ProfileInfo from '@/components/profile/ProfileInfo';
 import ProfileSkeleton from '@/components/profile/ProfileSkeleton';
 import { useUserInfoQuery } from '@/hooks/auth/useUserInfoQuery';
 import authApi from '@/services/authApi';
+import { formatUserName } from '@/utils/formatUserName';
 
 export default function Profile() {
-  const { data: info, isLoading } = useUserInfoQuery();
+  const { data: info, isLoading } = useUserInfoQuery(true);
 
   const handleWithdraw = async () => {
     if (!confirm('ㄹㅇ?')) return;
@@ -26,7 +27,7 @@ export default function Profile() {
                 <div className='h-[19] w-[60px] animate-pulse rounded-lg bg-custom-gray-medium'></div>
               ) : (
                 <h3 className='text-center text-lg font-bold text-custom-gray-medium'>
-                  {info?.email.split('@')[0]}
+                  {formatUserName(info?.email || '')}
                 </h3>
               )}
             </div>
