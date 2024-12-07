@@ -5,10 +5,12 @@ import authApi from '@/services/authApi';
 import { formatUserName } from '@/utils/formatUserName';
 import profileImg from '@/assets/this_is_money_imgs/img_png/profile_small_active.png';
 import { useImgHover } from '@/hooks/ui/useImgHover';
+import { useScrapTotalQuery } from '@/hooks/scrap/useScrapTotalQuery';
 
 export default function Profile() {
   const { data: info, isLoading } = useUserInfoQuery(true);
   const { handleMouseEnter, handleMouseLeave, isHover } = useImgHover();
+  const { data } = useScrapTotalQuery();
 
   const handleWithdraw = async () => {
     if (!confirm('ㄹㅇ?')) return;
@@ -50,7 +52,8 @@ export default function Profile() {
               </div>
             ) : (
               <div className='text-xs'>
-                스크랩 178 | 본 콘텐츠 <span className='text-custom-gray-medium'>124</span>
+                스크랩 {data.totalScrapCnt} | 본 콘텐츠{' '}
+                <span className='text-custom-gray-medium'>124</span>
               </div>
             )}
 
