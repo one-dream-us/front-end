@@ -8,14 +8,16 @@ import { useImgHover } from '@/hooks/ui/useImgHover';
 import { useScrapTotalQuery } from '@/hooks/scrap/useScrapTotalQuery';
 import WithdrawModal from '@/components/withdraw/WithdrawModal';
 import { useState } from 'react';
+import { useMyViewCount } from '@/hooks/homeContent/useMyViewCount';
 
 export default function Profile() {
   const { data: info, isLoading } = useUserInfoQuery(true);
   const { handleMouseEnter, handleMouseLeave, isHover } = useImgHover();
-  const { data } = useScrapTotalQuery();
+  const { data, isLoading: scrapCountLoading } = useScrapTotalQuery();
+  const { data: viewCount, isLoading: viewCountLoading } = useMyViewCount();
   const [showModal, setShowModal] = useState(false);
 
-  if (isLoading) return <ProfileSkeleton />;
+  if (isLoading || scrapCountLoading || viewCountLoading) return <ProfileSkeleton />;
   return (
     <div className='m-auto mt-[40px] w-full px-4 desktop:px-[128px]'>
       <h1 className='mb-6 text-[22px] font-bold'>프로필</h1>
@@ -49,8 +51,8 @@ export default function Profile() {
               </div>
             ) : (
               <div className='text-xs'>
-                스크랩 {data?.totalScrapCnt || 0} | 본 콘텐츠{' '}
-                <span className='text-custom-gray-medium'>124</span>
+                스크랩 {data?.totalScrapCnt || 0} | 본 콘텐츠
+                <span className='text-custom-gray-medium'> {viewCount}</span>
               </div>
             )}
 

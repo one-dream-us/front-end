@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import profileImg from '@/assets/this_is_money_imgs/img_png/profile_small_active.png';
 import { useImgHover } from '@/hooks/ui/useImgHover';
 import useLoginModalStore from '@/store/useLoginModalStore';
+import { useMyViewCount } from '@/hooks/homeContent/useMyViewCount';
 
 export default function Drawer({
   showSidebar,
@@ -22,12 +23,13 @@ export default function Drawer({
   const { refetch, data: info } = useUserInfoQuery(false);
   const { handleMouseEnter, handleMouseLeave, isHover } = useImgHover();
   const { setIsLoginModalOpen } = useLoginModalStore();
+  const { data: viewCount, isLoading: viewCountLoading } = useMyViewCount();
 
   useEffect(() => {
-    if (logged && !isLoading) {
+    if (logged && !isLoading && viewCountLoading) {
       refetch();
     }
-  }, [logged, isLoading]);
+  }, [logged, isLoading, viewCountLoading]);
 
   return (
     <div
@@ -55,7 +57,7 @@ export default function Drawer({
                   <div className='flex w-full items-center justify-start gap-x-3'>
                     <span>내가 본 콘텐츠</span>
                     <span>|</span>
-                    <span>0</span>
+                    <span>{viewCount}</span>
                   </div>
                 </div>
               </div>
