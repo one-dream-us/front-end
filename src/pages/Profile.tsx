@@ -66,7 +66,7 @@ export default function Profile() {
           <div
             role='button'
             onClick={authApi.logout}
-            className='m-auto flex h-[30px] w-[200px] items-center justify-center rounded-lg bg-custom-gray text-xs desktop:mt-[32px]'
+            className='m-auto flex h-[30px] w-[200px] items-center justify-center rounded-lg bg-black text-xs text-white transition-all duration-200 hover:bg-custom-gray desktop:mt-[32px]'
           >
             로그아웃
           </div>

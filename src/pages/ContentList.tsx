@@ -15,7 +15,7 @@ export default function ContentList() {
           {isLoading ? (
             <div className='ml-1 h-2 w-2 animate-pulse rounded-lg bg-custom-gray-medium'></div>
           ) : (
-            <span className='font-bold text-black'>{res?.totalElements}</span>
+            <span className='ml-1 font-bold text-black'>{res?.totalElements}</span>
           )}
         </span>
       </div>
