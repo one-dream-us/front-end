@@ -2,7 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 import contentApi from '@/services/contentAPi';
 
 export default function useContentDetails(contentId: number) {
-  const { data, isLoading } = useQuery({
+  const {
+    data,
+    isLoading,
+    refetch: reloadContentDetails,
+  } = useQuery({
     queryKey: ['contentDetail', contentId],
     queryFn: ({ queryKey }) => {
       const [, id] = queryKey;
@@ -12,5 +16,6 @@ export default function useContentDetails(contentId: number) {
   });
 
   const contentDetails = data;
-  return { contentDetails, isLoading };
+
+  return { contentDetails, isLoading, reloadContentDetails };
 }

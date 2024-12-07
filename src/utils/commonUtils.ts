@@ -9,7 +9,7 @@ export function getToastStyles(type: string) {
         icon: closeIcon,
         textColor: 'text-custom-gray-300',
         alt: '삭제하기 아이콘',
-        size: 'w-[15px] h-[15px]',
+        size: 'w-[11px] h-[15px]',
       };
     case 'addScrap':
     case 'addTerm':
@@ -17,7 +17,7 @@ export function getToastStyles(type: string) {
         icon: checkIcon,
         textColor: 'text-primary',
         alt: '추가하기 아이콘',
-        size: 'w-[11px] h-[15px]',
+        size: 'w-[15px] h-[15px]',
       };
   }
 }

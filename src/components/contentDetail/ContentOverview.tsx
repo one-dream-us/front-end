@@ -7,28 +7,24 @@ export default function ContentOverview({
   title,
   tags,
   scrapCount,
-  contentId,
   date,
 }: {
   reference: string;
   title: string;
   tags: string[];
   scrapCount: string;
-  contentId: number;
   date: string;
 }) {
   return (
-    <div className='relative mb-6 mt-custom-video-md flex flex-col gap-y-2 md:mt-[444px] desktop:mb-5 desktop:mt-10'>
+    <div className='relative mb-6 mt-custom-video-md flex flex-col md:mt-[444px] desktop:mb-2 desktop:mt-10'>
       <KeywordTags tags={tags} />
-      <div className='flex justify-between items-center'>
-        <h1 className='text-[22px] font-bold'>{title}</h1>
-        <div className='absolute right-0 -bottom-2 md:static'>
-          <ScrapAndShare contentId={contentId} />
-        </div>
-      </div>
-      <div className='desktop:flex desktop:w-[533px] desktop:justify-between'>
-        <span className='hidden text-xs whitespace-nowrap desktop:block'>{reference}</span>
+      <h1 className='mb-2 text-[22px] font-bold text-custom-black'>{title}</h1>
+      <div className='mb-3 flex items-center justify-between desktop:w-[533px]'>
+        <span className='whitespace-nowrap text-xs text-custom-gray-dark'>{reference}</span>
         <ScrapDateNCount date={date} scrapCount={scrapCount} />
+      </div>
+      <div className='desktop:absolute desktop:bottom-[34px] desktop:right-0'>
+        <ScrapAndShare />
       </div>
     </div>
   );
