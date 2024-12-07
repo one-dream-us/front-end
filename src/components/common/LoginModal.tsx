@@ -4,8 +4,7 @@ import useLoginModalStore from '@/store/useLoginModalStore';
 
 export default function LoginModal() {
   const [isChecked, setIsChecked] = useState(false);
-  const isLoginModalOpen = useLoginModalStore((state) => state.isLoginModalOpen);
-  const setIsLoginModalOpen = useLoginModalStore((state) => state.setIsLoginModalOpen);
+  const { isLoginModalOpen, setLoginConfirmed, setIsLoginModalOpen } = useLoginModalStore();
   const toggleModal = (isModalOpen: boolean) => setIsLoginModalOpen(isModalOpen);
   const navigate = useNavigate();
 
@@ -24,13 +23,17 @@ export default function LoginModal() {
             <div className='mb-5 flex items-center gap-x-1.5'>
               <input
                 type='checkbox'
+                id='login-conform'
                 className='h-5 w-5 text-custom-gray-dark checked:appearance-none checked:rounded-[3px] checked:bg-checked'
                 checked={isChecked}
                 onChange={() => setIsChecked(!isChecked)}
               />
-              <p className='text-xs font-medium text-custom-gray-dark'>
+              <label
+                htmlFor='login-conform'
+                className='select-none text-xs font-medium text-custom-gray-dark'
+              >
                 [필수] 만 14세 이상입니다.
-              </p>
+              </label>
             </div>
             <div className='flex gap-x-2 self-center'>
               <button
@@ -42,6 +45,7 @@ export default function LoginModal() {
               <button
                 onClick={() => {
                   toggleModal(false);
+                  setLoginConfirmed();
                   navigate('/login');
                 }}
                 className={`h-[44px] w-[140px] whitespace-nowrap rounded py-3 text-xs font-medium hover:bg-hover-80 hover:text-green-hover ${isChecked ? 'bg-custom-gray-dark text-custom-green-money' : 'bg-custom-gray-600 text-custom-gray-300'}`}

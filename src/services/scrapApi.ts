@@ -30,6 +30,7 @@ const scrapApi = {
     const { data: response } = await client.post(`/scraps/dictionaries/${termId}`);
     return response;
   },
+  getTotalScrapCount: async () => (await client.get('scraps/total')).data,
 };
 
 export default scrapApi;

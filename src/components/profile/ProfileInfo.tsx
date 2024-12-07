@@ -1,4 +1,5 @@
 import { UserInfoData } from '@/types/interface';
+import { formatDate } from '@/utils/myScrapUtils';
 
 export default function ProfileInfo({
   createdAt,
@@ -12,7 +13,7 @@ export default function ProfileInfo({
       </div>
       <div className='flex h-[42px] w-[169px] flex-col items-start justify-between text-xs'>
         <span>가입일자</span>
-        <span className='text-custom-gray-dark'>{createdAt ?? '??'}</span>
+        <span className='text-custom-gray-dark'>{formatDate(createdAt) ?? '??'}</span>
       </div>
       <div className='flex h-[42px] w-[169px] flex-col items-start justify-between text-xs'>
         <span>가입경로</span>

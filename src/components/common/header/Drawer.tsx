@@ -1,19 +1,36 @@
 import { HeaderMenuList } from '@/constants';
+import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
+import { useUserInfoQuery } from '@/hooks/auth/useUserInfoQuery';
 import authApi from '@/services/authApi';
-import { UserInfoData } from '@/types/interface';
+import { formatUserName } from '@/utils/formatUserName';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import profileImg from '@/assets/this_is_money_imgs/img_png/profile_small_active.png';
+import { useImgHover } from '@/hooks/ui/useImgHover';
+import useLoginModalStore from '@/store/useLoginModalStore';
+import { useMyViewCount } from '@/hooks/homeContent/useMyViewCount';
 
 export default function Drawer({
   showSidebar,
   handleShowSlider,
   pathname,
-  data,
 }: {
   showSidebar: boolean;
   handleShowSlider: () => void;
   pathname: string;
-  data: UserInfoData | undefined;
 }) {
+  const { data: logged, isLoading } = useAuthCheckQuery();
+  const { refetch, data: info } = useUserInfoQuery(false);
+  const { handleMouseEnter, handleMouseLeave, isHover } = useImgHover();
+  const { setIsLoginModalOpen } = useLoginModalStore();
+  const { data: viewCount, isLoading: viewCountLoading } = useMyViewCount();
+
+  useEffect(() => {
+    if (logged && !isLoading && !viewCountLoading) {
+      refetch();
+    }
+  }, [logged, isLoading, viewCountLoading]);
+
   return (
     <div
       onClick={handleShowSlider}
@@ -23,35 +40,46 @@ export default function Drawer({
     >
       <div className='relative h-full w-full px-8'>
         <div className='absolute top-[142px] flex items-center justify-start'>
-          {data ? (
+          {logged ? (
             <Link to={'/profile'}>
               <div className='flex h-[60px] w-[217px] items-center justify-between'>
-                <div className='h-[60px] w-[60px] rounded-full bg-custom-gray-medium'></div>
+                <img
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  className={`h-[60px] w-[60px] rounded-full ${isHover && 'scale-110 transition-all duration-300'}`}
+                  src={profileImg}
+                  alt='profileImg'
+                />
                 <div className='flex h-[55px] w-[137px] flex-col items-start justify-between'>
-                  <span className='text-[15px] font-bold text-custom-gray-medium'>Money</span>
+                  <span className='text-[15px] font-bold text-custom-gray-medium'>
+                    {formatUserName(info?.email || '')}
+                  </span>
                   <div className='flex w-full items-center justify-start gap-x-3'>
                     <span>내가 본 콘텐츠</span>
                     <span>|</span>
-                    <span>129</span>
+                    <span>{viewCount}</span>
                   </div>
                 </div>
               </div>
             </Link>
           ) : (
             <>
-              <Link to={'/login'}>
-                <button className='relative flex h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-gray text-sm font-bold'>
-                  로그인
-                </button>
-              </Link>
-              <div className='flex items-center justify-start'>
-                <div className='w-3 overflow-hidden'>
-                  <div className='h-4 origin-bottom-right rotate-45 transform rounded-sm bg-custom-gray-dark'></div>
-                </div>
-                <div className='flex-1 rounded-lg bg-custom-gray-dark p-4 text-xs text-white'>
-                  로그인 하고 <span className='text-custom-green-money'>스크랩</span>하기!
-                </div>
+              <button
+                onClick={() => setIsLoginModalOpen(true)}
+                className={`relative flex h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-green-money text-sm font-bold transition-all duration-200 hover:bg-green-hover`}
+              >
+                로그인
+              </button>
+
+              <div className='w-3 overflow-hidden'>
+                <div className='h-4 origin-bottom-right rotate-45 transform rounded-sm bg-custom-gray-dark'></div>
               </div>
+              <button
+                onClick={() => setIsLoginModalOpen(true)}
+                className='flex-1 rounded-lg bg-custom-gray-dark p-4 text-xs text-white'
+              >
+                로그인 하고 <span className='text-custom-green-money'>스크랩</span>하기!
+              </button>
             </>
           )}
         </div>
@@ -64,7 +92,7 @@ export default function Drawer({
           ))}
         </ul>
 
-        {data && (
+        {logged && (
           <button
             onClick={authApi.logout}
             className='absolute bottom-[103px] text-sm text-custom-gray-medium'
