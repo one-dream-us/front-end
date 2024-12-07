@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import profileImg from '@/assets/this_is_money_imgs/img_png/profile_small_active.png';
 import { useImgHover } from '@/hooks/ui/useImgHover';
+import useLoginModalStore from '@/store/useLoginModalStore';
 
 export default function Drawer({
   showSidebar,
@@ -20,6 +21,7 @@ export default function Drawer({
   const { data: logged, isLoading } = useAuthCheckQuery();
   const { refetch, data: info } = useUserInfoQuery(false);
   const { handleMouseEnter, handleMouseLeave, isHover } = useImgHover();
+  const { setIsLoginModalOpen } = useLoginModalStore();
 
   useEffect(() => {
     if (logged && !isLoading) {
@@ -60,21 +62,22 @@ export default function Drawer({
             </Link>
           ) : (
             <>
-              <Link to={'/login'}>
-                <button
-                  className={`relative flex h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-green-money text-sm font-bold transition-all duration-200 hover:bg-green-hover`}
-                >
-                  로그인
-                </button>
-              </Link>
-              <Link to={'/login'} className='flex items-center justify-start'>
-                <div className='w-3 overflow-hidden'>
-                  <div className='h-4 origin-bottom-right rotate-45 transform rounded-sm bg-custom-gray-dark'></div>
-                </div>
-                <div className='flex-1 rounded-lg bg-custom-gray-dark p-4 text-xs text-white'>
-                  로그인 하고 <span className='text-custom-green-money'>스크랩</span>하기!
-                </div>
-              </Link>
+              <button
+                onClick={() => setIsLoginModalOpen(true)}
+                className={`relative flex h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-green-money text-sm font-bold transition-all duration-200 hover:bg-green-hover`}
+              >
+                로그인
+              </button>
+
+              <div className='w-3 overflow-hidden'>
+                <div className='h-4 origin-bottom-right rotate-45 transform rounded-sm bg-custom-gray-dark'></div>
+              </div>
+              <button
+                onClick={() => setIsLoginModalOpen(true)}
+                className='flex-1 rounded-lg bg-custom-gray-dark p-4 text-xs text-white'
+              >
+                로그인 하고 <span className='text-custom-green-money'>스크랩</span>하기!
+              </button>
             </>
           )}
         </div>

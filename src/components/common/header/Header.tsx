@@ -9,11 +9,14 @@ import logo_sm from '@/assets/this_is_money_imgs/img_png/main_logo_32.png';
 import profileImg from '@/assets/this_is_money_imgs/img_png/profile_big.png';
 import profileGrey from '@/assets/this_is_money_imgs/img_png/profile_small_grey.png';
 import { useImgHover } from '@/hooks/ui/useImgHover';
+import useLoginModalStore from '@/store/useLoginModalStore';
+import LoginModal from '../LoginModal';
 
 export default function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
   const profileHover = useImgHover();
   const logoHover = useImgHover();
+  const { setIsLoginModalOpen } = useLoginModalStore();
 
   const { isLoading, data } = useAuthCheckQuery();
 
@@ -65,11 +68,14 @@ export default function Header() {
         </Link>
       ) : (
         <button
+          onClick={() => setIsLoginModalOpen(true)}
           className={`hidden h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-gray-medium py-2 md:flex ${isLoading ? 'animate-pulse' : 'bg-custom-green-money transition-all duration-200 hover:bg-green-hover'}`}
         >
           {isLoading ? '' : '로그인'}
         </button>
       )}
+
+      <LoginModal />
 
       <button onClick={handleShowSlider} className='z-[999] block md:hidden'>
         <svg
