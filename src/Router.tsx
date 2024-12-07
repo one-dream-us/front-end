@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Layout from './components/common/Layout';
 import Home from './pages/Home';
-import MyScrapPage from './pages/MyScrapPage';
+import MyScrap from './pages/MyScrap';
 import ContentDetail from './pages/ContentDetail';
 import Profile from './pages/Profile';
 import ProtectedRoute from './components/common/ProtectedRoute';
@@ -15,7 +15,7 @@ const AppRoutes = (): JSX.Element => {
       <Route element={<Layout />}>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/my-scrap' element={<MyScrapPage />} />
+        <Route path='/my-scrap' element={<MyScrap />} />
         <Route path='/content/:id' element={<ContentDetail />} />
         <Route path='/withdraw-success' element={<WithDrawSuccess />} />
         <Route path='/contents' element={<ContentList />} />

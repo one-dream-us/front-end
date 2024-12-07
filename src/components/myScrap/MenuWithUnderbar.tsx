@@ -24,8 +24,8 @@ export default function MenuWithUnderbar() {
             }}
             className={`relative w-1/2 cursor-pointer text-center text-sm font-bold leading-[44px] ${
               activeMenu === item
-                ? 'after:absolute after:-bottom-[1px] after:left-0 after:h-[2px] after:w-full after:bg-black'
-                : 'text-gray-500'
+                ? 'text-custom-gray-dark after:absolute after:-bottom-[1px] after:left-0 after:h-[2px] after:w-full after:bg-black'
+                : 'text-custom-gray-500'
             }`}
           >
             {item}

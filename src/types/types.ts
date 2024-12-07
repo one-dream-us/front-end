@@ -1,4 +1,4 @@
-export type myScrapMenu = '스크랩' | '단어장';
+export type myScrapMenu = '콘텐츠' | '단어장';
 
 export type MyScrapStoreState = {
   isEditing: boolean;

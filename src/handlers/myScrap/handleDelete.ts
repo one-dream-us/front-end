@@ -6,7 +6,7 @@ export function handleDelete(
   deleteScrapTerm: () => void,
 ) {
   switch (activeMenu) {
-    case '스크랩':
+    case '콘텐츠':
       return deleteScrapContent();
     case '단어장':
       return deleteScrapTerm();

@@ -16,4 +16,4 @@ export const FooterMenuList = [
 
 export const ProfileLabels = ['스크랩', '키워드', '본 콘텐츠'];
 
-export const MenuItems: myScrapMenu[] = ['스크랩', '단어장'];
+export const MenuItems: myScrapMenu[] = ['콘텐츠', '단어장'];
