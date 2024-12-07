@@ -4,8 +4,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#00DE5A',
-        secondary: '#03C75A',
+        primary: '#79FF8D',
+        secondary: '#FFED85',
+        'secondary-hover': '#A7FFB4',
         'custom-black': '#1A1A1A',
         'custom-green-light': '#92DE9E',
         'custom-green': '#5BBF6A',
@@ -27,6 +28,9 @@ export default {
         'custom-gray-300': '#e0e0e0',
         'custom-gray-200': '#eeeeee',
         'custom-gray-100': '#f5f5f5',
+        'custom-gray-h': '#4D4D4D',
+        'custom-gray-light-h': '#CBCBCB',
+        'custom-gary-dark-h': '#757575',
         'custom-kakao-yellow': '#FEE500',
         'custom-green-money': '#79FF8D',
         'hover-30': '#CBCBCB',
@@ -48,6 +52,25 @@ export default {
       },
       backgroundImage: {
         checked: "url('@/assets/icons/check.svg')",
+        'close-default': "url('@/assets/icons/close-default.svg')",
+        'close-grey': "url('@/assets/icons/close-grey.svg')",
+      },
+      lineHeight: {
+        170: '1.7',
+      },
+      animation: {
+        'toast-slide-in': 'toastSlideIn 0.1s ease-out forwards',
+        'toast-slide-out': 'toastSlideOut 0.1s ease-in forwards',
+      },
+      keyframes: {
+        toastSlideIn: {
+          '0%': { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+        toastSlideOut: {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(100%)' },
+        },
       },
     },
   },
