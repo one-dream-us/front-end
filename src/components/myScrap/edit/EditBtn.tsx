@@ -1,5 +1,5 @@
 import { handleEditClick } from '@/handlers/myScrap/handleEdits';
-import useMyScrapStore from '@/hooks/myScrap/useMyScrapStore';
+import useMyScrapStore from '@/store/useMyScrapStore';
 
 export default function EditBtn() {
   const setIsEditing = useMyScrapStore((state) => state.setIsEditing);

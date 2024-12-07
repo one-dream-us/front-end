@@ -1,4 +1,4 @@
-import useMyScrapStore from '@/hooks/myScrap/useMyScrapStore';
+import useMyScrapStore from '@/store/useMyScrapStore';
 import Checkbox from '../Checkbox';
 import IconBtn from './IconBtn';
 import ViewAgainBtn from './ViewAgainBtn';

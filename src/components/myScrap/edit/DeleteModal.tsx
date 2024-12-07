@@ -1,4 +1,4 @@
-import useMyScrapStore from '@/hooks/myScrap/useMyScrapStore';
+import useMyScrapStore from '@/store/useMyScrapStore';
 
 export default function DeleteModal({
   isOpen,

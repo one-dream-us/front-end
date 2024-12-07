@@ -1,6 +1,6 @@
 import { toggleExpandDef } from '@/utils/myScrapUtils';
-import chevronDownIcon from '@/assets/icons/chevron-down.svg';
-import chevronUpIcon from '@/assets/icons/chevron-up.svg';
+import chevronDownIcon from '@/assets/icons/icon_arrowdoun.svg';
+import chevronUpIcon from '@/assets/icons/icon_arrowup.svg';
 
 export default function IconBtn({
   isExpanded,

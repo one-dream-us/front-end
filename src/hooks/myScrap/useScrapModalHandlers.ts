@@ -1,4 +1,4 @@
-import useMyScrapStore from '@/hooks/myScrap/useMyScrapStore';
+import useMyScrapStore from '@/store/useMyScrapStore';
 import useDeleteScrapCon from '@/hooks/myScrap/useDeleteScrapCon';
 import useDeleteScrapTerm from '@/hooks/myScrap/useDeleteScrapTerm';
 import { myScrapMenu } from '@/types/types';

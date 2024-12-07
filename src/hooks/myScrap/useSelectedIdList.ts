@@ -1,4 +1,4 @@
-import useMyScrapStore from './useMyScrapStore';
+import useMyScrapStore from '../../store/useMyScrapStore';
 
 export function useSelectedIdList() {
   const selectedIdList = useMyScrapStore((state) => state.selectedIdList);

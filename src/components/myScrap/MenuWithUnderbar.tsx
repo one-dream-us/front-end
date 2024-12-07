@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { MenuItems } from '@/constants';
 import ContentDisplay from './ContentDisplay';
 import { myScrapMenu } from '@/types/types';
-import useMyScrapStore from '@/hooks/myScrap/useMyScrapStore';
+import useMyScrapStore from '@/store/useMyScrapStore';
 
 export default function MenuWithUnderbar() {
   const [activeMenu, setActiveMenu] = useState<myScrapMenu>(MenuItems[0]);

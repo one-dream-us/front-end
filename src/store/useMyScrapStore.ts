@@ -1,5 +1,20 @@
 import { create } from 'zustand';
-import { MyScrapStoreState } from '@/types/types';
+
+export type MyScrapStoreState = {
+  isEditing: boolean;
+  selectedIdList: number[];
+  allIdList: number[];
+  isDelModalOpen: boolean;
+  isComModalOpen: boolean;
+  isAllChecked: boolean;
+
+  setIsEditing: (isEditing: boolean) => void;
+  setSelectedIdList: (selectedIdList: number[]) => void;
+  setAllIdList: (allIdList: number[]) => void;
+  setIsDelModalOpen: (isDelModalOpen: boolean) => void;
+  setIsComModalOpen: (isComModalOpen: boolean) => void;
+  setIsAllChecked: (isAllChecked: boolean) => void;
+};
 
 const useMyScrapStore = create<MyScrapStoreState>((set) => ({
   isEditing: false,

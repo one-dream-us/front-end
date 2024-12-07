@@ -5,7 +5,7 @@ import useScrapedTerms from './useScrapedTerms';
 
 export default function useDeleteScrapTerm({ selectedIdList }: { selectedIdList: number[] }) {
   const reset = useResetScrap();
-  const { refetch } = useScrapedTerms();
+  const { reloadScrapedTerms } = useScrapedTerms();
 
   const mutation = useMutation({
     mutationFn: async () => {
@@ -13,7 +13,7 @@ export default function useDeleteScrapTerm({ selectedIdList }: { selectedIdList:
     },
 
     onSuccess: () => {
-      refetch();
+      reloadScrapedTerms();
       reset();
     },
   });

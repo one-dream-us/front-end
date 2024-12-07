@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import useMyScrapStore from '@/hooks/myScrap/useMyScrapStore';
+import useMyScrapStore from '@/store/useMyScrapStore';
 import Checkbox from '../Checkbox';
 
 export default function Thumbnail({ src, alt, id }: { src: string; alt: string; id: number }) {
