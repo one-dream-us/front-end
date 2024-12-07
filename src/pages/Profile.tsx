@@ -6,17 +6,14 @@ import { formatUserName } from '@/utils/formatUserName';
 import profileImg from '@/assets/this_is_money_imgs/img_png/profile_small_active.png';
 import { useImgHover } from '@/hooks/ui/useImgHover';
 import { useScrapTotalQuery } from '@/hooks/scrap/useScrapTotalQuery';
+import WithdrawModal from '@/components/withdraw/WithdrawModal';
+import { useState } from 'react';
 
 export default function Profile() {
   const { data: info, isLoading } = useUserInfoQuery(true);
   const { handleMouseEnter, handleMouseLeave, isHover } = useImgHover();
   const { data } = useScrapTotalQuery();
-
-  const handleWithdraw = async () => {
-    if (!confirm('ㄹㅇ?')) return;
-
-    return await authApi.withDraw();
-  };
+  const [showModal, setShowModal] = useState(false);
 
   if (isLoading) return <ProfileSkeleton />;
   return (
@@ -52,7 +49,7 @@ export default function Profile() {
               </div>
             ) : (
               <div className='text-xs'>
-                스크랩 {data.totalScrapCnt} | 본 콘텐츠{' '}
+                스크랩 {data?.totalScrapCnt || 0} | 본 콘텐츠{' '}
                 <span className='text-custom-gray-medium'>124</span>
               </div>
             )}
@@ -82,10 +79,13 @@ export default function Profile() {
       <div
         role='button'
         className='m-auto mb-[60px] mt-[130px] h-[18px] w-[44px] text-xs text-custom-gray-medium underline underline-offset-2 desktop:absolute desktop:bottom-[180px] desktop:right-[128px]'
-        onClick={handleWithdraw}
+        onClick={() => setShowModal(true)}
       >
         회원탈퇴
       </div>
+      {showModal && (
+        <WithdrawModal closeModal={() => setShowModal(false)} handleWithdraw={authApi.withDraw} />
+      )}
     </div>
   );
 }
