@@ -27,7 +27,7 @@ export default function WithdrawModal({
         <div className='absolute bottom-[16px] flex h-[30px] w-[303px] items-center justify-between'>
           <button
             onClick={closeModal}
-            className='hover:bg-custom-gray-light-h text-custom-gary-dark-h h-[30px] w-[147px] rounded-[4px] bg-custom-gray-300 text-xs'
+            className='h-[30px] w-[147px] rounded-[4px] bg-custom-gray-300 text-xs text-custom-gray-600 hover:bg-custom-gray-light-h'
           >
             돌아가기
           </button>

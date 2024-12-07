@@ -1,19 +1,14 @@
 import ContentOverview from '@/components/contentDetail/ContentOverview';
 import ContentSummary from '@/components/contentDetail/ContentSummary';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import ScriptList from '@/components/contentDetail/ScriptList';
 import VideoPlayer from '@/components/contentDetail/VideoPlayer';
-import DetailsFooter from '@/components/contentDetail/DetailsFooter';
-import useContentDetails from '@/hooks/contentDetail/useContentDetails';
-import { useParams } from 'react-router-dom';
+import useDetailData from '@/hooks/contentDetail/useDetailData';
 import { formatDate } from '@/utils/myScrapUtils';
-
-const youtubeId = 'HO7AsTjY7Bs';
+import ScrapAndShare from '@/components/contentDetail/ScrapAndShare';
+import ReactPlayer from 'react-player';
 
 export default function ContentDetail() {
-  const { id } = useParams();
-  const contentId = id ? parseInt(id, 10) : 0;
-
   const {
     contentDetails: {
       author,
@@ -23,36 +18,46 @@ export default function ContentDetail() {
       title,
       scrapCount,
       createdAt,
+      videoId,
     } = {},
     isLoading,
-  } = useContentDetails(contentId);
-
-  const [videoTime, setVideoTime] = useState(0);
+  } = useDetailData();
+  const playerRef = useRef<ReactPlayer | null>(null);
+  const [playing, setPlaying] = useState(false);
 
   if (isLoading) {
     return <div />;
   }
 
   return (
-    <article className='mx-auto h-full w-full max-w-[1230px] px-4 md:px-6 desktop:mb-[62px]'>
+    <article className='mx-auto h-full w-full max-w-[1230px] px-4 pb-10 md:px-6'>
       <ContentOverview
         reference={author}
         title={title}
         tags={tags}
         scrapCount={scrapCount}
-        contentId={contentId}
         date={formatDate(createdAt)}
       />
-      <div className='desktop:mt-5 desktop:flex desktop:gap-x-[21px]'>
-        <VideoPlayer youtubeId={youtubeId} videoTime={videoTime} />
+      <div className='desktop:relative desktop:mt-2 desktop:flex desktop:gap-x-5'>
+        <VideoPlayer
+          youtubeId={videoId}
+          playerRef={playerRef}
+          setPlaying={setPlaying}
+          playing={playing}
+        />
         <div className='flex flex-col desktop:h-[500px] desktop:w-[628px] desktop:overflow-y-scroll desktop:pr-6'>
           <ContentSummary summary={summaryText} />
-          <hr className='mb-10 w-full desktop:w-[533px] desktop:self-end' />
-          <ScriptList fullText={scriptParagraphs} setVideoTime={setVideoTime} />
+          <hr className='mb-10 w-full text-custom-gray-300 desktop:w-[533px] desktop:self-end' />
+          <ScriptList fullText={scriptParagraphs} playerRef={playerRef} setPlaying={setPlaying} />
         </div>
       </div>
-      <hr className='mb-1 w-[18px] bg-gray-300 desktop:hidden' />
-      <DetailsFooter reference={author} contentId={contentId} />
+      <div className='desktop:hidden'>
+        <ScrapAndShare />
+      </div>
+      <hr className='mb-5 mt-3 w-full bg-custom-gray-300 desktop:ml-auto desktop:mt-5 desktop:w-[533px]' />
+      <p className='text-xs text-custom-gray-600 md:text-right'>
+        * 모든 스크립트는 오타 수정 후 제공되며, 상업적인 목적으로 활용되지 않음을 알려드립니다.
+      </p>
     </article>
   );
 }

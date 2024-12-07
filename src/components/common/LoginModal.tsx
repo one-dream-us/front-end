@@ -37,7 +37,10 @@ export default function LoginModal() {
             </div>
             <div className='flex gap-x-2 self-center'>
               <button
-                onClick={() => toggleModal(false)}
+                onClick={() => {
+                  toggleModal(false);
+                  setIsChecked(false);
+                }}
                 className='h-[44px] w-[140px] cursor-pointer whitespace-nowrap rounded bg-custom-gray-300 px-[59px] py-3 text-xs font-medium text-custom-gray-600 hover:bg-hover-30'
               >
                 닫기
