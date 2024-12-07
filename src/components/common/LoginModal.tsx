@@ -4,8 +4,7 @@ import useLoginModalStore from '@/store/useLoginModalStore';
 
 export default function LoginModal() {
   const [isChecked, setIsChecked] = useState(false);
-  const isLoginModalOpen = useLoginModalStore((state) => state.isLoginModalOpen);
-  const setIsLoginModalOpen = useLoginModalStore((state) => state.setIsLoginModalOpen);
+  const { isLoginModalOpen, setLoginConfirmed, setIsLoginModalOpen } = useLoginModalStore();
   const toggleModal = (isModalOpen: boolean) => setIsLoginModalOpen(isModalOpen);
   const navigate = useNavigate();
 
@@ -42,6 +41,7 @@ export default function LoginModal() {
               <button
                 onClick={() => {
                   toggleModal(false);
+                  setLoginConfirmed();
                   navigate('/login');
                 }}
                 className={`h-[44px] w-[140px] whitespace-nowrap rounded py-3 text-xs font-medium hover:bg-hover-80 hover:text-green-hover ${isChecked ? 'bg-custom-gray-dark text-custom-green-money' : 'bg-custom-gray-600 text-custom-gray-300'}`}

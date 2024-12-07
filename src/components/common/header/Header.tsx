@@ -1,4 +1,4 @@
-import { Link, useLocation, Navigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { HeaderMenuList } from '@/constants';
 import { useState } from 'react';
 import Drawer from './Drawer';
@@ -23,9 +23,6 @@ export default function Header() {
   const { pathname } = useLocation();
 
   const handleShowSlider = () => setShowSidebar((prev) => !prev);
-  if (pathname === '/login' && data) {
-    return <Navigate to={'/'} />;
-  }
 
   return (
     <header className='fixed left-0 top-0 z-[999] flex h-[52px] w-full items-center justify-between bg-white px-4 text-sm md:px-6 md:py-[11px] desktop:h-20 desktop:px-32'>

@@ -26,7 +26,7 @@ export default function Drawer({
   const { data: viewCount, isLoading: viewCountLoading } = useMyViewCount();
 
   useEffect(() => {
-    if (logged && !isLoading && viewCountLoading) {
+    if (logged && !isLoading && !viewCountLoading) {
       refetch();
     }
   }, [logged, isLoading, viewCountLoading]);
