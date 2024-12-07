@@ -23,13 +23,17 @@ export default function LoginModal() {
             <div className='mb-5 flex items-center gap-x-1.5'>
               <input
                 type='checkbox'
+                id='login-conform'
                 className='h-5 w-5 text-custom-gray-dark checked:appearance-none checked:rounded-[3px] checked:bg-checked'
                 checked={isChecked}
                 onChange={() => setIsChecked(!isChecked)}
               />
-              <p className='text-xs font-medium text-custom-gray-dark'>
+              <label
+                htmlFor='login-conform'
+                className='select-none text-xs font-medium text-custom-gray-dark'
+              >
                 [필수] 만 14세 이상입니다.
-              </p>
+              </label>
             </div>
             <div className='flex gap-x-2 self-center'>
               <button
