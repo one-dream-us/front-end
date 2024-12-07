@@ -11,7 +11,7 @@ export default function ContentListCard({
   id,
   summaryText,
   createdAt,
-  scrapCount,
+  viewCount,
 }: ContentCardData) {
   return (
     <Link
@@ -32,7 +32,7 @@ export default function ContentListCard({
         <div className='h-[48px] w-full'>
           <span className='line-clamp-2 text-sm text-custom-black'>{summaryText}</span>
         </div>
-        <ScrapDateNCount date={formatDate(createdAt)} scrapCount={scrapCount} />
+        <ScrapDateNCount date={formatDate(createdAt)} scrapCount={viewCount} />
       </div>
     </Link>
   );

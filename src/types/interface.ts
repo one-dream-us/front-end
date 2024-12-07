@@ -93,3 +93,8 @@ export interface ContentListData {
   nextCursor: any;
   totalElements: number;
 }
+
+export interface ImgData {
+  webp: string;
+  png: string;
+}

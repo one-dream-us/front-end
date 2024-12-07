@@ -10,11 +10,13 @@ export default function KakaoLoginButton() {
           <div className='h-[23px] w-[254px] font-semibold'>카카오 로그인</div>
         </button>
       </Link>
-      <Link to={'/'}>
-        <button className='absolute left-0 right-0 m-auto w-24 p-1 text-sm text-custom-gray underline underline-offset-4'>
-          다음에 할게요
-        </button>
-      </Link>
+
+      <button
+        onClick={() => history.back()}
+        className='absolute left-0 right-0 m-auto w-24 p-1 text-sm text-custom-gray underline underline-offset-4'
+      >
+        다음에 할게요
+      </button>
     </div>
   );
 }

@@ -1,17 +1,25 @@
+import banner_png from '@/assets/this_is_money_imgs/img_png/top_banner_web_final.png';
+import banner_webp from '@/assets/this_is_money_imgs/img_webp/top_banner_web_final.webp';
+import ImgContainer from '../ImgContainer';
 export default function HomeBanner() {
   return (
-    <section className='desktop:mb-[80px] desktop:h-[502px] mb-[40px] flex h-[200px] w-full items-center justify-start bg-custom-gray-light px-4 md:mb-[60px] md:h-[268px] md:justify-end md:px-6'>
-      <div className='desktop:h-[193px] h-[90px] w-[278px] md:h-[174px] md:w-[444px]'>
-        <h3 className='text-sm text-custom-gray-600'>Our Mission</h3>
-        <h1 className='text-[22px] font-extrabold md:mb-3'>
-          투자를 매일 쉽고 재미있게 <br /> 데일리 투자 스터디를 돕습니다.
+    <section className='mb-[40px] h-[321px] w-full bg-custom-cream-light md:mb-[60px] md:flex md:h-[268px] md:flex-row-reverse md:items-center md:justify-center desktop:mb-[80px] desktop:h-[380px] desktop:justify-end desktop:pl-[129px]'>
+      <div className='p-5'>
+        <h3 className='text-sm text-custom-gray-600 md:text-[#6DE67F]'>Our MISSion</h3>
+        <h1 className='text-lg font-bold md:mb-2'>
+          이게 머니가 알려줄게 <br /> 이게 뭐니? 이게 MONEY!
         </h1>
-        <span className='hidden text-sm text-custom-black md:block'>
-          친구따라 투자에 나선 나, 결과는 실패! 투자에는 성공 방정식이 없어요. <br />
-          실패와 성공을 반복하며 나만의 방식을 찾아갈 뿐. <br />
-          그렇게 투자의 기초 용어부터 재미있게 배워보고자 만들어진 '이게 MONEY'
+        <span className='hidden text-xs text-custom-gray-dark md:block'>
+          친구따라 큰맘먹고 시작한 투자, '근데 내 차트는 왜 파랗지...?'
+          <br />
+          투자 정보는 홍수처럼 쏟아지고, 뭐부터 공부할 지 몰라서 미뤄둔 사람? <br />
+          이게머니가 선별한 콘텐츠로 트렌드도 잡고, 용어도 쉽게 공부해보자구!
         </span>
       </div>
+      <ImgContainer
+        imgs={{ png: banner_png, webp: banner_webp }}
+        className='m-auto h-[211px] w-[375px] desktop:h-[344px] desktop:w-[610px]'
+      />
     </section>
   );
 }
