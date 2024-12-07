@@ -30,7 +30,6 @@ export default {
         'custom-gray-100': '#f5f5f5',
         'custom-gray-h': '#4D4D4D',
         'custom-gray-light-h': '#CBCBCB',
-        'custom-gary-dark-h': '#757575',
         'custom-kakao-yellow': '#FEE500',
         'custom-green-money': '#79FF8D',
         'hover-30': '#CBCBCB',
@@ -52,8 +51,6 @@ export default {
       },
       backgroundImage: {
         checked: "url('@/assets/icons/check.svg')",
-        'close-default': "url('@/assets/icons/close-default.svg')",
-        'close-grey': "url('@/assets/icons/close-grey.svg')",
       },
       lineHeight: {
         170: '1.7',

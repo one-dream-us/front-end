@@ -68,6 +68,7 @@ export interface ContentDetail {
   summaryText: string;
   author: string;
   scriptParagraphs: ScriptParagraph[];
+  videoId: string;
 }
 
 export interface ScriptParagraph {
@@ -81,6 +82,23 @@ export interface Dictionary {
   id: number;
   term: string;
   details: string;
+  scrapped: boolean;
+  dictionaryScrapId: number;
+}
+
+export interface ScrapClickProps {
+  isScrapped: boolean;
+  reloadContentDetails: () => void;
+  deleteScrapTerm: () => void;
+  addScrapTerm: () => void;
+}
+
+export interface ScriptNTimeProps {
+  id: string;
+  time: string;
+  script: string;
+  onClick: () => void;
+  dictionaries: Dictionary[];
 }
 
 export interface ContentCardData extends Omit<ContentDetail, 'author' | 'scriptParagraphs'> {
@@ -97,4 +115,10 @@ export interface ContentListData {
 export interface ImgData {
   webp: string;
   png: string;
+}
+
+export interface TooltipProps {
+  content: string;
+  setTooltip: (value: { content: string; x: number; y: number; index: number | null }) => void;
+  dictionary: Dictionary;
 }
