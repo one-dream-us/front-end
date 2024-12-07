@@ -15,13 +15,14 @@ const AppRoutes = (): JSX.Element => {
       <Route element={<Layout />}>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/my-scrap' element={<MyScrapPage />} />
+
         <Route path='/content/:id' element={<ContentDetail />} />
         <Route path='/withdraw-success' element={<WithDrawSuccess />} />
         <Route path='/contents' element={<ContentList />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path='/profile' element={<Profile />} />
+          <Route path='/my-scrap' element={<MyScrapPage />} />
         </Route>
       </Route>
     </Routes>

@@ -6,5 +6,9 @@ const contentApi = {
     console.log('조회성공');
     return response;
   },
+  getMyViewCount: async () => {
+    const { watchedCount } = (await client.get('/users/me/content-histories/count')).data;
+    return watchedCount;
+  },
 };
 export default contentApi;
