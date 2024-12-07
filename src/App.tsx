@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from './Router';
 import Toast from './components/common/Toast';
 import './index.css';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const App = (): JSX.Element => {
   const queryClient = new QueryClient({
@@ -20,6 +21,7 @@ const App = (): JSX.Element => {
         <AppRoutes />
         <Toast />
       </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };
