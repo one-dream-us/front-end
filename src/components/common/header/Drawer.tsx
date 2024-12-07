@@ -1,5 +1,4 @@
 import { HeaderMenuList } from '@/constants';
-import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
 import { useUserInfoQuery } from '@/hooks/auth/useUserInfoQuery';
 import authApi from '@/services/authApi';
 import { formatUserName } from '@/utils/formatUserName';
@@ -14,12 +13,15 @@ export default function Drawer({
   showSidebar,
   handleShowSlider,
   pathname,
+  logged,
+  isLoading,
 }: {
   showSidebar: boolean;
   handleShowSlider: () => void;
   pathname: string;
+  logged: boolean;
+  isLoading: boolean;
 }) {
-  const { data: logged, isLoading } = useAuthCheckQuery();
   const { refetch, data: info } = useUserInfoQuery(false);
   const { handleMouseEnter, handleMouseLeave, isHover } = useImgHover();
   const { setIsLoginModalOpen } = useLoginModalStore();
