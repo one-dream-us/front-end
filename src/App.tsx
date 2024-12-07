@@ -3,6 +3,8 @@ import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from './Router';
 import Toast from './components/common/Toast';
 import './index.css';
+import LoginModal from './components/common/LoginModal';
+import useLoginModalStore from './store/useLoginModalStore';
 
 const App = (): JSX.Element => {
   const queryClient = new QueryClient({
@@ -14,11 +16,14 @@ const App = (): JSX.Element => {
       },
     },
   });
+  const isLoginModalOpen = useLoginModalStore((state) => state.isLoginModalOpen);
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
         <AppRoutes />
         <Toast />
+        {isLoginModalOpen && <LoginModal />}
       </BrowserRouter>
     </QueryClientProvider>
   );
