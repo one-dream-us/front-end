@@ -35,6 +35,7 @@ export default {
         'hover-30': '#CBCBCB',
         'hover-80': '#4D4D4D',
         'green-hover': '#A7FFB4',
+        modal: '#3E3E3E',
       },
       height: {
         'custom-video-md': 'calc(212px + ((424 - 212) * ((100vw - 375px) / (768 - 375))))',
