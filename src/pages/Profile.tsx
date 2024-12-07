@@ -3,9 +3,12 @@ import ProfileSkeleton from '@/components/profile/ProfileSkeleton';
 import { useUserInfoQuery } from '@/hooks/auth/useUserInfoQuery';
 import authApi from '@/services/authApi';
 import { formatUserName } from '@/utils/formatUserName';
+import profileImg from '@/assets/this_is_money_imgs/img_png/profile_small_active.png';
+import { useImgHover } from '@/hooks/ui/useImgHover';
 
 export default function Profile() {
   const { data: info, isLoading } = useUserInfoQuery(true);
+  const { handleMouseEnter, handleMouseLeave, isHover } = useImgHover();
 
   const handleWithdraw = async () => {
     if (!confirm('ㄹㅇ?')) return;
@@ -22,7 +25,14 @@ export default function Profile() {
         <div>
           <div className='m-auto mb-2 flex h-[385px] w-[201px] flex-col items-center justify-between desktop:h-[177px] desktop:w-[254px]'>
             <div className='h-[127px]'>
-              <div className='m-auto mb-3 h-[88px] w-[88px] rounded-full bg-custom-gray-medium'></div>
+              <img src='' alt='' />
+              <img
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                className={`m-auto mb-3 h-[88px] w-[88px] rounded-full ${isHover && 'scale-110 transition-all duration-300'}`}
+                src={profileImg}
+                alt='profileImg'
+              />
               {isLoading ? (
                 <div className='h-[19] w-[60px] animate-pulse rounded-lg bg-custom-gray-medium'></div>
               ) : (

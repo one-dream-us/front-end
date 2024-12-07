@@ -1,12 +1,19 @@
 import { Link, useLocation, Navigate } from 'react-router-dom';
-import logo from '@/assets/imgs/main_logo.svg';
 import { HeaderMenuList } from '@/constants';
 import { useState } from 'react';
 import Drawer from './Drawer';
 import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
+import logo from '@/assets/this_is_money_imgs/img_png/Logo_Icon+text_32_hor.png';
+import logo_hover from '@/assets/this_is_money_imgs/img_png/logo_hover.png';
+import logo_sm from '@/assets/this_is_money_imgs/img_png/main_logo_32.png';
+import profileImg from '@/assets/this_is_money_imgs/img_png/profile_big.png';
+import profileGrey from '@/assets/this_is_money_imgs/img_png/profile_small_grey.png';
+import { useImgHover } from '@/hooks/ui/useImgHover';
 
 export default function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
+  const profileHover = useImgHover();
+  const logoHover = useImgHover();
 
   const { isLoading, data } = useAuthCheckQuery();
 
@@ -23,9 +30,15 @@ export default function Header() {
         <Link
           className='mr-10 flex items-center justify-center gap-x-1 text-xl font-extrabold'
           to={'/'}
+          onMouseEnter={logoHover.handleMouseEnter}
+          onMouseLeave={logoHover.handleMouseLeave}
         >
-          <img src={logo} alt='' />
-          <h1 className='hidden md:block'>이게머니</h1>
+          <img src={logo_sm} className='block h-[40px] w-[40px] md:hidden' alt='' />
+          <img
+            className='hidden h-[28px] w-[117px] md:block'
+            src={logoHover.isHover ? logo_hover : logo}
+            alt='logo'
+          />
         </Link>
 
         <ul className='hidden items-center justify-center text-custom-gray md:flex md:gap-8 desktop:gap-x-16'>
@@ -42,42 +55,39 @@ export default function Header() {
       {data ? (
         <Link to={'/profile'}>
           {/* desktop */}
-          <div className={`hidden h-9 w-9 rounded-full bg-custom-gray desktop:block`}></div>
-          {/* tablet */}
-          <div
-            className={`hidden h-11 w-11 items-center justify-center bg-custom-gray-light md:flex desktop:hidden`}
-          >
-            <div className='h-6 w-6 bg-custom-gray'></div>
-          </div>
+          <img
+            onMouseEnter={profileHover.handleMouseEnter}
+            onMouseLeave={profileHover.handleMouseLeave}
+            className={`hidden h-9 w-9 rounded-full md:block`}
+            src={profileHover.isHover ? profileImg : profileGrey}
+            alt='profileImg'
+          />
         </Link>
       ) : (
-        <Link
-          className={`hidden h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-gray-medium py-2 md:flex ${isLoading && 'animate-pulse'}`}
-          to={'/login'}
+        <button
+          className={`hidden h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-gray-medium py-2 md:flex ${isLoading ? 'animate-pulse' : 'bg-custom-green-money transition-all duration-200 hover:bg-green-hover'}`}
         >
-          <button>{isLoading ? '' : 'login'}</button>
-        </Link>
+          {isLoading ? '' : '로그인'}
+        </button>
       )}
 
       <button onClick={handleShowSlider} className='z-[999] block md:hidden'>
-        <div
-          className={`flex h-11 w-11 items-center justify-center bg-custom-gray-light desktop:hidden`}
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          fill='none'
+          viewBox='0 0 24 24'
+          strokeWidth={1.5}
+          stroke='currentColor'
+          className='size-6'
         >
-          <div className='flex h-6 w-6 items-center justify-center bg-custom-gray'>
-            {showSidebar && (
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 24 24'
-                strokeWidth={1.5}
-                stroke='currentColor'
-                className='size-7'
-              >
-                <path strokeLinecap='round' strokeLinejoin='round' d='M6 18 18 6M6 6l12 12' />
-              </svg>
-            )}
-          </div>
-        </div>
+          <path
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            d={
+              showSidebar ? 'M6 18 18 6M6 6l12 12' : 'M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
+            }
+          />
+        </svg>
       </button>
       <Drawer pathname={pathname} showSidebar={showSidebar} handleShowSlider={handleShowSlider} />
     </header>

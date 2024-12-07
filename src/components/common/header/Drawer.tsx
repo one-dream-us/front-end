@@ -5,6 +5,8 @@ import authApi from '@/services/authApi';
 import { formatUserName } from '@/utils/formatUserName';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import profileImg from '@/assets/this_is_money_imgs/img_png/profile_small_active.png';
+import { useImgHover } from '@/hooks/ui/useImgHover';
 
 export default function Drawer({
   showSidebar,
@@ -17,6 +19,7 @@ export default function Drawer({
 }) {
   const { data: logged, isLoading } = useAuthCheckQuery();
   const { refetch, data: info } = useUserInfoQuery(false);
+  const { handleMouseEnter, handleMouseLeave, isHover } = useImgHover();
 
   useEffect(() => {
     if (logged && !isLoading) {
@@ -36,7 +39,13 @@ export default function Drawer({
           {logged ? (
             <Link to={'/profile'}>
               <div className='flex h-[60px] w-[217px] items-center justify-between'>
-                <div className='h-[60px] w-[60px] rounded-full bg-custom-gray-medium'></div>
+                <img
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  className={`h-[60px] w-[60px] rounded-full ${isHover && 'scale-110 transition-all duration-300'}`}
+                  src={profileImg}
+                  alt='profileImg'
+                />
                 <div className='flex h-[55px] w-[137px] flex-col items-start justify-between'>
                   <span className='text-[15px] font-bold text-custom-gray-medium'>
                     {formatUserName(info?.email || '')}
@@ -52,18 +61,20 @@ export default function Drawer({
           ) : (
             <>
               <Link to={'/login'}>
-                <button className='relative flex h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-gray text-sm font-bold'>
+                <button
+                  className={`relative flex h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-green-money text-sm font-bold transition-all duration-200 hover:bg-green-hover`}
+                >
                   로그인
                 </button>
               </Link>
-              <div className='flex items-center justify-start'>
+              <Link to={'/login'} className='flex items-center justify-start'>
                 <div className='w-3 overflow-hidden'>
                   <div className='h-4 origin-bottom-right rotate-45 transform rounded-sm bg-custom-gray-dark'></div>
                 </div>
                 <div className='flex-1 rounded-lg bg-custom-gray-dark p-4 text-xs text-white'>
                   로그인 하고 <span className='text-custom-green-money'>스크랩</span>하기!
                 </div>
-              </div>
+              </Link>
             </>
           )}
         </div>
