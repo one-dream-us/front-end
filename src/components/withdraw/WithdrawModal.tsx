@@ -26,7 +26,7 @@ export default function WithdrawModal({
             </span>
           </div>
         </div>
-        <div className='mb-auto flex h-[30px] w-[303px] items-center justify-between border'>
+        <div className='mt-auto flex h-[30px] w-[303px] items-center justify-between md:mb-auto'>
           <button
             onClick={closeModal}
             className='h-[30px] w-[147px] rounded-[4px] bg-custom-gray-300 text-xs text-custom-gray-600 hover:bg-custom-gray-light-h'
