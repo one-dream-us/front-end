@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useLoginModalStore from '@/store/useLoginModalStore';
+import { useCloseModal } from '@/hooks/ui/useCloseModal';
 
 export default function LoginModal() {
   const [isChecked, setIsChecked] = useState(false);
@@ -8,6 +9,7 @@ export default function LoginModal() {
   const toggleModal = (isModalOpen: boolean) => setIsLoginModalOpen(isModalOpen);
   const navigate = useNavigate();
 
+  useCloseModal(() => setIsLoginModalOpen(false));
   return (
     <>
       {isLoginModalOpen && (

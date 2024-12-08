@@ -1,6 +1,7 @@
 import exit_png from '@/assets/this_is_money_imgs/img_png/exit.png';
 import exit_webp from '@/assets/this_is_money_imgs/img_webp/exit.webp';
 import ImgContainer from '../common/ImgContainer';
+import { useCloseModal } from '@/hooks/ui/useCloseModal';
 export default function WithdrawModal({
   closeModal,
   handleWithdraw,
@@ -8,6 +9,7 @@ export default function WithdrawModal({
   closeModal: () => void;
   handleWithdraw: () => Promise<void>;
 }) {
+  useCloseModal(closeModal);
   return (
     <div className='fixed left-0 top-0 z-[1000] flex h-screen w-full items-center justify-center bg-black bg-opacity-60 px-4'>
       <div className='relative flex h-[287px] w-[343px] flex-col items-center justify-start rounded-lg bg-white px-5 py-4 md:h-[347px] md:w-[372px]'>
@@ -24,7 +26,7 @@ export default function WithdrawModal({
             </span>
           </div>
         </div>
-        <div className='absolute bottom-[16px] flex h-[30px] w-[303px] items-center justify-between'>
+        <div className='mb-auto flex h-[30px] w-[303px] items-center justify-between border'>
           <button
             onClick={closeModal}
             className='h-[30px] w-[147px] rounded-[4px] bg-custom-gray-300 text-xs text-custom-gray-600 hover:bg-custom-gray-light-h'
