@@ -5,10 +5,9 @@ import Toast from './components/common/Toast';
 import './index.css';
 import LoginModal from './components/common/LoginModal';
 import useLoginModalStore from './store/useLoginModalStore';
-import useTrackRoute from './hooks/common/useTrackRoute';
+import TrackRoute from './components/common/TrackRoute';
 
 const App = (): JSX.Element => {
-  useTrackRoute();
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -23,6 +22,7 @@ const App = (): JSX.Element => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
+        <TrackRoute />
         <AppRoutes />
         <Toast />
         {isLoginModalOpen && <LoginModal />}
