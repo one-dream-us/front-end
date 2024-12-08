@@ -6,11 +6,7 @@ import ScrapedTerms from '@/components/myScrap/keyword/ScrapedTerms';
 import DesktopMenu from '@/components/myScrap/DesktopMenu';
 
 export default function MyScrap() {
-  const { activeMenu, setActiveMenu, contentsCount, isLoadingContents, termsCount } = useMyScrap();
-
-  if (isLoadingContents) {
-    return <div />;
-  }
+  const { activeMenu, setActiveMenu, contentList, termsList } = useMyScrap();
 
   return (
     <section className='mx-auto mt-10 flex w-full max-w-[1182px] flex-col gap-y-5 px-4 md:px-6 desktop:px-0'>
@@ -20,16 +16,16 @@ export default function MyScrap() {
         <MenuWithUnderbar activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
         <DesktopMenu activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
         {activeMenu === '콘텐츠' ? (
-          contentsCount === 0 ? (
+          contentList ? (
             <EmptyState activeMenu={activeMenu} />
           ) : (
-            <ScrapedContents />
+            <ScrapedContents contentList={contentList} />
           )
         ) : activeMenu === '단어장' ? (
-          termsCount === 0 ? (
+          termsList ? (
             <EmptyState activeMenu={activeMenu} />
           ) : (
-            <ScrapedTerms />
+            <ScrapedTerms termsList={termsList} />
           )
         ) : null}
       </div>

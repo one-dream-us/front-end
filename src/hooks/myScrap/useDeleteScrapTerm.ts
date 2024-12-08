@@ -3,13 +3,11 @@ import scrapApi from '@/services/scrapApi';
 import { useResetScrap } from './useResetScrap';
 import useScrapedTerms from './useScrapedTerms';
 import useScrappedState from '../contentDetail/useScrappedState';
-import useMyScrap from './useMyScrap';
 
 export default function useDeleteScrapTerm({ selectedIdList }: { selectedIdList: number[] }) {
   const reset = useResetScrap();
   const { reloadScrapedTerms } = useScrapedTerms();
   const { reloadScrappedState } = useScrappedState();
-  const { refetch: refetchMyScrap } = useMyScrap();
 
   const mutation = useMutation({
     mutationFn: async () => {
@@ -18,7 +16,6 @@ export default function useDeleteScrapTerm({ selectedIdList }: { selectedIdList:
 
     onSuccess: () => {
       reloadScrappedState();
-      refetchMyScrap();
       reloadScrapedTerms();
       reset();
     },

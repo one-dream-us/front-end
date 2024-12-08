@@ -1,57 +1,32 @@
 import { myScrapMenu } from '@/types/types';
 import { useState, useEffect } from 'react';
 import { MenuItems } from '@/constants';
-import scrapApi from '@/services/scrapApi';
-import { useQuery } from '@tanstack/react-query';
+import useScrapedContents from '../scrap/useScrapedContents';
+import useScrapedTerms from './useScrapedTerms';
 
 export default function useMyScrap() {
   const [activeMenu, setActiveMenu] = useState<myScrapMenu>(MenuItems[0]);
-
-  const [termsCount, setTermsCount] = useState(0);
-  const [contentsCount, setContentsCount] = useState(0);
-
-  const {
-    data: termsData,
-    refetch: refetchTerms,
-    isLoading: isLoadingTerms,
-  } = useQuery({
-    queryKey: ['termsCount'],
-    queryFn: scrapApi.getTermsCnt,
-  });
-
-  const {
-    data: contentsData,
-    refetch: refetchContents,
-    isLoading: isLoadingContents,
-  } = useQuery({
-    queryKey: ['contentsCount'],
-    queryFn: scrapApi.getContentsCnt,
-  });
+  const { scrapedContents } = useScrapedContents();
+  const [contentList, setContentList] = useState([]);
+  const { scrapedTerms } = useScrapedTerms();
+  const [termsList, setTermsList] = useState([]);
 
   useEffect(() => {
-    if (termsData) {
-      setTermsCount(termsData?.dictionaryScrapCnt || 0);
+    if (scrapedContents && scrapedContents !== contentList) {
+      setContentList(scrapedContents);
     }
-  }, [termsData]);
+  }, [scrapedContents, contentList]);
 
   useEffect(() => {
-    if (contentsData) {
-      setContentsCount(contentsData?.contentScrapCnt || 0);
+    if (scrapedTerms && scrapedTerms !== termsList) {
+      setTermsList(scrapedTerms);
     }
-  }, [contentsData]);
-
-  const refetch = () => {
-    refetchContents();
-    refetchTerms();
-  };
+  }, [scrapedTerms, termsList]);
 
   return {
     activeMenu,
     setActiveMenu,
-    termsCount,
-    contentsCount,
-    refetch,
-    isLoadingTerms,
-    isLoadingContents,
+    contentList,
+    termsList,
   };
 }

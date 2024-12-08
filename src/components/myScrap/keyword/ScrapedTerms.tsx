@@ -1,5 +1,5 @@
 import { ScrapedTermData } from '@/types/interface';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useScrapedTerms from '@/hooks/myScrap/useScrapedTerms';
 import { useAllScrapedIds } from '@/hooks/myScrap/useAllScrapedIds';
 import ScrapedItemModals from '../ScrapItemModals';
@@ -8,17 +8,10 @@ import EditSection from '../edit/EditSection';
 import { Link } from 'react-router-dom';
 import useMyScrapStore from '@/store/useMyScrapStore';
 
-export default function ScrapedTerms() {
+export default function ScrapedTerms({ termsList }: { termsList: ScrapedTermData[] }) {
   const { scrapedTerms, isLoading } = useScrapedTerms();
-  const [termsList, setTermsList] = useState(scrapedTerms);
   const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>({});
   const isEditing = useMyScrapStore((state) => state.isEditing);
-
-  useEffect(() => {
-    if (scrapedTerms) {
-      setTermsList(scrapedTerms);
-    }
-  }, [scrapedTerms]);
 
   useAllScrapedIds(scrapedTerms);
 

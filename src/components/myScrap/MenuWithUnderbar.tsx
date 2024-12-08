@@ -1,7 +1,6 @@
 import { myScrapMenu } from '@/types/types';
 import useMyScrapStore from '@/store/useMyScrapStore';
 import { MenuItems } from '@/constants';
-import useMyScrap from '@/hooks/myScrap/useMyScrap';
 
 export default function MenuWithUnderbar({
   activeMenu,
@@ -13,7 +12,6 @@ export default function MenuWithUnderbar({
   const setSelectedIdList = useMyScrapStore((state) => state.setSelectedIdList);
   const setIsAllChecked = useMyScrapStore((state) => state.setIsAllChecked);
   const setAllIdList = useMyScrapStore((state) => state.setAllIdList);
-  const { refetch } = useMyScrap();
 
   return (
     <ul className='flex h-[44px] w-full border-b border-b-custom-gray-500 text-sm desktop:hidden'>
@@ -21,7 +19,6 @@ export default function MenuWithUnderbar({
         <li
           key={item}
           onClick={() => {
-            refetch();
             setActiveMenu(item);
             setSelectedIdList([]);
             setIsAllChecked(false);
