@@ -5,8 +5,10 @@ import Toast from './components/common/Toast';
 import './index.css';
 import LoginModal from './components/common/LoginModal';
 import useLoginModalStore from './store/useLoginModalStore';
+import useTrackRoute from './hooks/common/useTrackRoute';
 
 const App = (): JSX.Element => {
+  useTrackRoute();
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
