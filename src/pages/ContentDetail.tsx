@@ -30,7 +30,7 @@ export default function ContentDetail() {
   }
 
   return (
-    <article className='mx-auto h-full w-full px-4 pb-10 md:px-6 desktop:px-[129px]'>
+    <article className='mx-auto h-full w-full px-4 pb-10 md:px-6 desktop:w-[1182px] desktop:px-0'>
       <ContentOverview
         reference={author}
         title={title}

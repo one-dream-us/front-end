@@ -1,4 +1,4 @@
-import { handleCheckboxChange } from '@/handlers/myScrap/handleEdits';
+import { handleConCheckChange } from '@/handlers/myScrap/handleEdits';
 import { useSelectedIdList } from '@/hooks/myScrap/useSelectedIdList';
 
 export default function Checkbox({ id }: { id: number }) {
@@ -8,7 +8,7 @@ export default function Checkbox({ id }: { id: number }) {
       type='checkbox'
       checked={selectedIdList.includes(id)}
       onChange={(e) =>
-        handleCheckboxChange(e, selectedIdList, id, setSelectedIdList, allIdList, setIsAllChecked)
+        handleConCheckChange(e, selectedIdList, id, setSelectedIdList, allIdList, setIsAllChecked)
       }
       className='checkbox'
     />

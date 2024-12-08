@@ -3,9 +3,11 @@ import scrapApi from '@/services/scrapApi';
 import useScrapedContents from '../scrap/useScrapedContents';
 import useLoginModalStore from '@/store/useLoginModalStore';
 import useScrappedConStore from '@/store/useScrappedConStore';
+import useMyScrap from '../myScrap/useMyScrap';
 
 export default function useAddScrap(contentId: number) {
-  const { refetch } = useScrapedContents();
+  const { refetch: refetchScrapedContents } = useScrapedContents();
+  const { refetch } = useMyScrap();
   const setIsLoginModalOpen = useLoginModalStore((state) => state.setIsLoginModalOpen);
   const setIsScrapped = useScrappedConStore((state) => state.setIsScrapped);
 
@@ -13,8 +15,10 @@ export default function useAddScrap(contentId: number) {
     mutationFn: async () => await scrapApi.addScrapContent(contentId),
     onSuccess: () => {
       setIsScrapped(true);
+      refetchScrapedContents();
       refetch();
     },
+
     onError: (error: Error) => {
       if (error) {
         const apiError = error as unknown as ApiError;
