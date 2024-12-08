@@ -7,8 +7,8 @@ export default function ContentDisplay({ activeMenu }: { activeMenu: myScrapMenu
   return (
     <div className='mb-[60px] flex w-full flex-col'>
       <EditSection />
-      {activeMenu === '콘텐츠' && <ScrapedContents activeMenu={activeMenu} />}
-      {activeMenu === '단어장' && <ScrapedTerms activeMenu={activeMenu} />}
+      {activeMenu === '콘텐츠' && <ScrapedContents />}
+      {activeMenu === '단어장' && <ScrapedTerms />}
     </div>
   );
 }

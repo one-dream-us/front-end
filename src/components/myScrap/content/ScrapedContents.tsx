@@ -1,33 +1,63 @@
 import Thumbnail from './Thumbnail';
 import ScrapInfo from './ScrapInfo';
-import EmptyState from '../EmptyState';
 import { useAllScrapedIds } from '@/hooks/myScrap/useAllScrapedIds';
 import useScrapedContents from '@/hooks/scrap/useScrapedContents';
-import ScrapedItemModals from '../ScrapItemModals';
-import { myScrapMenu } from '@/types/types';
 import { ScrapedContentData } from '@/types/interface';
 import { formatDate } from '@/utils/myScrapUtils';
+import EditSection from '../edit/EditSection';
+import { useState, useEffect } from 'react';
+import useMyScrapStore from '@/store/useMyScrapStore';
+import { Link } from 'react-router-dom';
+import ScrapedItemModals from '../ScrapItemModals';
+import KeywordTags from '@/components/common/contentCard/KeywordTags';
 
-export default function ScrapedContents({ activeMenu }: { activeMenu: myScrapMenu }) {
+export default function ScrapedContents() {
   const { scrapedContents = [], isLoading } = useScrapedContents();
-  useAllScrapedIds(scrapedContents);
+  const [contentList, setContentList] = useState(scrapedContents);
+  const isEditing = useMyScrapStore((state) => state.isEditing);
 
-  if (isLoading || scrapedContents.length > 0) {
-    return <EmptyState activeMenu={activeMenu} />;
+  useEffect(() => {
+    if (scrapedContents) {
+      setContentList(scrapedContents);
+    }
+  }, [scrapedContents]);
+
+  useAllScrapedIds(contentList);
+  console.log(contentList);
+  if (isLoading) {
+    return <div />;
   }
 
-  // return (
-  //   <div className='flex flex-col gap-y-5 justify-center'>
-  //     {scrapedContents.map(({ scrapId, content }: ScrapedContentData) => (
-  //       <article key={scrapId} className='flex h-[94px] gap-x-2.5'>
-  //         <Thumbnail src={content.thumbnailUrl} alt={content.title} id={scrapId} />
-  //         <div className='flex w-[165px] flex-col justify-center gap-y-1'>
-  //           <p className='h-[52px] text-sm font-bold'>{content.title}</p>
-  //           <ScrapInfo date={formatDate(content.createdAt)} />
-  //         </div>
-  //       </article>
-  //     ))}
-  //     <ScrapedItemModals itemName='콘텐츠' />
-  //   </div>
-  // );
+  return (
+    <div className='mb-[60px] flex w-full flex-col desktop:ml-auto desktop:w-[811px]'>
+      {contentList.length > 0 && <EditSection />}
+      <div className='mt-5 flex flex-col justify-center gap-y-5'>
+        {contentList.map((content: ScrapedContentData) => (
+          <Link key={content.scrapId} to={isEditing ? '' : `/content/${content.contentId}`}>
+            <article
+              key={content.scrapId}
+              className='flex h-[94px] gap-x-2.5 md:h-[145px] md:gap-x-[15px] desktop:h-[190px] desktop:gap-x-7'
+            >
+              <Thumbnail
+                src={content.thumbnailUrl}
+                alt={content.contentTitle}
+                id={content.scrapId}
+              />
+              <div className='flex flex-1 flex-col justify-center gap-y-1 text-sm text-custom-black md:gap-y-0'>
+                <div className='hidden md:block'>
+                  <KeywordTags tags={content.tags.map((tag) => tag.tagValue)} />
+                </div>
+                <p className='font-bold leading-170 md:mb-2 md:text-lg'>{content.contentTitle}</p>
+                <div className='hidden md:mb-2 md:block'>
+                  <p className='line-clamp-2 desktop:line-clamp-3'>{content.summaryText}</p>
+                </div>
+                <ScrapInfo date={formatDate(content.createdAt)} />
+              </div>
+            </article>
+          </Link>
+        ))}
+        <ScrapedItemModals activeMenu='콘텐츠' />
+      </div>
+    </div>
+  );
 }

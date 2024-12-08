@@ -1,9 +1,8 @@
 import { myScrapMenu } from '@/types/types';
 import useMyScrapStore from '@/store/useMyScrapStore';
 import { MenuItems } from '@/constants';
-import useMyScrap from '@/hooks/myScrap/useMyScrap';
 
-export default function MenuWithUnderbar({
+export default function DesktopMenu({
   activeMenu,
   setActiveMenu,
 }: {
@@ -13,23 +12,21 @@ export default function MenuWithUnderbar({
   const setSelectedIdList = useMyScrapStore((state) => state.setSelectedIdList);
   const setIsAllChecked = useMyScrapStore((state) => state.setIsAllChecked);
   const setAllIdList = useMyScrapStore((state) => state.setAllIdList);
-  const { refetch } = useMyScrap();
 
   return (
-    <ul className='flex h-[44px] w-full border-b border-b-custom-gray-500 text-sm desktop:hidden'>
+    <ul className='relative hidden h-[58px] w-[71px] flex-col gap-y-[17px] self-start text-sm before:absolute before:left-0 before:top-0 before:h-full before:w-[1px] before:bg-custom-gray-500 desktop:flex'>
       {MenuItems.map((item) => (
         <li
           key={item}
           onClick={() => {
-            refetch();
             setActiveMenu(item);
             setSelectedIdList([]);
             setIsAllChecked(false);
             setAllIdList([]);
           }}
-          className={`relative w-1/2 cursor-pointer whitespace-nowrap text-center text-sm font-bold leading-[44px] ${
+          className={`relative cursor-pointer whitespace-nowrap pl-3.5 text-sm font-bold ${
             activeMenu === item
-              ? 'text-custom-gray-dark after:absolute after:-bottom-[1px] after:left-0 after:h-[2px] after:w-full after:bg-custom-gray-dark'
+              ? `text-custom-gray-dark after:absolute after:-left-[1px] ${activeMenu === '콘텐츠' ? 'after:top-0' : 'after:bottom-0'} after:h-3.5 after:w-[3px] after:bg-custom-gray-dark`
               : 'text-custom-gray-500'
           }`}
         >

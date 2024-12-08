@@ -2,16 +2,14 @@ import { useMutation } from '@tanstack/react-query';
 import scrapApi from '@/services/scrapApi';
 import { useResetScrap } from './useResetScrap';
 import useScrapedTerms from './useScrapedTerms';
-import useContentDetails from '../contentDetail/useContentDetails';
-import useContentStore from '@/store/useContentStore';
 import useScrappedState from '../contentDetail/useScrappedState';
+import useMyScrap from './useMyScrap';
 
 export default function useDeleteScrapTerm({ selectedIdList }: { selectedIdList: number[] }) {
   const reset = useResetScrap();
   const { reloadScrapedTerms } = useScrapedTerms();
-  const contentId = useContentStore((state) => state.contentId);
-  const { reloadContentDetails } = useContentDetails(contentId);
   const { reloadScrappedState } = useScrappedState();
+  const { refetch: refetchMyScrap } = useMyScrap();
 
   const mutation = useMutation({
     mutationFn: async () => {
@@ -19,9 +17,9 @@ export default function useDeleteScrapTerm({ selectedIdList }: { selectedIdList:
     },
 
     onSuccess: () => {
-      reloadScrapedTerms();
       reloadScrappedState();
-      reloadContentDetails();
+      refetchMyScrap();
+      reloadScrapedTerms();
       reset();
     },
   });

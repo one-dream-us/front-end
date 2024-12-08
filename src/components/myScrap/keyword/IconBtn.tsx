@@ -12,7 +12,11 @@ export default function IconBtn({
   setExpandedItems: React.Dispatch<React.SetStateAction<Record<number, boolean>>>;
 }) {
   return (
-    <button type='button' onClick={() => toggleExpandDef(id, setExpandedItems)}>
+    <button
+      type='button'
+      onClick={() => toggleExpandDef(id, setExpandedItems)}
+      className='md:hidden'
+    >
       <img
         src={isExpanded ? chevronUpIcon : chevronDownIcon}
         alt={isExpanded ? '단어 뜻 닫기' : '단어 뜻 보기'}

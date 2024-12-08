@@ -19,26 +19,18 @@ export default function ScrapedTermCard({
   const isEditing = useMyScrapStore((state) => state.isEditing);
 
   return (
-    <article
-      className={`flex flex-col gap-y-2 rounded-[10px] bg-gray-300 px-4 pb-[21px] pt-[30px] ${
-        isExpanded ? 'h-auto' : 'h-[119px]'
-      }`}
-    >
-      <div className='flex h-6 justify-between'>
-        <div className='flex items-center gap-x-2'>
+    <article className='flex w-full flex-col gap-y-2 rounded-[10px] border border-custom-gray-200 p-4 text-custom-gray-dark md:min-w-[631px] desktop:w-[722px]'>
+      <div className='flex justify-between'>
+        <div className='flex gap-x-2 items-center'>
           {isEditing && <Checkbox id={id} />}
-          <span className='h-full whitespace-nowrap text-sm font-bold leading-6'>{term}</span>
+          <span className='text-sm font-bold'>{term}</span>
         </div>
         <IconBtn isExpanded={isExpanded} id={id} setExpandedItems={setExpandedItems} />
       </div>
-      <p
-        className={`text-xs leading-5 ${
-          isExpanded ? 'h-auto overflow-y-visible' : 'line-clamp-2 h-9 overflow-y-hidden'
-        }`}
-      >
+      <p className={`text-xs leading-5 ${isExpanded ? 'block' : 'hidden'} md:block`}>
         {definition}
       </p>
-      {isExpanded && <ViewAgainBtn id={id} />}
+      {isExpanded && <ViewAgainBtn id={1} />}
     </article>
   );
 }

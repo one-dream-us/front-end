@@ -16,12 +16,14 @@ export const handleCheckAllChange = (
 export function handleCancelClick(
   setSelectedIdList: (value: number[]) => void,
   setIsEditing: (value: boolean) => void,
+  setIsAllChecked: (value: boolean) => void,
 ) {
   setSelectedIdList([]);
   setIsEditing(false);
+  setIsAllChecked(false);
 }
 
-export function handleCheckboxChange(
+export function handleConCheckChange(
   e: React.ChangeEvent<HTMLInputElement>,
   selectedIdList: number[],
   id: number,

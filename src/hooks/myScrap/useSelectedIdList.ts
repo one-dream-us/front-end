@@ -6,5 +6,10 @@ export function useSelectedIdList() {
   const allIdList = useMyScrapStore((state) => state.allIdList);
   const setIsAllChecked = useMyScrapStore((state) => state.setIsAllChecked);
 
-  return { selectedIdList, setSelectedIdList, allIdList, setIsAllChecked };
+  return {
+    selectedIdList,
+    setSelectedIdList,
+    allIdList,
+    setIsAllChecked,
+  };
 }
