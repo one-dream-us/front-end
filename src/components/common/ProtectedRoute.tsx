@@ -16,12 +16,14 @@ export default function ProtectedRoute() {
     }
   }, [isLoading, data, setIsLoginModalOpen]);
 
+  useEffect(() => {
+    if (data) {
+      setIsLogin(true);
+    }
+  }, [data, setIsLogin]);
+
   if (!isLoading && !data) {
     return <Navigate to='/' state={{ from: location }} replace />;
-  }
-
-  if (data) {
-    setIsLogin(true);
   }
 
   return <Outlet />;
