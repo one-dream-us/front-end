@@ -8,6 +8,7 @@ import Profile from './pages/Profile';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import WithDrawSuccess from './pages/WithDrawSuccess';
 import ContentList from './pages/ContentList';
+import NotFound from './pages/NotFound';
 
 const AppRoutes = (): JSX.Element => {
   return (
@@ -24,6 +25,8 @@ const AppRoutes = (): JSX.Element => {
           <Route path='/profile' element={<Profile />} />
           <Route path='/my-scrap' element={<MyScrapPage />} />
         </Route>
+
+        <Route path='*' element={<NotFound />} />
       </Route>
     </Routes>
   );
