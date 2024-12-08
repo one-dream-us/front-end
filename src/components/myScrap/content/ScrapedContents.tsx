@@ -23,7 +23,7 @@ export default function ScrapedContents() {
   }, [scrapedContents]);
 
   useAllScrapedIds(contentList);
-  console.log(contentList);
+
   if (isLoading) {
     return <div />;
   }

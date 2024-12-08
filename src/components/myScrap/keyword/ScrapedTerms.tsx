@@ -53,10 +53,10 @@ export default function ScrapedTerms() {
                   className={`h-[118px] w-[69px] bg-play transition ${isEditing ? 'pointer-events-none cursor-not-allowed bg-play-disabled hover:bg-play-disabled' : 'bg-play hover:bg-play-hover'}`}
                 />
               </Link>
-              <ScrapedItemModals activeMenu='단어장' />
             </div>
           );
         })}
+        <ScrapedItemModals activeMenu='단어장' />
       </div>
     </div>
   );
