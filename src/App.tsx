@@ -6,6 +6,7 @@ import './index.css';
 import LoginModal from './components/common/LoginModal';
 import useLoginModalStore from './store/useLoginModalStore';
 import TrackRoute from './components/common/TrackRoute';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const App = (): JSX.Element => {
   const queryClient = new QueryClient({
@@ -27,6 +28,7 @@ const App = (): JSX.Element => {
         <Toast />
         {isLoginModalOpen && <LoginModal />}
       </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useLoginModalStore from '@/store/useLoginModalStore';
+import { useCloseModal } from '@/hooks/ui/useCloseModal';
 
 export default function LoginModal() {
   const [isChecked, setIsChecked] = useState(false);
@@ -8,6 +9,7 @@ export default function LoginModal() {
   const toggleModal = (isModalOpen: boolean) => setIsLoginModalOpen(isModalOpen);
   const navigate = useNavigate();
 
+  useCloseModal(() => setIsLoginModalOpen(false));
   return (
     <>
       {isLoginModalOpen && (
@@ -49,7 +51,7 @@ export default function LoginModal() {
                 onClick={() => {
                   toggleModal(false);
                   setLoginConfirmed();
-                  navigate('/login');
+                  navigate('/login', { state: { prevPage: location.href } });
                 }}
                 className={`h-[44px] w-[140px] whitespace-nowrap rounded py-3 text-xs font-medium hover:bg-hover-80 hover:text-green-hover ${isChecked ? 'bg-custom-gray-dark text-custom-green-money' : 'bg-custom-gray-600 text-custom-gray-300'}`}
                 disabled={!isChecked}

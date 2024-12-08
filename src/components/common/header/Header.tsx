@@ -92,7 +92,13 @@ export default function Header() {
           />
         </svg>
       </button>
-      <Drawer pathname={pathname} showSidebar={showSidebar} handleShowSlider={handleShowSlider} />
+      <Drawer
+        isLoading={isLoading}
+        logged={data}
+        pathname={pathname}
+        showSidebar={showSidebar}
+        handleShowSlider={handleShowSlider}
+      />
     </header>
   );
 }
