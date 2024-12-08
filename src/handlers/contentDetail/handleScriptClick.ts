@@ -1,11 +1,19 @@
 import { convertTimeToSeconds } from '@/utils/contentDetailUtils';
+import { RefObject } from 'react';
+import ReactPlayer from 'react-player';
 
-export function handleScriptClick(
+export default function handleScriptClick(
   time: string,
   index: number,
-  setVideoTime: (time: number) => void,
+  playerRef: RefObject<ReactPlayer>,
+  setPlaying: (playing: boolean) => void,
 ) {
-  setVideoTime(Number(convertTimeToSeconds(time)));
+  const newTime = Number(convertTimeToSeconds(time));
+
+  if (playerRef.current) {
+    playerRef.current.seekTo(newTime, 'seconds');
+    setPlaying(true);
+  }
   const element = document.querySelector(`#script-${index}`);
   element?.scrollIntoView({
     behavior: 'smooth',
