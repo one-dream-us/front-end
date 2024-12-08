@@ -6,7 +6,6 @@ import './index.css';
 import LoginModal from './components/common/LoginModal';
 import useLoginModalStore from './store/useLoginModalStore';
 import TrackRoute from './components/common/TrackRoute';
-import useTrackRoute from './hooks/common/useTrackRoute';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const App = (): JSX.Element => {

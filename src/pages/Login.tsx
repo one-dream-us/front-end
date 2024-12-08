@@ -1,12 +1,16 @@
 import KakaoLoginButton from '@/components/socialLogin/KakaoLoginButton';
 import logo from '@/assets/imgs/main_logo.svg';
 import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import useLoginModalStore from '@/store/useLoginModalStore';
 
 export default function Login() {
   const { data, isLoading } = useAuthCheckQuery();
   const { loginConfirmed } = useLoginModalStore();
+
+  const {
+    state: { prevPage },
+  } = useLocation();
 
   if (data && !isLoading) {
     return <Navigate to={'/'} />;
@@ -20,7 +24,7 @@ export default function Login() {
             <img src={logo} className='h-14 w-[72px]' alt='' />
             <h1>이게머니</h1>
           </div>
-          <KakaoLoginButton />
+          <KakaoLoginButton prevPage={prevPage} />
         </div>
       </div>
     </div>

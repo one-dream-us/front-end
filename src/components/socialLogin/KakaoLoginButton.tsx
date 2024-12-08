@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import kakao_logo from '@/assets/imgs/kakao_logo.png';
 
-export default function KakaoLoginButton() {
+export default function KakaoLoginButton({ prevPage }: { prevPage: string }) {
   return (
     <div className='relative w-full'>
-      <Link to={`${import.meta.env.VITE_BACKEND_SERVER_URL}/oauth2/authentication/kakao`}>
+      <Link
+        to={`${import.meta.env.VITE_BACKEND_SERVER_URL}oauth2/authorization/kakao?redirectUrl=${prevPage}`}
+      >
         <button className='mb-2 flex h-11 w-full items-center justify-center rounded-md bg-custom-kakao-yellow text-black transition-all duration-200 hover:bg-yellow-400'>
           <img className='h-[18px] w-[18px]' src={kakao_logo} alt='kakao logo' />
           <div className='h-[23px] w-[254px] font-semibold'>카카오 로그인</div>
