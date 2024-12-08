@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 
-export default function useTrackRoute() {
+export default function TrackRoute() {
   const location = useLocation();
   const [initialized, setInitialized] = useState(false);
 
@@ -19,4 +19,5 @@ export default function useTrackRoute() {
       ReactGA.send('pageview');
     }
   }, [initialized, location]);
+  return null;
 }
