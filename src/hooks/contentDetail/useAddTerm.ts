@@ -1,25 +1,24 @@
 import { useMutation } from '@tanstack/react-query';
 import scrapApi from '@/services/scrapApi';
-import useScrapedContents from '../scrap/useScrapedContents';
+import useScrapedTerms from '../myScrap/useScrapedTerms';
 import useLoginModalStore from '@/store/useLoginModalStore';
-import useContentDetails from './useContentDetails';
-import useContentStore from '@/store/useContentStore';
 import useScrappedState from './useScrappedState';
+import useMyScrap from '../myScrap/useMyScrap';
 
-export default function useAddTerm(termId: number) {
-  const { refetch } = useScrapedContents();
-  const contentId = useContentStore((state) => state.contentId);
-  const { reloadContentDetails } = useContentDetails(contentId);
+export default function useAddTerm(termId: number, contentId: number) {
+  const { reloadScrapedTerms } = useScrapedTerms();
   const setIsLoginModalOpen = useLoginModalStore((state) => state.setIsLoginModalOpen);
   const { reloadScrappedState } = useScrappedState();
+  const { refetch: refetchMyScrap } = useMyScrap();
 
   const mutation = useMutation({
-    mutationFn: async () => await scrapApi.addScrapTerm(termId),
+    mutationFn: async () => await scrapApi.addScrapTerm(termId, contentId),
     onSuccess: () => {
       reloadScrappedState();
-      reloadContentDetails();
-      refetch();
+      reloadScrapedTerms();
+      refetchMyScrap();
     },
+
     onError: (error: Error) => {
       if (error) {
         const apiError = error as unknown as ApiError;

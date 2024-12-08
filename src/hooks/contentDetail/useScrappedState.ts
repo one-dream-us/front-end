@@ -2,16 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import contentApi from '@/services/contentAPi';
 import useContentStore from '@/store/useContentStore';
 import useScrappedStore from '@/store/useScrappedStore';
-import { useLoginStore } from '@/store/useIsLoginStore';
+import { useEffect } from 'react';
 
 export default function useScrappedState() {
   const contentId = useContentStore((state) => state.contentId);
-  const isLogin = useLoginStore((state) => state.isLogin);
-  if (!isLogin) {
-    return {
-      reloadScrappedState: () => {},
-    };
-  }
 
   const { data, refetch: reloadScrappedState } = useQuery({
     queryKey: ['scrappedState', contentId],
@@ -24,9 +18,11 @@ export default function useScrappedState() {
 
   const setScrappedData = useScrappedStore((state) => state.setScrappedData);
 
-  if (data) {
-    setScrappedData(data);
-  }
+  useEffect(() => {
+    if (data) {
+      setScrappedData(data);
+    }
+  }, [data, setScrappedData]);
 
   return { reloadScrappedState };
 }

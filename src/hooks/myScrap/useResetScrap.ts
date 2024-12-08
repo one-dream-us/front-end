@@ -1,4 +1,4 @@
-import useMyScrapStore from './useMyScrapStore';
+import useMyScrapStore from '../../store/useMyScrapStore';
 
 export function useResetScrap() {
   const setSelectedIdList = useMyScrapStore((state) => state.setSelectedIdList);

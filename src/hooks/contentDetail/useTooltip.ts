@@ -1,12 +1,12 @@
 import useAddTerm from '@/hooks/contentDetail/useAddTerm';
 import useDeleteScrapTerm from '@/hooks/myScrap/useDeleteScrapTerm';
 import useContentDetails from '@/hooks/contentDetail/useContentDetails';
-import useContentStore from '@/store/useContentStore';
 import useScrappedStore from '@/store/useScrappedStore';
 import { Dictionary } from '@/types/interface';
 import { useState } from 'react';
 import useToastStore from '@/store/useToastStore';
-import { useLoginStore } from '@/store/useIsLoginStore';
+import useContentStore from '@/store/useContentStore';
+import { useAuthCheckQuery } from '../auth/useAuthCheckQuery';
 import useLoginModalStore from '@/store/useLoginModalStore';
 
 export default function useTooltip(
@@ -15,30 +15,24 @@ export default function useTooltip(
 ) {
   const scrappedData = useScrappedStore((state) => state.scrappedData);
   const showToast = useToastStore((state) => state.showToast);
-  const isLogin = useLoginStore((state) => state.isLogin);
-  const setIsLoginModalOpen = useLoginModalStore((state) => state.setIsLoginModalOpen);
-
+  const contentId = useContentStore((state) => state.contentId);
+  const { isLoading, data } = useAuthCheckQuery();
   const [isScrapped, setIsScrapped] = useState(
     scrappedData.find((item) => item.dictionaryId === dictionary.id)?.scrapped ?? false,
   );
 
-  const addScrapTerm = isLogin ? useAddTerm(dictionary.id).addScrapTerm : null;
-  const reloadContentDetails = isLogin
-    ? useContentDetails(useContentStore().contentId).reloadContentDetails
-    : null;
-  const deleteScrapTerm = isLogin
-    ? useDeleteScrapTerm({
-        selectedIdList: scrappedData.find((item) => item.dictionaryId === dictionary.id)
-          ?.dictionaryScrapId
-          ? [
-              scrappedData.find((item) => item.dictionaryId === dictionary.id)?.dictionaryScrapId,
-            ].filter((id): id is number => id != null)
-          : [],
-      }).deleteScrapTerm
-    : null;
+  const addScrapTerm =
+    data && !isLoading ? useAddTerm(dictionary.id, contentId).addScrapTerm : () => {};
+  const foundItem = scrappedData.find((item) => item.dictionaryId === dictionary.id);
+  const id = foundItem?.dictionaryScrapId;
+  const selectedIdList = id !== undefined && id !== null ? [id] : [];
+  const deleteScrapTerm =
+    data && !isLoading ? useDeleteScrapTerm({ selectedIdList }).deleteScrapTerm : () => {};
 
+  const reloadContentDetails = useContentDetails(contentId).reloadContentDetails;
+  const setIsLoginModalOpen = useLoginModalStore((state) => state.setIsLoginModalOpen);
   const handleScrapClick = async () => {
-    if (!isLogin) {
+    if (!data || isLoading) {
       setIsLoginModalOpen(true);
       return;
     }

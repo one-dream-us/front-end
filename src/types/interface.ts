@@ -23,26 +23,28 @@ export interface ToastProps {
   setIsComModalOpen: (isComModalOpen: boolean) => void;
 }
 
+type Tag = {
+  tagValue: string;
+  sequence: number | null;
+};
+
 // My Scrap
 export interface ScrapedContentData {
   scrapId: number;
-  content: {
-    id: number;
-    title: string;
-    contentUrl: string;
-    thumbnailUrl: string;
-    createdAt: string;
-    author: 'string';
-  };
+  contentId: number;
+  contentTitle: string;
+  thumbnailUrl: string;
+  createdAt: string;
+  summaryText: string;
+  tags: Tag[];
 }
 
 export interface ScrapedTermData {
   scrapId: number;
-  dictionary: {
-    id: number;
-    term: string;
-    details: string;
-  };
+  dictionaryId: number;
+  term: string;
+  details: string;
+  contentId: number;
 }
 
 export interface UserInfoData {
@@ -83,7 +85,6 @@ export interface Dictionary {
   term: string;
   details: string;
   scrapped: boolean;
-  dictionaryScrapId: number;
 }
 
 export interface ScrapClickProps {

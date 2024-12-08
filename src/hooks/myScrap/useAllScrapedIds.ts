@@ -1,4 +1,4 @@
-import useMyScrapStore from './useMyScrapStore';
+import useMyScrapStore from '../../store/useMyScrapStore';
 import { useEffect } from 'react';
 import { ScrapedContentData, ScrapedTermData } from '@/types/interface';
 

@@ -1,4 +1,4 @@
-import useMyScrapStore from '@/hooks/myScrap/useMyScrapStore';
+import useMyScrapStore from '@/store/useMyScrapStore';
 
 const useSelectionControls = () => {
   const isAllChecked = useMyScrapStore((state) => state.isAllChecked);

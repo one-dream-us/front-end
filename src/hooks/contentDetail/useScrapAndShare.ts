@@ -6,45 +6,47 @@ import useScrappedConStore from '@/store/useScrappedConStore';
 import useToastStore from '@/store/useToastStore';
 import { ScrapedContentData } from '@/types/interface';
 import useContentStore from '@/store/useContentStore';
-import { useLoginStore } from '@/store/useIsLoginStore';
+import { useAuthCheckQuery } from '../auth/useAuthCheckQuery';
+import useLoginModalStore from '@/store/useLoginModalStore';
 
 export default function useScrapAndShare() {
   const contentId = useContentStore((state) => state.contentId);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
-  const isLogin = useLoginStore((state) => state.isLogin);
-
-  if (!isLogin) {
-    return {
-      isShareModalOpen,
-      setIsShareModalOpen,
-      toggleScrap: () => {},
-      isScrapped: false,
-    };
-  }
-
-  const { scrapedContents } = useScrapedContents();
+  const { isLoading, data } = useAuthCheckQuery();
+  const showToast = useToastStore((state) => state.showToast);
+  const { scrapedContents } = data ? useScrapedContents() : { scrapedContents: [] };
+  const { addScrapContent } =
+    data && !isLoading ? useAddScrap(contentId) : { addScrapContent: () => {} };
   const isScrapped = useScrappedConStore((state) => state.isScrapped);
   const setIsScrapped = useScrappedConStore((state) => state.setIsScrapped);
-  const { addScrapContent } = useAddScrap(contentId);
+  const setIsLoginModalOpen = useLoginModalStore((state) => state.setIsLoginModalOpen);
 
   useEffect(() => {
+    if (!data) return;
+
     const isAlreadyScrapped = scrapedContents.some(
-      (scrap: ScrapedContentData) => scrap.content.id === contentId,
+      (scrap: ScrapedContentData) => scrap.contentId === contentId,
     );
     setIsScrapped(isAlreadyScrapped);
-  }, [scrapedContents, contentId, setIsScrapped]);
+  }, [scrapedContents, contentId, setIsScrapped, data]);
 
   const scrapId = isScrapped
-    ? scrapedContents.find((scrap: ScrapedContentData) => scrap.content.id === contentId)?.scrapId
+    ? scrapedContents.find((scrap: ScrapedContentData) => scrap.contentId === contentId)?.scrapId
     : null;
 
-  const { deleteScrapContent } = useDeleteScrapCon({ selectedIdList: scrapId ? [scrapId] : [] });
-  const showToast = useToastStore((state) => state.showToast);
+  const { deleteScrapContent } =
+    data && !isLoading
+      ? useDeleteScrapCon({
+          selectedIdList: scrapId ? [scrapId] : [],
+        })
+      : { deleteScrapContent: () => {} };
 
   const toggleScrap = () => {
-    if (!isLogin) {
+    if (!data || isLoading) {
+      setIsLoginModalOpen(true);
       return;
     }
+
     if (isScrapped) {
       deleteScrapContent();
       showToast('콘텐츠 스크랩이 삭제되었어요.', 'deleteScrap');

@@ -13,7 +13,7 @@ export default function LoginModal() {
   return (
     <>
       {isLoginModalOpen && (
-        <div className='fixed inset-0 z-[500] flex items-center justify-center bg-black bg-opacity-60'>
+        <div className='fixed inset-0 z-[1000] flex items-center justify-center bg-black bg-opacity-60'>
           <div className='flex h-[230px] w-[343px] flex-col rounded-[10px] bg-custom-gray-lighter px-7 py-6 shadow-login outline-none md:w-[372px]'>
             <h2 className='mb-2 h-[54px] text-lg font-bold text-custom-black'>
               <div>로그인이 필요한 서비스입니다.</div>
@@ -26,7 +26,7 @@ export default function LoginModal() {
               <input
                 type='checkbox'
                 id='login-conform'
-                className='h-5 w-5 text-custom-gray-dark checked:appearance-none checked:rounded-[3px] checked:bg-checked'
+                className='checkbox'
                 checked={isChecked}
                 onChange={() => setIsChecked(!isChecked)}
               />
@@ -37,7 +37,7 @@ export default function LoginModal() {
                 [필수] 만 14세 이상입니다.
               </label>
             </div>
-            <div className='flex gap-x-2 self-center'>
+            <div className='flex gap-x-2 self-center transition'>
               <button
                 onClick={() => {
                   toggleModal(false);

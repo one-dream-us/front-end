@@ -1,6 +1,6 @@
 import { toggleExpandDef } from '@/utils/myScrapUtils';
-import chevronDownIcon from '@/assets/icons/chevron-down.svg';
-import chevronUpIcon from '@/assets/icons/chevron-up.svg';
+import chevronDownIcon from '@/assets/icons/icon_arrowdoun.svg';
+import chevronUpIcon from '@/assets/icons/icon_arrowup.svg';
 
 export default function IconBtn({
   isExpanded,
@@ -12,7 +12,11 @@ export default function IconBtn({
   setExpandedItems: React.Dispatch<React.SetStateAction<Record<number, boolean>>>;
 }) {
   return (
-    <button type='button' onClick={() => toggleExpandDef(id, setExpandedItems)}>
+    <button
+      type='button'
+      onClick={() => toggleExpandDef(id, setExpandedItems)}
+      className='md:hidden'
+    >
       <img
         src={isExpanded ? chevronUpIcon : chevronDownIcon}
         alt={isExpanded ? '단어 뜻 닫기' : '단어 뜻 보기'}

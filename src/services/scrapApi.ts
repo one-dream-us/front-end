@@ -26,11 +26,24 @@ const scrapApi = {
     return response;
   },
 
-  addScrapTerm: async (termId: number) => {
-    const { data: response } = await client.post(`/scraps/dictionaries/${termId}`);
+  addScrapTerm: async (termId: number, contentId: number) => {
+    const { data: response } = await client.post(
+      `/scraps/dictionaries/${termId}/contents/${contentId}`,
+    );
     return response;
   },
+
   getTotalScrapCount: async () => (await client.get('scraps/total')).data,
+
+  getTermsCnt: async () => {
+    const { data: response } = await client.get(`/scraps/dictionaries/count`);
+    return response;
+  },
+
+  getContentsCnt: async () => {
+    const { data: response } = await client.get(`/scraps/contents/count`);
+    return response;
+  },
 };
 
 export default scrapApi;
