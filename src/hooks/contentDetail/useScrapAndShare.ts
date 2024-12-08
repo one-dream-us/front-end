@@ -33,7 +33,8 @@ export default function useScrapAndShare() {
   const scrapId = isScrapped
     ? scrapedContents.find((scrap: ScrapedContentData) => scrap.contentId === contentId)?.scrapId
     : null;
-
+  console.log('data');
+  console.log(isScrapped);
   const { deleteScrapContent } =
     data && !isLoading
       ? useDeleteScrapCon({

@@ -1,32 +1,17 @@
 import Thumbnail from './Thumbnail';
 import ScrapInfo from './ScrapInfo';
 import { useAllScrapedIds } from '@/hooks/myScrap/useAllScrapedIds';
-import useScrapedContents from '@/hooks/scrap/useScrapedContents';
 import { ScrapedContentData } from '@/types/interface';
 import { formatDate } from '@/utils/myScrapUtils';
 import EditSection from '../edit/EditSection';
-import { useState, useEffect } from 'react';
 import useMyScrapStore from '@/store/useMyScrapStore';
 import { Link } from 'react-router-dom';
 import ScrapedItemModals from '../ScrapItemModals';
 import KeywordTags from '@/components/common/contentCard/KeywordTags';
 
-export default function ScrapedContents() {
-  const { scrapedContents = [], isLoading } = useScrapedContents();
-  const [contentList, setContentList] = useState(scrapedContents);
+export default function ScrapedContents({ contentList }: { contentList: ScrapedContentData[] }) {
   const isEditing = useMyScrapStore((state) => state.isEditing);
-
-  useEffect(() => {
-    if (scrapedContents) {
-      setContentList(scrapedContents);
-    }
-  }, [scrapedContents]);
-
   useAllScrapedIds(contentList);
-
-  if (isLoading) {
-    return <div />;
-  }
 
   return (
     <div className='mb-[60px] flex w-full flex-col desktop:ml-auto desktop:w-[811px]'>

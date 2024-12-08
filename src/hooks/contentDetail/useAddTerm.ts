@@ -3,20 +3,17 @@ import scrapApi from '@/services/scrapApi';
 import useScrapedTerms from '../myScrap/useScrapedTerms';
 import useLoginModalStore from '@/store/useLoginModalStore';
 import useScrappedState from './useScrappedState';
-import useMyScrap from '../myScrap/useMyScrap';
 
 export default function useAddTerm(termId: number, contentId: number) {
   const { reloadScrapedTerms } = useScrapedTerms();
   const setIsLoginModalOpen = useLoginModalStore((state) => state.setIsLoginModalOpen);
   const { reloadScrappedState } = useScrappedState();
-  const { refetch: refetchMyScrap } = useMyScrap();
 
   const mutation = useMutation({
     mutationFn: async () => await scrapApi.addScrapTerm(termId, contentId),
     onSuccess: () => {
       reloadScrappedState();
       reloadScrapedTerms();
-      refetchMyScrap();
     },
 
     onError: (error: Error) => {
