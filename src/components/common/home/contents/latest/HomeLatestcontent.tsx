@@ -48,7 +48,9 @@ export default function HomeLatestcontent() {
         <div className='h-[154px] w-full flex-1'>
           <KeywordTags tags={content?.tags ?? ['']} />
           <h2 className='mb-1 mt-2 line-clamp-2 text-lg font-bold'>{content?.title}</h2>
-          <span className='mb-2 text-sm text-custom-black'>{content?.summaryText}</span>
+          <span className='mb-2 line-clamp-3 text-sm text-custom-black'>
+            {content?.summaryText}
+          </span>
           <ScrapDateNCount
             date={formatDate(content?.createdAt!)}
             scrapCount={content?.scrapCount!}
