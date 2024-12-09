@@ -6,8 +6,8 @@ import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
 import logo from '@/assets/this_is_money_imgs/img_png/Logo_Icon+text_32_hor.png';
 import logo_hover from '@/assets/this_is_money_imgs/img_png/logo_hover.png';
 import logo_sm from '@/assets/this_is_money_imgs/img_png/main_logo_32.png';
-import profileImg from '@/assets/this_is_money_imgs/img_png/profile_big.png';
-import profileGrey from '@/assets/this_is_money_imgs/img_png/profile_small_grey.png';
+import profile_main from '@/assets/this_is_money_imgs/img_png/Icon_profile_main.png';
+import profile_active from '@/assets/this_is_money_imgs/img_png/icon_profile_active.png';
 import { useImgHover } from '@/hooks/ui/useImgHover';
 import useLoginModalStore from '@/store/useLoginModalStore';
 import LoginModal from '../LoginModal';
@@ -60,7 +60,11 @@ export default function Header() {
             onMouseLeave={profileHover.handleMouseLeave}
             className={`hidden h-9 w-9 rounded-full md:block`}
             src={
-              pathname === '/profile' ? profileImg : profileHover.isHover ? profileImg : profileGrey
+              pathname === '/profile'
+                ? profile_active
+                : profileHover.isHover
+                  ? profile_active
+                  : profile_main
             }
             alt='profileImg'
           />

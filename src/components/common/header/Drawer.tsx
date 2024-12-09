@@ -4,7 +4,8 @@ import authApi from '@/services/authApi';
 import { formatUserName } from '@/utils/formatUserName';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import profileImg from '@/assets/this_is_money_imgs/img_png/profile_small_active.png';
+import profile_main from '@/assets/this_is_money_imgs/img_png/Icon_profile_main.png';
+import profile_active from '@/assets/this_is_money_imgs/img_png/icon_profile_active.png';
 import { useImgHover } from '@/hooks/ui/useImgHover';
 import useLoginModalStore from '@/store/useLoginModalStore';
 import { useMyViewCount } from '@/hooks/homeContent/useMyViewCount';
@@ -48,8 +49,8 @@ export default function Drawer({
                 <img
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
-                  className={`h-[60px] w-[60px] rounded-full ${isHover && 'scale-110 transition-all duration-300'}`}
-                  src={profileImg}
+                  className={`h-[60px] w-[60px] rounded-full`}
+                  src={isHover ? profile_active : profile_main}
                   alt='profileImg'
                 />
                 <div className='flex h-[55px] w-[137px] flex-col items-start justify-between'>
