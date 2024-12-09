@@ -30,9 +30,7 @@ export default function ScrapedTerms({ termsList }: { termsList: ScrapedTermData
               <ScrapedTermCard
                 isExpanded={isExpanded}
                 setExpandedItems={setExpandedItems}
-                id={item.scrapId}
-                term={item.term}
-                definition={item.details}
+                detail={item}
               />
               <Link
                 to={`/content/${item.contentId}`}

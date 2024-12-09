@@ -27,6 +27,9 @@ export default function ScriptWithTime({
     const marks = document.querySelectorAll('mark');
     marks.forEach((mark, index) => {
       const dict = scrappedData[index];
+      const dictionary = dictionaries[index];
+
+      mark.id = `mark-${dictionary?.id}`;
       if (dict && dict.scrapped) {
         mark.style.backgroundColor = '#A7FFB4';
         mark.style.padding = '2px 1px';
