@@ -1,4 +1,4 @@
-import contentApi from '@/services/contentApi';
+import contentApi from '@/services/contentAPi';
 import { useQuery } from '@tanstack/react-query';
 import { useLoginStore } from '@/store/useIsLoginStore';
 
