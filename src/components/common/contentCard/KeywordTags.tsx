@@ -4,7 +4,7 @@ export default function KeywordTags({ tags }: { tags: string[] }) {
       {tags.map((tag, index) => (
         <div
           key={index}
-          className='flex items-center justify-center rounded-[4px] border border-custom-gray-500 tracking-[-2%]'
+          className='leading-120 flex items-center justify-center rounded-[4px] border-[0.5px] border-custom-gray-500 tracking-[-2%]'
         >
           <span className='whitespace-nowrap p-1 leading-[150%] text-custom-gray-700'>#{tag}</span>
         </div>
