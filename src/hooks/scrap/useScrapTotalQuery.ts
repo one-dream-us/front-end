@@ -5,5 +5,6 @@ export const useScrapTotalQuery = () => {
   return useQuery({
     queryKey: ['scrap-total'],
     queryFn: scrapApi.getTotalScrapCount,
+    staleTime: 0,
   });
 };
