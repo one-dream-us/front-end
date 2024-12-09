@@ -14,7 +14,7 @@ export default function HomeLatestcontent() {
   );
   if (isLoading) return <HomeLatestContentSkeleton />;
   return (
-    <div className='px-4 md:px-6 desktop:px-[129px]'>
+    <div className='px-4 md:px-6 desktop:m-auto desktop:max-w-[1440px] desktop:px-[129px]'>
       <div className='letter mb-5 flex items-center justify-between leading-[150%]'>
         <h1 className='letter text-lg font-bold tracking-[-2%] text-custom-black md:text-xl desktop:text-[22px]'>
           오늘 업로드 된 콘텐츠

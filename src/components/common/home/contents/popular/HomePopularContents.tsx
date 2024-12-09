@@ -14,7 +14,7 @@ export default function HomePopularContents() {
   );
   if (isLoading) return <HomePopularcontentsSkeleton />;
   return (
-    <div className='pl-4 md:pl-6 desktop:pl-[129px]'>
+    <div className='pl-4 md:pl-6 desktop:m-auto desktop:max-w-[1440px] desktop:pl-[129px]'>
       <h1 className='mb-5 text-lg font-bold md:text-xl desktop:text-[22px]'>인기 콘텐츠</h1>
 
       <div className='inline-flex w-full items-center gap-x-3 overflow-x-auto overflow-y-hidden'>
