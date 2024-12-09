@@ -32,7 +32,9 @@ export default function ScrapedContents({ contentList }: { contentList: ScrapedC
                 <div className='hidden md:block'>
                   <KeywordTags tags={content.tags.map((tag) => tag.tagValue)} />
                 </div>
-                <p className='font-medium leading-170 md:mb-2 md:text-lg'>{content.contentTitle}</p>
+                <p className='line-clamp-2 font-medium leading-170 md:mb-2 md:text-lg'>
+                  {content.contentTitle}
+                </p>
                 <div className='hidden md:mb-2 md:block'>
                   <p className='line-clamp-2 desktop:line-clamp-3'>{content.summaryText}</p>
                 </div>

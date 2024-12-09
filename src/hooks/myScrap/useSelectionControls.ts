@@ -6,7 +6,7 @@ const useSelectionControls = () => {
 
   const selectedIdList = useMyScrapStore((state) => state.selectedIdList);
   const setSelectedIdList = useMyScrapStore((state) => state.setSelectedIdList);
-
+  const isEditing = useMyScrapStore((state) => state.isEditing);
   const setIsEditing = useMyScrapStore((state) => state.setIsEditing);
   const allIdList = useMyScrapStore((state) => state.allIdList);
 
@@ -17,6 +17,7 @@ const useSelectionControls = () => {
     setIsAllChecked,
     selectedIdList,
     setSelectedIdList,
+    isEditing,
     setIsEditing,
     allIdList,
     setIsDelModalOpen,
