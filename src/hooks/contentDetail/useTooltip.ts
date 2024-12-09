@@ -11,7 +11,13 @@ import useLoginModalStore from '@/store/useLoginModalStore';
 
 export default function useTooltip(
   dictionary: Dictionary,
-  setTooltip: (value: { content: string; x: number; y: number; index: number | null }) => void,
+  setTooltip: (value: {
+    content: string;
+    term: string;
+    x: number;
+    y: number;
+    index: number | null;
+  }) => void,
 ) {
   const scrappedData = useScrappedStore((state) => state.scrappedData);
   const showToast = useToastStore((state) => state.showToast);
@@ -20,7 +26,7 @@ export default function useTooltip(
   const [isScrapped, setIsScrapped] = useState(
     scrappedData.find((item) => item.dictionaryId === dictionary.id)?.scrapped ?? false,
   );
-
+  console.log(isScrapped);
   const addScrapTerm =
     data && !isLoading ? useAddTerm(dictionary.id, contentId).addScrapTerm : () => {};
   const foundItem = scrappedData.find((item) => item.dictionaryId === dictionary.id);
@@ -39,11 +45,11 @@ export default function useTooltip(
 
     if (isScrapped) {
       deleteScrapTerm?.();
-      setTooltip({ content: '', x: 0, y: 0, index: null });
+      setTooltip({ content: '', term: '', x: 0, y: 0, index: null });
       showToast('스크랩이 취소되었어요.', 'deleteTerm');
     } else {
       addScrapTerm?.();
-      setTooltip({ content: '', x: 0, y: 0, index: null });
+      setTooltip({ content: '', term: '', x: 0, y: 0, index: null });
       showToast('‘MY 스크랩 > 단어장’에 담았어요.', 'addTerm');
     }
 

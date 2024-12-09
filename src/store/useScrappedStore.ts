@@ -1,10 +1,5 @@
 import { create } from 'zustand';
-
-interface ScrappedItem {
-  dictionaryId: number;
-  dictionaryScrapId: number | null;
-  scrapped: boolean;
-}
+import { ScrappedItem } from '@/types/interface';
 
 interface ScrappedState {
   scrappedData: ScrappedItem[];

@@ -1,9 +1,15 @@
 import { Dictionary } from '@/types/interface';
 
 export const tooltipHandlers = {
-  handleMouseOver: (
+  handleClick: (
     event: MouseEvent,
-    setTooltip: (value: { content: string; x: number; y: number; index: number | null }) => void,
+    setTooltip: (value: {
+      content: string;
+      term: string;
+      x: number;
+      y: number;
+      index: number | null;
+    }) => void,
     dictionaries: Dictionary[],
   ) => {
     const target = event.target as HTMLElement;
@@ -14,12 +20,13 @@ export const tooltipHandlers = {
       const { clientX: x, clientY: y } = event;
       setTooltip({
         content: matchedItem.details,
+        term: term,
         x,
         y,
         index: dictionaries.indexOf(matchedItem),
       });
     } else {
-      setTooltip({ content: '', x: 0, y: 0, index: null });
+      setTooltip({ content: '', term: '', x: 0, y: 0, index: null });
     }
   },
 };

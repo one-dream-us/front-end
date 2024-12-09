@@ -21,7 +21,7 @@ export default function ScrapAndShare() {
           className='h-[13px] w-3 hover:fill-black'
           aria-label={isScrapped ? '스크랩 해제 아이콘' : '스크랩 아이콘'}
         />
-        <span className='ml-0.5 pt-0.5 text-xs font-medium hover:text-custom-gray-h desktop:text-sm'>
+        <span className='ml-0.5 pt-0.5 text-xs hover:text-custom-gray-h desktop:text-sm'>
           스크랩
         </span>
       </button>
@@ -31,7 +31,7 @@ export default function ScrapAndShare() {
         onClick={() => setIsShareModalOpen(true)}
       >
         <img src={shareIcon} aria-label='공유 아이콘' className='h-[13px] w-3' />
-        <span className='ml-0.5 pt-0.5 text-xs font-medium desktop:text-sm'>공유</span>
+        <span className='ml-0.5 pt-0.5 text-xs desktop:text-sm'>공유</span>
       </button>
       {isShareModalOpen && <ShareModal setIsShareModalOpen={setIsShareModalOpen} />}
     </div>

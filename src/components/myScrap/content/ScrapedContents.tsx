@@ -28,7 +28,7 @@ export default function ScrapedContents({ contentList }: { contentList: ScrapedC
                 alt={content.contentTitle}
                 id={content.scrapId}
               />
-              <div className='flex flex-1 flex-col justify-center gap-y-1 text-sm text-custom-black md:gap-y-0'>
+              <div className='flex flex-1 flex-col justify-center gap-y-1 text-custom-black md:gap-y-0 md:text-sm'>
                 <div className='hidden md:block'>
                   <KeywordTags tags={content.tags.map((tag) => tag.tagValue)} />
                 </div>

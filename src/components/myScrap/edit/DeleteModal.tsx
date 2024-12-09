@@ -17,7 +17,7 @@ export default function DeleteModal({
   return (
     <div className='fixed inset-0 z-[1000] flex items-center justify-center bg-black bg-opacity-60'>
       <div className='flex h-[100px] w-[343px] flex-col items-center gap-y-5 rounded-[10px] bg-custom-gray-lighter p-4 text-xs'>
-        <p className='h-[18px] leading-[18px] text-custom-gray-dark'>선택한 {text}을 삭제할까요?</p>
+        <p className='h-[18px] leading-[18px] text-custom-gray-dark'>선택한 {text}를 삭제할까요?</p>
         <div className='flex h-[30px] gap-x-2'>
           <button
             type='button'
