@@ -8,9 +8,9 @@ import { useLoginStore } from '@/store/useIsLoginStore';
 export default function useMyScrap() {
   const [activeMenu, setActiveMenu] = useState<myScrapMenu>(MenuItems[0]);
   const { isLogin } = useLoginStore((state) => state);
-  const { scrapedContents } = useScrapedContents();
+  const { scrapedContents, isLoading: contentsLoading } = useScrapedContents();
   const [contentList, setContentList] = useState([]);
-  const { scrapedTerms } = useScrapedTerms();
+  const { scrapedTerms, isLoading: termsLoading } = useScrapedTerms();
   const [termsList, setTermsList] = useState([]);
 
   useEffect(() => {
@@ -34,5 +34,6 @@ export default function useMyScrap() {
     setActiveMenu,
     contentList: isLogin ? contentList : [],
     termsList: isLogin ? termsList : [],
+    isLoading: contentsLoading && termsLoading,
   };
 }
