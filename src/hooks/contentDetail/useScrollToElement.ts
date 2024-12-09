@@ -13,12 +13,12 @@ export const useScrollToElement = () => {
 
     if (state?.scrollTo) {
       const element = document.getElementById(state.scrollTo);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-        return;
-      }
+      element?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    } else {
+      window.scrollTo(0, 0);
     }
-
-    window.scrollTo(0, 0);
   }, [location]);
 };
