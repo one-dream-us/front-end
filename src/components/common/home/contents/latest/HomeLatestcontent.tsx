@@ -23,7 +23,7 @@ export default function HomeLatestcontent() {
           className='flex items-center justify-center gap-x-1 text-xs tracking-[-2%] text-custom-black'
           to='/contents'
         >
-          전체 컨텐츠 보기
+          전체 콘텐츠 보기
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -60,7 +60,7 @@ export default function HomeLatestcontent() {
           </div>
           <ScrapDateNCount
             date={formatDate(content?.createdAt!)}
-            scrapCount={content?.scrapCount!}
+            scrapCount={content?.viewCount!}
           />
         </div>
       </Link>

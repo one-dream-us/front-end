@@ -38,12 +38,12 @@ export default function HomePopularContents() {
                   {item.title}
                 </h2>
               </div>
-              <div className='h-[60px] w-full'>
+              <div className='mb-2 h-[60px] w-full'>
                 <span className='line-clamp-3 text-sm tracking-[-2%] text-custom-black'>
                   {item.summaryText}
                 </span>
               </div>
-              <ScrapDateNCount date={formatDate(item.createdAt)} scrapCount={item.scrapCount} />
+              <ScrapDateNCount date={formatDate(item.createdAt)} scrapCount={item.viewCount} />
             </div>
           </Link>
         ))}
