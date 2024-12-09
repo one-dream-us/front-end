@@ -1,7 +1,7 @@
 export default function ProfileSkeleton() {
   return (
     <div className='m-auto mt-[40px] w-full px-4 desktop:px-[128px]'>
-      <h1 className='mb-6 text-[22px] font-bold'>프로필</h1>
+      <h1 className='mb-6 text-[22px] font-medium'>프로필</h1>
 
       <div className='block desktop:flex desktop:items-center desktop:justify-center desktop:gap-x-[58px]'>
         <div>

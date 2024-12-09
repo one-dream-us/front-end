@@ -24,7 +24,7 @@ export default function DesktopMenu({
             setIsAllChecked(false);
             setAllIdList([]);
           }}
-          className={`relative cursor-pointer whitespace-nowrap pl-3.5 font-bold md:text-sm ${
+          className={`relative cursor-pointer whitespace-nowrap pl-3.5 font-medium md:text-sm ${
             activeMenu === item
               ? `text-custom-gray-dark after:absolute after:-left-[1px] ${activeMenu === '콘텐츠' ? 'after:top-[1px]' : 'after:bottom-0'} after:h-3.5 after:w-[3px] after:rounded-full after:bg-custom-gray-dark`
               : 'text-custom-gray-500'

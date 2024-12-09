@@ -7,12 +7,12 @@ export default function EditBtn() {
 
   return (
     <div className='mt-5 flex items-center justify-between desktop:mt-0'>
-      <span className='text-xs font-medium text-custom-gray-700'>
-        스크랩 수<span className='ml-2 font-bold'>{contentsLen}</span>
+      <span className='text-xs text-custom-gray-700'>
+        스크랩 수<span className='ml-2 font-medium'>{contentsLen}</span>
       </span>
       <button
         type='button'
-        className='edit-btn h-6 w-[68px] self-end font-medium text-custom-gray-dark'
+        className='edit-btn h-6 w-[68px] self-end text-custom-gray-dark'
         onClick={() => handleEditClick(setIsEditing)}
       >
         수정하기

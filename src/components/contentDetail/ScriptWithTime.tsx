@@ -44,7 +44,7 @@ export default function ScriptWithTime({
     >
       <button
         type='button'
-        className='flex h-5 items-center justify-center self-start rounded-[10px] bg-custom-gray-dark px-2 text-xs font-medium text-primary md:mt-1'
+        className='flex h-5 items-center justify-center self-start rounded-[10px] bg-custom-gray-dark px-2 text-xs text-primary md:mt-1'
         onClick={onClick}
       >
         {time}

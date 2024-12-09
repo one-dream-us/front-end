@@ -29,7 +29,7 @@ export default function DeleteModal({
           <button
             type='button'
             onClick={() => onDelete(activeMenu)}
-            className='h-full w-[148px] rounded bg-custom-gray-dark font-medium text-primary'
+            className='h-full w-[148px] rounded bg-custom-gray-dark text-primary'
           >
             삭제하기
           </button>

@@ -26,7 +26,7 @@ export default function MenuWithUnderbar({
             setAllIdList([]);
             setIsEditing(false);
           }}
-          className={`relative w-1/2 cursor-pointer whitespace-nowrap text-center text-sm font-bold leading-[44px] ${
+          className={`relative w-1/2 cursor-pointer whitespace-nowrap text-center text-sm font-medium leading-[44px] ${
             activeMenu === item
               ? 'text-custom-gray-dark after:absolute after:-bottom-[1px] after:left-0 after:h-[2px] after:w-full after:bg-custom-gray-dark'
               : 'text-custom-gray-500'
