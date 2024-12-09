@@ -2,9 +2,9 @@ import shareUtils from '@/handlers/contentDetail/handleShare';
 import closeGIcon from '@/assets/icons/X=Grey 30.svg';
 import useShareModal from '@/hooks/contentDetail/useShareModal';
 import copyLinkIcon from '@/assets/icons/copy-link.svg';
-import kakaoTalkIcon from '@/assets/icons/kakaotalk.svg';
-import facebookIcon from '@/assets/icons/facebook.svg';
-import XIcon from '@/assets/icons/x.svg';
+import kakaoTalkIcon from '@/assets/imgs/카카오톡.jpg';
+import facebookIcon from '@/assets/imgs/페이스북.jpg';
+import XIcon from '@/assets/imgs/X 트위터.jpg';
 import useToastStore from '@/store/useToastStore';
 
 export default function ShareModal({
