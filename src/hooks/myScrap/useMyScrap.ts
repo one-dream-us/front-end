@@ -3,30 +3,36 @@ import { useState, useEffect } from 'react';
 import { MenuItems } from '@/constants';
 import useScrapedContents from '../scrap/useScrapedContents';
 import useScrapedTerms from './useScrapedTerms';
+import { useLoginStore } from '@/store/useIsLoginStore';
 
 export default function useMyScrap() {
   const [activeMenu, setActiveMenu] = useState<myScrapMenu>(MenuItems[0]);
+  const { isLogin } = useLoginStore((state) => state);
   const { scrapedContents } = useScrapedContents();
   const [contentList, setContentList] = useState([]);
   const { scrapedTerms } = useScrapedTerms();
   const [termsList, setTermsList] = useState([]);
 
   useEffect(() => {
-    if (scrapedContents && scrapedContents !== contentList) {
+    if (
+      isLogin &&
+      scrapedContents &&
+      JSON.stringify(scrapedContents) !== JSON.stringify(contentList)
+    ) {
       setContentList(scrapedContents);
     }
-  }, [scrapedContents, contentList]);
+  }, [isLogin, scrapedContents]);
 
   useEffect(() => {
-    if (scrapedTerms && scrapedTerms !== termsList) {
+    if (isLogin && scrapedTerms && JSON.stringify(scrapedTerms) !== JSON.stringify(termsList)) {
       setTermsList(scrapedTerms);
     }
-  }, [scrapedTerms, termsList]);
+  }, [isLogin, scrapedTerms]);
 
   return {
     activeMenu,
     setActiveMenu,
-    contentList,
-    termsList,
+    contentList: isLogin ? contentList : [],
+    termsList: isLogin ? termsList : [],
   };
 }
