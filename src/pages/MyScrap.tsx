@@ -16,13 +16,13 @@ export default function MyScrap() {
         <MenuWithUnderbar activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
         <DesktopMenu activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
         {activeMenu === '콘텐츠' ? (
-          contentList ? (
+          contentList.length === 0 ? (
             <EmptyState activeMenu={activeMenu} />
           ) : (
             <ScrapedContents contentList={contentList} />
           )
         ) : activeMenu === '단어장' ? (
-          termsList ? (
+          termsList.length === 0 ? (
             <EmptyState activeMenu={activeMenu} />
           ) : (
             <ScrapedTerms termsList={termsList} />
