@@ -1,7 +1,6 @@
 import { InfiniteQueryObserverResult } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import contentLoaded from '@/assets/this_is_money_imgs/img_png/content_loaded.png';
 
 export default function Observer({
   fetchNext,
@@ -19,12 +18,10 @@ export default function Observer({
   }, [inView]);
   return (
     <>
-      {hasNext ? (
+      {hasNext && (
         <div>
           <span ref={ref}></span>
         </div>
-      ) : (
-        <img className='m-auto my-[60px]' src={contentLoaded} alt='content loaded' />
       )}
     </>
   );

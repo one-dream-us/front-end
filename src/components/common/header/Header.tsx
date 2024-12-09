@@ -25,7 +25,7 @@ export default function Header() {
   const handleShowSlider = () => setShowSidebar((prev) => !prev);
 
   return (
-    <header className='fixed left-0 top-0 z-[999] flex h-[52px] w-full items-center justify-between bg-white px-4 text-sm md:px-6 md:py-[11px] desktop:h-20 desktop:px-32'>
+    <header className='fixed left-0 top-0 z-[999] flex h-[52px] w-full items-center justify-between bg-white px-4 text-sm md:px-6 md:py-[11px] desktop:h-20 desktop:px-[129px]'>
       <div className='flex items-center justify-start'>
         <Link
           className='mr-10 flex items-center justify-center gap-x-1 text-xl font-extrabold'
@@ -44,7 +44,10 @@ export default function Header() {
         <ul className='hidden items-center justify-center text-custom-gray md:flex md:gap-8 desktop:gap-x-16'>
           {HeaderMenuList.map((item) => (
             <li key={item.id}>
-              <Link className={pathname === item.to ? 'font-bold text-black' : ''} to={item.to}>
+              <Link
+                className={`${item.to === pathname ? 'font-bold text-black' : 'hover:text-custom-gray-h'}`}
+                to={item.to}
+              >
                 {item.title}
               </Link>
             </li>

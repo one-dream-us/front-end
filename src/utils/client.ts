@@ -2,7 +2,7 @@ import authApi from '@/services/authApi';
 import axios, { AxiosError } from 'axios';
 
 const client = axios.create({
-  baseURL: `${import.meta.env.VITE_BACKEND_SERVER_URL}api/v1`,
+  baseURL: `${import.meta.env.VITE_BACKEND_SERVER_URL}v1`,
   withCredentials: true,
 });
 
