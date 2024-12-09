@@ -1,7 +1,7 @@
 import { myScrapMenu } from './types/types';
 export const HeaderMenuList = [
   { id: 1, title: '홈', to: '/' },
-  { id: 2, title: '콘텐츠', to: '/contents' },
+  { id: 2, title: '콘텐츠', to: '/contents', sub: '/content/' },
   { id: 3, title: 'MY 스크랩', to: '/my-scrap' },
 ];
 
