@@ -5,9 +5,9 @@ export default function Tooltip({ content, setTooltip, dictionary }: TooltipProp
   const { isScrapped, handleScrapClick } = useTooltip(dictionary, setTooltip);
 
   return (
-    <div className='fixed bottom-3 z-10 flex w-[calc(100%-32px)] flex-col rounded-[10px] bg-custom-gray-dark p-4 text-xs text-custom-gray-300 opacity-95 shadow-custom md:right-6 md:w-[628px] desktop:absolute desktop:left-0 desktop:top-[310px] desktop:w-[533px]'>
-      <span className='mb-1 text-xs font-medium'>{dictionary.term}</span>
-      <p className='leading-170'>{content}</p>
+    <div className='fixed bottom-3 z-10 flex max-h-80 w-[calc(100%-32px)] flex-col rounded-[10px] bg-custom-gray-dark p-4 text-custom-gray-300 opacity-95 shadow-custom md:right-6 md:w-[628px] desktop:absolute desktop:left-0 desktop:top-[310px] desktop:h-56 desktop:max-h-56 desktop:w-[533px]'>
+      <span className='mb-1 font-medium desktop:text-sm'>{dictionary.term}</span>
+      <p className='overflow-hidden desktop:text-sm'>{content}</p>
       <div className='mt-6 flex gap-x-8 self-end desktop:mt-auto'>
         <button
           className='cursor-pointer text-xs'
@@ -16,7 +16,7 @@ export default function Tooltip({ content, setTooltip, dictionary }: TooltipProp
           닫기
         </button>
         <button
-          className={`cursor-pointer text-xs font-medium ${isScrapped ? 'text-custom-gray-lighter' : 'text-primary'}`}
+          className={`cursor-pointer text-xs ${isScrapped ? 'text-custom-gray-lighter' : 'text-primary'}`}
           onClick={handleScrapClick}
         >
           {isScrapped ? '스크랩 취소' : '스크랩하기'}

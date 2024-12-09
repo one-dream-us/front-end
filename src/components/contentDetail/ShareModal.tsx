@@ -2,9 +2,9 @@ import shareUtils from '@/handlers/contentDetail/handleShare';
 import closeGIcon from '@/assets/icons/X=Grey 30.svg';
 import useShareModal from '@/hooks/contentDetail/useShareModal';
 import copyLinkIcon from '@/assets/icons/copy-link.svg';
-import kakaoTalkIcon from '@/assets/icons/kakaotalk.svg';
-import facebookIcon from '@/assets/icons/facebook.svg';
-import XIcon from '@/assets/icons/x.svg';
+import kakaoTalkIcon from '@/assets/imgs/카카오톡.jpg';
+import facebookIcon from '@/assets/imgs/페이스북.jpg';
+import XIcon from '@/assets/imgs/X 트위터.jpg';
 import useToastStore from '@/store/useToastStore';
 
 export default function ShareModal({
@@ -41,7 +41,7 @@ export default function ShareModal({
   return (
     <section className='absolute right-0 top-0 z-[50] flex w-[276px] flex-col gap-y-3 rounded-[10px] bg-modal px-5 py-4 text-custom-gray-lighter'>
       <div className='flex items-center justify-between'>
-        <h3 className='font-medium md:text-sm'>공유하기</h3>
+        <h3 className='md:text-sm'>공유하기</h3>
         <button
           type='button'
           onClick={() => setIsShareModalOpen(false)}

@@ -22,7 +22,7 @@ export default function Toast() {
           <img src={icon} alt={alt} className={`${size}`} />
           <p className={`${textColor} text-xs`}>{message}</p>
         </div>
-        <button onClick={hideToast} className='text-xs font-medium text-custom-gray-300'>
+        <button onClick={hideToast} className='text-xs text-custom-gray-300'>
           닫기
         </button>
       </div>

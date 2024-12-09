@@ -7,7 +7,7 @@ export default function HomeBanner() {
           <h3 className='deesktop:text-[14px] text-sm text-custom-gray-600 md:text-[14px] md:text-[#6DE67F] desktop:mb-1'>
             Our Mission
           </h3>
-          <h1 className='text-lg font-bold leading-[34px] md:mb-2 desktop:mb-3 desktop:text-[28px]'>
+          <h1 className='text-lg font-medium leading-[34px] md:mb-2 desktop:mb-3 desktop:text-[28px]'>
             이게 머니가 알려줄게 <br /> 이게 뭐니? 이게 MONEY!
           </h1>
           <span className='hidden text-xs text-custom-gray-dark md:block desktop:text-sm'>

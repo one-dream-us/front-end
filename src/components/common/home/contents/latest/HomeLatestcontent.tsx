@@ -16,7 +16,7 @@ export default function HomeLatestcontent() {
   return (
     <div className='px-4 md:px-6 desktop:m-auto desktop:max-w-[1440px] desktop:px-[129px]'>
       <div className='letter mb-5 flex items-center justify-between leading-[150%]'>
-        <h1 className='letter text-lg font-bold tracking-[-2%] text-custom-black md:text-xl desktop:text-[22px]'>
+        <h1 className='letter text-lg font-medium tracking-[-2%] text-custom-black md:text-xl desktop:text-[22px]'>
           오늘 업로드 된 콘텐츠
         </h1>
         <Link
@@ -49,7 +49,7 @@ export default function HomeLatestcontent() {
 
         <div className='h-[154px] w-full flex-1'>
           <KeywordTags tags={content?.tags ?? ['']} />
-          <h2 className='mb-1 line-clamp-2 text-lg font-bold leading-[150%] tracking-[-2%] text-custom-black'>
+          <h2 className='mb-1 line-clamp-2 text-lg font-medium leading-[150%] tracking-[-2%] text-custom-black'>
             {content?.title}
           </h2>
           <div className='h-[60px]'>

@@ -2,7 +2,9 @@ export default function HomeLatestContentSkeleton() {
   return (
     <div className='px-4 md:px-6 desktop:px-[129px]'>
       <div className='mb-5 flex items-center justify-between'>
-        <h1 className='text-lg font-bold md:text-xl desktop:text-[22px]'>오늘 업로드 된 콘텐츠</h1>
+        <h1 className='text-lg font-medium md:text-xl desktop:text-[22px]'>
+          오늘 업로드 된 콘텐츠
+        </h1>
         <div className='flex items-center justify-center text-xs text-custom-gray-600'>
           전체보기
           <svg

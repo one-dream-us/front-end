@@ -21,7 +21,7 @@ export default function Footer() {
               <li key={item.id}>
                 <Link
                   to={item.to}
-                  className='text-[11px] font-medium underline'
+                  className='text-[11px] underline'
                   target='_blank'
                   rel='noopener noreferrer'
                 >

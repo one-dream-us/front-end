@@ -1,12 +1,13 @@
+import { useRef, useState } from 'react';
 import ContentOverview from '@/components/contentDetail/ContentOverview';
 import ContentSummary from '@/components/contentDetail/ContentSummary';
-import { useRef, useState } from 'react';
 import ScriptList from '@/components/contentDetail/ScriptList';
 import VideoPlayer from '@/components/contentDetail/VideoPlayer';
 import useDetailData from '@/hooks/contentDetail/useDetailData';
 import { formatDate } from '@/utils/myScrapUtils';
 import ScrapAndShare from '@/components/contentDetail/ScrapAndShare';
 import ReactPlayer from 'react-player';
+import { useScrollToElement } from '@/hooks/contentDetail/useScrollToElement';
 
 export default function ContentDetail() {
   const {
@@ -24,6 +25,8 @@ export default function ContentDetail() {
   } = useDetailData();
   const playerRef = useRef<ReactPlayer | null>(null);
   const [playing, setPlaying] = useState(false);
+
+  useScrollToElement();
 
   if (isLoading) {
     return <div />;

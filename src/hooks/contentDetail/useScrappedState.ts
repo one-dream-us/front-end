@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import contentApi from '@/services/contentAPi';
+import contentApi from '@/services/contentApi';
 import useContentStore from '@/store/useContentStore';
 import useScrappedStore from '@/store/useScrappedStore';
 import { useEffect } from 'react';
