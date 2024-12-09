@@ -37,7 +37,7 @@ export default function Profile() {
               {isLoading ? (
                 <div className='h-[19] w-[60px] animate-pulse rounded-lg bg-custom-gray-medium'></div>
               ) : (
-                <h3 className='text-center text-lg font-bold text-custom-gray-medium'>
+                <h3 className='text-center text-lg font-bold text-custom-black'>
                   {formatUserName(info?.email || '')}
                 </h3>
               )}
@@ -50,9 +50,10 @@ export default function Profile() {
                 <div className='h-[14px] w-[60px] rounded-lg bg-custom-gray-medium'></div>
               </div>
             ) : (
-              <div className='text-xs'>
-                스크랩 {data?.totalScrapCnt || 0} | 본 콘텐츠
-                <span className='text-custom-gray-medium'> {viewCount}</span>
+              <div className='text-xs text-custom-gray-dark'>
+                스크랩 <span className='font-bold'>{data?.totalScrapCnt || ' 0'}</span>
+                <span className='mx-3'>|</span>본 콘텐츠{' '}
+                <span className='font-bold'>{viewCount}</span>
               </div>
             )}
 
@@ -68,7 +69,7 @@ export default function Profile() {
           <div
             role='button'
             onClick={authApi.logout}
-            className='m-auto flex h-[30px] w-[200px] items-center justify-center rounded-lg bg-black text-xs text-white transition-all duration-200 hover:bg-custom-gray desktop:mt-[32px]'
+            className='m-auto flex h-[30px] w-[200px] items-center justify-center rounded-lg bg-custom-gray-600 text-xs text-white transition-all duration-200 hover:bg-[#B5B5B5] desktop:mt-[32px]'
           >
             로그아웃
           </div>
@@ -80,7 +81,7 @@ export default function Profile() {
 
       <div
         role='button'
-        className='m-auto mb-[60px] mt-[130px] h-[18px] w-[44px] text-xs text-custom-gray-medium underline underline-offset-2 desktop:absolute desktop:bottom-[180px] desktop:right-[128px]'
+        className='m-auto mb-[60px] mt-[130px] h-[18px] w-[50px] text-xs text-custom-gray-medium underline underline-offset-2 desktop:absolute desktop:bottom-[180px] desktop:right-[128px]'
         onClick={() => setShowModal(true)}
       >
         회원탈퇴

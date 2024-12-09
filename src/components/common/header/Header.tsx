@@ -59,7 +59,9 @@ export default function Header() {
             onMouseEnter={profileHover.handleMouseEnter}
             onMouseLeave={profileHover.handleMouseLeave}
             className={`hidden h-9 w-9 rounded-full md:block`}
-            src={profileHover.isHover ? profileImg : profileGrey}
+            src={
+              pathname === '/profile' ? profileImg : profileHover.isHover ? profileImg : profileGrey
+            }
             alt='profileImg'
           />
         </Link>
