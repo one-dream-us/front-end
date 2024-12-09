@@ -41,7 +41,7 @@ export default function ShareModal({
   return (
     <section className='absolute right-0 top-0 z-[50] flex w-[276px] flex-col gap-y-3 rounded-[10px] bg-modal px-5 py-4 text-custom-gray-lighter'>
       <div className='flex items-center justify-between'>
-        <h3 className='text-sm font-medium'>공유하기</h3>
+        <h3 className='font-medium md:text-sm'>공유하기</h3>
         <button
           type='button'
           onClick={() => setIsShareModalOpen(false)}

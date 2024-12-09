@@ -15,7 +15,7 @@ export default function MenuWithUnderbar({
   const setIsEditing = useMyScrapStore((state) => state.setIsEditing);
 
   return (
-    <ul className='flex h-[44px] w-full border-b border-b-custom-gray-500 text-sm desktop:hidden'>
+    <ul className='flex h-[44px] w-full border-b border-b-custom-gray-500 md:text-sm desktop:hidden'>
       {MenuItems.map((item) => (
         <li
           key={item}

@@ -51,7 +51,7 @@ export default function ScriptWithTime({
       </button>
       <div
         dangerouslySetInnerHTML={{ __html: script }}
-        className='text-sm leading-170 text-custom-gray-dark'
+        className='leading-170 text-custom-gray-dark md:text-sm'
       />
       {tooltip.index !== null &&
         dictionaries.map((dict, index) => (
