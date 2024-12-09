@@ -12,6 +12,7 @@ export default function MenuWithUnderbar({
   const setSelectedIdList = useMyScrapStore((state) => state.setSelectedIdList);
   const setIsAllChecked = useMyScrapStore((state) => state.setIsAllChecked);
   const setAllIdList = useMyScrapStore((state) => state.setAllIdList);
+  const setIsEditing = useMyScrapStore((state) => state.setIsEditing);
 
   return (
     <ul className='flex h-[44px] w-full border-b border-b-custom-gray-500 text-sm desktop:hidden'>
@@ -23,6 +24,7 @@ export default function MenuWithUnderbar({
             setSelectedIdList([]);
             setIsAllChecked(false);
             setAllIdList([]);
+            setIsEditing(false);
           }}
           className={`relative w-1/2 cursor-pointer whitespace-nowrap text-center text-sm font-bold leading-[44px] ${
             activeMenu === item
