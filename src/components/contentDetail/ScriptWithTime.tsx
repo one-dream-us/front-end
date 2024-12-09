@@ -21,7 +21,7 @@ export default function ScriptWithTime({
   }>({ content: '', x: 0, y: 0, index: null });
   const scrappedData = useScrappedStore((state) => state.scrappedData);
 
-  useMarkEvent((event) => tooltipHandlers.handleMouseOver(event, setTooltip, dictionaries));
+  useMarkEvent((event) => tooltipHandlers.handleClick(event, setTooltip, dictionaries));
 
   useEffect(() => {
     const marks = document.querySelectorAll('mark');

@@ -5,6 +5,7 @@ import copyLinkIcon from '@/assets/icons/copy-link.svg';
 import kakaoTalkIcon from '@/assets/icons/kakaotalk.svg';
 import facebookIcon from '@/assets/icons/facebook.svg';
 import XIcon from '@/assets/icons/x.svg';
+import useToastStore from '@/store/useToastStore';
 
 export default function ShareModal({
   setIsShareModalOpen,
@@ -13,6 +14,7 @@ export default function ShareModal({
 }) {
   const currentUrl = window.location.href;
   useShareModal();
+  const showToast = useToastStore((state) => state.showToast);
 
   const buttonData = [
     {
@@ -37,7 +39,7 @@ export default function ShareModal({
   ];
 
   return (
-    <section className='bg-modal absolute right-0 top-0 z-[50] flex w-[276px] flex-col gap-y-3 rounded-[10px] px-5 py-4 text-custom-gray-lighter'>
+    <section className='absolute right-0 top-0 z-[50] flex w-[276px] flex-col gap-y-3 rounded-[10px] bg-modal px-5 py-4 text-custom-gray-lighter'>
       <div className='flex items-center justify-between'>
         <h3 className='text-sm font-medium'>공유하기</h3>
         <button
@@ -45,19 +47,31 @@ export default function ShareModal({
           onClick={() => setIsShareModalOpen(false)}
           aria-label='공유하기 창 닫기'
         >
-          <img src={closeGIcon} alt='공유하기 창 닫기 아이콘' className='h-[15px] w-3.5' />
+          <img
+            src={closeGIcon}
+            alt='공유하기 창 닫기 아이콘'
+            className='h-[15px] w-3.5 hover:opacity-60'
+          />
         </button>
       </div>
       <div className='flex gap-x-5 text-[10px]'>
         {buttonData.map(({ label, imgSrc, alt, handler }) => (
           <button
             key={label}
-            onClick={shareUtils.handleButtonClick(handler, setIsShareModalOpen, currentUrl)}
+            onClick={() => {
+              shareUtils.handleButtonClick(handler, setIsShareModalOpen, currentUrl);
+              if (label === '링크 복사') {
+                showToast('링크가 복사되었어요.', 'copy');
+              }
+            }}
             type='button'
             className='w-44px'
           >
             <div className='flex flex-col items-center gap-y-1'>
-              <img src={imgSrc} alt={alt} className='rounded-[4px]' />
+              <div className='group relative'>
+                <img src={imgSrc} alt={alt} className='rounded-[4px]' />
+                <div className='absolute inset-0 rounded-[4px] bg-black opacity-0 transition group-hover:opacity-50' />
+              </div>
               <span className='whitespace-nowrap text-[10px]'>{label}</span>
             </div>
           </button>
