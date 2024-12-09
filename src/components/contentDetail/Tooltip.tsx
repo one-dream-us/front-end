@@ -6,8 +6,8 @@ export default function Tooltip({ content, setTooltip, dictionary }: TooltipProp
 
   return (
     <div className='fixed bottom-3 z-10 flex w-[calc(100%-32px)] flex-col rounded-[10px] bg-custom-gray-dark p-4 text-xs text-custom-gray-300 opacity-95 shadow-custom md:right-6 md:w-[628px] desktop:absolute desktop:left-0 desktop:top-[310px] desktop:w-[533px]'>
-      <span className='mb-1 text-xs'>{dictionary.term}</span>
-      <p className='leading-170'>{content}</p>
+      <span className='mb-1'>{dictionary.term}</span>
+      <p>{content}</p>
       <div className='mt-6 flex gap-x-8 self-end desktop:mt-auto'>
         <button
           className='cursor-pointer text-xs'
