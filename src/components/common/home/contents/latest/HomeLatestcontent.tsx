@@ -15,13 +15,15 @@ export default function HomeLatestcontent() {
   if (isLoading) return <HomeLatestContentSkeleton />;
   return (
     <div className='px-4 md:px-6 desktop:px-[129px]'>
-      <div className='mb-5 flex items-center justify-between'>
-        <h1 className='text-lg font-bold md:text-xl desktop:text-[22px]'>오늘 업로드 된 콘텐츠</h1>
+      <div className='letter mb-5 flex items-center justify-between leading-[150%]'>
+        <h1 className='letter text-lg font-bold tracking-[-2%] text-custom-black md:text-xl desktop:text-[22px]'>
+          오늘 업로드 된 콘텐츠
+        </h1>
         <Link
-          className='flex items-center justify-center text-xs text-custom-gray-600'
+          className='flex items-center justify-center gap-x-1 text-xs tracking-[-2%] text-custom-black'
           to='/contents'
         >
-          전체보기
+          전체 컨텐츠 보기
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -47,10 +49,15 @@ export default function HomeLatestcontent() {
 
         <div className='h-[154px] w-full flex-1'>
           <KeywordTags tags={content?.tags ?? ['']} />
-          <h2 className='mb-1 mt-2 line-clamp-2 text-lg font-bold'>{content?.title}</h2>
-          <span className='mb-2 line-clamp-3 text-sm text-custom-black'>
-            {content?.summaryText}
-          </span>
+          <h2 className='mb-1 line-clamp-2 text-lg font-bold leading-[150%] tracking-[-2%] text-custom-black'>
+            {content?.title}
+          </h2>
+          <div className='h-[60px]'>
+            {' '}
+            <span className='mb-2 line-clamp-3 text-sm leading-[150%] tracking-[-2%] text-custom-gray-dark'>
+              {content?.summaryText}
+            </span>
+          </div>
           <ScrapDateNCount
             date={formatDate(content?.createdAt!)}
             scrapCount={content?.scrapCount!}

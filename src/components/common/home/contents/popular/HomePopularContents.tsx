@@ -34,10 +34,14 @@ export default function HomePopularContents() {
               <KeywordTags tags={item.tags} />
 
               <div className='min-h-[56px]'>
-                <h2 className='mb-1 mt-2 line-clamp-2 text-lg font-bold'>{item.title}</h2>
+                <h2 className='mb-1 mt-2 line-clamp-2 text-lg font-bold tracking-[-2%]'>
+                  {item.title}
+                </h2>
               </div>
               <div className='h-[60px] w-full'>
-                <span className='line-clamp-3 text-sm text-custom-black'>{item.summaryText}</span>
+                <span className='line-clamp-3 text-sm tracking-[-2%] text-custom-black'>
+                  {item.summaryText}
+                </span>
               </div>
               <ScrapDateNCount date={formatDate(item.createdAt)} scrapCount={item.scrapCount} />
             </div>
