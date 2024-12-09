@@ -45,7 +45,7 @@ export default function Header() {
           {HeaderMenuList.map((item) => (
             <li key={item.id}>
               <Link
-                className={`${item.to === pathname ? 'font-bold text-black' : 'hover:text-custom-gray-h'}`}
+                className={`${item.to === pathname || pathname.includes(item.sub || 'sub') ? 'font-bold text-black' : 'hover:text-custom-gray-h'}`}
                 to={item.to}
               >
                 {item.title}
@@ -61,7 +61,7 @@ export default function Header() {
           <img
             onMouseEnter={profileHover.handleMouseEnter}
             onMouseLeave={profileHover.handleMouseLeave}
-            className={`hidden h-9 w-9 rounded-full md:block`}
+            className={`right-16px absolute bottom-0 top-0 m-auto hidden h-9 w-9 rounded-full md:right-[24px] md:block desktop:right-[129px]`}
             src={
               pathname === '/profile'
                 ? profile_active

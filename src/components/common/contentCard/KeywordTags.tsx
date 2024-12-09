@@ -1,13 +1,13 @@
 export default function KeywordTags({ tags }: { tags: string[] }) {
   return (
-    <div className='mb-2 flex h-[19px] w-full gap-x-1 text-[9px]'>
+    <div className='mb-2 flex h-[19px] w-full gap-x-1 text-[10px]'>
       {tags.map((tag, index) => (
-        <span
+        <div
           key={index}
-          className='leading-120 flex whitespace-nowrap rounded-[4px] border-[0.5px] border-custom-gray-500 p-1 text-custom-gray-700'
+          className='leading-120 flex items-center justify-center rounded-[4px] border-[0.5px] border-custom-gray-500 tracking-[-2%]'
         >
-          #{tag}
-        </span>
+          <span className='whitespace-nowrap p-1 leading-[150%] text-custom-gray-700'>#{tag}</span>
+        </div>
       ))}
     </div>
   );

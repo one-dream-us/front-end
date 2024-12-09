@@ -1,22 +1,17 @@
 export default function ContentListSkeleton() {
   return (
-    <div className='des flex h-[364px] max-w-[343px] flex-col gap-y-5 md:h-[190px] md:max-w-[723px] md:flex-row md:items-center md:gap-x-[25px] desktop:h-[354px] desktop:max-w-[347px] desktop:shrink-0 desktop:flex-col'>
-      <div className='h-[190px] w-full animate-pulse rounded-lg bg-custom-gray-medium md:w-[343px] desktop:h-[190px] desktop:w-[347px]' />
+    <div className='flex h-[364px] max-w-[343px] flex-col items-center justify-start gap-y-5 md:h-[190px] md:max-w-[723px] md:flex-row md:items-center md:gap-x-[25px] md:px-0 desktop:h-[354px] desktop:max-w-[347px] desktop:shrink-0 desktop:flex-col'>
+      <div className='h-[190px] w-[343px] animate-pulse rounded-[10px] bg-custom-gray-300 md:w-[343px] desktop:h-[190px] desktop:w-[347px]' />
 
       <div className='min-h-[154px] w-full md:w-[354px] desktop:w-full'>
-        <div className='mb-4 flex items-center justify-start gap-x-3'>
-          {[1, 2, 3].map((item) => (
-            <div
-              key={item}
-              className='h-[20px] w-[50px] animate-pulse rounded-lg bg-custom-gray-medium'
-            ></div>
-          ))}
-        </div>
-        <div className='mb-1 mt-2 min-h-[22px] w-[200px] animate-pulse rounded-lg bg-custom-gray-medium'></div>
-        <div className='mb-2 min-h-[22px] w-[140px] animate-pulse rounded-lg bg-custom-gray-medium'></div>
-        <div className='mb-1 h-[20px] w-[220px] animate-pulse rounded-lg bg-custom-gray-medium'></div>
-        <div className='mb-2 h-[20px] w-[120px] animate-pulse rounded-lg bg-custom-gray-medium'></div>
-        <div className='h-[20px] w-[100px] animate-pulse rounded-lg bg-custom-gray-medium'></div>
+        <div className='mb-[12px] h-[20px] w-[166px] animate-pulse rounded-[4px] bg-custom-gray-300 desktop:h-[22px] desktop:w-[190px]'></div>
+        <div className='mb-[10px] h-[18px] w-[254px] animate-pulse rounded-[4px] bg-custom-gray-300 desktop:max-w-[346px]'></div>
+        <div className='mb-[12px] h-[18px] w-[166px] animate-pulse rounded-[4px] bg-custom-gray-300 desktop:max-w-[346px]'></div>
+
+        <div className='mb-2 h-[16px] animate-pulse rounded-[4px] bg-custom-gray-300 desktop:max-w-[346px]'></div>
+        <div className='mb-[12px] h-[16px] animate-pulse rounded-[4px] bg-custom-gray-300 desktop:max-w-[346px]'></div>
+
+        <div className='h-[12px] w-[165px] animate-pulse rounded-[4px] bg-custom-gray-300'></div>
       </div>
     </div>
   );
