@@ -63,6 +63,7 @@ export default {
       },
       lineHeight: {
         170: '1.7',
+        120: '1.2',
       },
       animation: {
         'toast-slide-in': 'toastSlideIn 0.1s ease-out forwards',

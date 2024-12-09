@@ -19,5 +19,12 @@ export function getToastStyles(type: string) {
         alt: '추가하기 아이콘',
         size: 'w-[15px] h-[15px]',
       };
+    case 'copy':
+      return {
+        icon: checkIcon,
+        textColor: 'text-primary',
+        alt: '추가하기 아이콘',
+        size: 'w-[15px] h-[15px]',
+      };
   }
 }

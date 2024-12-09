@@ -123,3 +123,9 @@ export interface TooltipProps {
   setTooltip: (value: { content: string; x: number; y: number; index: number | null }) => void;
   dictionary: Dictionary;
 }
+
+export interface ScrappedItem {
+  dictionaryId: number;
+  dictionaryScrapId: number | null;
+  scrapped: boolean;
+}

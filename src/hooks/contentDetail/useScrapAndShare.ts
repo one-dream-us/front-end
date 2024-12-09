@@ -33,8 +33,7 @@ export default function useScrapAndShare() {
   const scrapId = isScrapped
     ? scrapedContents.find((scrap: ScrapedContentData) => scrap.contentId === contentId)?.scrapId
     : null;
-  console.log('data');
-  console.log(isScrapped);
+
   const { deleteScrapContent } =
     data && !isLoading
       ? useDeleteScrapCon({
@@ -50,7 +49,7 @@ export default function useScrapAndShare() {
 
     if (isScrapped) {
       deleteScrapContent();
-      showToast('콘텐츠 스크랩이 삭제되었어요.', 'deleteScrap');
+      showToast('스크랩이 취소되었어요.', 'deleteScrap');
     } else {
       addScrapContent();
       showToast('‘MY 스크랩 > 콘텐츠’에 담았어요.', 'addScrap');
