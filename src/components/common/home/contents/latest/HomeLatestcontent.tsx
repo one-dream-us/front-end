@@ -14,7 +14,7 @@ export default function HomeLatestcontent() {
   );
   if (isLoading) return <HomeLatestContentSkeleton />;
   return (
-    <div className='px-4 md:px-6 desktop:px-[129px]'>
+    <div className='px-4 md:px-6 desktop:m-auto desktop:max-w-[1440px] desktop:px-[129px]'>
       <div className='letter mb-5 flex items-center justify-between leading-[150%]'>
         <h1 className='letter text-lg font-medium tracking-[-2%] text-custom-black md:text-xl desktop:text-[22px]'>
           오늘 업로드 된 콘텐츠
@@ -23,7 +23,7 @@ export default function HomeLatestcontent() {
           className='flex items-center justify-center gap-x-1 text-xs tracking-[-2%] text-custom-black'
           to='/contents'
         >
-          전체 컨텐츠 보기
+          전체 콘텐츠 보기
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -60,7 +60,7 @@ export default function HomeLatestcontent() {
           </div>
           <ScrapDateNCount
             date={formatDate(content?.createdAt!)}
-            scrapCount={content?.scrapCount!}
+            scrapCount={content?.viewCount!}
           />
         </div>
       </Link>

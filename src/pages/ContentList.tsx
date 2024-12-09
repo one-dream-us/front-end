@@ -7,7 +7,7 @@ export default function ContentList() {
   const { res, isLoading, fetchNextPage, hasNextPage } = useContentListQuery(6);
 
   return (
-    <div className='mt-[40px] px-4 md:px-6 desktop:mt-[38px] desktop:px-[129px]'>
+    <div className='mt-[40px] px-4 md:px-6 desktop:m-auto desktop:mt-[38px] desktop:max-w-[1440px] desktop:px-[129px]'>
       <div className='mb-[24px] flex items-center justify-between md:mb-[20px]'>
         <h1 className='text-[22px] font-medium leading-[150%] tracking-[-2%] text-custom-black'>
           콘텐츠 목록

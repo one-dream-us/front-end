@@ -25,7 +25,7 @@ export default function Header() {
   const handleShowSlider = () => setShowSidebar((prev) => !prev);
 
   return (
-    <header className='fixed left-0 top-0 z-[999] flex h-[52px] w-full items-center justify-between bg-white px-4 text-sm md:px-6 md:py-[11px] desktop:h-20 desktop:px-[129px]'>
+    <header className='fixed left-0 top-0 z-[999] flex h-[52px] w-full items-center justify-between bg-white px-4 text-sm md:px-6 md:py-[11px] desktop:right-0 desktop:m-auto desktop:h-20 desktop:max-w-[1440px] desktop:px-[129px]'>
       <div className='flex items-center justify-start'>
         <Link
           className='mr-10 flex items-center justify-center gap-x-1 text-xl font-extrabold'
@@ -61,7 +61,7 @@ export default function Header() {
           <img
             onMouseEnter={profileHover.handleMouseEnter}
             onMouseLeave={profileHover.handleMouseLeave}
-            className={`right-16px absolute bottom-0 top-0 m-auto hidden h-9 w-9 rounded-full md:right-[24px] md:block desktop:right-[129px]`}
+            className={`hidden h-9 w-9 rounded-full md:block`}
             src={
               pathname === '/profile'
                 ? profile_active
