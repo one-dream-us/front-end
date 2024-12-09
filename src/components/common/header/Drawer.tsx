@@ -9,6 +9,7 @@ import profile_active from '@/assets/this_is_money_imgs/img_png/icon_profile_act
 import { useImgHover } from '@/hooks/ui/useImgHover';
 import useLoginModalStore from '@/store/useLoginModalStore';
 import { useMyViewCount } from '@/hooks/homeContent/useMyViewCount';
+import { useLoginStore } from '@/store/useIsLoginStore';
 
 export default function Drawer({
   showSidebar,
@@ -27,10 +28,12 @@ export default function Drawer({
   const { handleMouseEnter, handleMouseLeave, isHover } = useImgHover();
   const { setIsLoginModalOpen } = useLoginModalStore();
   const { data: viewCount, isLoading: viewCountLoading } = useMyViewCount();
+  const { setIsLogin } = useLoginStore();
 
   useEffect(() => {
     if (logged && !isLoading && !viewCountLoading) {
       refetch();
+      setIsLogin(true);
     }
   }, [logged, isLoading, viewCountLoading]);
 
@@ -41,10 +44,10 @@ export default function Drawer({
         showSidebar ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
-      <div className='relative h-full w-full px-8'>
+      <div className='relative h-full w-full'>
         <div className='absolute top-[142px] flex items-center justify-start'>
           {logged ? (
-            <Link to={'/profile'}>
+            <Link className='mx-[30px]' to={'/profile'}>
               <div className='flex h-[60px] w-[217px] items-center justify-between'>
                 <img
                   onMouseEnter={handleMouseEnter}
@@ -69,7 +72,7 @@ export default function Drawer({
             <>
               <button
                 onClick={() => setIsLoginModalOpen(true)}
-                className={`relative flex h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-green-money text-sm font-medium transition-all duration-200 hover:bg-green-hover`}
+                className={`relative flex h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-green-money text-sm font-bold transition-all duration-200 hover:bg-green-hover`}
               >
                 로그인
               </button>
@@ -87,7 +90,7 @@ export default function Drawer({
           )}
         </div>
 
-        <ul className='absolute top-[262px] flex h-[139px] w-[120px] flex-col items-start justify-between text-[22px] font-medium text-custom-gray-medium'>
+        <ul className='absolute top-[262px] flex h-[139px] w-[120px] flex-col items-start justify-between text-[22px] font-bold text-custom-gray-medium'>
           {HeaderMenuList.map((item) => (
             <Link className={pathname === item.to ? 'text-black' : ''} to={item.to} key={item.id}>
               <li>{item.title}</li>
@@ -98,7 +101,7 @@ export default function Drawer({
         {logged && (
           <button
             onClick={authApi.logout}
-            className='absolute bottom-[103px] text-sm text-custom-gray-medium'
+            className='absolute bottom-[103px] px-8 text-sm text-custom-gray-medium'
           >
             로그아웃
           </button>
