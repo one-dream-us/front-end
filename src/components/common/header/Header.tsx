@@ -6,8 +6,8 @@ import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
 import logo from '@/assets/this_is_money_imgs/img_png/Logo_Icon+text_32_hor.png';
 import logo_hover from '@/assets/this_is_money_imgs/img_png/logo_hover.png';
 import logo_sm from '@/assets/this_is_money_imgs/img_png/main_logo_32.png';
-import profileImg from '@/assets/this_is_money_imgs/img_png/profile_big.png';
-import profileGrey from '@/assets/this_is_money_imgs/img_png/profile_small_grey.png';
+import profile_main from '@/assets/this_is_money_imgs/img_png/Icon_profile_main.png';
+import profile_active from '@/assets/this_is_money_imgs/img_png/icon_profile_active.png';
 import { useImgHover } from '@/hooks/ui/useImgHover';
 import useLoginModalStore from '@/store/useLoginModalStore';
 import LoginModal from '../LoginModal';
@@ -25,7 +25,7 @@ export default function Header() {
   const handleShowSlider = () => setShowSidebar((prev) => !prev);
 
   return (
-    <header className='fixed left-0 top-0 z-[999] flex h-[52px] w-full items-center justify-between bg-white px-4 text-sm md:px-6 md:py-[11px] desktop:h-20 desktop:px-32'>
+    <header className='fixed left-0 top-0 z-[999] flex h-[52px] w-full items-center justify-between bg-white px-4 text-sm md:px-6 md:py-[11px] desktop:h-20 desktop:px-[129px]'>
       <div className='flex items-center justify-start'>
         <Link
           className='mr-10 flex items-center justify-center gap-x-1 text-xl font-extrabold'
@@ -44,7 +44,10 @@ export default function Header() {
         <ul className='hidden items-center justify-center text-custom-gray md:flex md:gap-8 desktop:gap-x-16'>
           {HeaderMenuList.map((item) => (
             <li key={item.id}>
-              <Link className={pathname === item.to ? 'font-bold text-black' : ''} to={item.to}>
+              <Link
+                className={`${item.to === pathname ? 'font-bold text-black' : 'hover:text-custom-gray-h'}`}
+                to={item.to}
+              >
                 {item.title}
               </Link>
             </li>
@@ -60,7 +63,11 @@ export default function Header() {
             onMouseLeave={profileHover.handleMouseLeave}
             className={`hidden h-9 w-9 rounded-full md:block`}
             src={
-              pathname === '/profile' ? profileImg : profileHover.isHover ? profileImg : profileGrey
+              pathname === '/profile'
+                ? profile_active
+                : profileHover.isHover
+                  ? profile_active
+                  : profile_main
             }
             alt='profileImg'
           />
