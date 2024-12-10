@@ -12,6 +12,7 @@ export default function DesktopMenu({
   const setSelectedIdList = useMyScrapStore((state) => state.setSelectedIdList);
   const setIsAllChecked = useMyScrapStore((state) => state.setIsAllChecked);
   const setAllIdList = useMyScrapStore((state) => state.setAllIdList);
+  const setIsEditing = useMyScrapStore((state) => state.setIsEditing);
 
   return (
     <ul className='relative hidden h-[58px] w-[71px] flex-col gap-y-[17px] self-start before:absolute before:left-0 before:top-[3px] before:h-[51px] before:w-[1px] before:bg-custom-gray-500 md:text-sm desktop:flex'>
@@ -23,6 +24,7 @@ export default function DesktopMenu({
             setSelectedIdList([]);
             setIsAllChecked(false);
             setAllIdList([]);
+            setIsEditing(false);
           }}
           className={`relative cursor-pointer whitespace-nowrap pl-3.5 font-medium md:text-sm ${
             activeMenu === item
