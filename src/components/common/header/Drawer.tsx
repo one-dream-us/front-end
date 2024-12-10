@@ -72,7 +72,7 @@ export default function Drawer({
             <>
               <button
                 onClick={() => setIsLoginModalOpen(true)}
-                className={`relative ml-8 flex h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-green-money text-sm font-medium transition-all duration-200 hover:bg-green-hover`}
+                className={`relative ml-8 flex h-[30px] w-[96px] items-center justify-center rounded-[10px] bg-custom-green-money text-sm font-medium transition-all duration-200 hover:bg-green-hover`}
               >
                 로그인
               </button>
