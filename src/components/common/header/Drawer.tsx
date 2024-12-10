@@ -8,6 +8,7 @@ import useLoginModalStore from '@/store/useLoginModalStore';
 import { useMyViewCount } from '@/hooks/homeContent/useMyViewCount';
 import { useLoginStore } from '@/store/useIsLoginStore';
 import profileActvie from '@/assets/imgs_v2/icon_profile_active.png';
+import login_chat_bubble from '@/assets/imgs_v2/login_bubble_.svg';
 
 export default function Drawer({
   showSidebar,
@@ -64,7 +65,7 @@ export default function Drawer({
               </div>
             </Link>
           ) : (
-            <>
+            <div className='flex items-center justify-start gap-x-[14px]'>
               <button
                 onClick={() => setIsLoginModalOpen(true)}
                 className={`relative ml-8 flex h-[30px] w-[96px] items-center justify-center rounded-[10px] bg-custom-green-money text-sm font-medium transition-all duration-200 hover:bg-green-hover`}
@@ -72,7 +73,9 @@ export default function Drawer({
                 로그인
               </button>
 
-              <div className='w-3 overflow-hidden'>
+              <img src={login_chat_bubble} alt='' />
+
+              {/* <div className='w-3 overflow-hidden'>
                 <div className='h-4 origin-bottom-right rotate-45 transform rounded-sm bg-custom-gray-dark'></div>
               </div>
               <button
@@ -80,8 +83,8 @@ export default function Drawer({
                 className='flex-1 rounded-lg bg-custom-gray-dark p-4 text-xs text-white'
               >
                 로그인 하고 <span className='font-medium text-custom-green-money'>스크랩</span>하기!
-              </button>
-            </>
+              </button> */}
+            </div>
           )}
         </div>
 
