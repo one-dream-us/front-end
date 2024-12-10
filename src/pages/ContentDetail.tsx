@@ -17,7 +17,7 @@ export default function ContentDetail() {
       scriptParagraphs,
       tags,
       title,
-      scrapCount,
+      viewCount,
       createdAt,
       videoId,
     } = {},
@@ -38,7 +38,7 @@ export default function ContentDetail() {
         reference={author}
         title={title}
         tags={tags}
-        scrapCount={scrapCount}
+        viewCount={viewCount}
         date={formatDate(createdAt)}
       />
       <div className='desktop:relative desktop:mt-2 desktop:flex desktop:gap-x-5'>

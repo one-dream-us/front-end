@@ -6,13 +6,13 @@ export default function ContentOverview({
   reference,
   title,
   tags,
-  scrapCount,
+  viewCount,
   date,
 }: {
   reference: string;
   title: string;
   tags: string[];
-  scrapCount: string;
+  viewCount: string;
   date: string;
 }) {
   return (
@@ -23,7 +23,7 @@ export default function ContentOverview({
         <span className='whitespace-nowrap text-xs leading-120 text-custom-gray-dark'>
           {reference}
         </span>
-        <ScrapDateNCount date={date} scrapCount={scrapCount} />
+        <ScrapDateNCount date={date} scrapCount={viewCount} />
       </div>
       <div className='desktop:absolute desktop:bottom-[34px] desktop:right-0'>
         <ScrapAndShare />
