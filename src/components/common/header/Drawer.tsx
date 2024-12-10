@@ -72,7 +72,7 @@ export default function Drawer({
             <>
               <button
                 onClick={() => setIsLoginModalOpen(true)}
-                className={`relative ml-8 flex h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-green-money text-sm font-medium transition-all duration-200 hover:bg-green-hover`}
+                className={`relative flex h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-green-money text-sm font-bold transition-all duration-200 hover:bg-green-hover`}
               >
                 로그인
               </button>
@@ -90,7 +90,7 @@ export default function Drawer({
           )}
         </div>
 
-        <ul className='absolute top-[262px] flex h-[139px] w-[120px] flex-col items-start justify-between text-[22px] font-bold text-custom-gray-medium'>
+        <ul className='absolute top-[262px] flex h-[139px] w-[200px] flex-col items-start justify-between px-8 text-[22px] font-medium text-custom-gray-medium'>
           {HeaderMenuList.map((item) => (
             <Link className={pathname === item.to ? 'text-black' : ''} to={item.to} key={item.id}>
               <li>{item.title}</li>
