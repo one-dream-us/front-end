@@ -40,6 +40,7 @@ export interface ScrapedContentData {
 }
 
 export interface ScrapedTermData {
+  id: number;
   scrapId: number;
   dictionaryId: number;
   term: string;

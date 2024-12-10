@@ -1,29 +1,79 @@
-type ShareHandler = (currentUrl: string, setIsShareModalOpen: (isOpen: boolean) => void) => void;
+type ShareHandler = (
+  currentUrl: string,
+  setIsShareModalOpen: (isOpen: boolean) => void,
+  showToast: (message: string, type: string) => void,
+  title: string,
+  description: string,
+  img: string,
+) => void;
 
 const shareUtils = {
-  handleCopyLink: (currentUrl: string, setIsShareModalOpen: (isOpen: boolean) => void) => {
+  handleCopyLink: (
+    currentUrl: string,
+    setIsShareModalOpen: (isOpen: boolean) => void,
+    showToast: (message: string, type: string) => void,
+  ) => {
     navigator.clipboard.writeText(currentUrl).then(() => {
       setIsShareModalOpen(false);
+      showToast('링크가 복사되었어요.', 'copy');
     });
   },
 
-  handleFacebookShare: (currentUrl: string, setIsShareModalOpen: (isOpen: boolean) => void) => {
+  handleFacebookShare: (
+    currentUrl: string,
+    setIsShareModalOpen: (isOpen: boolean) => void,
+    _showToast: (message: string, type: string) => void,
+    description: string,
+    img: string,
+  ) => {
+    let descriptionMetaTag = document.querySelector('meta[name="description"]');
+    let imgMetaTag = document.querySelector('meta[name="image"]');
+
+    if (!descriptionMetaTag) {
+      descriptionMetaTag = document.createElement('meta');
+      descriptionMetaTag.setAttribute('name', description);
+      document.head.appendChild(descriptionMetaTag);
+    }
+
+    if (!imgMetaTag) {
+      imgMetaTag = document.createElement('meta');
+      imgMetaTag.setAttribute('name', img);
+      document.head.appendChild(descriptionMetaTag);
+    }
+
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`);
     setIsShareModalOpen(false);
   },
 
-  handleXShare: (currentUrl: string, setIsShareModalOpen: (isOpen: boolean) => void) => {
-    window.open(`https://twitter.com/intent/tweet?url=${currentUrl}`);
+  handleXShare: (
+    currentUrl: string,
+    setIsShareModalOpen: (isOpen: boolean) => void,
+    _showToast: (message: string, type: string) => void,
+    text: string,
+  ) => {
+    const hashtags = '이게머니,Thisismoney';
+    window.open(
+      `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${currentUrl}&hashtags=${encodeURIComponent(hashtags)}`,
+    );
     setIsShareModalOpen(false);
   },
 
-  handleKakaoShare: async (currentUrl: string, setIsShareModalOpen: (isOpen: boolean) => void) => {
+  handleKakaoShare: async (
+    currentUrl: string,
+    setIsShareModalOpen: (isOpen: boolean) => void,
+    _showToast: (message: string, type: string) => void,
+    title: string,
+    description: string,
+    img: string,
+  ) => {
+    let cleanedDescription = description.replace(/<p[^>]*>/g, '').replace(/<\/p>/g, '');
+    cleanedDescription = cleanedDescription.replace(/<br\s*\/?>/g, '');
     window.Kakao.Share.sendDefault({
       objectType: 'feed',
       content: {
-        title: '제목입니다',
-        description: '설명란입니다',
-        imageUrl: 'https://placehold.co/200x200',
+        title: title,
+        description: cleanedDescription,
+        imageUrl: img,
         link: {
           mobileWebUrl: currentUrl,
           webUrl: currentUrl,
@@ -38,11 +88,14 @@ const shareUtils = {
     handler: ShareHandler,
     setIsShareModalOpen: (isOpen: boolean) => void,
     currentUrl: string,
+    showToast: (message: string, type: string) => void,
+    title: string,
+    description: string,
+    img: string,
   ) => {
     return () => {
-      handler(currentUrl, setIsShareModalOpen);
+      handler(currentUrl, setIsShareModalOpen, showToast, title, description, img);
     };
   },
 };
-
 export default shareUtils;

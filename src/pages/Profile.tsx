@@ -20,7 +20,7 @@ export default function Profile() {
   if (isLoading || scrapCountLoading || viewCountLoading) return <ProfileSkeleton />;
   return (
     <div className='m-auto mt-[40px] w-full px-4 desktop:px-[128px]'>
-      <h1 className='mb-6 text-[22px] font-bold'>프로필</h1>
+      <h1 className='mb-6 text-[22px] font-medium'>프로필</h1>
 
       <div className='block desktop:flex desktop:items-center desktop:justify-center desktop:gap-x-[58px]'>
         <div>
@@ -37,7 +37,7 @@ export default function Profile() {
               {isLoading ? (
                 <div className='h-[19] w-[60px] animate-pulse rounded-lg bg-custom-gray-medium'></div>
               ) : (
-                <h3 className='text-center text-lg font-bold text-custom-black'>
+                <h3 className='text-center text-lg font-medium text-custom-black'>
                   {formatUserName(info?.email || '')}
                 </h3>
               )}
@@ -51,9 +51,9 @@ export default function Profile() {
               </div>
             ) : (
               <div className='text-xs text-custom-gray-dark'>
-                스크랩 <span className='font-bold'>{data?.totalScrapCnt || ' 0'}</span>
+                스크랩 <span className='font-medium'>{data?.totalScrapCnt || ' 0'}</span>
                 <span className='mx-3'>|</span>본 콘텐츠{' '}
-                <span className='font-bold'>{viewCount}</span>
+                <span className='font-medium'>{viewCount}</span>
               </div>
             )}
 

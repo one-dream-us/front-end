@@ -6,27 +6,31 @@ export default function ContentOverview({
   reference,
   title,
   tags,
-  scrapCount,
+  viewCount,
   date,
+  thumbnailUrl,
+  summaryText,
 }: {
   reference: string;
   title: string;
   tags: string[];
-  scrapCount: string;
+  viewCount: string;
   date: string;
+  thumbnailUrl: string;
+  summaryText: string;
 }) {
   return (
     <div className='relative mb-6 mt-custom-video-md flex flex-col md:mt-[444px] desktop:mb-2 desktop:mt-10'>
       <KeywordTags tags={tags} />
-      <h1 className='leading-120 mb-2 text-[22px] font-bold text-custom-black'>{title}</h1>
+      <h1 className='mb-2 text-[22px] font-medium leading-120 text-custom-black'>{title}</h1>
       <div className='mb-3 flex items-center justify-between desktop:w-[533px]'>
-        <span className='leading-120 whitespace-nowrap text-xs text-custom-gray-dark'>
+        <span className='whitespace-nowrap text-xs leading-120 text-custom-gray-dark'>
           {reference}
         </span>
-        <ScrapDateNCount date={date} scrapCount={scrapCount} />
+        <ScrapDateNCount date={date} scrapCount={viewCount} />
       </div>
       <div className='desktop:absolute desktop:bottom-[34px] desktop:right-0'>
-        <ScrapAndShare />
+        <ScrapAndShare description={summaryText} img={thumbnailUrl} title={title} />
       </div>
     </div>
   );

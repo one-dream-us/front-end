@@ -1,6 +1,6 @@
 .edit-btn {
-  @apply hover:bg-edit rounded-[10px] bg-custom-gray-200 text-xs transition hover:text-custom-gray-h;
+  @apply rounded-[10px] bg-custom-gray-200 text-xs transition hover:bg-edit hover:text-custom-gray-h;
 }
 .checkbox {
-  @apply bg-unchecked h-5 w-5 checked:appearance-none checked:rounded-[3px] checked:bg-checked;
+  @apply h-5 w-5 bg-unchecked checked:appearance-none checked:bg-checked;
 }

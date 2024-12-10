@@ -22,7 +22,7 @@ export default function WithdrawModal({
             alt=''
           />
           <div className='h-[65px] w-full text-center'>
-            <h1 className='mb-3 text-sm font-bold text-custom-gray-dark'>정말 탈퇴하시겠어요?</h1>
+            <h1 className='mb-3 text-sm font-medium text-custom-gray-dark'>정말 탈퇴하시겠어요?</h1>
             <span className='text-xs leading-[150%] text-custom-gray-dark'>
               탈퇴하면 계정 정보가 영구 삭제되고,
               <br /> 저장된 스크랩도 다시 볼 수 없어요!

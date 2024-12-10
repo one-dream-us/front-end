@@ -27,12 +27,15 @@ export default function ScriptWithTime({
     const marks = document.querySelectorAll('mark');
     marks.forEach((mark, index) => {
       const dict = scrappedData[index];
+      mark.id = `mark-${dict?.dictionaryId}`;
       if (dict && dict.scrapped) {
         mark.style.backgroundColor = '#A7FFB4';
         mark.style.padding = '2px 1px';
+        mark.style.cursor = 'pointer';
       } else {
         mark.style.backgroundColor = '#FFED85';
         mark.style.padding = '2px 1px';
+        mark.style.cursor = 'pointer';
       }
     });
   }, [scrappedData]);
@@ -44,14 +47,14 @@ export default function ScriptWithTime({
     >
       <button
         type='button'
-        className='flex h-5 items-center justify-center self-start rounded-[10px] bg-custom-gray-dark px-2 text-xs font-medium text-primary md:mt-1'
+        className='flex h-5 items-center justify-center self-start rounded-[10px] bg-custom-gray-dark px-2 text-xs text-primary md:mt-1'
         onClick={onClick}
       >
         {time}
       </button>
       <div
         dangerouslySetInnerHTML={{ __html: script }}
-        className='leading-170 text-custom-gray-dark md:text-sm'
+        className='text-custom-gray-dark md:text-sm md:leading-170'
       />
       {tooltip.index !== null &&
         dictionaries.map((dict, index) => (

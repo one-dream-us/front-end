@@ -25,7 +25,7 @@ export default function Observer({
         </div>
       ) : (
         <div className=''>
-          <h1 className='mt-[110px] text-center text-sm font-medium md:mt-[130px] md:text-lg'>
+          <h1 className='mt-[110px] text-center text-sm md:mt-[130px] md:text-lg'>
             곧 새로운 콘텐츠가 업로드 돼요!
           </h1>
           <img

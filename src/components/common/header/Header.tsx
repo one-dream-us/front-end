@@ -45,7 +45,7 @@ export default function Header() {
           {HeaderMenuList.map((item) => (
             <li key={item.id}>
               <Link
-                className={`${item.to === pathname || pathname.includes(item.sub || 'sub') ? 'font-bold text-black' : 'hover:text-custom-gray-h'}`}
+                className={`${item.to === pathname || pathname.includes(item.sub || 'sub') ? 'font-medium text-black' : 'hover:text-custom-gray-h'}`}
                 to={item.to}
               >
                 {item.title}

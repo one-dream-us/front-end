@@ -11,7 +11,10 @@ export default function DeleteModal({
   activeMenu: myScrapMenu;
 }) {
   const setIsDelModalOpen = useMyScrapStore((state) => state.setIsDelModalOpen);
+  const setSelectedIdList = useMyScrapStore((state) => state.setSelectedIdList);
+  const setIsAllChecked = useMyScrapStore((state) => state.setIsAllChecked);
   const text = activeMenu === '단어장' ? '단어' : activeMenu;
+
   if (!isOpen) return null;
 
   return (
@@ -21,7 +24,11 @@ export default function DeleteModal({
         <div className='flex h-[30px] gap-x-2'>
           <button
             type='button'
-            onClick={() => setIsDelModalOpen(false)}
+            onClick={() => {
+              setIsDelModalOpen(false);
+              setSelectedIdList([]);
+              setIsAllChecked(false);
+            }}
             className='h-full w-[148px] rounded bg-custom-gray-300 text-custom-gray-600'
           >
             취소하기
@@ -29,7 +36,7 @@ export default function DeleteModal({
           <button
             type='button'
             onClick={() => onDelete(activeMenu)}
-            className='h-full w-[148px] rounded bg-custom-gray-dark font-medium text-primary'
+            className='h-full w-[148px] rounded bg-custom-gray-dark text-primary'
           >
             삭제하기
           </button>

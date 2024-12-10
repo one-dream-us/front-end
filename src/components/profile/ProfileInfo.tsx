@@ -17,8 +17,8 @@ export default function ProfileInfo({
           key={item.data}
           className='flex h-[42px] w-[169px] flex-col items-start justify-between border-none text-sm no-underline'
         >
-          <span className='font-bold text-custom-black'>{item.title}</span>
-          <span className='text-custom-gray-600'>{item.data}</span>
+          <span className='font-medium text-custom-black'>{item.title}</span>
+          <span className='font-medium text-custom-gray-600'>{item.data}</span>
         </div>
       ))}
     </>

@@ -1,12 +1,13 @@
+import { useRef, useState } from 'react';
 import ContentOverview from '@/components/contentDetail/ContentOverview';
 import ContentSummary from '@/components/contentDetail/ContentSummary';
-import { useRef, useState } from 'react';
 import ScriptList from '@/components/contentDetail/ScriptList';
 import VideoPlayer from '@/components/contentDetail/VideoPlayer';
 import useDetailData from '@/hooks/contentDetail/useDetailData';
 import { formatDate } from '@/utils/myScrapUtils';
 import ScrapAndShare from '@/components/contentDetail/ScrapAndShare';
 import ReactPlayer from 'react-player';
+import { useScrollToElement } from '@/hooks/contentDetail/useScrollToElement';
 
 export default function ContentDetail() {
   const {
@@ -16,14 +17,17 @@ export default function ContentDetail() {
       scriptParagraphs,
       tags,
       title,
-      scrapCount,
+      viewCount,
       createdAt,
       videoId,
+      thumbnailUrl,
     } = {},
     isLoading,
   } = useDetailData();
   const playerRef = useRef<ReactPlayer | null>(null);
   const [playing, setPlaying] = useState(false);
+
+  useScrollToElement();
 
   if (isLoading) {
     return <div />;
@@ -35,8 +39,10 @@ export default function ContentDetail() {
         reference={author}
         title={title}
         tags={tags}
-        scrapCount={scrapCount}
+        viewCount={viewCount}
         date={formatDate(createdAt)}
+        thumbnailUrl={thumbnailUrl}
+        summaryText={summaryText}
       />
       <div className='desktop:relative desktop:mt-2 desktop:flex desktop:gap-x-5'>
         <VideoPlayer
@@ -52,7 +58,7 @@ export default function ContentDetail() {
         </div>
       </div>
       <div className='desktop:hidden'>
-        <ScrapAndShare />
+        <ScrapAndShare description={scriptParagraphs} img={thumbnailUrl} title={title} />
       </div>
       <hr className='mb-5 mt-3 w-full bg-custom-gray-300 desktop:ml-auto desktop:mt-5 desktop:w-[533px]' />
       <p className='text-xs text-custom-gray-600 md:text-right'>

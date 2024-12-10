@@ -7,6 +7,7 @@ export default function SelectionControls() {
     setIsAllChecked,
     selectedIdList,
     setSelectedIdList,
+    isEditing,
     setIsEditing,
     allIdList,
     setIsDelModalOpen,
@@ -31,11 +32,11 @@ export default function SelectionControls() {
           <button
             key={text}
             type='button'
-            className={`edit-btn font-medium ${index === 0 ? 'px-3 text-custom-gray-dark' : 'w-[49px]'} ${
+            className={`edit-btn ${index === 0 ? 'px-3 text-custom-gray-dark' : 'w-[49px]'} ${
               index === 1 && selectedIdList.length === 0
                 ? 'cursor-not-allowed font-normal text-custom-gray-400'
                 : ''
-            }`}
+            } ${isEditing && index === 1 && '!bg-edit text-custom-gray-h'}`}
             onClick={() =>
               index === 0
                 ? handleCancelClick(setSelectedIdList, setIsEditing, setIsAllChecked)
