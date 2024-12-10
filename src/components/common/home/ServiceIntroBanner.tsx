@@ -10,10 +10,7 @@ export default function ServiceIntroBanner() {
       <h3 className='mb-5 text-sm text-custom-gray-400'>
         투자의 기초 용어부터 재미있게 배워보고자 만들어진 <br /> 이게 MONEY, 그 시작이 궁금하다면?
       </h3>
-      <Link
-        to='https://www.notion.so/myinsightbox/MVP-3d0200e002e644de803c21b842cb2f0f?pvs=4'
-        target='_blank'
-      >
+      <Link to='https://myinsightbox.notion.site/bb74ba586e68401ebcc2b97e093bbc1d' target='_blank'>
         <button className='flex h-[40px] w-[180px] items-center justify-center gap-x-1 rounded-3xl bg-white text-sm font-medium transition-all duration-200 hover:opacity-65'>
           <img className='h-[18px] w-[18px]' src={logo} alt='' />팀 노션 바로가기
           <svg
