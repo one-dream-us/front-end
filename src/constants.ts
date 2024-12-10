@@ -24,7 +24,7 @@ export const FooterMenuList = [
   {
     id: 4,
     title: 'FAQ',
-    to: 'https://www.notion.so/myinsightbox/FAQ-08fc451084994c0891c76580c339f93c',
+    to: 'https://myinsightbox.notion.site/bb74ba586e68401ebcc2b97e093bbc1d#157c62d9c5ed81ec885bed86e46de407',
   },
 ];
 
