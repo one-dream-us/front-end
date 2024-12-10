@@ -52,12 +52,10 @@ export default function HomeLatestcontent() {
           <h2 className='mb-1 line-clamp-2 text-lg font-medium leading-[150%] tracking-[-2%] text-custom-black'>
             {content?.title}
           </h2>
-          <div className='h-[60px]'>
-            {' '}
-            <span className='mb-2 line-clamp-3 text-sm leading-[150%] tracking-[-2%] text-custom-gray-dark'>
-              {content?.summaryText}
-            </span>
-          </div>
+          <div
+            dangerouslySetInnerHTML={{ __html: content?.summaryText ?? '' }}
+            className='mb-2 line-clamp-3 h-[60px] text-sm leading-[150%] tracking-[-2%] text-custom-gray-dark'
+          ></div>
           <ScrapDateNCount
             date={formatDate(content?.createdAt!)}
             scrapCount={content?.viewCount!}
