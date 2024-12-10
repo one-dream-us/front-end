@@ -26,7 +26,7 @@ export default function useScrapedTerms() {
     }
   }
 
-  const scrapedTerms = data.dictionaryScraps;
+  const scrapedTerms = data.dictionaryScraps ?? [];
 
   return { scrapedTerms, reloadScrapedTerms, isLoading };
 }
