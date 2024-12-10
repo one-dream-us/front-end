@@ -44,10 +44,10 @@ export default function Drawer({
         showSidebar ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
-      <div className='relative h-full w-full'>
+      <div className='relative h-full w-full px-8'>
         <div className='absolute top-[142px] flex items-center justify-start'>
           {logged ? (
-            <Link className='mx-[30px]' to={'/profile'}>
+            <Link to={'/profile'}>
               <div className='flex h-[60px] w-[217px] items-center justify-between'>
                 <img
                   onMouseEnter={handleMouseEnter}
@@ -72,7 +72,7 @@ export default function Drawer({
             <>
               <button
                 onClick={() => setIsLoginModalOpen(true)}
-                className={`relative ml-8 flex h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-green-money text-sm font-bold transition-all duration-200 hover:bg-green-hover`}
+                className={`relative flex h-[30px] w-[96px] items-center justify-center rounded-xl bg-custom-green-money text-sm font-bold transition-all duration-200 hover:bg-green-hover`}
               >
                 로그인
               </button>
@@ -90,9 +90,15 @@ export default function Drawer({
           )}
         </div>
 
-        <ul className='absolute top-[262px] flex h-[139px] w-[200px] flex-col items-start justify-between px-8 text-[22px] font-bold text-custom-gray-medium'>
+        <ul className='absolute top-[262px] flex h-[139px] w-[200px] flex-col items-start justify-between text-[22px] font-bold text-custom-gray-medium'>
           {HeaderMenuList.map((item) => (
-            <Link className={pathname === item.to ? 'text-black' : ''} to={item.to} key={item.id}>
+            <Link
+              className={
+                item.to === pathname || pathname.includes(item.sub || 'sub') ? 'text-black' : ''
+              }
+              to={item.to}
+              key={item.id}
+            >
               <li>{item.title}</li>
             </Link>
           ))}
@@ -101,7 +107,7 @@ export default function Drawer({
         {logged && (
           <button
             onClick={authApi.logout}
-            className='absolute bottom-[103px] px-8 text-sm text-custom-gray-medium'
+            className='absolute bottom-[103px] text-sm text-custom-gray-medium'
           >
             로그아웃
           </button>
