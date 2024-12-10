@@ -31,9 +31,11 @@ export default function ScriptWithTime({
       if (dict && dict.scrapped) {
         mark.style.backgroundColor = '#A7FFB4';
         mark.style.padding = '2px 1px';
+        mark.style.cursor = 'pointer';
       } else {
         mark.style.backgroundColor = '#FFED85';
         mark.style.padding = '2px 1px';
+        mark.style.cursor = 'pointer';
       }
     });
   }, [scrappedData]);
