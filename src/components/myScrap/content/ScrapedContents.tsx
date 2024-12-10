@@ -36,7 +36,10 @@ export default function ScrapedContents({ contentList }: { contentList: ScrapedC
                   {content.contentTitle}
                 </p>
                 <div className='hidden md:mb-2 md:block'>
-                  <p className='line-clamp-2 desktop:line-clamp-3'>{content.summaryText}</p>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: content.summaryText }}
+                    className='line-clamp-2 desktop:line-clamp-3'
+                  />
                 </div>
                 <ScrapInfo date={formatDate(content.createdAt)} />
               </div>
