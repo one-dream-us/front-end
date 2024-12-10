@@ -32,7 +32,7 @@ const useScrapModalHandlers = (activeMenu: myScrapMenu) => {
       showToast('단어가 삭제되었어요.', 'deleteTerm');
     } else {
       deleteScrapContent();
-      showToast('콘텐츠 스크랩이 삭제되었어요.', 'deleteScrap');
+      showToast('콘텐츠 삭제되었어요.', 'deleteScrap');
     }
     setIsEditing(false);
   };
