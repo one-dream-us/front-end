@@ -4,7 +4,8 @@ const authApi = {
   getInfo: async () => (await client.get('/users/info')).data,
   logout: async () => {
     try {
-      await client.post('/users/logout');
+      const res = await client.post('/users/logout');
+      console.log(res);
       location.href = '/';
     } catch (e) {
       console.log(e);

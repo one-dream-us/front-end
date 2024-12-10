@@ -26,12 +26,12 @@ export default function ContentListCard({
 
       <div className='min-h-[154px] w-full md:w-[354px] desktop:w-full'>
         <KeywordTags tags={tags} />
-        <div className='min-h-[52px]'>
+        <div className='min-h-[52px] w-[254px]'>
           <h2 className='mb-1 mt-2 line-clamp-2 text-lg font-medium'>{title}</h2>
         </div>
         <div
           dangerouslySetInnerHTML={{ __html: summaryText }}
-          className='mb-2 line-clamp-3 h-[60px] w-full text-custom-black md:text-sm'
+          className='mb-2 line-clamp-3 max-h-[70px] w-full leading-[150%] text-custom-black md:text-sm'
         ></div>
         <ScrapDateNCount date={formatDate(createdAt)} scrapCount={viewCount} />
       </div>
