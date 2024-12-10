@@ -9,8 +9,14 @@ import useToastStore from '@/store/useToastStore';
 
 export default function ShareModal({
   setIsShareModalOpen,
+  title,
+  description,
+  img,
 }: {
   setIsShareModalOpen: (isOpen: boolean) => void;
+  title: string;
+  description: string;
+  img: string;
 }) {
   const currentUrl = window.location.href;
   useShareModal();
@@ -64,14 +70,26 @@ export default function ShareModal({
           <button
             key={label}
             onClick={() =>
-              shareUtils.handleButtonClick(handler, setIsShareModalOpen, currentUrl, showToast)()
+              shareUtils.handleButtonClick(
+                handler,
+                setIsShareModalOpen,
+                currentUrl,
+                showToast,
+                title,
+                description,
+                img,
+              )()
             }
             type='button'
           >
             <div className='flex flex-col items-center gap-y-1'>
               <div className='group relative'>
-                <img src={imgSrc} alt={alt} className='h-[44px] w-[44px] rounded' />
-                <div className='absolute inset-0 overflow-hidden rounded bg-black opacity-0 transition group-hover:opacity-50' />
+                <img
+                  src={imgSrc}
+                  alt={alt}
+                  className='h-[44px] w-[44px] overflow-hidden rounded-md'
+                />
+                <div className='absolute inset-0 overflow-hidden rounded-md bg-black opacity-0 transition md:group-hover:opacity-50' />
               </div>
               <span className='whitespace-nowrap text-[10px]'>{label}</span>
             </div>
