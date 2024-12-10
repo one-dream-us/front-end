@@ -17,7 +17,7 @@ export default function useDetailData() {
   }, [data, reloadScrappedState]);
 
   return {
-    contentDetails,
+    contentDetails: contentDetails ?? [],
     isLoading: detailsLoading || authLoading,
     reloadScrappedState,
   };
