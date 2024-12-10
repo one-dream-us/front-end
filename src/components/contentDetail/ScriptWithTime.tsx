@@ -6,6 +6,7 @@ import Tooltip from './Tooltip';
 import { useEffect } from 'react';
 import useScrappedStore from '@/store/useScrappedStore';
 import useMatchedStore from '@/store/useMatchedStore';
+import useToastStore from '@/store/useToastStore';
 
 export default function ScriptWithTime({
   id,
@@ -23,8 +24,10 @@ export default function ScriptWithTime({
   const scrappedData = useScrappedStore((state) => state.scrappedData);
   const matched = useMatchedStore((state) => state.matched);
   const setMatched = useMatchedStore((state) => state.setMatched);
+  const hideToast = useToastStore((state) => state.hideToast);
 
   useMarkEvent((event) => {
+    hideToast();
     tooltipHandlers.handleClick(event, setTooltip, dictionaries, setMatched);
   });
 

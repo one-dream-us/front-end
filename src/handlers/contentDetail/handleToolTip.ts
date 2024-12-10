@@ -13,7 +13,6 @@ export const tooltipHandlers = {
     dictionaries: Dictionary[],
     setMatched: (data: Dictionary) => void,
   ) => {
-    console.log('click');
     const target = event.target as HTMLElement;
     const term = target.textContent || '';
     const matchedItem = dictionaries.find((item) => item.term === term);
