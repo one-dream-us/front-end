@@ -23,24 +23,7 @@ const shareUtils = {
     currentUrl: string,
     setIsShareModalOpen: (isOpen: boolean) => void,
     _showToast: (message: string, type: string) => void,
-    description: string,
-    img: string,
   ) => {
-    let descriptionMetaTag = document.querySelector('meta[name="description"]');
-    let imgMetaTag = document.querySelector('meta[name="image"]');
-
-    if (!descriptionMetaTag) {
-      descriptionMetaTag = document.createElement('meta');
-      descriptionMetaTag.setAttribute('name', description);
-      document.head.appendChild(descriptionMetaTag);
-    }
-
-    if (!imgMetaTag) {
-      imgMetaTag = document.createElement('meta');
-      imgMetaTag.setAttribute('name', img);
-      document.head.appendChild(descriptionMetaTag);
-    }
-
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`);
     setIsShareModalOpen(false);
   },

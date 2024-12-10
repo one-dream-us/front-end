@@ -6,7 +6,7 @@ export default function NotFound() {
   const navigate = useNavigate();
 
   return (
-    <section className='mx-auto mb-10 mt-10 flex flex-col items-center px-4 text-custom-black md:mb-[129px] md:px-6 desktop:mb-[177px] desktop:px-[128px]'>
+    <section className='mx-auto mb-10 mt-10 flex flex-col items-center px-4 text-custom-black md:mb-[129px] md:px-6 desktop:mb-[177px] desktop:max-w-[1440px] desktop:px-[129px]'>
       <h1 className='self-start text-[22px] font-medium'>404: 이런!</h1>
       <div className='mb-[70px] mt-[72px] flex flex-col items-center md:mt-[130px] desktop:mt-[103px]'>
         <h2 className='mb-[18px] text-lg font-medium'>페이지를 찾지 못했어요!</h2>

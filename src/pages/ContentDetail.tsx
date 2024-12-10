@@ -29,7 +29,7 @@ export default function ContentDetail() {
 
   useScrollToElement();
 
-  if (isLoading) {
+  if (isLoading || !tags) {
     return <div />;
   }
 
