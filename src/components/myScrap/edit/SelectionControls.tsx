@@ -34,9 +34,9 @@ export default function SelectionControls() {
             type='button'
             className={`edit-btn ${index === 0 ? 'px-3 text-custom-gray-dark' : 'w-[49px]'} ${
               index === 1 && selectedIdList.length === 0
-                ? 'cursor-not-allowed font-normal text-custom-gray-400'
+                ? 'cursor-not-allowed !bg-custom-gray-200 font-normal !text-custom-gray-400'
                 : ''
-            } ${isEditing && index === 1 && 'text-custom-gray-h'}`}
+            } ${isEditing && index === 1 && 'text-custom-gray-dark'}`}
             onClick={() =>
               index === 0
                 ? handleCancelClick(setSelectedIdList, setIsEditing, setIsAllChecked)
