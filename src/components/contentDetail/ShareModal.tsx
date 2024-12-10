@@ -65,12 +65,11 @@ export default function ShareModal({
               }
             }}
             type='button'
-            className='w-44px'
           >
             <div className='flex flex-col items-center gap-y-1'>
               <div className='group relative'>
-                <img src={imgSrc} alt={alt} className='rounded-[4px]' />
-                <div className='absolute inset-0 rounded-[4px] bg-black opacity-0 transition group-hover:opacity-50' />
+                <img src={imgSrc} alt={alt} className='h-[44px] w-[44px] rounded' />
+                <div className='absolute inset-0 overflow-hidden rounded bg-black opacity-0 transition group-hover:opacity-50' />
               </div>
               <span className='whitespace-nowrap text-[10px]'>{label}</span>
             </div>
