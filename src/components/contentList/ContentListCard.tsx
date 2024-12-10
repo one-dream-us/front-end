@@ -29,9 +29,10 @@ export default function ContentListCard({
         <div className='min-h-[52px]'>
           <h2 className='mb-1 mt-2 line-clamp-2 text-lg font-medium'>{title}</h2>
         </div>
-        <div className='mb-2 h-[48px] w-full'>
-          <span className='line-clamp-2 text-custom-black md:text-sm'>{summaryText}</span>
-        </div>
+        <div
+          dangerouslySetInnerHTML={{ __html: summaryText }}
+          className='mb-2 line-clamp-3 h-[60px] w-full text-custom-black md:text-sm'
+        ></div>
         <ScrapDateNCount date={formatDate(createdAt)} scrapCount={viewCount} />
       </div>
     </Link>
