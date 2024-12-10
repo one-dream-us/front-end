@@ -84,7 +84,7 @@ export default function Drawer({
                 onClick={() => setIsLoginModalOpen(true)}
                 className='flex-1 rounded-lg bg-custom-gray-dark p-4 text-xs text-white'
               >
-                로그인 하고 <span className='text-custom-green-money'>스크랩</span>하기!
+                로그인 하고 <span className='font-medium text-custom-green-money'>스크랩</span>하기!
               </button>
             </>
           )}

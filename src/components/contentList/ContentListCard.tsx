@@ -16,7 +16,7 @@ export default function ContentListCard({
   return (
     <Link
       to={`/content/${id}`}
-      className='des flex h-[364px] max-w-[343px] flex-col gap-y-5 md:h-[190px] md:max-w-[723px] md:flex-row md:items-center md:gap-x-[25px] desktop:h-[354px] desktop:max-w-[347px] desktop:shrink-0 desktop:flex-col'
+      className='des flex h-[364px] max-w-[343px] flex-col gap-y-5 md:h-[190px] md:max-w-[723px] md:flex-row md:items-center md:gap-x-[25px] desktop:h-[354px] desktop:w-[347px] desktop:shrink-0 desktop:flex-col'
     >
       <img
         className='h-[190px] w-full rounded-lg bg-custom-gray md:w-[343px] desktop:h-[190px] desktop:w-full'
