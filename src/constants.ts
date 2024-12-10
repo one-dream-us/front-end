@@ -9,12 +9,12 @@ export const FooterMenuList = [
   {
     id: 1,
     title: '이용약관',
-    to: 'https://www.notion.so/myinsightbox/a573a3c5ac4348359c0c57b4d2fffdf6?pvs=4',
+    to: 'https://myinsightbox.notion.site/a30746d5882d4a74b7a964e79a0035df',
   },
   {
     id: 2,
     title: '개인정보처리방침',
-    to: 'https://www.notion.so/myinsightbox/c7373b3c905043c2903d91c298d6b106?pvs=4',
+    to: 'https://myinsightbox.notion.site/2b2b6555fe1e47f790e5f67985ec4b33',
   },
   {
     id: 3,

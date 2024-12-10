@@ -20,6 +20,7 @@ export default function ContentDetail() {
       viewCount,
       createdAt,
       videoId,
+      thumbnailUrl,
     } = {},
     isLoading,
   } = useDetailData();
@@ -40,6 +41,8 @@ export default function ContentDetail() {
         tags={tags}
         viewCount={viewCount}
         date={formatDate(createdAt)}
+        thumbnailUrl={thumbnailUrl}
+        summaryText={summaryText}
       />
       <div className='desktop:relative desktop:mt-2 desktop:flex desktop:gap-x-5'>
         <VideoPlayer
@@ -55,7 +58,7 @@ export default function ContentDetail() {
         </div>
       </div>
       <div className='desktop:hidden'>
-        <ScrapAndShare />
+        <ScrapAndShare description={scriptParagraphs} img={thumbnailUrl} title={title} />
       </div>
       <hr className='mb-5 mt-3 w-full bg-custom-gray-300 desktop:ml-auto desktop:mt-5 desktop:w-[533px]' />
       <p className='text-xs text-custom-gray-600 md:text-right'>

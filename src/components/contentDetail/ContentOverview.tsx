@@ -8,12 +8,16 @@ export default function ContentOverview({
   tags,
   viewCount,
   date,
+  thumbnailUrl,
+  summaryText,
 }: {
   reference: string;
   title: string;
   tags: string[];
   viewCount: string;
   date: string;
+  thumbnailUrl: string;
+  summaryText: string;
 }) {
   return (
     <div className='relative mb-6 mt-custom-video-md flex flex-col md:mt-[444px] desktop:mb-2 desktop:mt-10'>
@@ -26,7 +30,7 @@ export default function ContentOverview({
         <ScrapDateNCount date={date} scrapCount={viewCount} />
       </div>
       <div className='desktop:absolute desktop:bottom-[34px] desktop:right-0'>
-        <ScrapAndShare />
+        <ScrapAndShare description={summaryText} img={thumbnailUrl} title={title} />
       </div>
     </div>
   );

@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className='flex h-[140px] w-full items-center justify-center bg-custom-gray-lighter px-4 text-custom-gray-dark md:px-6 desktop:h-[120px] desktop:px-0'>
-      <div className='flex h-[79px] w-full items-center justify-between md:h-[85px] md:items-end desktop:m-auto desktop:mx-[128px] desktop:max-w-[1440px] desktop:px-0'>
+    <footer className='flex h-[140px] w-full items-center justify-center bg-custom-gray-lighter px-4 text-custom-gray-dark md:px-6 desktop:h-[120px]'>
+      <div className='flex h-[79px] w-full items-center justify-between md:h-[85px] md:items-end desktop:w-[1440px] desktop:px-[129px]'>
         <div className='flex w-[165px] flex-col gap-y-2'>
           <img src={logoWithName} alt='이게 머니 로고' className='h-[56px] w-[76px]' />
           <a

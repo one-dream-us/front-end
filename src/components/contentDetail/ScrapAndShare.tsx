@@ -4,7 +4,15 @@ import shareIcon from '@/assets/icons/icon_share.svg';
 import useScrapAndShare from '@/hooks/contentDetail/useScrapAndShare';
 import scrappedIcon from '@/assets/icons/icon_scrap_active.svg';
 
-export default function ScrapAndShare() {
+export default function ScrapAndShare({
+  description,
+  img,
+  title,
+}: {
+  description: string;
+  img: string;
+  title: string;
+}) {
   const { isShareModalOpen, setIsShareModalOpen, toggleScrap, isScrapped } = useScrapAndShare();
 
   return (
@@ -33,7 +41,14 @@ export default function ScrapAndShare() {
         <img src={shareIcon} aria-label='공유 아이콘' className='h-[13px] w-3' />
         <span className='ml-0.5 pt-0.5 text-xs desktop:text-sm'>공유</span>
       </button>
-      {isShareModalOpen && <ShareModal setIsShareModalOpen={setIsShareModalOpen} />}
+      {isShareModalOpen && (
+        <ShareModal
+          setIsShareModalOpen={setIsShareModalOpen}
+          description={description}
+          img={img}
+          title={title}
+        />
+      )}
     </div>
   );
 }
