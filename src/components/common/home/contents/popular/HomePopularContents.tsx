@@ -38,11 +38,10 @@ export default function HomePopularContents() {
                   {item.title}
                 </h2>
               </div>
-              <div className='mb-2 h-[60px] w-full'>
-                <span className='line-clamp-3 text-sm tracking-[-2%] text-custom-black'>
-                  {item.summaryText}
-                </span>
-              </div>
+              <div
+                dangerouslySetInnerHTML={{ __html: item.summaryText }}
+                className='mb-2 line-clamp-3 h-[60px] w-full text-sm tracking-[-2%] text-custom-black'
+              ></div>
               <ScrapDateNCount date={formatDate(item.createdAt)} scrapCount={item.viewCount} />
             </div>
           </Link>
