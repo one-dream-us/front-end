@@ -59,7 +59,6 @@ export default function ShareModal({
           <button
             key={label}
             onClick={() => {
-              console.log('clicked');
               shareUtils.handleButtonClick(handler, setIsShareModalOpen, currentUrl);
               if (label === '링크 복사') {
                 showToast('링크가 복사되었어요.', 'copy');
