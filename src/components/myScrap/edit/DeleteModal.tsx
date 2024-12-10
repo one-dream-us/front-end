@@ -29,14 +29,14 @@ export default function DeleteModal({
               setSelectedIdList([]);
               setIsAllChecked(false);
             }}
-            className='h-full w-[148px] rounded bg-custom-gray-300 text-custom-gray-600'
+            className='h-full w-[148px] rounded bg-custom-gray-300 text-custom-gray-600 hover:bg-hover-30 hover:text-custom-gray-600'
           >
             취소하기
           </button>
           <button
             type='button'
             onClick={() => onDelete(activeMenu)}
-            className='h-full w-[148px] rounded bg-custom-gray-dark text-primary'
+            className='hove: h-full w-[148px] rounded bg-custom-gray-dark text-primary hover:bg-hover-80 hover:text-green-hover'
           >
             삭제하기
           </button>

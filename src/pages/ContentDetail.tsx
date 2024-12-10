@@ -5,7 +5,6 @@ import ScriptList from '@/components/contentDetail/ScriptList';
 import VideoPlayer from '@/components/contentDetail/VideoPlayer';
 import useDetailData from '@/hooks/contentDetail/useDetailData';
 import { formatDate } from '@/utils/myScrapUtils';
-import ScrapAndShare from '@/components/contentDetail/ScrapAndShare';
 import ReactPlayer from 'react-player';
 import { useScrollToElement } from '@/hooks/contentDetail/useScrollToElement';
 
@@ -56,9 +55,6 @@ export default function ContentDetail() {
           <hr className='mb-10 w-full text-custom-gray-300 desktop:w-[533px] desktop:self-end' />
           <ScriptList fullText={scriptParagraphs} playerRef={playerRef} setPlaying={setPlaying} />
         </div>
-      </div>
-      <div className='desktop:hidden'>
-        <ScrapAndShare description={scriptParagraphs} img={thumbnailUrl} title={title} />
       </div>
       <hr className='mb-5 mt-3 w-full bg-custom-gray-300 desktop:ml-auto desktop:mt-5 desktop:w-[533px]' />
       <p className='text-xs text-custom-gray-600 md:text-right'>
