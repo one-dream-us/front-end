@@ -4,6 +4,6 @@ import useMyScrapStore from '@/store/useMyScrapStore';
 
 export default function EditSection() {
   const isEditing = useMyScrapStore((state) => state.isEditing);
-  console.log(isEditing);
+
   return <>{!isEditing ? <EditBtn /> : <SelectionControls />}</>;
 }

@@ -35,7 +35,12 @@ export default function ShareModal({
       alt: '페이스북 아이콘',
       handler: shareUtils.handleFacebookShare,
     },
-    { label: 'X (트위터)', imgSrc: XIcon, alt: '닫기 아이콘', handler: shareUtils.handleXShare },
+    {
+      label: 'X (트위터)',
+      imgSrc: XIcon,
+      alt: 'X (트위터) 아이콘',
+      handler: shareUtils.handleXShare,
+    },
   ];
 
   return (
@@ -58,12 +63,9 @@ export default function ShareModal({
         {buttonData.map(({ label, imgSrc, alt, handler }) => (
           <button
             key={label}
-            onClick={() => {
-              shareUtils.handleButtonClick(handler, setIsShareModalOpen, currentUrl);
-              if (label === '링크 복사') {
-                showToast('링크가 복사되었어요.', 'copy');
-              }
-            }}
+            onClick={() =>
+              shareUtils.handleButtonClick(handler, setIsShareModalOpen, currentUrl, showToast)()
+            }
             type='button'
           >
             <div className='flex flex-col items-center gap-y-1'>
