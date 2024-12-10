@@ -11,7 +11,9 @@ export const tooltipHandlers = {
       index: number | null;
     }) => void,
     dictionaries: Dictionary[],
+    setMatched: (data: Dictionary) => void,
   ) => {
+    console.log('click');
     const target = event.target as HTMLElement;
     const term = target.textContent || '';
     const matchedItem = dictionaries.find((item) => item.term === term);
@@ -20,11 +22,12 @@ export const tooltipHandlers = {
       const { clientX: x, clientY: y } = event;
       setTooltip({
         content: matchedItem.details,
-        term: term,
+        term: matchedItem.term,
         x,
         y,
         index: dictionaries.indexOf(matchedItem),
       });
+      setMatched(matchedItem);
     } else {
       setTooltip({ content: '', term: '', x: 0, y: 0, index: null });
     }
