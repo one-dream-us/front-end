@@ -4,12 +4,10 @@ import authApi from '@/services/authApi';
 import { formatUserName } from '@/utils/formatUserName';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import profile_main from '@/assets/this_is_money_imgs/img_png/Icon_profile_main.png';
-import profile_active from '@/assets/this_is_money_imgs/img_png/icon_profile_active.png';
-import { useImgHover } from '@/hooks/ui/useImgHover';
 import useLoginModalStore from '@/store/useLoginModalStore';
 import { useMyViewCount } from '@/hooks/homeContent/useMyViewCount';
 import { useLoginStore } from '@/store/useIsLoginStore';
+import profileActvie from '@/assets/imgs_v2/icon_profile_active.png';
 
 export default function Drawer({
   showSidebar,
@@ -25,7 +23,6 @@ export default function Drawer({
   isLoading: boolean;
 }) {
   const { refetch, data: info } = useUserInfoQuery(false);
-  const { handleMouseEnter, handleMouseLeave, isHover } = useImgHover();
   const { setIsLoginModalOpen } = useLoginModalStore();
   const { data: viewCount, isLoading: viewCountLoading } = useMyViewCount();
   const { setIsLogin } = useLoginStore();
@@ -50,10 +47,8 @@ export default function Drawer({
             <Link to={'/profile'}>
               <div className='flex h-[60px] w-[217px] items-center justify-between'>
                 <img
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
                   className={`h-[60px] w-[60px] rounded-full`}
-                  src={isHover ? profile_active : profile_main}
+                  src={profileActvie}
                   alt='profileImg'
                 />
                 <div className='flex h-[55px] w-[137px] flex-col items-start justify-between'>
