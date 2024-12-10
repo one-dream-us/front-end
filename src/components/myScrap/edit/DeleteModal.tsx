@@ -12,6 +12,7 @@ export default function DeleteModal({
 }) {
   const setIsDelModalOpen = useMyScrapStore((state) => state.setIsDelModalOpen);
   const setSelectedIdList = useMyScrapStore((state) => state.setSelectedIdList);
+  const setIsAllChecked = useMyScrapStore((state) => state.setIsAllChecked);
   const text = activeMenu === '단어장' ? '단어' : activeMenu;
 
   if (!isOpen) return null;
@@ -26,6 +27,7 @@ export default function DeleteModal({
             onClick={() => {
               setIsDelModalOpen(false);
               setSelectedIdList([]);
+              setIsAllChecked(false);
             }}
             className='h-full w-[148px] rounded bg-custom-gray-300 text-custom-gray-600'
           >
