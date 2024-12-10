@@ -5,6 +5,7 @@ import { ScriptNTimeProps } from '@/types/interface';
 import Tooltip from './Tooltip';
 import { useEffect } from 'react';
 import useScrappedStore from '@/store/useScrappedStore';
+import useMatchedStore from '@/store/useMatchedStore';
 
 export default function ScriptWithTime({
   id,
@@ -20,8 +21,12 @@ export default function ScriptWithTime({
     index: number | null;
   }>({ content: '', x: 0, y: 0, index: null });
   const scrappedData = useScrappedStore((state) => state.scrappedData);
+  const matched = useMatchedStore((state) => state.matched);
+  const setMatched = useMatchedStore((state) => state.setMatched);
 
-  useMarkEvent((event) => tooltipHandlers.handleClick(event, setTooltip, dictionaries));
+  useMarkEvent((event) => {
+    tooltipHandlers.handleClick(event, setTooltip, dictionaries, setMatched);
+  });
 
   useEffect(() => {
     const marks = document.querySelectorAll('mark');
@@ -56,15 +61,9 @@ export default function ScriptWithTime({
         dangerouslySetInnerHTML={{ __html: script }}
         className='text-custom-gray-dark md:text-sm md:leading-170'
       />
-      {tooltip.index !== null &&
-        dictionaries.map((dict, index) => (
-          <Tooltip
-            key={index}
-            content={tooltip.content}
-            setTooltip={setTooltip}
-            dictionary={dict}
-          />
-        ))}
+      {tooltip.index !== null && (
+        <Tooltip content={tooltip.content} setTooltip={setTooltip} dictionary={matched} />
+      )}
     </div>
   );
 }

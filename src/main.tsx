@@ -1,4 +1,3 @@
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import '@/assets/fonts/font.css';
@@ -19,11 +18,7 @@ const enableMocking = async () => {
 (async () => {
   try {
     await enableMocking();
-    createRoot(document.getElementById('root')!).render(
-      <StrictMode>
-        <App />
-      </StrictMode>,
-    );
+    createRoot(document.getElementById('root')!).render(<App />);
   } catch (e) {
     console.log(e);
   }

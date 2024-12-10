@@ -23,13 +23,11 @@ export default function useTooltip(
   const showToast = useToastStore((state) => state.showToast);
   const contentId = useContentStore((state) => state.contentId);
   const { isLoading, data } = useAuthCheckQuery();
-  const [isScrapped, setIsScrapped] = useState(
-    scrappedData.find((item) => item.dictionaryId === dictionary.id)?.scrapped ?? false,
-  );
-  console.log(isScrapped);
+  const foundItem = scrappedData.find((item) => item.dictionaryId === dictionary.id);
+  const [isScrapped, setIsScrapped] = useState(foundItem?.scrapped ?? false);
+
   const addScrapTerm =
     data && !isLoading ? useAddTerm(dictionary.id, contentId).addScrapTerm : () => {};
-  const foundItem = scrappedData.find((item) => item.dictionaryId === dictionary.id);
   const id = foundItem?.dictionaryScrapId;
   const selectedIdList = id !== undefined && id !== null ? [id] : [];
   const deleteScrapTerm =
