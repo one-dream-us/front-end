@@ -3,14 +3,13 @@ import { HeaderMenuList } from '@/constants';
 import { useState } from 'react';
 import Drawer from './Drawer';
 import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
-import logo from '@/assets/this_is_money_imgs/img_png/Logo_Icon+text_32_hor.png';
-import logo_hover from '@/assets/this_is_money_imgs/img_png/logo_hover.png';
-import logo_sm from '@/assets/this_is_money_imgs/img_png/main_logo_32.png';
 import profile_main from '@/assets/this_is_money_imgs/img_png/Icon_profile_main.png';
 import profile_active from '@/assets/this_is_money_imgs/img_png/icon_profile_active.png';
 import { useImgHover } from '@/hooks/ui/useImgHover';
 import useLoginModalStore from '@/store/useLoginModalStore';
 import LoginModal from '../LoginModal';
+import logo from '@/assets/imgs_v2/Logo_Icon+text_32_hor.png';
+import logo_mobile from '@/assets/imgs_v2/main_logo_32.png';
 
 export default function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -33,12 +32,8 @@ export default function Header() {
           onMouseEnter={logoHover.handleMouseEnter}
           onMouseLeave={logoHover.handleMouseLeave}
         >
-          <img src={logo_sm} className='block h-[40px] w-[40px] md:hidden' alt='' />
-          <img
-            className='hidden h-[28px] w-[117px] md:block'
-            src={logoHover.isHover ? logo_hover : logo}
-            alt='logo'
-          />
+          <img src={logo_mobile} className='block h-[40px] w-[40px] md:hidden' alt='' />
+          <img className='hidden h-[28px] w-[117px] md:block' src={logo} alt='logo' />
         </Link>
 
         <ul className='hidden items-center justify-center text-custom-gray md:flex md:gap-8 desktop:gap-x-16'>
