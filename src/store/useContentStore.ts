@@ -6,7 +6,7 @@ interface ContentState {
 }
 
 const useContentStore = create<ContentState>((set) => ({
-  contentId: 1,
+  contentId: 0,
   setContentId: (id: number) => set({ contentId: id }),
 }));
 
