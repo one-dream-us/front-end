@@ -16,7 +16,7 @@ export default function ScrapedTermCard({
   const isEditing = useMyScrapStore((state) => state.isEditing);
 
   return (
-    <article className='flex w-full flex-col gap-y-2 rounded-[10px] border border-custom-gray-200 p-4 text-custom-gray-dark md:min-w-[631px] desktop:w-[722px]'>
+    <article className='flex w-full flex-col gap-y-2 rounded-[10px] border border-custom-gray-200 p-4 text-custom-gray-dark md:w-[631px] desktop:w-[722px]'>
       <div className='flex justify-between'>
         <div className='flex items-center gap-x-2'>
           {isEditing && <Checkbox id={detail.scrapId} />}

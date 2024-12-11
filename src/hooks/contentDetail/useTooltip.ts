@@ -16,6 +16,7 @@ export default function useTooltip(
     term: string;
     x: number;
     y: number;
+    isScrapped: boolean;
     index: number | null;
   }) => void,
 ) {
@@ -43,11 +44,11 @@ export default function useTooltip(
 
     if (isScrapped) {
       deleteScrapTerm?.();
-      setTooltip({ content: '', term: '', x: 0, y: 0, index: null });
+      setTooltip({ content: '', term: '', x: 0, y: 0, isScrapped: false, index: null });
       showToast('스크랩이 취소되었어요.', 'deleteTerm');
     } else {
       addScrapTerm?.();
-      setTooltip({ content: '', term: '', x: 0, y: 0, index: null });
+      setTooltip({ content: '', term: '', x: 0, y: 0, isScrapped: false, index: null });
       showToast('‘MY 스크랩 > 단어장’에 담았어요.', 'addTerm');
     }
 
