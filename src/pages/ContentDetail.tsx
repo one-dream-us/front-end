@@ -6,7 +6,6 @@ import VideoPlayer from '@/components/contentDetail/VideoPlayer';
 import useDetailData from '@/hooks/contentDetail/useDetailData';
 import { formatDate } from '@/utils/myScrapUtils';
 import ReactPlayer from 'react-player';
-import { useScrollToElement } from '@/hooks/contentDetail/useScrollToElement';
 
 export default function ContentDetail() {
   const {
@@ -25,8 +24,6 @@ export default function ContentDetail() {
   } = useDetailData();
   const playerRef = useRef<ReactPlayer | null>(null);
   const [playing, setPlaying] = useState(false);
-
-  useScrollToElement();
 
   if (isLoading || !tags) {
     return <div />;

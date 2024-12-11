@@ -5,13 +5,11 @@ import { useAllScrapedIds } from '@/hooks/myScrap/useAllScrapedIds';
 import ScrapedItemModals from '../ScrapItemModals';
 import ScrapedTermCard from './ScrapedTermCard';
 import EditSection from '../edit/EditSection';
-import { Link } from 'react-router-dom';
-import useMyScrapStore from '@/store/useMyScrapStore';
+import PlayImgBtn from './PlayImgBtn';
 
 export default function ScrapedTerms({ termsList }: { termsList: ScrapedTermData[] }) {
   const { scrapedTerms, isLoading } = useScrapedTerms();
   const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>({});
-  const isEditing = useMyScrapStore((state) => state.isEditing);
 
   useAllScrapedIds(scrapedTerms);
 
@@ -32,18 +30,7 @@ export default function ScrapedTerms({ termsList }: { termsList: ScrapedTermData
                 setExpandedItems={setExpandedItems}
                 detail={item}
               />
-              <Link
-                to={`/content/${item.contentId}`}
-                className='hidden md:block'
-                aria-label='영상 보러가기 아이콘'
-                style={{
-                  pointerEvents: isEditing ? 'none' : 'auto',
-                }}
-              >
-                <div
-                  className={`h-[118px] w-[69px] bg-play transition ${isEditing ? 'pointer-events-none cursor-not-allowed bg-play-disabled hover:bg-play-disabled' : 'bg-play hover:bg-play-hover'}`}
-                />
-              </Link>
+              <PlayImgBtn contentId={item.contentId} dictionaryId={item.dictionaryId} />
             </div>
           );
         })}

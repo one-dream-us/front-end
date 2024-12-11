@@ -10,7 +10,6 @@ export default function ViewAgainBtn({
 }) {
   const navigate = useNavigate();
   const isEditing = useMyScrapStore((state) => state.isEditing);
-  console.log(contentId);
   return (
     <button
       type='button'

@@ -3,10 +3,11 @@ import useMarkEvent from '@/hooks/contentDetail/useMarkEvent';
 import { tooltipHandlers } from '@/handlers/contentDetail/handleToolTip';
 import { ScriptNTimeProps } from '@/types/interface';
 import Tooltip from './Tooltip';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import useScrappedStore from '@/store/useScrappedStore';
 import useMatchedStore from '@/store/useMatchedStore';
 import useToastStore from '@/store/useToastStore';
+import { useScrollToElement } from '@/hooks/contentDetail/useScrollToElement';
 
 export default function ScriptWithTime({
   id,
@@ -17,21 +18,25 @@ export default function ScriptWithTime({
 }: ScriptNTimeProps) {
   const [tooltip, setTooltip] = useState<{
     content: string;
+    term: string;
     x: number;
     y: number;
     index: number | null;
-  }>({ content: '', x: 0, y: 0, index: null });
+  }>({ content: '', term: '', x: 0, y: 0, index: null });
   const scrappedData = useScrappedStore((state) => state.scrappedData);
   const matched = useMatchedStore((state) => state.matched);
   const setMatched = useMatchedStore((state) => state.setMatched);
   const hideToast = useToastStore((state) => state.hideToast);
 
+  const { elementRefs } = useScrollToElement();
+
   useMarkEvent((event) => {
+    setTooltip({ content: '', term: '', x: 0, y: 0, index: null });
     hideToast();
     tooltipHandlers.handleClick(event, setTooltip, dictionaries, setMatched);
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const marks = document.querySelectorAll('mark');
     marks.forEach((mark, index) => {
       const dict = scrappedData[index];
@@ -45,8 +50,10 @@ export default function ScriptWithTime({
         mark.style.padding = '2px 1px';
         mark.style.cursor = 'pointer';
       }
+
+      elementRefs.current[mark.id] = mark as HTMLElement;
     });
-  }, [scrappedData]);
+  }, [scrappedData, elementRefs]);
 
   return (
     <div
