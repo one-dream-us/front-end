@@ -21,8 +21,9 @@ export default function ScriptWithTime({
     term: string;
     x: number;
     y: number;
+    isScrapped: boolean;
     index: number | null;
-  }>({ content: '', term: '', x: 0, y: 0, index: null });
+  }>({ content: '', term: '', x: 0, y: 0, isScrapped: false, index: null });
   const scrappedData = useScrappedStore((state) => state.scrappedData);
   const matched = useMatchedStore((state) => state.matched);
   const setMatched = useMatchedStore((state) => state.setMatched);
@@ -31,7 +32,6 @@ export default function ScriptWithTime({
   const { elementRefs } = useScrollToElement();
 
   useMarkEvent((event) => {
-    setTooltip({ content: '', term: '', x: 0, y: 0, index: null });
     hideToast();
     tooltipHandlers.handleClick(event, setTooltip, dictionaries, setMatched);
   });
@@ -72,7 +72,7 @@ export default function ScriptWithTime({
         className='text-custom-gray-dark md:text-sm md:leading-170'
       />
       {tooltip.index !== null && (
-        <Tooltip content={tooltip.content} setTooltip={setTooltip} dictionary={matched} />
+        <Tooltip tooltip={tooltip} setTooltip={setTooltip} dictionary={matched} />
       )}
     </div>
   );

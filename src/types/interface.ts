@@ -120,8 +120,22 @@ export interface ImgData {
 }
 
 export interface TooltipProps {
-  content: string;
-  setTooltip: (value: { content: string; x: number; y: number; index: number | null }) => void;
+  tooltip: {
+    content: string;
+    term: string;
+    x: number;
+    y: number;
+    isScrapped: boolean;
+    index: number | null;
+  };
+  setTooltip: (value: {
+    content: string;
+    term: string;
+    x: number;
+    y: number;
+    isScrapped: boolean;
+    index: number | null;
+  }) => void;
   dictionary: Dictionary;
 }
 
