@@ -13,8 +13,9 @@ const authApi = {
   },
   withDraw: async () => {
     try {
-      await client.delete('/users/withdraw');
-      location.href = '/withdraw-success';
+      const res = await client.delete('/users/withdraw');
+      console.log(res);
+      // location.href = '/withdraw-success';
     } catch {
       alert('다시 시도해주세요');
       location.href = '/';

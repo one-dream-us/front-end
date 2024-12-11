@@ -3,7 +3,7 @@ import byeImg from '@/assets/this_is_money_imgs/img_png/bye.png';
 
 export default function WithDrawSuccess() {
   return (
-    <div className='mt-[40px] px-4 md:px-6 desktop:px-[129px]'>
+    <div className='m-auto mt-[40px] px-4 md:px-6 desktop:max-w-[1440px] desktop:px-[129px]'>
       <h1 className='mb-[72px] text-[22px] font-medium'>회원 탈퇴</h1>
 
       <div className='m-auto mb-[72px] flex h-[241px] w-[164px] flex-col items-center justify-start md:h-[300px] md:w-[352px]'>

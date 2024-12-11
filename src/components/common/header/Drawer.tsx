@@ -65,10 +65,12 @@ export default function Drawer({
               </div>
             </Link>
           ) : (
-            <div className='flex items-center justify-start gap-x-[14px]'>
+            <div
+              onClick={() => setIsLoginModalOpen(true)}
+              className='flex cursor-pointer items-center justify-start gap-x-[14px]'
+            >
               <button
-                onClick={() => setIsLoginModalOpen(true)}
-                className={`relative ml-8 flex h-[30px] w-[96px] items-center justify-center rounded-[10px] bg-custom-green-money text-sm font-medium transition-all duration-200 hover:bg-green-hover`}
+                className={`relative flex h-[30px] w-[96px] items-center justify-center rounded-[10px] bg-custom-green-money text-sm font-medium transition-all duration-200 hover:bg-green-hover`}
               >
                 로그인
               </button>
