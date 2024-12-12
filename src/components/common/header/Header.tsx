@@ -39,11 +39,12 @@ export default function Header() {
           </Link>
 
           <ul className='hidden items-center justify-center text-custom-gray md:flex md:gap-8 desktop:gap-x-16'>
-            {HeaderMenuList.map((item) => (
+            {HeaderMenuList.map((item, index) => (
               <li key={item.id}>
                 <Link
                   className={`${item.to === pathname || pathname.includes(item.sub || 'sub') ? 'font-medium text-black' : 'hover:text-custom-gray-h'}`}
                   to={item.to}
+                  id={`${index === 1 && 'content-list'}`}
                 >
                   {item.title}
                 </Link>
