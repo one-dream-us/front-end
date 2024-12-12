@@ -40,15 +40,17 @@ export default function ScriptWithTime({
     const marks = document.querySelectorAll('mark');
     marks.forEach((mark, index) => {
       const dict = scrappedData[index];
-      mark.id = `mark-${dict?.dictionaryId}`;
+      mark.id = `s-mark-${dict?.dictionaryId}`;
       if (dict && dict.scrapped) {
         mark.style.backgroundColor = '#A7FFB4';
         mark.style.padding = '2px 1px';
         mark.style.cursor = 'pointer';
+        mark.id = `d-mark-${dict?.dictionaryId}`;
       } else {
         mark.style.backgroundColor = '#FFED85';
         mark.style.padding = '2px 1px';
         mark.style.cursor = 'pointer';
+        mark.id = `s-mark-${dict?.dictionaryId}`;
       }
 
       elementRefs.current[mark.id] = mark as HTMLElement;
