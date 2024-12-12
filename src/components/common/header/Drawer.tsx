@@ -65,9 +65,10 @@ export default function Drawer({
               </div>
             </Link>
           ) : (
-            <div
-              onClick={() => setIsLoginModalOpen(true)}
+            <Link
+              to={'/login'}
               className='flex cursor-pointer items-center justify-start gap-x-[14px]'
+              state={{ prevPage: location.href }}
             >
               <button
                 className={`relative flex h-[30px] w-[96px] items-center justify-center rounded-[10px] bg-custom-green-money text-sm font-medium transition-all duration-200 hover:bg-green-hover`}
@@ -86,7 +87,7 @@ export default function Drawer({
               >
                 로그인 하고 <span className='font-medium text-custom-green-money'>스크랩</span>하기!
               </button> */}
-            </div>
+            </Link>
           )}
         </div>
 

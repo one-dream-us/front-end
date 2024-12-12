@@ -69,12 +69,14 @@ export default function Header() {
             />
           </Link>
         ) : (
-          <button
-            onClick={() => setIsLoginModalOpen(true)}
-            className={`hidden h-[30px] w-[96px] items-center justify-center rounded-[10px] bg-custom-gray-medium py-2 md:flex ${isLoading ? 'animate-pulse' : 'bg-custom-green-money transition-all duration-200 hover:bg-green-hover'}`}
-          >
-            {isLoading ? '' : '로그인'}
-          </button>
+          <Link to={'/login'}>
+            {' '}
+            <button
+              className={`hidden h-[30px] w-[96px] items-center justify-center rounded-[10px] bg-custom-gray-medium py-2 md:flex ${isLoading ? 'animate-pulse' : 'bg-custom-green-money transition-all duration-200 hover:bg-green-hover'}`}
+            >
+              {isLoading ? '' : '로그인'}
+            </button>
+          </Link>
         )}
         <LoginModal />
         <button onClick={handleShowSlider} className='z-[999] block md:hidden'>
