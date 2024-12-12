@@ -4,7 +4,6 @@ import authApi from '@/services/authApi';
 import { formatUserName } from '@/utils/formatUserName';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import useLoginModalStore from '@/store/useLoginModalStore';
 import { useMyViewCount } from '@/hooks/homeContent/useMyViewCount';
 import { useLoginStore } from '@/store/useIsLoginStore';
 import profileActvie from '@/assets/imgs_v2/icon_profile_active.png';
@@ -24,7 +23,6 @@ export default function Drawer({
   isLoading: boolean;
 }) {
   const { refetch, data: info } = useUserInfoQuery(false);
-  const { setIsLoginModalOpen } = useLoginModalStore();
   const { data: viewCount, isLoading: viewCountLoading } = useMyViewCount();
   const { setIsLogin } = useLoginStore();
 
@@ -65,9 +63,10 @@ export default function Drawer({
               </div>
             </Link>
           ) : (
-            <div
-              onClick={() => setIsLoginModalOpen(true)}
+            <Link
+              to={'/login'}
               className='flex cursor-pointer items-center justify-start gap-x-[14px]'
+              state={{ prevPage: location.href }}
             >
               <button
                 className={`relative flex h-[30px] w-[96px] items-center justify-center rounded-[10px] bg-custom-green-money text-sm font-medium transition-all duration-200 hover:bg-green-hover`}
@@ -86,7 +85,7 @@ export default function Drawer({
               >
                 로그인 하고 <span className='font-medium text-custom-green-money'>스크랩</span>하기!
               </button> */}
-            </div>
+            </Link>
           )}
         </div>
 

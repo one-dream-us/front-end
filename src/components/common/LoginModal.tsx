@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import useLoginModalStore from '@/store/useLoginModalStore';
 import { useCloseModal } from '@/hooks/ui/useCloseModal';
+import authApi from '@/services/authApi';
 
 export default function LoginModal() {
   const [isChecked, setIsChecked] = useState(false);
-  const { isLoginModalOpen, setLoginConfirmed, setIsLoginModalOpen } = useLoginModalStore();
+  const { isLoginModalOpen, setIsLoginModalOpen } = useLoginModalStore();
   const toggleModal = (isModalOpen: boolean) => setIsLoginModalOpen(isModalOpen);
-  const navigate = useNavigate();
 
   useCloseModal(() => setIsLoginModalOpen(false));
   return (
@@ -36,19 +35,19 @@ export default function LoginModal() {
             </div>
             <div className='flex gap-x-2 self-center transition'>
               <button
-                onClick={() => {
+                onClick={async () => {
                   toggleModal(false);
                   setIsChecked(false);
+                  return await authApi.unlinkSocial();
                 }}
                 className='h-[44px] w-[140px] cursor-pointer whitespace-nowrap rounded bg-custom-gray-300 px-[59px] py-3 text-xs text-custom-gray-600 hover:bg-hover-30'
               >
                 닫기
               </button>
               <button
-                onClick={() => {
+                onClick={async () => {
                   toggleModal(false);
-                  setLoginConfirmed();
-                  navigate('/login', { state: { prevPage: location.href } });
+                  return await authApi.joinSocial();
                 }}
                 className={`h-[44px] w-[140px] whitespace-nowrap rounded py-3 text-xs hover:bg-hover-80 hover:text-green-hover ${isChecked ? 'bg-custom-gray-dark text-custom-green-money' : 'bg-custom-gray-600 text-custom-gray-300'}`}
                 disabled={!isChecked}

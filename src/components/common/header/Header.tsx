@@ -6,7 +6,6 @@ import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
 import profile_main from '@/assets/this_is_money_imgs/img_png/Icon_profile_main.png';
 import profile_active from '@/assets/this_is_money_imgs/img_png/icon_profile_active.png';
 import { useImgHover } from '@/hooks/ui/useImgHover';
-import useLoginModalStore from '@/store/useLoginModalStore';
 import LoginModal from '../LoginModal';
 import logo from '@/assets/imgs_v2/Logo_Icon+text_32_hor.png';
 import logo_mobile from '@/assets/imgs_v2/main_logo_32.png';
@@ -15,7 +14,6 @@ export default function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
   const profileHover = useImgHover();
   const logoHover = useImgHover();
-  const { setIsLoginModalOpen } = useLoginModalStore();
 
   const { isLoading, data } = useAuthCheckQuery();
 
@@ -70,12 +68,14 @@ export default function Header() {
             />
           </Link>
         ) : (
-          <button
-            onClick={() => setIsLoginModalOpen(true)}
-            className={`hidden h-[30px] w-[96px] items-center justify-center rounded-[10px] bg-custom-gray-medium py-2 md:flex ${isLoading ? 'animate-pulse' : 'bg-custom-green-money transition-all duration-200 hover:bg-green-hover'}`}
-          >
-            {isLoading ? '' : '로그인'}
-          </button>
+          <Link to={'/login'}>
+            {' '}
+            <button
+              className={`hidden h-[30px] w-[96px] items-center justify-center rounded-[10px] bg-custom-gray-medium py-2 md:flex ${isLoading ? 'animate-pulse' : 'bg-custom-green-money transition-all duration-200 hover:bg-green-hover'}`}
+            >
+              {isLoading ? '' : '로그인'}
+            </button>
+          </Link>
         )}
         <LoginModal />
         <button onClick={handleShowSlider} className='z-[999] block md:hidden'>

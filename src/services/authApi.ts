@@ -15,7 +15,7 @@ const authApi = {
     try {
       const res = await client.delete('/users/withdraw');
       console.log(res);
-      // location.href = '/withdraw-success';
+      location.href = '/withdraw-success';
     } catch {
       alert('다시 시도해주세요');
       location.href = '/';
@@ -24,6 +24,37 @@ const authApi = {
   authCheck: async () => {
     const { loggedIn } = (await client.get('/auth/check')).data;
     return loggedIn;
+  },
+  joinSocial: async () => {
+    try {
+      (
+        await client.post('/users/join/social', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': location.origin, // 명시적 오리진 헤더 추가
+          },
+        })
+      ).data;
+
+      location.href = location.origin;
+    } catch (e) {
+      console.log(e);
+    }
+  },
+  unlinkSocial: async () => {
+    try {
+      (
+        await client.post('/users/unlink/social', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': location.origin, // 명시적 오리진 헤더 추가
+          },
+        })
+      ).data;
+      location.href = location.origin;
+    } catch (e) {
+      console.log(e);
+    }
   },
 };
 
