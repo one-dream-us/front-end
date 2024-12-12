@@ -4,7 +4,6 @@ import authApi from '@/services/authApi';
 import { formatUserName } from '@/utils/formatUserName';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import useLoginModalStore from '@/store/useLoginModalStore';
 import { useMyViewCount } from '@/hooks/homeContent/useMyViewCount';
 import { useLoginStore } from '@/store/useIsLoginStore';
 import profileActvie from '@/assets/imgs_v2/icon_profile_active.png';
@@ -24,7 +23,6 @@ export default function Drawer({
   isLoading: boolean;
 }) {
   const { refetch, data: info } = useUserInfoQuery(false);
-  const { setIsLoginModalOpen } = useLoginModalStore();
   const { data: viewCount, isLoading: viewCountLoading } = useMyViewCount();
   const { setIsLogin } = useLoginStore();
 
