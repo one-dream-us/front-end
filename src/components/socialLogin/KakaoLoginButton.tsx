@@ -2,6 +2,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import kakao_logo from '@/assets/imgs/kakao_logo.png';
 import useLoginModalStore from '@/store/useLoginModalStore';
 import { useEffect } from 'react';
+import createLoginUrl from '@/utils/createLoginUrl';
 
 export default function KakaoLoginButton() {
   const [searchParams] = useSearchParams();
@@ -16,9 +17,7 @@ export default function KakaoLoginButton() {
 
   return (
     <div className='relative w-full'>
-      <Link
-        to={`${import.meta.env.VITE_BACKEND_SERVER_URL}oauth2/authorization/kakao?redirectUrl=${location.origin}/login`}
-      >
+      <Link to={createLoginUrl()}>
         <button className='mb-2 mt-[236px] flex h-11 w-full items-center justify-center rounded-md bg-custom-kakao-yellow text-black transition-all duration-200 hover:bg-yellow-400 md:mt-[285px] desktop:mt-[258px]'>
           <img className='h-[18px] w-[18px]' src={kakao_logo} alt='kakao logo' />
           <div className='h-[23px] w-[254px] font-semibold'>카카오 로그인</div>
