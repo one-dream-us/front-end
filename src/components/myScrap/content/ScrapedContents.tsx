@@ -36,7 +36,7 @@ export default function ScrapedContents({ contentList }: { contentList: ScrapedC
                   {content.contentTitle}
                 </p>
                 <div className='hidden md:mb-2 md:block'>
-                  <div
+                  <p
                     dangerouslySetInnerHTML={{ __html: content.summaryText }}
                     className='line-clamp-2 desktop:line-clamp-3'
                   />

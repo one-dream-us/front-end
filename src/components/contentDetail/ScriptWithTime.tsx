@@ -69,7 +69,7 @@ export default function ScriptWithTime({
       >
         {time}
       </button>
-      <div
+      <p
         dangerouslySetInnerHTML={{ __html: script }}
         className='text-custom-gray-dark md:text-sm md:leading-170'
       />
