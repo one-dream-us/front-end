@@ -7,6 +7,8 @@ import LoginModal from './components/common/LoginModal';
 import useLoginModalStore from './store/useLoginModalStore';
 import TrackRoute from './components/common/TrackRoute';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import useLoginConfirmModalState from './store/login/useLoginConfirmModalStore';
+import LoginConfirmModal from './components/common/LoginConfirmModal';
 
 const App = (): JSX.Element => {
   const queryClient = new QueryClient({
@@ -19,6 +21,7 @@ const App = (): JSX.Element => {
     },
   });
   const isLoginModalOpen = useLoginModalStore((state) => state.isLoginModalOpen);
+  const { isOpen: isLoginConfirmModalOpen } = useLoginConfirmModalState();
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -27,6 +30,7 @@ const App = (): JSX.Element => {
         <AppRoutes />
         <Toast />
         {isLoginModalOpen && <LoginModal />}
+        {isLoginConfirmModalOpen && <LoginConfirmModal />}
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
