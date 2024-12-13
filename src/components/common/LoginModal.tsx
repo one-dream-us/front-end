@@ -13,10 +13,9 @@ export default function LoginModal() {
     <>
       {isLoginModalOpen && (
         <div className='fixed inset-0 z-[1000] flex items-center justify-center bg-black bg-opacity-60'>
-          <div className='flex h-[230px] w-[343px] flex-col rounded-[10px] bg-custom-gray-lighter px-7 py-6 shadow-login outline-none md:w-[372px]'>
+          <div className='flex h-[203px] w-[343px] flex-col rounded-[10px] bg-custom-gray-lighter px-7 py-6 shadow-login outline-none md:w-[372px]'>
             <h2 className='mb-2 h-[54px] text-lg font-medium text-custom-black'>
-              <div>로그인이 필요한 서비스입니다.</div>
-              <div>로그인하시겠어요?</div>
+              회원가입이 거의 다 되었어요!
             </h2>
             <p className='mb-5 text-[10px] text-custom-gray-600'>
               이게머니는 14세 미만의 투자를 권장하지 않습니다.
@@ -38,7 +37,9 @@ export default function LoginModal() {
                 onClick={async () => {
                   toggleModal(false);
                   setIsChecked(false);
-                  return await authApi.unlinkSocial();
+                  return await authApi.unlinkSocial(
+                    localStorage.getItem('prevPage') ?? location.origin,
+                  );
                 }}
                 className='h-[44px] w-[140px] cursor-pointer whitespace-nowrap rounded bg-custom-gray-300 px-[59px] py-3 text-xs text-custom-gray-600 hover:bg-hover-30'
               >
@@ -47,7 +48,9 @@ export default function LoginModal() {
               <button
                 onClick={async () => {
                   toggleModal(false);
-                  return await authApi.joinSocial();
+                  return await authApi.joinSocial(
+                    localStorage.getItem('prevPage') ?? location.origin,
+                  );
                 }}
                 className={`h-[44px] w-[140px] whitespace-nowrap rounded py-3 text-xs hover:bg-hover-80 hover:text-green-hover ${isChecked ? 'bg-custom-gray-dark text-custom-green-money' : 'bg-custom-gray-600 text-custom-gray-300'}`}
                 disabled={!isChecked}
