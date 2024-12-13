@@ -3,7 +3,6 @@ import useDeleteScrapTerm from '@/hooks/myScrap/useDeleteScrapTerm';
 import useContentDetails from '@/hooks/contentDetail/useContentDetails';
 import useScrappedStore from '@/store/useScrappedStore';
 import { Dictionary } from '@/types/interface';
-import { useState } from 'react';
 import useToastStore from '@/store/useToastStore';
 import useContentStore from '@/store/useContentStore';
 import { useAuthCheckQuery } from '../auth/useAuthCheckQuery';
@@ -25,7 +24,7 @@ export default function useTooltip(
   const contentId = useContentStore((state) => state.contentId);
   const { isLoading, data } = useAuthCheckQuery();
   const foundItem = scrappedData.find((item) => item.dictionaryId === dictionary.id);
-  const [isScrapped, setIsScrapped] = useState(foundItem?.scrapped ?? false);
+  const isScrapped = foundItem?.scrapped;
 
   const addScrapTerm =
     data && !isLoading ? useAddTerm(dictionary.id, contentId).addScrapTerm : () => {};
@@ -52,7 +51,6 @@ export default function useTooltip(
       showToast('‘MY 스크랩 > 단어장’에 담았어요.', 'addTerm');
     }
 
-    setIsScrapped(!isScrapped);
     reloadContentDetails?.();
   };
 
