@@ -55,8 +55,8 @@ export default {
         login: '0px 6px 12px rgba(0, 0, 0, 0.3)',
       },
       backgroundImage: {
-        unchecked: "url('@/assets/icons/icon_check_default.svg')",
-        checked: "url('@/assets/icons/check.svg')",
+        unchecked: "url('@/assets/icons/icon_checkbox_false.svg')",
+        checked: "url('@/assets/icons/icon_checkbox_true.svg')",
         play: "url('@/assets/icons/video_btn_style=main.svg')",
         'play-hover': "url('@/assets/icons/video_btn_style=hover.svg')",
         'play-disabled': "url('@/assets/icons/video_btn_style=disabled.svg')",
