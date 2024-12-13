@@ -6,7 +6,6 @@ import { Dictionary } from '@/types/interface';
 import useToastStore from '@/store/useToastStore';
 import useContentStore from '@/store/useContentStore';
 import { useAuthCheckQuery } from '../auth/useAuthCheckQuery';
-import useLoginModalStore from '@/store/useLoginModalStore';
 import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
 
 export default function useTooltip(
