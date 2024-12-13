@@ -7,6 +7,7 @@ import useToastStore from '@/store/useToastStore';
 import useContentStore from '@/store/useContentStore';
 import { useAuthCheckQuery } from '../auth/useAuthCheckQuery';
 import useLoginModalStore from '@/store/useLoginModalStore';
+import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
 
 export default function useTooltip(
   dictionary: Dictionary,
@@ -34,10 +35,12 @@ export default function useTooltip(
     data && !isLoading ? useDeleteScrapTerm({ selectedIdList }).deleteScrapTerm : () => {};
 
   const reloadContentDetails = useContentDetails(contentId).reloadContentDetails;
-  const setIsLoginModalOpen = useLoginModalStore((state) => state.setIsLoginModalOpen);
+  const { setIsNavigate, setIsOpen } = useLoginConfirmModalState();
+
   const handleScrapClick = async () => {
     if (!data || isLoading) {
-      setIsLoginModalOpen(true);
+      setIsOpen(true);
+      setIsNavigate(false);
       return;
     }
 

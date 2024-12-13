@@ -31,7 +31,7 @@ export default function LoginConfirmModal() {
                   }
                   handleCloseModal();
                 }}
-                className='h-[44px] w-[154px] cursor-pointer whitespace-nowrap rounded bg-custom-gray-300 px-[59px] py-3 text-xs text-custom-gray-600 transition-all duration-200 hover:bg-hover-30'
+                className='h-[44px] w-[154px] cursor-pointer whitespace-nowrap rounded bg-custom-gray-300 px-[59px] py-3 text-xs font-medium text-custom-gray-600 transition-all duration-200 hover:bg-hover-30'
               >
                 닫기
               </button>
@@ -41,7 +41,7 @@ export default function LoginConfirmModal() {
                   navigate('/login', { state: { prevPage: location.href } });
                   handleCloseModal();
                 }}
-                className={`h-[44px] w-[154px] whitespace-nowrap rounded bg-custom-gray-dark py-3 text-xs text-custom-green-money transition-all duration-200 hover:bg-hover-80 hover:text-green-hover`}
+                className={`h-[44px] w-[154px] whitespace-nowrap rounded bg-custom-gray-dark py-3 text-xs font-medium text-custom-green-money transition-all duration-200 hover:bg-hover-80 hover:text-green-hover`}
               >
                 로그인 하기
               </button>
