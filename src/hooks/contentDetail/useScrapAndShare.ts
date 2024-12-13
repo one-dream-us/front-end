@@ -7,7 +7,7 @@ import useToastStore from '@/store/useToastStore';
 import { ScrapedContentData } from '@/types/interface';
 import useContentStore from '@/store/useContentStore';
 import { useAuthCheckQuery } from '../auth/useAuthCheckQuery';
-import useLoginModalStore from '@/store/useLoginModalStore';
+import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
 
 export default function useScrapAndShare() {
   const contentId = useContentStore((state) => state.contentId);
@@ -19,7 +19,7 @@ export default function useScrapAndShare() {
     data && !isLoading ? useAddScrap(contentId) : { addScrapContent: () => {} };
   const isScrapped = useScrappedConStore((state) => state.isScrapped);
   const setIsScrapped = useScrappedConStore((state) => state.setIsScrapped);
-  const setIsLoginModalOpen = useLoginModalStore((state) => state.setIsLoginModalOpen);
+  const { setIsOpen, setIsNavigate } = useLoginConfirmModalState();
 
   useEffect(() => {
     if (!data) return;
@@ -43,7 +43,8 @@ export default function useScrapAndShare() {
 
   const toggleScrap = () => {
     if (!data || isLoading) {
-      setIsLoginModalOpen(true);
+      setIsOpen(true);
+      setIsNavigate(false);
       return;
     }
 

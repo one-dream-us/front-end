@@ -1,10 +1,18 @@
 import KakaoLoginButton from '@/components/socialLogin/KakaoLoginButton';
 import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import logo from '@/assets/imgs_v2/Logo_Icon+text_horx4_for_login.png';
+import { useEffect } from 'react';
 
 export default function Login() {
   const { data, isLoading } = useAuthCheckQuery();
+  const { state } = useLocation();
+
+  useEffect(() => {
+    if (!state) return;
+
+    localStorage.setItem('prevPage', state.prevPage);
+  }, []);
 
   if (data && !isLoading) {
     return <Navigate to={'/'} />;
