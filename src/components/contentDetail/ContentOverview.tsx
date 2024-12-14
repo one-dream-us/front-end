@@ -22,9 +22,11 @@ export default function ContentOverview({
   return (
     <div className='relative mb-6 mt-custom-video-md flex flex-col md:mt-[444px] desktop:mb-2 desktop:mt-10'>
       <KeywordTags tags={tags} />
-      <h1 className='mb-2 text-[22px] font-medium leading-120 text-custom-black'>{title}</h1>
+      <h1 className='mb-2 max-w-[950px] text-[22px] font-medium leading-120 text-custom-black'>
+        {title}
+      </h1>
       <div className='mb-3 flex items-center justify-between desktop:w-[533px]'>
-        <span className='whitespace-nowrap text-xs leading-120 text-custom-gray-dark'>
+        <span className='text-xs whitespace-nowrap leading-120 text-custom-gray-dark'>
           {reference}
         </span>
         <ScrapDateNCount date={date} scrapCount={viewCount} />
