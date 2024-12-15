@@ -3,6 +3,7 @@ import scrapDIcon from '@/assets/icons/icon_scrap_main.svg';
 import shareIcon from '@/assets/icons/icon_share.svg';
 import useScrapAndShare from '@/hooks/contentDetail/useScrapAndShare';
 import scrappedIcon from '@/assets/icons/icon_scrap_active.svg';
+import useContentStore from '@/store/useContentStore';
 
 export default function ScrapAndShare({
   description,
@@ -13,11 +14,14 @@ export default function ScrapAndShare({
   img: string;
   title: string;
 }) {
-  const { isShareModalOpen, setIsShareModalOpen, toggleScrap, isScrapped } = useScrapAndShare();
+  const contentId = useContentStore((state) => state.contentId);
+  const { isShareModalOpen, setIsShareModalOpen, toggleScrap, isScrapped } =
+    useScrapAndShare(contentId);
 
   return (
     <div className='text-gray-dark relative flex h-6 justify-between desktop:h-[31px] desktop:gap-x-2'>
       <button
+        id={`${!isScrapped && `scrap-${contentId}`}`}
         className={`flex w-[69px] items-center justify-center gap-x-[1px] rounded-lg pb-[5.5px] pt-[4.5px] hover:text-custom-gray-h desktop:w-[81px] ${isScrapped ? 'bg-primary' : 'text-custom-dark-gray bg-custom-gray-200'}`}
         aria-label='스크랩하기'
         onClick={() => {
