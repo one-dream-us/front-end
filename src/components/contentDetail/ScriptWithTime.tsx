@@ -44,12 +44,12 @@ export default function ScriptWithTime({
         mark.style.backgroundColor = '#A7FFB4';
         mark.style.padding = '2px 1px';
         mark.style.cursor = 'pointer';
-        mark.className = `d-mark-${dict?.dictionaryId}`;
+        mark.className = `mark-${dict?.dictionaryId}`;
       } else {
         mark.style.backgroundColor = '#FFED85';
         mark.style.padding = '2px 1px';
         mark.style.cursor = 'pointer';
-        mark.className = `s-mark-${dict?.dictionaryId}`;
+        mark.className = `mark-${dict?.dictionaryId}`;
       }
 
       elementRefs.current[mark.className] = mark as HTMLElement;
