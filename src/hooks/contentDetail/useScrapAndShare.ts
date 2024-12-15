@@ -5,12 +5,10 @@ import useDeleteScrapCon from '@/hooks/myScrap/useDeleteScrapCon';
 import useScrappedConStore from '@/store/useScrappedConStore';
 import useToastStore from '@/store/useToastStore';
 import { ScrapedContentData } from '@/types/interface';
-import useContentStore from '@/store/useContentStore';
 import { useAuthCheckQuery } from '../auth/useAuthCheckQuery';
 import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
 
-export default function useScrapAndShare() {
-  const contentId = useContentStore((state) => state.contentId);
+export default function useScrapAndShare(contentId: number) {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const { isLoading, data } = useAuthCheckQuery();
   const showToast = useToastStore((state) => state.showToast);
