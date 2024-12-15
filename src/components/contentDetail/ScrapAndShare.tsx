@@ -21,7 +21,7 @@ export default function ScrapAndShare({
   return (
     <div className='text-gray-dark relative flex h-6 justify-between desktop:h-[31px] desktop:gap-x-2'>
       <button
-        id={`${!isScrapped && `scrap-${contentId}`}`}
+        id={!isScrapped ? `scrap-${contentId}` : undefined}
         className={`flex w-[69px] items-center justify-center gap-x-[1px] rounded-lg pb-[5.5px] pt-[4.5px] hover:text-custom-gray-h desktop:w-[81px] ${isScrapped ? 'bg-primary' : 'text-custom-dark-gray bg-custom-gray-200'}`}
         aria-label='스크랩하기'
         onClick={() => {
