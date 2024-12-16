@@ -62,6 +62,7 @@ export default function ScriptWithTime({
       className='mb-8 flex w-full flex-col gap-y-1 leading-170 md:flex-row md:gap-x-[46px] desktop:gap-x-[30px]'
     >
       <button
+        id='timestamp'
         type='button'
         className='flex h-5 items-center justify-center self-start rounded-[10px] bg-custom-gray-dark px-2 text-xs text-primary md:mt-1'
         onClick={onClick}
