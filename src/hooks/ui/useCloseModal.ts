@@ -5,6 +5,7 @@ export const useCloseModal = (closeFn: () => void) => {
     const handleCloseModal = (e: KeyboardEvent) => {
       if (e.key !== 'Escape') return;
       closeFn();
+      history.back();
     };
 
     window.addEventListener('keydown', handleCloseModal);

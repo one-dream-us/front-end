@@ -24,7 +24,7 @@ export default function ContentList() {
         )}
       </div>
 
-      <div className='desktop:jusise mx-auto mb-[60px] flex flex-col items-start gap-y-[32px] md:items-start desktop:grid desktop:grid-cols-3 desktop:justify-between desktop:justify-items-center'>
+      <div className='desktop:jusise mx-auto mb-[60px] flex flex-col items-start gap-y-[32px] md:items-start desktop:flex-row desktop:flex-wrap desktop:justify-between'>
         {isLoading && [...Array(9).keys()].map((item) => <ContentListSkeleton key={item} />)}
         {res?.contents?.map((item) => <ContentListCard key={item.id} {...item} />)}
       </div>
