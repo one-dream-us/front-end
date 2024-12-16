@@ -44,12 +44,12 @@ export default function ScriptWithTime({
         mark.style.backgroundColor = '#A7FFB4';
         mark.style.padding = '2px 1px';
         mark.style.cursor = 'pointer';
-        mark.className = `d-mark-${dict?.dictionaryId}`;
+        mark.className = `mark-${dict?.dictionaryId}`;
       } else {
         mark.style.backgroundColor = '#FFED85';
         mark.style.padding = '2px 1px';
         mark.style.cursor = 'pointer';
-        mark.className = `s-mark-${dict?.dictionaryId}`;
+        mark.className = `mark-${dict?.dictionaryId}`;
       }
 
       elementRefs.current[mark.className] = mark as HTMLElement;
@@ -62,6 +62,7 @@ export default function ScriptWithTime({
       className='mb-8 flex w-full flex-col gap-y-1 leading-170 md:flex-row md:gap-x-[46px] desktop:gap-x-[30px]'
     >
       <button
+        id='timestamp'
         type='button'
         className='flex h-5 items-center justify-center self-start rounded-[10px] bg-custom-gray-dark px-2 text-xs text-primary md:mt-1'
         onClick={onClick}
