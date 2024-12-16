@@ -18,6 +18,7 @@ export default function MenuWithUnderbar({
     <ul className='flex h-[44px] w-full border-b border-b-custom-gray-500 md:text-sm desktop:hidden'>
       {MenuItems.map((item) => (
         <li
+          id={`menu-${item}`}
           key={item}
           onClick={() => {
             setActiveMenu(item);
