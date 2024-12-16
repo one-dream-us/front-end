@@ -19,6 +19,7 @@ export default function DesktopMenu({
       {MenuItems.map((item) => (
         <li
           key={item}
+          id={`menu-${item}`}
           onClick={() => {
             setActiveMenu(item);
             setSelectedIdList([]);
