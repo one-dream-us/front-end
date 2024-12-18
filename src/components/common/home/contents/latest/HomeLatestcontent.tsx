@@ -39,7 +39,7 @@ export default function HomeLatestcontent() {
 
       <Link
         to={`/content/${content?.id}`}
-        className='flex max-w-[343px] flex-col gap-y-5 md:max-w-full md:flex-row md:items-center md:gap-x-6'
+        className='flex max-w-[343px] flex-col gap-y-5 md:max-w-full md:flex-row md:items-center md:gap-x-6 desktop:max-w-[899px]'
       >
         <img
           className='h-[190px] max-w-[343px] rounded-lg'
