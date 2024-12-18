@@ -1,6 +1,7 @@
 import contentListApi from '@/services/contentListApi';
 import { ContentListData } from '@/types/interface';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { useMemo } from 'react';
 
 export const useContentListQuery = (size: number = 10) => {
   const { data, isLoading, hasNextPage, fetchNextPage } = useInfiniteQuery({
@@ -16,13 +17,15 @@ export const useContentListQuery = (size: number = 10) => {
     initialPageParam: 0,
   });
 
-  const res = data?.pages.reduce((acc, cur) => {
-    const res: ContentListData = {
-      ...cur,
-      contents: [...acc.contents, ...cur.contents],
-    };
-    return res;
-  }) as ContentListData;
+  const res = useMemo(() => {
+    return data?.pages.reduce((acc, cur) => {
+      const res: ContentListData = {
+        ...cur,
+        contents: [...acc.contents, ...cur.contents],
+      };
+      return res;
+    });
+  }, [data]) as ContentListData;
 
   return { res, isLoading, hasNextPage, fetchNextPage };
 };
