@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 interface LocationState {
@@ -17,18 +17,34 @@ export const useScrollToElement = () => {
     return () => clearTimeout(timeout);
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isReady) return;
 
     const state = location.state as LocationState | null;
     if (state?.scrollTo) {
       const scrollToId = state.scrollTo;
       const element = elementRefs.current[scrollToId];
+
       if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center',
-        });
+        const isDesktop = window.innerWidth >= 1024;
+
+        if (isDesktop) {
+          const parentScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+          });
+
+          setTimeout(() => {
+            window.scrollTo(0, parentScrollTop);
+          }, 0);
+        } else {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+          });
+        }
       }
     } else {
       window.scrollTo(0, 0);
