@@ -9,6 +9,8 @@ import ProtectedRoute from './components/common/ProtectedRoute';
 import WithDrawSuccess from './pages/WithDrawSuccess';
 import ContentList from './pages/ContentList';
 import NotFound from './pages/NotFound';
+import AdminLayout from './components/admin/common/AdminLayout';
+import LinkUpload from './pages/admin/contentUpload/LinkUpload';
 
 const AppRoutes = (): JSX.Element => {
   return (
@@ -26,6 +28,10 @@ const AppRoutes = (): JSX.Element => {
         </Route>
 
         <Route path='*' element={<NotFound />} />
+      </Route>
+
+      <Route element={<AdminLayout />}>
+        <Route path='/admin/link-upload' element={<LinkUpload />} />
       </Route>
     </Routes>
   );
