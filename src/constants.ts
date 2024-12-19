@@ -31,3 +31,8 @@ export const FooterMenuList = [
 export const ProfileLabels = ['스크랩', '키워드', '본 콘텐츠'];
 
 export const MenuItems: myScrapMenu[] = ['콘텐츠', '단어장'];
+
+export const adminMenuList = [
+  { id: 1, title: '홈', to: '/admin/home' },
+  { id: 2, title: '콘텐츠 등록', to: '/admin/link-upload' },
+];
