@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 interface LocationState {
@@ -8,8 +8,18 @@ interface LocationState {
 export const useScrollToElement = () => {
   const location = useLocation();
   const elementRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsReady(true);
+    }, 0);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
+    if (!isReady) return;
+
     const state = location.state as LocationState | null;
     if (state?.scrollTo) {
       const scrollToId = state.scrollTo;
@@ -23,7 +33,7 @@ export const useScrollToElement = () => {
     } else {
       window.scrollTo(0, 0);
     }
-  }, [location]);
+  }, [location, isReady]);
 
   return { elementRefs };
 };
