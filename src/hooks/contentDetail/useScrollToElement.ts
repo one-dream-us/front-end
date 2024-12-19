@@ -13,7 +13,7 @@ export const useScrollToElement = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsReady(true);
-    }, 0);
+    }, 100);
     return () => clearTimeout(timeout);
   }, []);
 
