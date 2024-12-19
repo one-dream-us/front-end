@@ -1,20 +1,16 @@
 import ReactPlayer from 'react-player';
 import { RefObject } from 'react';
-import { ScriptParagraph } from '@/types/interface';
-import { handleProgress } from '@/utils/contentDetailUtils';
 
 export default function VideoPlayer({
   youtubeId,
   playerRef,
   setPlaying,
   playing,
-  scriptParagraphs,
 }: {
   youtubeId: string;
   playerRef: RefObject<ReactPlayer>;
   setPlaying: (playing: boolean) => void;
   playing: boolean;
-  scriptParagraphs: ScriptParagraph[];
 }) {
   return (
     <div className='fixed left-0 top-[52px] z-50 h-custom-video-md w-full md:h-[424px] desktop:static desktop:mb-5 desktop:h-[294px] desktop:w-[533px]'>
@@ -25,7 +21,6 @@ export default function VideoPlayer({
         width='100%'
         height='100%'
         progressInterval={100}
-        onProgress={({ playedSeconds }) => handleProgress({ playedSeconds, scriptParagraphs })}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         playing={playing}
