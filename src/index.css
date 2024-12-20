@@ -9,3 +9,6 @@ input {
   -webkit-border-radius: 0;
   -webkit-appearance: none;
 }
+body {
+  @apply leading-normal tracking-[-2%];
+}
