@@ -10,5 +10,8 @@ input {
   -webkit-appearance: none;
 }
 body {
+  overflow-y: scroll;
+}
+body {
   @apply leading-normal tracking-[-2%];
 }

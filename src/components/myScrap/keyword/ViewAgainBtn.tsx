@@ -14,7 +14,7 @@ export default function ViewAgainBtn({
     <button
       type='button'
       onClick={() =>
-        navigate(`/content/${contentId}`, { state: { scrollTo: `mark-${dictionaryId}` } })
+        navigate(`/content/${contentId}`, { state: { scrollTo: `mark mark-${dictionaryId}` } })
       }
       className={`h-[30px] w-full rounded-[4px] text-xs md:hidden ${isEditing ? 'bg-view-bg text-view' : 'bg-custom-gray-dark text-primary'} `}
       disabled={isEditing}

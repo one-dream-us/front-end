@@ -1,24 +1,11 @@
 import KeywordTags from '../common/contentCard/KeywordTags';
 import ScrapDateNCount from '../common/contentCard/ScrapDateNCount';
 import ScrapAndShare from './ScrapAndShare';
+import { ContentDetail } from '@/types/interface';
+import { formatDate } from '@/utils/myScrapUtils';
 
-export default function ContentOverview({
-  reference,
-  title,
-  tags,
-  viewCount,
-  date,
-  thumbnailUrl,
-  summaryText,
-}: {
-  reference: string;
-  title: string;
-  tags: string[];
-  viewCount: string;
-  date: string;
-  thumbnailUrl: string;
-  summaryText: string;
-}) {
+export default function ContentOverview({ contentDetails }: { contentDetails: ContentDetail }) {
+  const { tags, title, author, createdAt, viewCount, summaryText, thumbnailUrl } = contentDetails;
   return (
     <div className='relative mb-6 mt-custom-video-md flex flex-col md:mt-[444px] desktop:mb-2 desktop:mt-10'>
       <KeywordTags tags={tags} />
@@ -27,9 +14,9 @@ export default function ContentOverview({
       </h1>
       <div className='mb-3 flex items-center justify-between desktop:w-[533px]'>
         <span className='text-xs whitespace-nowrap leading-120 text-custom-gray-dark'>
-          {reference}
+          {author}
         </span>
-        <ScrapDateNCount date={date} scrapCount={viewCount} />
+        <ScrapDateNCount date={formatDate(createdAt)} scrapCount={viewCount} />
       </div>
       <div className='desktop:absolute desktop:bottom-[34px] desktop:right-0'>
         <ScrapAndShare description={summaryText} img={thumbnailUrl} title={title} />
