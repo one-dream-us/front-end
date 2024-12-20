@@ -26,25 +26,24 @@ export const useScrollToElement = () => {
       const element = elementRefs.current[scrollToId];
 
       if (element) {
-        const isDesktop = window.innerWidth >= 1024;
+        const disableScroll = (e: Event) => e.preventDefault();
 
-        if (isDesktop) {
-          const parentScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        window.addEventListener('wheel', disableScroll, { passive: false });
+        window.addEventListener('touchmove', disableScroll, { passive: false });
 
+        setTimeout(() => {
           element.scrollIntoView({
             behavior: 'smooth',
             block: 'center',
           });
 
-          setTimeout(() => {
-            window.scrollTo(0, parentScrollTop);
-          }, 0);
-        } else {
-          element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center',
-          });
-        }
+          document.body.style.overflow = '';
+          window.removeEventListener('wheel', disableScroll);
+          window.removeEventListener('touchmove', disableScroll);
+
+          const scrollY = parseInt(document.body.style.top || '0', 10) * -1;
+          window.scrollTo(0, scrollY);
+        }, 500);
       }
     } else {
       window.scrollTo(0, 0);
