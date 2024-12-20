@@ -11,10 +11,7 @@ export const useScrollToElement = () => {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIsReady(true);
-    }, 100);
-    return () => clearTimeout(timeout);
+    setIsReady(true);
   }, []);
 
   useLayoutEffect(() => {
@@ -26,24 +23,33 @@ export const useScrollToElement = () => {
       const element = elementRefs.current[scrollToId];
 
       if (element) {
-        const disableScroll = (e: Event) => e.preventDefault();
+        const isDesktop = window.innerWidth >= 1440;
 
-        window.addEventListener('wheel', disableScroll, { passive: false });
-        window.addEventListener('touchmove', disableScroll, { passive: false });
+        if (isDesktop) {
+          const disableScroll = (e: Event) => e.preventDefault();
 
-        setTimeout(() => {
+          window.addEventListener('wheel', disableScroll, { passive: false });
+          window.addEventListener('touchmove', disableScroll, { passive: false });
+
+          setTimeout(() => {
+            element.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+            });
+
+            document.body.style.overflow = '';
+            window.removeEventListener('wheel', disableScroll);
+            window.removeEventListener('touchmove', disableScroll);
+
+            const scrollY = parseInt(document.body.style.top || '0', 10) * -1;
+            window.scrollTo(0, scrollY);
+          }, 400);
+        } else {
           element.scrollIntoView({
             behavior: 'smooth',
             block: 'center',
           });
-
-          document.body.style.overflow = '';
-          window.removeEventListener('wheel', disableScroll);
-          window.removeEventListener('touchmove', disableScroll);
-
-          const scrollY = parseInt(document.body.style.top || '0', 10) * -1;
-          window.scrollTo(0, scrollY);
-        }, 500);
+        }
       }
     } else {
       window.scrollTo(0, 0);
