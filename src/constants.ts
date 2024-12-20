@@ -36,3 +36,13 @@ export const adminMenuList = [
   { id: 1, title: '홈', to: '/admin/home' },
   { id: 2, title: '콘텐츠 등록', to: '/admin/link-upload' },
 ];
+
+export const adminTableHeader = [
+  { id: 1, title: 'No', width: '60px' },
+  { id: 2, title: '생성일', width: '120px' },
+  { id: 3, title: '업로드일', width: '120px' },
+  { id: 4, title: '콘텐츠 ID', width: '160px' },
+  { id: 5, title: '제목', width: '360px' },
+  { id: 6, title: '태그', width: '200px' },
+  { id: 7, title: '상세보기', width: '160px' },
+];

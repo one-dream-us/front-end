@@ -11,6 +11,7 @@ import ContentList from './pages/ContentList';
 import NotFound from './pages/NotFound';
 import AdminLayout from './components/admin/common/AdminLayout';
 import LinkUpload from './pages/admin/contentUpload/LinkUpload';
+import AdminHome from './pages/admin/home/AdminHome';
 
 const AppRoutes = (): JSX.Element => {
   return (
@@ -31,6 +32,7 @@ const AppRoutes = (): JSX.Element => {
       </Route>
 
       <Route element={<AdminLayout />}>
+        <Route path='/admin/home' element={<AdminHome />} />
         <Route path='/admin/link-upload' element={<LinkUpload />} />
       </Route>
     </Routes>
