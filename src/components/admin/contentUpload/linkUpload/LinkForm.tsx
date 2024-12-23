@@ -33,7 +33,7 @@ export default function LinkForm() {
           onChange={handleInputChange}
           placeholder='링크 형식 : https://www.youtube.com/watch?v=XXXXXXXXXXX'
           type='text'
-          className={`${isValidate === null ? 'text-custom-gray-400' : isValidate ? 'text-custom-gray-dark' : 'border-[#FF5050] text-[#FF5050]'} h-[52px] w-full rounded-[20px] border px-[22px] text-[14px] leading-normal tracking-[-2%] hover:border-custom-gray-300`}
+          className={`${isValidate === null ? 'text-custom-gray-400' : isValidate ? 'text-custom-gray-dark' : 'border-[#FF5050] text-[#FF5050]'} h-[52px] w-full rounded-[20px] border border-custom-gray-200 px-[22px] text-[14px] leading-normal tracking-[-2%] hover:border-custom-gray-300`}
         />
         <button
           className={`absolute bottom-0 right-[12px] top-0 m-auto flex h-[40px] w-[40px] items-center justify-center rounded-full ${isValidate ? 'bg-custom-gray-dark text-custom-green-money transition-all duration-200 hover:bg-opacity-80' : 'bg-view-bg text-view'}`}
