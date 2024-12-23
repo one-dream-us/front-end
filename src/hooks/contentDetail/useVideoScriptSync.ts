@@ -14,6 +14,7 @@ export const useVideoScriptSync = ({
   scriptParagraphs,
 }: UseVideoScriptSyncParams) => {
   const isDesktop = window.innerWidth >= 1440;
+  const isTablet = window.innerWidth < 1440 && window.innerWidth >= 768;
   const [lastSyncedIndex, setLastSyncedIndex] = useState(-1);
 
   useEffect(() => {
@@ -65,7 +66,9 @@ export const useVideoScriptSync = ({
           window.scrollTo(0, scrollY);
         }, 400);
       } else {
-        const targetPosition = element.getBoundingClientRect().top + window.scrollY - 300;
+        const threshold = isTablet ? 0.3 : 0.37;
+        const targetPosition =
+          element.getBoundingClientRect().top + window.scrollY - window.innerHeight * threshold;
         window.scrollTo({
           top: targetPosition,
           behavior: 'smooth',
