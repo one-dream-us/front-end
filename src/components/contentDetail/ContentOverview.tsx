@@ -7,7 +7,7 @@ import { formatDate } from '@/utils/myScrapUtils';
 export default function ContentOverview({ contentDetails }: { contentDetails: ContentDetail }) {
   const { tags, title, author, createdAt, viewCount, summaryText, thumbnailUrl } = contentDetails;
   return (
-    <div className='relative mb-6 mt-custom-video-md flex flex-col md:mt-[444px] desktop:mb-2 desktop:mt-10'>
+    <div className='relative mb-6 mt-[232px] flex flex-col md:mt-[444px] desktop:mb-2 desktop:mt-10'>
       <KeywordTags tags={tags} />
       <h1 className='mb-2 max-w-[950px] text-[22px] font-medium leading-120 text-custom-black'>
         {title}
