@@ -1,17 +1,18 @@
+import { VideoPlayerProps } from '@/types/interface';
 import ReactPlayer from 'react-player';
-import { RefObject } from 'react';
+import { useVideoScriptSync } from '@/hooks/contentDetail/useVideoScriptSync';
+import { useState } from 'react';
 
 export default function VideoPlayer({
   youtubeId,
   playerRef,
   setPlaying,
   playing,
-}: {
-  youtubeId: string;
-  playerRef: RefObject<ReactPlayer>;
-  setPlaying: (playing: boolean) => void;
-  playing: boolean;
-}) {
+  scriptParagraphs,
+}: VideoPlayerProps) {
+  const [playedSeconds, setPlayedSeconds] = useState(0);
+
+  useVideoScriptSync({ playedSeconds, scriptParagraphs });
   return (
     <div className='fixed left-0 top-[52px] z-50 h-custom-video-md w-full md:h-[424px] desktop:static desktop:mb-5 desktop:h-[294px] desktop:w-[533px]'>
       <ReactPlayer
@@ -23,6 +24,7 @@ export default function VideoPlayer({
         progressInterval={100}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
+        onProgress={({ playedSeconds }) => setPlayedSeconds(playedSeconds)}
         playing={playing}
       />
     </div>
