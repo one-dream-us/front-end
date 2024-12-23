@@ -28,3 +28,12 @@ export function getToastStyles(type: string) {
       };
   }
 }
+export function formatReadCount(n: string) {
+  const number = Number(n);
+  if (number < 10000) {
+    return `${number.toLocaleString()}`;
+  } else {
+    const formatted = (number / 10000).toFixed(1);
+    return `${formatted}만`;
+  }
+}
