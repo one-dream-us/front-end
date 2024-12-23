@@ -24,6 +24,7 @@ export default function ContentDetail() {
           playerRef={playerRef}
           setPlaying={setPlaying}
           playing={playing}
+          scriptParagraphs={contentDetails.scriptParagraphs}
         />
         <div className='flex flex-col desktop:h-[500px] desktop:w-[628px] desktop:overflow-y-scroll desktop:pr-6'>
           <ContentSummary summary={contentDetails.summaryText} />
