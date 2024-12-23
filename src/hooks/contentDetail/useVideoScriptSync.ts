@@ -66,9 +66,8 @@ export const useVideoScriptSync = ({
           window.scrollTo(0, scrollY);
         }, 400);
       } else {
-        const threshold = isTablet ? 0.3 : 0.37;
-        const targetPosition =
-          element.getBoundingClientRect().top + window.scrollY - window.innerHeight * threshold;
+        const threshold = isTablet ? 480 : 270;
+        const targetPosition = element.getBoundingClientRect().top + window.scrollY - threshold;
         window.scrollTo({
           top: targetPosition,
           behavior: 'smooth',

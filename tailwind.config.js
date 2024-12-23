@@ -41,12 +41,7 @@ export default {
         view: '#FBFBFB',
         'view-bg': '#C2C2C2',
       },
-      height: {
-        'custom-video-md': 'calc(212px + ((424 - 212) * ((100vw - 375px) / (768 - 375))))',
-      },
-      margin: {
-        'custom-video-md': 'calc(230px + ((424 - 212) * ((100vw - 375px) / (768 - 375))))',
-      },
+
       screens: {
         desktop: { min: '1440px' },
       },
