@@ -1,21 +1,25 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
-export default function useMarkEvent(
-  handleMouseOver: (event: MouseEvent) => void,
-  handleMouseLeave: (event: MouseEvent) => void,
-) {
+export default function useMarkEvent(handleClick: (event: MouseEvent) => void) {
+  const memoizedHandleClick = useCallback(
+    (event: MouseEvent) => {
+      event.stopPropagation();
+      handleClick(event);
+    },
+    [handleClick],
+  );
+
   useEffect(() => {
     const marks = document.querySelectorAll('mark');
+
     marks.forEach((mark) => {
-      mark.addEventListener('mouseenter', handleMouseOver);
-      mark.addEventListener('mouseleave', handleMouseLeave);
+      mark.addEventListener('click', memoizedHandleClick);
     });
 
     return () => {
       marks.forEach((mark) => {
-        mark.removeEventListener('mouseenter', handleMouseOver);
-        mark.removeEventListener('mouseleave', handleMouseLeave);
+        mark.removeEventListener('click', memoizedHandleClick);
       });
     };
-  }, [handleMouseOver, handleMouseLeave]);
+  }, [memoizedHandleClick]);
 }

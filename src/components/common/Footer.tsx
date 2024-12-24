@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className='desktop:h-[120px] flex h-[140px] w-full items-center justify-center bg-custom-gray-lighter px-4 text-custom-gray-dark md:px-6'>
-      <div className='desktop:items-end flex h-[79px] w-full items-center justify-between sm:max-w-[720px] md:h-[85px] md:max-w-[1186px]'>
+    <footer className='flex h-[140px] w-full items-center justify-center bg-custom-gray-lighter px-4 text-custom-gray-dark md:px-6 desktop:h-[120px] desktop:px-0'>
+      <div className='flex h-[79px] w-full items-center justify-between md:h-[85px] md:items-end desktop:w-[1440px] desktop:px-[129px]'>
         <div className='flex w-[165px] flex-col gap-y-2'>
           <img src={logoWithName} alt='이게 머니 로고' className='h-[56px] w-[76px]' />
           <a
@@ -16,10 +16,15 @@ export default function Footer() {
           </a>
         </div>
         <nav>
-          <ul className='desktop:flex desktop:gap-x-10 gap-y-2'>
+          <ul className='gap-y-2 md:flex md:gap-x-10 md:gap-y-0'>
             {FooterMenuList.map((item) => (
               <li key={item.id}>
-                <Link to={item.to} className='text-[11px] font-medium underline'>
+                <Link
+                  to={item.to}
+                  className='text-[11px] underline'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   {item.title}
                 </Link>
               </li>

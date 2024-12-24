@@ -14,8 +14,8 @@ export default function HomePopularContents() {
   );
   if (isLoading) return <HomePopularcontentsSkeleton />;
   return (
-    <div className='pl-4 md:pl-6 desktop:pl-[129px]'>
-      <h1 className='mb-5 text-lg font-bold md:text-xl desktop:text-[22px]'>인기 콘텐츠</h1>
+    <div className='pl-4 md:pl-6 desktop:m-auto desktop:max-w-[1440px] desktop:pl-[129px]'>
+      <h1 className='mb-5 text-lg font-medium md:text-xl desktop:text-[22px]'>인기 콘텐츠</h1>
 
       <div className='inline-flex w-full items-center gap-x-3 overflow-x-auto overflow-y-hidden'>
         {contents?.map((item) => (
@@ -34,12 +34,15 @@ export default function HomePopularContents() {
               <KeywordTags tags={item.tags} />
 
               <div className='min-h-[56px]'>
-                <h2 className='mb-1 mt-2 line-clamp-2 text-lg font-bold'>{item.title}</h2>
+                <h2 className='mb-1 mt-2 line-clamp-2 text-lg font-medium tracking-[-2%]'>
+                  {item.title}
+                </h2>
               </div>
-              <div className='h-[60px] w-full'>
-                <span className='line-clamp-3 text-sm text-custom-black'>{item.summaryText}</span>
-              </div>
-              <ScrapDateNCount date={formatDate(item.createdAt)} scrapCount={item.scrapCount} />
+              <p
+                dangerouslySetInnerHTML={{ __html: item.summaryText }}
+                className='mb-2 line-clamp-3 h-[60px] w-full text-sm tracking-[-2%] text-custom-black'
+              />
+              <ScrapDateNCount date={formatDate(item.createdAt)} scrapCount={item.viewCount} />
             </div>
           </Link>
         ))}

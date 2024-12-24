@@ -20,7 +20,8 @@ export default function useScrapedContents() {
       navigate('/login');
     }
   }
+  const scrapCnt = data?.scrapCnt ?? 0;
+  const scrapedContents = data?.contentScraps ?? [];
 
-  const scrapedContents = data.contentScraps;
-  return { scrapedContents, refetch, isLoading };
+  return { scrapCnt, scrapedContents, refetch, isLoading };
 }

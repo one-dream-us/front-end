@@ -1,17 +1,19 @@
 import DeleteModal from './edit/DeleteModal';
 import useScrapModalHandlers from '@/hooks/myScrap/useScrapModalHandlers';
-import CompleteModal from './edit/CompleteModal';
 import { myScrapMenu } from '@/types/types';
 
-export default function ScrapedItemModals({ itemName }: { itemName: myScrapMenu }) {
-  const { isDelModalOpen, isComModalOpen, handleDeleteAction } = useScrapModalHandlers(itemName);
+export default function ScrapedItemModals({ activeMenu }: { activeMenu: myScrapMenu }) {
+  const { isDelModalOpen, handleDeleteAction } = useScrapModalHandlers(activeMenu);
 
   return (
     <>
       {isDelModalOpen && (
-        <DeleteModal isOpen={isDelModalOpen} onDelete={handleDeleteAction} itemName={itemName} />
+        <DeleteModal
+          isOpen={isDelModalOpen}
+          onDelete={handleDeleteAction}
+          activeMenu={activeMenu}
+        />
       )}
-      {isComModalOpen && <CompleteModal isOpen={isComModalOpen} itemName={itemName} />}
     </>
   );
 }

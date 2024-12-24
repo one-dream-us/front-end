@@ -5,13 +5,18 @@ import { useNavigate } from 'react-router-dom';
 export default function useScrapedTerms() {
   const navigate = useNavigate();
 
-  const { data, error, refetch, isLoading } = useQuery({
+  const {
+    data,
+    error,
+    refetch: reloadScrapedTerms,
+    isLoading,
+  } = useQuery({
     queryKey: ['scrapedTerms'],
     queryFn: scrapApi.getScrapedTerms,
   });
 
   if (isLoading) {
-    return { scrapedTerms: [], refetch };
+    return { scrapedTerms: [], reloadScrapedTerms };
   }
 
   if (error) {
@@ -21,7 +26,7 @@ export default function useScrapedTerms() {
     }
   }
 
-  const scrapedTerms = data.dictionaryScraps;
+  const scrapedTerms = data.dictionaryScraps ?? [];
 
-  return { scrapedTerms, refetch, isLoading };
+  return { scrapedTerms, reloadScrapedTerms, isLoading };
 }

@@ -4,8 +4,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#00DE5A',
-        secondary: '#03C75A',
+        primary: '#79FF8D',
+        secondary: '#FFED85',
+        'secondary-hover': '#A7FFB4',
         'custom-black': '#1A1A1A',
         'custom-green-light': '#92DE9E',
         'custom-green': '#5BBF6A',
@@ -27,18 +28,20 @@ export default {
         'custom-gray-300': '#e0e0e0',
         'custom-gray-200': '#eeeeee',
         'custom-gray-100': '#f5f5f5',
+        'custom-gray-h': '#4D4D4D',
+        'custom-gray-light-h': '#CBCBCB',
         'custom-kakao-yellow': '#FEE500',
         'custom-green-money': '#79FF8D',
         'hover-30': '#CBCBCB',
         'hover-80': '#4D4D4D',
         'green-hover': '#A7FFB4',
+        modal: '#3E3E3E',
+        'custom-black-light': '#202020',
+        edit: '#D3D3D3',
+        view: '#FBFBFB',
+        'view-bg': '#C2C2C2',
       },
-      height: {
-        'custom-video-md': 'calc(212px + ((424 - 212) * ((100vw - 375px) / (768 - 375))))',
-      },
-      margin: {
-        'custom-video-md': 'calc(230px + ((424 - 212) * ((100vw - 375px) / (768 - 375))))',
-      },
+
       screens: {
         desktop: { min: '1440px' },
       },
@@ -47,7 +50,29 @@ export default {
         login: '0px 6px 12px rgba(0, 0, 0, 0.3)',
       },
       backgroundImage: {
-        checked: "url('@/assets/icons/check.svg')",
+        unchecked: "url('@/assets/icons/icon_checkbox_false.svg')",
+        checked: "url('@/assets/icons/icon_checkbox_true.svg')",
+        play: "url('@/assets/icons/video_btn_style=main.svg')",
+        'play-hover': "url('@/assets/icons/video_btn_style=hover.svg')",
+        'play-disabled': "url('@/assets/icons/video_btn_style=disabled.svg')",
+      },
+      lineHeight: {
+        170: '1.7',
+        120: '1.2',
+      },
+      animation: {
+        'toast-slide-in': 'toastSlideIn 0.1s ease-out forwards',
+        'toast-slide-out': 'toastSlideOut 0.1s ease-in forwards',
+      },
+      keyframes: {
+        toastSlideIn: {
+          '0%': { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+        toastSlideOut: {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(100%)' },
+        },
       },
     },
   },

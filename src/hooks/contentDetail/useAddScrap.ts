@@ -1,18 +1,28 @@
 import { useMutation } from '@tanstack/react-query';
 import scrapApi from '@/services/scrapApi';
 import useScrapedContents from '../scrap/useScrapedContents';
+import useLoginModalStore from '@/store/useLoginModalStore';
+import useScrappedConStore from '@/store/useScrappedConStore';
 
 export default function useAddScrap(contentId: number) {
-  const { refetch } = useScrapedContents();
+  const { refetch: refetchScrapedContents } = useScrapedContents();
+  const setIsLoginModalOpen = useLoginModalStore((state) => state.setIsLoginModalOpen);
+  const setIsScrapped = useScrappedConStore((state) => state.setIsScrapped);
 
   const mutation = useMutation({
     mutationFn: async () => await scrapApi.addScrapContent(contentId),
     onSuccess: () => {
-      console.log('스크랩 콘텐츠 추가 성공');
-      refetch();
+      setIsScrapped(true);
+      refetchScrapedContents();
     },
+
     onError: (error: Error) => {
-      console.error('스크랩 콘텐츠 추가 실패:', error);
+      if (error) {
+        const apiError = error as unknown as ApiError;
+        if (apiError?.errorCode === 'NEED_LOGIN') {
+          setIsLoginModalOpen(true);
+        }
+      }
     },
   });
 

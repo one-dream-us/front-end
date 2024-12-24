@@ -1,23 +1,38 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from './Router';
+import Toast from './components/common/Toast';
 import './index.css';
+import LoginModal from './components/common/LoginModal';
+import useLoginModalStore from './store/useLoginModalStore';
+import TrackRoute from './components/common/TrackRoute';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import useLoginConfirmModalState from './store/login/useLoginConfirmModalStore';
+import LoginConfirmModal from './components/common/LoginConfirmModal';
 
 const App = (): JSX.Element => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        refetchOnWindowFocus: false, // 창 포커스 시 재요청 비활성화
-        staleTime: 5 * 60 * 1000, // 데이터 유효 시간을 5분으로 설정, 최초 실행 5분 후 서버에 데이터 재요청
-        retry: 1, // 쿼리함수가 error를 throw 시 한번만 재요청
+        refetchOnWindowFocus: false,
+        staleTime: 5 * 60 * 1000,
+        retry: 1,
       },
     },
   });
+  const isLoginModalOpen = useLoginModalStore((state) => state.isLoginModalOpen);
+  const { isOpen: isLoginConfirmModalOpen } = useLoginConfirmModalState();
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
+        <TrackRoute />
         <AppRoutes />
+        <Toast />
+        {isLoginModalOpen && <LoginModal />}
+        {isLoginConfirmModalOpen && <LoginConfirmModal />}
       </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };

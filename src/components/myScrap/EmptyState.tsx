@@ -1,31 +1,34 @@
 import Button from '@/components/common/Button';
 import { myScrapMenu } from '@/types/types';
 import { useNavigate } from 'react-router-dom';
+import EmptyTerm from '@/assets/this_is_money_imgs/img_webp/image_for_emptyword.webp';
+import EmptyContent from '@/assets/this_is_money_imgs/img_webp/image_for_emptyscrap.webp';
 
 export default function EmptyState({ activeMenu }: { activeMenu: myScrapMenu }) {
-  const isScrap = activeMenu === '스크랩';
+  const isScrap = activeMenu === '콘텐츠';
   const navigate = useNavigate();
 
   return (
-    <div className='flex w-full flex-col items-center'>
-      <div className='mt-[72px] min-h-[176px] w-[200px]'>
-        <p className='text-center text-sm'>
-          {isScrap ? '스크랩함이 비었어요!' : '단어장이 비었어요!'}
-        </p>
-        <img
-          src={isScrap ? 'https://placehold.co/200x120' : 'https://placehold.co/200x120'}
-          alt={
-            isScrap
-              ? '스크랩이 비어있는 상태를 나타내는 이미지'
-              : '단어장이 비어있는 상태를 나타내는 이미지'
-          }
-          className='mb-[88px] mt-8'
+    <div className='mb-[60px] flex w-[352px] flex-col desktop:ml-[352px]'>
+      <div className='flex w-full flex-col items-center'>
+        <div className='mb-[88px] mt-[72px] flex w-[200px] flex-col gap-y-8'>
+          <p className='letter text-center -tracking-[0.01em] text-custom-black-light md:text-sm desktop:text-lg desktop:font-medium desktop:text-black'>
+            {isScrap ? '콘텐츠함이 비었어요!' : '단어장이 비었어요!'}
+          </p>
+          <img
+            src={isScrap ? EmptyContent : EmptyTerm}
+            alt={
+              isScrap
+                ? '콘텐츠함이 비어있는 상태를 나타내는 이미지'
+                : '단어장이 비어있는 상태를 나타내는 이미지'
+            }
+          />
+        </div>
+        <Button
+          text={isScrap ? '콘텐츠 모으러 가기' : '단어 주우러 가기'}
+          onClick={() => navigate('/contents')}
         />
       </div>
-      <Button
-        text={isScrap ? '콘텐츠 모으러 가기' : '단어 주우러 가기'}
-        onClick={() => navigate('/contents')}
-      />
     </div>
   );
 }

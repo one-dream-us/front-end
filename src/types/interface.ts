@@ -1,3 +1,6 @@
+import ReactPlayer from 'react-player';
+import { RefObject } from 'react';
+
 export interface ContentCardTypes {
   id: number;
   thumbnailSrc: string;
@@ -23,26 +26,29 @@ export interface ToastProps {
   setIsComModalOpen: (isComModalOpen: boolean) => void;
 }
 
+type Tag = {
+  tagValue: string;
+  sequence: number | null;
+};
+
 // My Scrap
 export interface ScrapedContentData {
   scrapId: number;
-  content: {
-    id: number;
-    title: string;
-    contentUrl: string;
-    thumbnailUrl: string;
-    createdAt: string;
-    author: 'string';
-  };
+  contentId: number;
+  contentTitle: string;
+  thumbnailUrl: string;
+  createdAt: string;
+  summaryText: string;
+  tags: Tag[];
 }
 
 export interface ScrapedTermData {
+  id: number;
   scrapId: number;
-  dictionary: {
-    id: number;
-    term: string;
-    details: string;
-  };
+  dictionaryId: number;
+  term: string;
+  details: string;
+  contentId: number;
 }
 
 export interface UserInfoData {
@@ -68,6 +74,7 @@ export interface ContentDetail {
   summaryText: string;
   author: string;
   scriptParagraphs: ScriptParagraph[];
+  videoId: string;
 }
 
 export interface ScriptParagraph {
@@ -81,6 +88,22 @@ export interface Dictionary {
   id: number;
   term: string;
   details: string;
+  scrapped: boolean;
+}
+
+export interface ScrapClickProps {
+  isScrapped: boolean;
+  reloadContentDetails: () => void;
+  deleteScrapTerm: () => void;
+  addScrapTerm: () => void;
+}
+
+export interface ScriptNTimeProps {
+  id: string;
+  time: string;
+  script: string;
+  onClick: () => void;
+  dictionaries: Dictionary[];
 }
 
 export interface ContentCardData extends Omit<ContentDetail, 'author' | 'scriptParagraphs'> {
@@ -92,4 +115,42 @@ export interface ContentListData {
   hasNext: boolean;
   nextCursor: any;
   totalElements: number;
+}
+
+export interface ImgData {
+  webp: string;
+  png: string;
+}
+
+export interface TooltipProps {
+  tooltip: {
+    content: string;
+    term: string;
+    x: number;
+    y: number;
+    isScrapped: boolean;
+    index: number | null;
+  };
+  setTooltip: (value: {
+    content: string;
+    term: string;
+    x: number;
+    y: number;
+    isScrapped: boolean;
+    index: number | null;
+  }) => void;
+  dictionary: Dictionary;
+}
+
+export interface ScrappedItem {
+  dictionaryId: number;
+  dictionaryScrapId: number | null;
+  scrapped: boolean;
+}
+export interface VideoPlayerProps {
+  youtubeId: string;
+  playerRef: RefObject<ReactPlayer>;
+  setPlaying: (playing: boolean) => void;
+  playing: boolean;
+  scriptParagraphs: ScriptParagraph[];
 }

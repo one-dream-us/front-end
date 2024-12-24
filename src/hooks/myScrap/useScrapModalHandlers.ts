@@ -1,16 +1,17 @@
-import useMyScrapStore from '@/hooks/myScrap/useMyScrapStore';
+import useMyScrapStore from '@/store/useMyScrapStore';
 import useDeleteScrapCon from '@/hooks/myScrap/useDeleteScrapCon';
 import useDeleteScrapTerm from '@/hooks/myScrap/useDeleteScrapTerm';
 import { myScrapMenu } from '@/types/types';
-import { handleDelete } from '@/handlers/myScrap/handleDelete';
+import useToastStore from '@/store/useToastStore';
+import { useAuthCheckQuery } from '../auth/useAuthCheckQuery';
 
-const useScrapModalHandlers = (itemName: myScrapMenu) => {
+const useScrapModalHandlers = (activeMenu: myScrapMenu) => {
   const isDelModalOpen = useMyScrapStore((state) => state.isDelModalOpen);
   const setIsDelModalOpen = useMyScrapStore((state) => state.setIsDelModalOpen);
-  const isComModalOpen = useMyScrapStore((state) => state.isComModalOpen);
-  const setIsComModalOpen = useMyScrapStore((state) => state.setIsComModalOpen);
   const selectedIdList = useMyScrapStore((state) => state.selectedIdList);
   const setIsEditing = useMyScrapStore((state) => state.setIsEditing);
+  const showToast = useToastStore((state) => state.showToast);
+  const { isLoading, data } = useAuthCheckQuery();
 
   const { deleteScrapContent } = useDeleteScrapCon({
     selectedIdList,
@@ -20,20 +21,27 @@ const useScrapModalHandlers = (itemName: myScrapMenu) => {
     selectedIdList,
   });
 
-  const handleDeleteAction = () => {
-    handleDelete(itemName, deleteScrapContent, deleteScrapTerm);
+  const handleDeleteAction = (activeMenu: myScrapMenu) => {
     setIsDelModalOpen(false);
-    setIsComModalOpen(true);
+    if (!data || isLoading) {
+      return;
+    }
+
+    if (activeMenu === '단어장') {
+      deleteScrapTerm();
+      showToast('단어가 삭제되었어요.', 'deleteTerm');
+    } else {
+      deleteScrapContent();
+      showToast('콘텐츠가 삭제되었어요.', 'deleteScrap');
+    }
     setIsEditing(false);
   };
 
   return {
     isDelModalOpen,
     setIsDelModalOpen,
-    isComModalOpen,
-    setIsComModalOpen,
     handleDeleteAction,
-    itemName,
+    activeMenu,
   };
 };
 

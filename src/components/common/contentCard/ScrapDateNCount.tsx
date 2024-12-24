@@ -1,3 +1,4 @@
+import { formatReadCount } from '@/utils/commonUtils';
 export default function ScrapDateNCount({
   date,
   scrapCount,
@@ -6,10 +7,10 @@ export default function ScrapDateNCount({
   scrapCount: string;
 }) {
   return (
-    <div className='flex h-[14px] items-center text-xs text-gray-400'>
+    <div className='flex h-[14px] items-center text-xs leading-[120%] tracking-[-2%] text-custom-gray-400'>
       <span>{date}</span>
-      <span className='mx-1 flex h-[2px] w-[2px] items-center justify-center rounded-full bg-gray-400'></span>
-      <span>조회수 {scrapCount}</span>
+      <span className='mx-1 flex h-[2px] w-[2px] items-center justify-center rounded-full bg-custom-gray-400'></span>
+      <span>읽음 {formatReadCount(scrapCount)}</span>
     </div>
   );
 }

@@ -4,5 +4,14 @@
 
 :root {
   font-family: 'Spoqa Han Sans Neo', sans-serif;
-  letter-spacing: '-0.2px';
+}
+input {
+  -webkit-border-radius: 0;
+  -webkit-appearance: none;
+}
+body {
+  overflow-y: scroll;
+}
+body {
+  @apply leading-normal tracking-[-2%];
 }

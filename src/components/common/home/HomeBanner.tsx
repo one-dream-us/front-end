@@ -1,17 +1,19 @@
+import banner_mobile from '@/assets/imgs_v2/banner_mobile.png';
+import banner_tablet from '@/assets/imgs_v2/banner_tablet.png';
+import banner_web from '@/assets/imgs_v2/banner_web.png';
 export default function HomeBanner() {
   return (
-    <section className='desktop:mb-[80px] desktop:h-[502px] mb-[40px] flex h-[200px] w-full items-center justify-start bg-custom-gray-light px-4 md:mb-[60px] md:h-[268px] md:justify-end md:px-6'>
-      <div className='desktop:h-[193px] h-[90px] w-[278px] md:h-[174px] md:w-[444px]'>
-        <h3 className='text-sm text-custom-gray-600'>Our Mission</h3>
-        <h1 className='text-[22px] font-extrabold md:mb-3'>
-          투자를 매일 쉽고 재미있게 <br /> 데일리 투자 스터디를 돕습니다.
-        </h1>
-        <span className='hidden text-sm text-custom-black md:block'>
-          친구따라 투자에 나선 나, 결과는 실패! 투자에는 성공 방정식이 없어요. <br />
-          실패와 성공을 반복하며 나만의 방식을 찾아갈 뿐. <br />
-          그렇게 투자의 기초 용어부터 재미있게 배워보고자 만들어진 '이게 MONEY'
-        </span>
+    <div className='mb-[40px] md:mb-[60px] desktop:mb-[80px]'>
+      {' '}
+      <div className='bg-custom-cream-light'>
+        <img src={banner_mobile} className='block px-4 py-5 md:hidden' alt='' />
+        <img src={banner_tablet} className='hidden px-4 py-5 md:block desktop:hidden' alt='' />
+        <img
+          src={banner_web}
+          className='m-auto hidden h-full max-w-[1440px] px-[129px] desktop:block'
+          alt=''
+        />
       </div>
-    </section>
+    </div>
   );
 }
