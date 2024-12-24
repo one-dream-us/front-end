@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import MenuWithUnderbar from '@/components/myScrap/MenuWithUnderbar';
 import useMyScrap from '@/hooks/myScrap/useMyScrap';
 import EmptyState from '@/components/myScrap/EmptyState';
@@ -8,20 +8,14 @@ import DesktopMenu from '@/components/myScrap/DesktopMenu';
 import EmptyTerm from '@/assets/this_is_money_imgs/img_webp/image_for_emptyword.webp';
 import EmptyContent from '@/assets/this_is_money_imgs/img_webp/image_for_emptyscrap.webp';
 import useImagePreloader from '@/hooks/common/useImagePreloader';
+import useTimeOut from '@/hooks/common/useTimeOut';
 
 export default function MyScrap() {
   const { activeMenu, setActiveMenu, contentList, termsList } = useMyScrap();
   const [isDelayedLoading, setIsDelayedLoading] = useState(true);
 
   useImagePreloader([EmptyTerm, EmptyContent]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsDelayedLoading(false);
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, []);
+  useTimeOut(() => setIsDelayedLoading(false), 100);
 
   if (isDelayedLoading) {
     return <div />;
