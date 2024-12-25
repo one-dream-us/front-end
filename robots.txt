@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+Sitemap: https://thisismoney.site/sitemap.xml
