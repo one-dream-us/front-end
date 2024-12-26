@@ -1,12 +1,24 @@
 import { useEffect } from 'react';
 
-const useImagePreloader = (imageSources: string[]) => {
+const useImagePreloader = (imageSrcs: string[]) => {
   useEffect(() => {
-    imageSources.forEach((src) => {
-      const img = new Image();
-      img.src = src;
+    const links: HTMLLinkElement[] = [];
+
+    imageSrcs.forEach((src) => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = src;
+      document.head.appendChild(link);
+      links.push(link);
     });
-  }, [imageSources]);
+
+    return () => {
+      links.forEach((link) => {
+        document.head.removeChild(link);
+      });
+    };
+  }, [imageSrcs]);
 };
 
 export default useImagePreloader;
