@@ -13,6 +13,7 @@ export default function PlayImgBtn({
 
   return (
     <button
+      aria-label='영상 보러가기'
       type='button'
       onClick={() => {
         navigate(`/content/${contentId}`, { state: { scrollTo: `mark mark-${dictionaryId}` } });
