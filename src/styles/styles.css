@@ -2,5 +2,5 @@
   @apply rounded-[10px] bg-custom-gray-200 text-xs transition hover:text-custom-gray-h md:hover:bg-edit;
 }
 .checkbox {
-  @apply h-[17px] w-[17px] bg-unchecked bg-contain checked:bg-checked;
+  @apply w-5 h-5 bg-contain bg-unchecked checked:bg-checked;
 }
