@@ -8,10 +8,7 @@ export default function Footer() {
       <div className='flex h-[79px] w-full items-center justify-between md:h-[85px] md:items-end desktop:w-[1440px] desktop:px-[129px]'>
         <div className='flex w-[165px] flex-col gap-y-2'>
           <img src={logoWithName} alt='이게 머니 로고' className='h-[56px] w-[76px]' />
-          <a
-            className='ml-1 cursor-pointer text-[11px]'
-            onClick={() => (window.location.href = 'mailto:thisismoney.241209@gmail.com')}
-          >
+          <a className='ml-1 cursor-pointer text-[11px]' href='mailto:thisismoney.241209@gmail.com'>
             thisismoney.241209@gmail.com
           </a>
         </div>
