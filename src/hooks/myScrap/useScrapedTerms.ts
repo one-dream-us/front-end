@@ -2,22 +2,14 @@ import { useQuery } from '@tanstack/react-query';
 import scrapApi from '@/services/scrapApi';
 import { useNavigate } from 'react-router-dom';
 
-export default function useScrapedTerms() {
+export default function useScrapedTerms(isLogin: boolean = true) {
   const navigate = useNavigate();
 
-  const {
-    data,
-    error,
-    refetch: reloadScrapedTerms,
-    isLoading,
-  } = useQuery({
+  const { data, error, refetch, isLoading } = useQuery({
     queryKey: ['scrapedTerms'],
     queryFn: scrapApi.getScrapedTerms,
+    enabled: isLogin,
   });
-
-  if (isLoading) {
-    return { scrapedTerms: [], reloadScrapedTerms };
-  }
 
   if (error) {
     const apiError = error as unknown as ApiError;
@@ -26,7 +18,11 @@ export default function useScrapedTerms() {
     }
   }
 
-  const scrapedTerms = data.dictionaryScraps ?? [];
+  const scrapedTerms = data?.dictionaryScraps ?? [];
 
-  return { scrapedTerms, reloadScrapedTerms, isLoading };
+  return {
+    scrapedTerms: isLogin ? scrapedTerms : [],
+    reloadScrapedTerms: isLogin ? refetch : async () => Promise.resolve(),
+    isLoading,
+  };
 }

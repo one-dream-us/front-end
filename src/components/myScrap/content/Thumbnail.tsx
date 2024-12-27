@@ -12,11 +12,11 @@ export default function Thumbnail({ src, alt, id }: { src: string; alt: string; 
           <Checkbox id={id} />
         </div>
       )}
-      <img src={src} alt={alt} className='h-full w-full rounded-[4px]' />
+      <img src={src} alt={alt} className='aspect-video h-full w-full rounded-[4px]' />
       {!isEditing && (
         <img
           src={playIcon}
-          className='absolute right-1 top-1 flex w-6'
+          className='flex absolute top-1 right-1 w-6'
           alt='영상 다시보기 아이콘'
         />
       )}
