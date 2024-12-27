@@ -20,7 +20,7 @@ const AppRoutes = (): JSX.Element => {
     <Suspense
       fallback={
         <div className='absolute left-0 top-0 flex h-screen w-full items-center justify-center'>
-          <Loader size={20} />
+          <Loader size={5} />
         </div>
       }
     >
