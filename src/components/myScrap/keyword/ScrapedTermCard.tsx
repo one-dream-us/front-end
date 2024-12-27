@@ -17,11 +17,9 @@ export default function ScrapedTermCard({
 
   return (
     <article className='flex w-full flex-col gap-y-2 rounded-[10px] border border-custom-gray-200 p-4 text-custom-gray-dark md:w-[631px] desktop:w-[722px]'>
-      <div className='flex justify-between'>
-        <div className='flex items-center gap-x-2'>
-          {isEditing && <Checkbox id={detail.scrapId} />}
-          <span className='font-medium md:text-sm'>{detail.term}</span>
-        </div>
+      <div className='flex gap-x-2 items-center h-6'>
+        {isEditing && <Checkbox id={detail.scrapId} />}
+        <span className='font-medium md:text-sm'>{detail.term}</span>
         <IconBtn isExpanded={isExpanded} id={detail.scrapId} setExpandedItems={setExpandedItems} />
       </div>
       <p className={`text-xs leading-5 ${isExpanded ? 'block' : 'hidden'} md:block`}>
