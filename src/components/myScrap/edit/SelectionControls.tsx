@@ -15,19 +15,21 @@ export default function SelectionControls() {
   const actionBtnTexts = ['수정취소', '지우기'];
 
   return (
-    <div className='mt-5 flex h-6 items-center justify-between desktop:mt-0'>
-      <div className='flex items-center gap-x-1'>
-        <input
-          type='checkbox'
-          checked={isAllChecked}
-          onChange={(e) => {
-            handleCheckAllChange(e, setIsAllChecked, allIdList, setSelectedIdList);
-          }}
-          className='checkbox'
-        />
-        <label className='text-xs text-custom-gray-700'>전체 선택</label>
+    <div className='flex justify-between items-center mt-5 h-6 desktop:mt-0'>
+      <div className='flex gap-x-1 items-center'>
+        <label className='h-5'>
+          <input
+            type='checkbox'
+            checked={isAllChecked}
+            onChange={(e) => {
+              handleCheckAllChange(e, setIsAllChecked, allIdList, setSelectedIdList);
+            }}
+            className='checkbox'
+          />
+        </label>
+        <span className='text-xs text-custom-gray-700'>전체 선택</span>
       </div>
-      <div className='flex h-full gap-x-2'>
+      <div className='flex gap-x-2 h-full'>
         {actionBtnTexts.map((text, index) => (
           <button
             key={text}
