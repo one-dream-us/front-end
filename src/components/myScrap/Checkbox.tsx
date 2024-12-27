@@ -1,17 +1,24 @@
 import { handleConCheckChange } from '@/handlers/myScrap/handleEdits';
 import { useSelectedIdList } from '@/hooks/myScrap/useSelectedIdList';
+import { myScrapMenu } from '@/types/types';
 
-export default function Checkbox({ id }: { id: number }) {
+export default function Checkbox({
+  id,
+  activeMenu = '단어장',
+}: {
+  id: number;
+  activeMenu?: myScrapMenu;
+}) {
   const { selectedIdList, setSelectedIdList, allIdList, setIsAllChecked } = useSelectedIdList();
   return (
-    <label className='h-[18px]'>
+    <label className={`h-[18px]`}>
       <input
         type='checkbox'
         checked={selectedIdList.includes(id)}
         onChange={(e) =>
           handleConCheckChange(e, selectedIdList, id, setSelectedIdList, allIdList, setIsAllChecked)
         }
-        className='checkbox'
+        className={`checkbox ${activeMenu === '콘텐츠' ? 'desktop:!h-[22px] desktop:!w-[22px]' : ''}`}
       />
     </label>
   );
