@@ -14,6 +14,19 @@ import LinkUpload from './pages/admin/contentUpload/LinkUpload';
 import AdminHome from './pages/admin/home/AdminHome';
 
 const AppRoutes = (): JSX.Element => {
+  // const Login = lazy(() => import('./pages/Login'));
+  // const Home = lazy(() => import('./pages/Home'));
+  // const MyScrap = lazy(() => import('./pages/MyScrap'));
+  // const ContentDetail = lazy(() => import('./pages/ContentDetail'));
+  // const Profile = lazy(() => import('./pages/Profile'));
+  // const WithDrawSuccess = lazy(() => import('./pages/WithDrawSuccess'));
+  // const ContentList = lazy(() => import('./pages/ContentList'));
+  // const NotFound = lazy(() => import('./pages/NotFound'));
+  // const Layout = lazy(() => import('./components/common/Layout'));
+  // const ProtectedRoute = lazy(() => import('./components/common/ProtectedRoute'));
+  // const AdminLayout = lazy(() => import('./components/admin/common/AdminLayout'));
+  // const LinkUpload = lazy(() => import('./pages/admin/contentUpload/LinkUpload'));
+  // const AdminHome = lazy(() => import('./pages/admin/home/AdminHome'));
   return (
     <Routes>
       <Route element={<Layout />}>

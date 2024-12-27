@@ -7,9 +7,9 @@ export default function ServiceIntroBanner() {
       <h1 className='mb-2 text-lg font-medium text-custom-yellow-light'>
         우리의 시작, Our Beginning
       </h1>
-      <h3 className='mb-5 text-sm text-custom-gray-400'>
+      <h2 className='mb-5 text-sm text-custom-gray-400'>
         투자의 기초 용어부터 재미있게 배워보고자 만들어진 <br /> 이게 MONEY, 그 시작이 궁금하다면?
-      </h3>
+      </h2>
       <Link to='https://myinsightbox.notion.site/bb74ba586e68401ebcc2b97e093bbc1d' target='_blank'>
         <button className='flex h-[40px] w-[180px] items-center justify-center gap-x-1 rounded-3xl bg-white text-sm font-medium transition-all duration-200 hover:opacity-65'>
           <img className='h-[18px] w-[18px]' src={logo} alt='' />팀 노션 바로가기

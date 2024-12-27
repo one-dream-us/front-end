@@ -13,5 +13,5 @@ body {
   overflow-y: scroll;
 }
 body {
-  @apply leading-normal tracking-[-2%];
+  @apply leading-normal tracking-[-0.32px];
 }

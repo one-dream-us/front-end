@@ -6,6 +6,7 @@ import { ContentCardData } from '@/types/interface';
 import { formatDate } from '@/utils/myScrapUtils';
 import { Link } from 'react-router-dom';
 import HomePopularcontentsSkeleton from './HomePopularcontentsSkeleton';
+import LazyImage from '@/components/common/LazyImage';
 
 export default function HomePopularContents() {
   const { data: contents, isLoading } = useHomeContentsQuery<ContentCardData[]>(
@@ -24,7 +25,12 @@ export default function HomePopularContents() {
             to={`/content/${item.id}`}
             className='max-w-[254px] shrink-0 md:max-w-[260px]'
           >
-            <img
+            {/* <img
+              className='mb-5 h-[140px] w-full rounded-lg md:h-[145px]'
+              src={item.thumbnailUrl}
+              alt={`${item.title} thumbnail`}
+            /> */}
+            <LazyImage
               className='mb-5 h-[140px] w-full rounded-lg md:h-[145px]'
               src={item.thumbnailUrl}
               alt={`${item.title} thumbnail`}
