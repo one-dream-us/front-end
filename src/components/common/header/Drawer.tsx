@@ -91,15 +91,16 @@ export default function Drawer({
 
         <ul className='absolute top-[262px] flex h-[139px] w-[200px] flex-col items-start justify-between text-[22px] font-medium text-custom-gray-medium'>
           {HeaderMenuList.map((item) => (
-            <Link
-              className={
-                item.to === pathname || pathname.includes(item.sub || 'sub') ? 'text-black' : ''
-              }
-              to={item.to}
-              key={item.id}
-            >
-              <li>{item.title}</li>
-            </Link>
+            <li key={item.id}>
+              <Link
+                className={
+                  item.to === pathname || pathname.includes(item.sub || 'sub') ? 'text-black' : ''
+                }
+                to={item.to}
+              >
+                {item.title}
+              </Link>
+            </li>
           ))}
         </ul>
 
