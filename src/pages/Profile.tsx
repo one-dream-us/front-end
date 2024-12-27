@@ -33,9 +33,9 @@ export default function Profile() {
               {isLoading ? (
                 <div className='h-[19] w-[60px] animate-pulse rounded-lg bg-custom-gray-medium'></div>
               ) : (
-                <h3 className='text-center text-lg font-medium text-custom-black'>
+                <h2 className='text-center text-lg font-medium text-custom-black'>
                   {formatUserName(info?.email || '')}
-                </h3>
+                </h2>
               )}
             </div>
 

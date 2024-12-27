@@ -6,7 +6,6 @@ import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
 import profile_main from '@/assets/this_is_money_imgs/img_png/Icon_profile_main.png';
 import profile_active from '@/assets/this_is_money_imgs/img_png/icon_profile_active.png';
 import { useImgHover } from '@/hooks/ui/useImgHover';
-import LoginModal from '../LoginModal';
 import logo from '@/assets/imgs_v2/Logo_Icon+text_32_hor.png';
 import logo_mobile from '@/assets/imgs_v2/main_logo_32.png';
 
@@ -32,8 +31,8 @@ export default function Header() {
             onMouseEnter={logoHover.handleMouseEnter}
             onMouseLeave={logoHover.handleMouseLeave}
           >
-            <img src={logo_mobile} className='block h-[40px] w-[40px] md:hidden' alt='' />
-            <img className='hidden h-[28px] w-[117px] md:block' src={logo} alt='logo' />
+            <img src={logo_mobile} className='block h-[40px] w-[40px] md:hidden' alt='logo-sm' />
+            <img className='hidden h-[28px] w-[117px] md:block' src={logo} alt='logo-md' />
           </Link>
 
           <ul className='hidden items-center justify-center text-custom-gray md:flex md:gap-8 desktop:gap-x-16'>
@@ -51,7 +50,7 @@ export default function Header() {
           </ul>
         </div>
         {data ? (
-          <Link to={'/profile'}>
+          <Link to={'/profile'} aria-label='프로필 버튼으로 이동'>
             {/* desktop */}
             <img
               onMouseEnter={profileHover.handleMouseEnter}
@@ -64,22 +63,26 @@ export default function Header() {
                     ? profile_active
                     : profile_main
               }
-              alt='profileImg'
+              alt='profile-img'
             />
           </Link>
         ) : (
-          <Link to={'/login'} state={{ prevPage: location.href }}>
+          <Link
+            to={'/login'}
+            className={`hidden h-[30px] w-[96px] items-center justify-center rounded-[10px] bg-custom-gray-medium py-2 md:flex ${isLoading ? 'animate-pulse' : 'bg-custom-green-money transition-all duration-200 hover:bg-green-hover'}`}
+            state={{ prevPage: location.href }}
+          >
             {' '}
-            <button
-              className={`hidden h-[30px] w-[96px] items-center justify-center rounded-[10px] bg-custom-gray-medium py-2 md:flex ${isLoading ? 'animate-pulse' : 'bg-custom-green-money transition-all duration-200 hover:bg-green-hover'}`}
-            >
-              {isLoading ? '' : '로그인'}
-            </button>
+            {isLoading ? '' : '로그인'}
           </Link>
         )}
-        <LoginModal />
-        <button onClick={handleShowSlider} className='z-[999] block md:hidden'>
+        <button
+          aria-label='drawer open button'
+          onClick={handleShowSlider}
+          className='z-[999] block md:hidden'
+        >
           <svg
+            role='button'
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
             viewBox='0 0 24 24'
