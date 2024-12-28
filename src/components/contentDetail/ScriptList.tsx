@@ -4,6 +4,9 @@ import { ScriptParagraph } from '@/types/interface';
 import { formatTime } from '@/utils/contentDetailUtils';
 import { RefObject } from 'react';
 import ReactPlayer from 'react-player';
+import useHighlightMarks from '@/hooks/contentDetail/useHighlightMarks';
+import useScrappedStore from '@/store/useScrappedStore';
+import { useScrollToElement } from '@/hooks/contentDetail/useScrollToElement';
 
 export default function ScriptList({
   fullText,
@@ -14,6 +17,10 @@ export default function ScriptList({
   playerRef: RefObject<ReactPlayer>;
   setPlaying: (playing: boolean) => void;
 }) {
+  const scrappedData = useScrappedStore((state) => state.scrappedData);
+  const { elementRefs } = useScrollToElement();
+  useHighlightMarks(scrappedData, elementRefs);
+
   return (
     <div className='md:mb-10 desktop:mb-[37px] desktop:ml-[26px]'>
       {fullText.map((item, index) => {
