@@ -11,8 +11,9 @@ export default function Checkbox({
 }) {
   const { selectedIdList, setSelectedIdList, allIdList, setIsAllChecked } = useSelectedIdList();
   return (
-    <label className='h-5'>
+    <label className='h-5' htmlFor={`checkbox-${id}`}>
       <input
+        id={`checkbox-${id}`}
         type='checkbox'
         checked={selectedIdList.includes(id)}
         onChange={(e) =>
