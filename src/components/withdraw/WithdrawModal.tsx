@@ -1,13 +1,8 @@
 import { useCloseModal } from '@/hooks/ui/useCloseModal';
 import exit_img from '@/assets/imgs_v2/exit_modal.png';
+import authApi from '@/services/authApi';
 
-export default function WithdrawModal({
-  closeModal,
-  handleWithdraw,
-}: {
-  closeModal: () => void;
-  handleWithdraw: () => Promise<void>;
-}) {
+export default function WithdrawModal({ closeModal }: { closeModal: () => void }) {
   useCloseModal(closeModal);
   return (
     <div className='fixed left-0 top-0 z-[1000] flex h-screen w-full items-center justify-center bg-black bg-opacity-60 px-4'>
@@ -32,7 +27,7 @@ export default function WithdrawModal({
             돌아가기
           </button>
           <button
-            onClick={async () => await handleWithdraw()}
+            onClick={authApi.withDraw}
             className='h-[30px] w-[147px] rounded-[4px] bg-custom-gray-dark text-xs text-custom-green-money hover:opacity-80'
           >
             탈퇴하기

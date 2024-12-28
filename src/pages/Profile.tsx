@@ -82,9 +82,7 @@ export default function Profile() {
       >
         회원탈퇴
       </div>
-      {showModal && (
-        <WithdrawModal closeModal={() => setShowModal(false)} handleWithdraw={authApi.withDraw} />
-      )}
+      {showModal && <WithdrawModal closeModal={() => setShowModal(false)} />}
     </div>
   );
 }
