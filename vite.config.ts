@@ -29,6 +29,16 @@ export default ({ mode }: { mode: string }) => {
           drop_debugger: true,
         },
       },
+      rollupOptions: {
+        output: {
+          manualChunks: (id) => {
+            if (id.indexOf('node_modules') !== -1) {
+              const module = id.split('node_modules/').pop()?.split('/')[0];
+              return `vendor-${module}`;
+            }
+          },
+        },
+      },
     },
   });
 };
