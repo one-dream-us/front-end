@@ -8,10 +8,7 @@ export default ({ mode }: { mode: string }) => {
 
   // https://vite.dev/config/
   return defineConfig({
-    plugins: [
-      react(),
-      partytownVite({ dest: path.resolve(__dirname, 'public/~partytown'), debug: true }),
-    ],
+    plugins: [react(), partytownVite({ dest: path.resolve(__dirname, 'public/~partytown') })],
     server: {
       port: 3000,
       proxy: {
