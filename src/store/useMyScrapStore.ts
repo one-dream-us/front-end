@@ -12,20 +12,32 @@ export type MyScrapStoreState = {
   setAllIdList: (allIdList: number[]) => void;
   setIsDelModalOpen: (isDelModalOpen: boolean) => void;
   setIsAllChecked: (isAllChecked: boolean) => void;
+  actions: {
+    reset: () => void;
+  };
 };
 
 const useMyScrapStore = create<MyScrapStoreState>((set) => ({
   isEditing: false,
-  selectedIdList: [] as number[],
-  allIdList: [] as number[],
+  selectedIdList: [],
+  allIdList: [],
   isDelModalOpen: false,
   isAllChecked: false,
 
-  setIsEditing: (isEditing: boolean) => set({ isEditing }),
-  setSelectedIdList: (selectedIdList: number[]) => set({ selectedIdList }),
-  setAllIdList: (allIdList: number[]) => set({ allIdList }),
-  setIsDelModalOpen: (isDelModalOpen: boolean) => set({ isDelModalOpen }),
-  setIsAllChecked: (isAllChecked: boolean) => set({ isAllChecked }),
-}));
+  setIsEditing: (isEditing) => set({ isEditing }),
+  setSelectedIdList: (selectedIdList) => set({ selectedIdList }),
+  setAllIdList: (allIdList) => set({ allIdList }),
+  setIsDelModalOpen: (isDelModalOpen) => set({ isDelModalOpen }),
+  setIsAllChecked: (isAllChecked) => set({ isAllChecked }),
 
+  actions: {
+    reset: () =>
+      set({
+        isEditing: false,
+        selectedIdList: [],
+        allIdList: [],
+        isAllChecked: false,
+      }),
+  },
+}));
 export default useMyScrapStore;

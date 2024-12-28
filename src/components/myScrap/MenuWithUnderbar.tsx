@@ -9,10 +9,7 @@ export default function MenuWithUnderbar({
   activeMenu: myScrapMenu;
   setActiveMenu: (activeMenu: myScrapMenu) => void;
 }) {
-  const setSelectedIdList = useMyScrapStore((state) => state.setSelectedIdList);
-  const setIsAllChecked = useMyScrapStore((state) => state.setIsAllChecked);
-  const setAllIdList = useMyScrapStore((state) => state.setAllIdList);
-  const setIsEditing = useMyScrapStore((state) => state.setIsEditing);
+  const reset = useMyScrapStore((state) => state.actions.reset);
 
   return (
     <ul className='flex h-[44px] w-full border-b border-b-custom-gray-500 md:text-sm desktop:hidden'>
@@ -22,10 +19,7 @@ export default function MenuWithUnderbar({
           key={item}
           onClick={() => {
             setActiveMenu(item);
-            setSelectedIdList([]);
-            setIsAllChecked(false);
-            setAllIdList([]);
-            setIsEditing(false);
+            reset();
           }}
           className={`relative w-1/2 cursor-pointer whitespace-nowrap text-center text-sm font-medium leading-[44px] ${
             activeMenu === item
