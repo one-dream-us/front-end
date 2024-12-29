@@ -1,8 +1,8 @@
 import useTooltipStore from '@/store/useTooltipStore';
 import useMatchedStore from '@/store/useMatchedStore';
 import useScrappedStore from '@/store/useScrappedStore';
-import { useScrollToElement } from './useScrollToElement';
-import useHighlightMarks from './useHighlightMarks';
+import { useScrollToElement } from '../useScrollToElement';
+import useHighlightMarks from '../useHighlightMarks';
 
 export default function useScriptList() {
   const scrappedData = useScrappedStore((state) => state.scrappedData);

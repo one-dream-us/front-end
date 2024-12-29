@@ -4,7 +4,7 @@ import { ScriptParagraph } from '@/types/interface';
 import { formatTime } from '@/utils/contentDetailUtils';
 import { RefObject } from 'react';
 import ReactPlayer from 'react-player';
-import useScriptList from '@/hooks/contentDetail/useScriptList';
+import useScriptList from '@/hooks/contentDetail/logic/useScriptList';
 import Tooltip from './Tooltip';
 
 export default function ScriptList({
