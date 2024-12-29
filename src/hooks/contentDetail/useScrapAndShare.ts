@@ -5,48 +5,43 @@ import useDeleteScrapCon from '@/hooks/myScrap/useDeleteScrapCon';
 import useScrappedConStore from '@/store/useScrappedConStore';
 import useToastStore from '@/store/useToastStore';
 import { ScrapedContentData } from '@/types/interface';
-import { useAuthCheckQuery } from '../auth/useAuthCheckQuery';
 import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
+import useContentStore from '@/store/useContentStore';
+import useTooltipStore from '@/store/useTooltipStore';
+import { useLoginStore } from '@/store/useIsLoginStore';
 
-export default function useScrapAndShare(contentId: number) {
+export default function useScrapAndShare() {
+  const contentId = useContentStore((state) => state.contentId);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
-  const { isLoading, data } = useAuthCheckQuery();
   const showToast = useToastStore((state) => state.showToast);
-  const { scrapedContents } = data ? useScrapedContents() : { scrapedContents: [] };
-  const { addScrapContent } =
-    data && !isLoading ? useAddScrap(contentId) : { addScrapContent: () => {} };
+  const { scrapedContents } = useScrapedContents();
+  const { addScrapContent } = useAddScrap(contentId);
   const isScrapped = useScrappedConStore((state) => state.isScrapped);
   const setIsScrapped = useScrappedConStore((state) => state.setIsScrapped);
+  const { isLogin } = useLoginStore();
   const { setIsOpen, setIsNavigate } = useLoginConfirmModalState();
+  const { tooltip, setTooltip } = useTooltipStore();
 
   useEffect(() => {
-    if (!data) return;
-
     const isAlreadyScrapped = scrapedContents.some(
       (scrap: ScrapedContentData) => scrap.contentId === contentId,
     );
     setIsScrapped(isAlreadyScrapped);
-  }, [scrapedContents, contentId, setIsScrapped, data]);
+  }, [scrapedContents, contentId, setIsScrapped]);
 
   const scrapId = isScrapped
     ? scrapedContents.find((scrap: ScrapedContentData) => scrap.contentId === contentId)?.scrapId
     : null;
 
-  const { deleteScrapContent } =
-    data && !isLoading
-      ? useDeleteScrapCon({
-          selectedIdList: scrapId ? [scrapId] : [],
-        })
-      : { deleteScrapContent: () => {} };
+  const { deleteScrapContent } = useDeleteScrapCon({
+    selectedIdList: scrapId ? [scrapId] : [],
+  });
 
   const toggleScrap = () => {
-    if (!data || isLoading) {
+    if (!isLogin) {
       setIsOpen(true);
       setIsNavigate(false);
-      return;
-    }
-
-    if (isScrapped) {
+    } else if (isScrapped) {
       deleteScrapContent();
       showToast('스크랩이 취소되었어요.', 'deleteScrap');
     } else {
@@ -56,8 +51,11 @@ export default function useScrapAndShare(contentId: number) {
   };
 
   return {
+    contentId,
     isShareModalOpen,
     setIsShareModalOpen,
+    tooltip,
+    setTooltip,
     toggleScrap,
     isScrapped,
   };

@@ -3,8 +3,6 @@ import scrapDIcon from '@/assets/icons/icon_scrap_main.svg';
 import shareIcon from '@/assets/icons/icon_share.svg';
 import useScrapAndShare from '@/hooks/contentDetail/useScrapAndShare';
 import scrappedIcon from '@/assets/icons/icon_scrap_active.svg';
-import useContentStore from '@/store/useContentStore';
-import useTooltipStore from '@/store/useTooltipStore';
 
 export default function ScrapAndShare({
   description,
@@ -15,10 +13,15 @@ export default function ScrapAndShare({
   img: string;
   title: string;
 }) {
-  const contentId = useContentStore((state) => state.contentId);
-  const { isShareModalOpen, setIsShareModalOpen, toggleScrap, isScrapped } =
-    useScrapAndShare(contentId);
-  const { tooltip, setTooltip } = useTooltipStore();
+  const {
+    contentId,
+    isShareModalOpen,
+    setIsShareModalOpen,
+    tooltip,
+    setTooltip,
+    toggleScrap,
+    isScrapped,
+  } = useScrapAndShare();
 
   return (
     <div className='text-gray-dark relative flex h-6 justify-between desktop:h-[31px] desktop:gap-x-2'>
