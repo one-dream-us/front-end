@@ -126,16 +126,12 @@ export interface TooltipProps {
   tooltip: {
     content: string;
     term: string;
-    x: number;
-    y: number;
     isScrapped: boolean;
     index: number | null;
   };
   setTooltip: (value: {
     content: string;
     term: string;
-    x: number;
-    y: number;
     isScrapped: boolean;
     index: number | null;
   }) => void;

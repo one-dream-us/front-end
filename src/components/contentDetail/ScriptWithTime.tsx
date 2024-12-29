@@ -1,10 +1,9 @@
-import { useState } from 'react';
 import useMarkEvent from '@/hooks/contentDetail/useMarkEvent';
 import { tooltipHandlers } from '@/handlers/contentDetail/handleToolTip';
 import { ScriptNTimeProps } from '@/types/interface';
-import Tooltip from './Tooltip';
 import useMatchedStore from '@/store/useMatchedStore';
 import useToastStore from '@/store/useToastStore';
+import useTooltipStore from '@/store/useTooltipStore';
 
 export default function ScriptWithTime({
   id,
@@ -13,17 +12,9 @@ export default function ScriptWithTime({
   onClick,
   dictionaries,
 }: ScriptNTimeProps) {
-  const [tooltip, setTooltip] = useState<{
-    content: string;
-    term: string;
-    x: number;
-    y: number;
-    isScrapped: boolean;
-    index: number | null;
-  }>({ content: '', term: '', x: 0, y: 0, isScrapped: false, index: null });
-  const matched = useMatchedStore((state) => state.matched);
   const setMatched = useMatchedStore((state) => state.setMatched);
   const hideToast = useToastStore((state) => state.hideToast);
+  const { setTooltip } = useTooltipStore();
 
   useMarkEvent((event) => {
     hideToast();
@@ -47,9 +38,6 @@ export default function ScriptWithTime({
         dangerouslySetInnerHTML={{ __html: script }}
         className='text-custom-gray-dark md:text-sm md:leading-170'
       />
-      {tooltip.index !== null && (
-        <Tooltip tooltip={tooltip} setTooltip={setTooltip} dictionary={matched} />
-      )}
     </div>
   );
 }

@@ -11,9 +11,7 @@ export default function Tooltip({ tooltip, setTooltip, dictionary }: TooltipProp
       <div className='flex gap-x-8 self-end mt-6 desktop:mt-auto'>
         <button
           className='text-xs cursor-pointer'
-          onClick={() =>
-            setTooltip({ content: '', term: '', isScrapped: false, x: 0, y: 0, index: null })
-          }
+          onClick={() => setTooltip({ content: '', term: '', isScrapped: false, index: null })}
         >
           닫기
         </button>
