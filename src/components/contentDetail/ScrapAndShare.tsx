@@ -19,6 +19,7 @@ export default function ScrapAndShare({
   const { isShareModalOpen, setIsShareModalOpen, toggleScrap, isScrapped } =
     useScrapAndShare(contentId);
   const { tooltip, setTooltip } = useTooltipStore();
+
   return (
     <div className='text-gray-dark relative flex h-6 justify-between desktop:h-[31px] desktop:gap-x-2'>
       <button
