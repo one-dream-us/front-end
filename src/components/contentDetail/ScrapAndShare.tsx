@@ -3,7 +3,6 @@ import scrapDIcon from '@/assets/icons/icon_scrap_main.svg';
 import shareIcon from '@/assets/icons/icon_share.svg';
 import useScrapAndShare from '@/hooks/contentDetail/useScrapAndShare';
 import scrappedIcon from '@/assets/icons/icon_scrap_active.svg';
-import useContentStore from '@/store/useContentStore';
 
 export default function ScrapAndShare({
   description,
@@ -14,9 +13,15 @@ export default function ScrapAndShare({
   img: string;
   title: string;
 }) {
-  const contentId = useContentStore((state) => state.contentId);
-  const { isShareModalOpen, setIsShareModalOpen, toggleScrap, isScrapped } =
-    useScrapAndShare(contentId);
+  const {
+    contentId,
+    isShareModalOpen,
+    setIsShareModalOpen,
+    tooltip,
+    setTooltip,
+    toggleScrap,
+    isScrapped,
+  } = useScrapAndShare();
 
   return (
     <div className='text-gray-dark relative flex h-6 justify-between desktop:h-[31px] desktop:gap-x-2'>
@@ -40,12 +45,15 @@ export default function ScrapAndShare({
       <button
         className='flex w-[58px] items-center justify-center gap-x-[1px] rounded-lg bg-custom-gray-200 pb-[5.5px] pt-[4.5px] transition-colors hover:bg-custom-gray-light-h hover:text-custom-gray-h desktop:w-[68px]'
         aria-label='공유하기 아이콘'
-        onClick={() => setIsShareModalOpen(true)}
+        onClick={() => {
+          setTooltip({ content: '', term: '', isScrapped: false, index: null });
+          setIsShareModalOpen(true);
+        }}
       >
         <img src={shareIcon} aria-label='공유 아이콘' className='h-[13px] w-3' />
         <span className='ml-0.5 pt-0.5 text-xs desktop:text-sm'>공유</span>
       </button>
-      {isShareModalOpen && (
+      {isShareModalOpen && tooltip.index === null && (
         <ShareModal
           setIsShareModalOpen={setIsShareModalOpen}
           description={description}

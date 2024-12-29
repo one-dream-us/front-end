@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import scrapApi from '@/services/scrapApi';
-import useScrapedContents from '../scrap/useScrapedContents';
+import useScrapedContents from '../../scrap/useScrapedContents';
 import useLoginModalStore from '@/store/useLoginModalStore';
 import useScrappedConStore from '@/store/useScrappedConStore';
 

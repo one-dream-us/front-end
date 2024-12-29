@@ -1,24 +1,22 @@
-import { useEffect } from 'react';
 import useContentId from './useContentId';
-import useContentDetails from './useContentDetails';
+import useContentDetails from './api/useContentDetails';
 import useScrappedState from './useScrappedState';
-import { useAuthCheckQuery } from '../auth/useAuthCheckQuery';
+import { useRef, useState } from 'react';
+import ReactPlayer from 'react-player';
 
 export default function useDetailData() {
   const contentId = useContentId();
   const { contentDetails, isLoading: detailsLoading } = useContentDetails(contentId);
   const { reloadScrappedState } = useScrappedState();
-  const { isLoading: authLoading, data } = useAuthCheckQuery();
-
-  useEffect(() => {
-    if (data) {
-      reloadScrappedState();
-    }
-  }, [data, reloadScrappedState]);
+  const playerRef = useRef<ReactPlayer | null>(null);
+  const [playing, setPlaying] = useState(false);
 
   return {
     contentDetails: contentDetails ?? [],
-    isLoading: detailsLoading || authLoading,
+    isLoading: detailsLoading,
     reloadScrappedState,
+    playerRef,
+    playing,
+    setPlaying,
   };
 }

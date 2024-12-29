@@ -3,9 +3,11 @@ import contentApi from '@/services/contentAPi';
 import useContentStore from '@/store/useContentStore';
 import useScrappedStore from '@/store/useScrappedStore';
 import { useEffect } from 'react';
+import { useLoginStore } from '@/store/useIsLoginStore';
 
 export default function useScrappedState() {
   const contentId = useContentStore((state) => state.contentId);
+  const { isLogin } = useLoginStore((state) => state);
 
   const { data, refetch: reloadScrappedState } = useQuery({
     queryKey: ['scrappedState', contentId],
@@ -13,7 +15,7 @@ export default function useScrappedState() {
       const [, id] = queryKey;
       return contentApi.getScrappedState(id as number);
     },
-    enabled: !!contentId,
+    enabled: !!contentId && isLogin,
   });
 
   const setScrappedData = useScrappedStore((state) => state.setScrappedData);
@@ -24,5 +26,5 @@ export default function useScrappedState() {
     }
   }, [data, setScrappedData]);
 
-  return { reloadScrappedState };
+  return { reloadScrappedState: isLogin ? reloadScrappedState : async () => Promise.resolve() };
 }

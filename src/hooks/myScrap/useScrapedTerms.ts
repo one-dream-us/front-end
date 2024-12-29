@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import scrapApi from '@/services/scrapApi';
 import { useNavigate } from 'react-router-dom';
+import { useLoginStore } from '@/store/useIsLoginStore';
 
-export default function useScrapedTerms(isLogin: boolean = true) {
+export default function useScrapedTerms() {
   const navigate = useNavigate();
+  const { isLogin } = useLoginStore((state) => state);
 
   const { data, error, refetch, isLoading } = useQuery({
     queryKey: ['scrapedTerms'],

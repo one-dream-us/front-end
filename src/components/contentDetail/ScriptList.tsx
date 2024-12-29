@@ -4,6 +4,8 @@ import { ScriptParagraph } from '@/types/interface';
 import { formatTime } from '@/utils/contentDetailUtils';
 import { RefObject } from 'react';
 import ReactPlayer from 'react-player';
+import useScriptList from '@/hooks/contentDetail/logic/useScriptList';
+import Tooltip from './Tooltip';
 
 export default function ScriptList({
   fullText,
@@ -14,6 +16,8 @@ export default function ScriptList({
   playerRef: RefObject<ReactPlayer>;
   setPlaying: (playing: boolean) => void;
 }) {
+  const { tooltip, setTooltip, matched } = useScriptList();
+
   return (
     <div className='md:mb-10 desktop:mb-[37px] desktop:ml-[26px]'>
       {fullText.map((item, index) => {
@@ -30,6 +34,9 @@ export default function ScriptList({
           />
         );
       })}
+      {tooltip.index !== null && matched && (
+        <Tooltip tooltip={tooltip} setTooltip={setTooltip} dictionary={matched} />
+      )}
     </div>
   );
 }
