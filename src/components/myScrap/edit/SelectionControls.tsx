@@ -17,8 +17,10 @@ export default function SelectionControls() {
   return (
     <div className='flex justify-between items-center mt-5 h-6 desktop:mt-0'>
       <div className='flex gap-x-1 items-center'>
-        <label className='h-5'>
+        <label className='h-5' htmlFor='checkbox-all'>
           <input
+            id='checkbox-all'
+            aria-labelledby='checkbox-all'
             type='checkbox'
             checked={isAllChecked}
             onChange={(e) => {
