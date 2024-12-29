@@ -13,6 +13,7 @@ export default function Checkbox({
   return (
     <label className='h-5' htmlFor={`checkbox-${id}`}>
       <input
+        aria-labelledby={`checkbox-${id}`}
         id={`checkbox-${id}`}
         type='checkbox'
         checked={selectedIdList.includes(id)}
