@@ -1,5 +1,5 @@
 import useContentId from './useContentId';
-import useContentDetails from './useContentDetails';
+import useContentDetails from './api/useContentDetails';
 import useScrappedState from './useScrappedState';
 
 export default function useDetailData() {

@@ -1,6 +1,6 @@
-import useAddTerm from '@/hooks/contentDetail/useAddTerm';
+import useAddTerm from '@/hooks/contentDetail/api/useAddTerm';
 import useDeleteScrapTerm from '@/hooks/myScrap/useDeleteScrapTerm';
-import useContentDetails from '@/hooks/contentDetail/useContentDetails';
+import useContentDetails from '@/hooks/contentDetail/api/useContentDetails';
 import useScrappedStore from '@/store/useScrappedStore';
 import { Dictionary } from '@/types/interface';
 import useToastStore from '@/store/useToastStore';

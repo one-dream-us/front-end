@@ -1,19 +1,19 @@
 import { useMutation } from '@tanstack/react-query';
 import scrapApi from '@/services/scrapApi';
-import useScrapedTerms from '../myScrap/useScrapedTerms';
+import useScrapedContents from '../../scrap/useScrapedContents';
 import useLoginModalStore from '@/store/useLoginModalStore';
-import useScrappedState from './useScrappedState';
+import useScrappedConStore from '@/store/useScrappedConStore';
 
-export default function useAddTerm(termId: number, contentId: number) {
-  const { reloadScrapedTerms } = useScrapedTerms();
+export default function useAddScrap(contentId: number) {
+  const { refetch: refetchScrapedContents } = useScrapedContents();
   const setIsLoginModalOpen = useLoginModalStore((state) => state.setIsLoginModalOpen);
-  const { reloadScrappedState } = useScrappedState();
+  const setIsScrapped = useScrappedConStore((state) => state.setIsScrapped);
 
   const mutation = useMutation({
-    mutationFn: async () => await scrapApi.addScrapTerm(termId, contentId),
+    mutationFn: async () => await scrapApi.addScrapContent(contentId),
     onSuccess: () => {
-      reloadScrappedState();
-      reloadScrapedTerms();
+      setIsScrapped(true);
+      refetchScrapedContents();
     },
 
     onError: (error: Error) => {
@@ -26,5 +26,5 @@ export default function useAddTerm(termId: number, contentId: number) {
     },
   });
 
-  return { addScrapTerm: mutation.mutate };
+  return { addScrapContent: mutation.mutate };
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import useAddScrap from '@/hooks/contentDetail/useAddScrap';
+import useAddScrap from '@/hooks/contentDetail/api/useAddScrap';
 import useScrapedContents from '@/hooks/scrap/useScrapedContents';
 import useDeleteScrapCon from '@/hooks/myScrap/useDeleteScrapCon';
 import useScrappedConStore from '@/store/useScrappedConStore';
