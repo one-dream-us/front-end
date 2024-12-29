@@ -1,15 +1,11 @@
-import { useRef, useState } from 'react';
 import ContentOverview from '@/components/contentDetail/ContentOverview';
 import ContentSummary from '@/components/contentDetail/ContentSummary';
 import ScriptList from '@/components/contentDetail/ScriptList';
 import VideoPlayer from '@/components/contentDetail/VideoPlayer';
 import useDetailData from '@/hooks/contentDetail/useDetailData';
-import ReactPlayer from 'react-player';
 
 export default function ContentDetail() {
-  const { contentDetails, isLoading } = useDetailData();
-  const playerRef = useRef<ReactPlayer | null>(null);
-  const [playing, setPlaying] = useState(false);
+  const { contentDetails, isLoading, playerRef, playing, setPlaying } = useDetailData();
 
   if (isLoading || !contentDetails.tags) {
     return <div />;

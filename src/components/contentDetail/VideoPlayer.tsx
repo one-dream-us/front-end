@@ -1,9 +1,7 @@
 import { VideoPlayerProps } from '@/types/interface';
 import ReactPlayer from 'react-player';
-import { useVideoScriptSync } from '@/hooks/contentDetail/useVideoScriptSync';
-import { useState } from 'react';
+import useVideoPlayerLogic from '@/hooks/contentDetail/logic/useVideoPlayerLogic';
 import { motion } from 'framer-motion';
-import useTimeOut from '@/hooks/common/useTimeOut';
 
 export default function VideoPlayer({
   youtubeId,
@@ -12,10 +10,7 @@ export default function VideoPlayer({
   playing,
   scriptParagraphs,
 }: VideoPlayerProps) {
-  const [playedSeconds, setPlayedSeconds] = useState(0);
-  const [isReady, setIsReady] = useState(false);
-  useVideoScriptSync({ playedSeconds, scriptParagraphs });
-  useTimeOut(() => setIsReady(true), 400);
+  const { setPlayedSeconds, isReady } = useVideoPlayerLogic(scriptParagraphs);
 
   return (
     <motion.div
@@ -26,7 +21,7 @@ export default function VideoPlayer({
       className='fixed left-0 top-[52px] z-50 h-[212px] w-full md:h-[424px] desktop:static desktop:mb-5 desktop:h-[294px] desktop:w-[533px]'
     >
       {!isReady ? (
-        <div className='w-full h-full animate-pulse bg-custom-gray-300' />
+        <div className='h-full w-full animate-pulse bg-custom-gray-300' />
       ) : (
         <ReactPlayer
           ref={playerRef}

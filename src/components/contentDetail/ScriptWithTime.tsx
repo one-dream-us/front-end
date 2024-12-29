@@ -1,9 +1,5 @@
-import useMarkEvent from '@/hooks/contentDetail/useMarkEvent';
-import { tooltipHandlers } from '@/handlers/contentDetail/handleToolTip';
 import { ScriptNTimeProps } from '@/types/interface';
-import useMatchedStore from '@/store/useMatchedStore';
-import useToastStore from '@/store/useToastStore';
-import useTooltipStore from '@/store/useTooltipStore';
+import useScriptWithTimeLogic from '@/hooks/contentDetail/logic/useScriptWithTimeLogic';
 
 export default function ScriptWithTime({
   id,
@@ -12,14 +8,7 @@ export default function ScriptWithTime({
   onClick,
   dictionaries,
 }: ScriptNTimeProps) {
-  const setMatched = useMatchedStore((state) => state.setMatched);
-  const hideToast = useToastStore((state) => state.hideToast);
-  const { setTooltip } = useTooltipStore();
-
-  useMarkEvent((event) => {
-    hideToast();
-    tooltipHandlers.handleClick(event, setTooltip, dictionaries, setMatched);
-  });
+  useScriptWithTimeLogic(dictionaries);
 
   return (
     <div
