@@ -15,3 +15,18 @@ body {
 body {
   @apply leading-normal tracking-[-0.32px];
 }
+#profile-container {
+  grid-template-areas:
+    'img user-info'
+    'content-info user-info'
+    'logout user-info';
+  grid-template-columns: 201px auto;
+  grid-template-rows: 141px auto 30px;
+  column-gap: 85px;
+}
+
+@layer components {
+  .skeleton {
+    @apply animate-pulse rounded-[4px] bg-custom-gray-300;
+  }
+}
