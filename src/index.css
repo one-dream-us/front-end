@@ -29,4 +29,9 @@ body {
   .skeleton {
     @apply animate-pulse rounded-[4px] bg-custom-gray-300;
   }
+  .bottom-sheet-shadow {
+    box-shadow: 0px -4px 10px 0px rgba(0, 0, 0, 0.9);
+    -webkit-box-shadow: 0px -4px 10px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px -4px 10px 0px rgba(0, 0, 0, 0.15);
+  }
 }
