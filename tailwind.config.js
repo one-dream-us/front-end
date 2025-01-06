@@ -40,8 +40,8 @@ export default {
         edit: '#D3D3D3',
         view: '#FBFBFB',
         'view-bg': '#C2C2C2',
+        '03': '#616161',
       },
-
       screens: {
         desktop: { min: '1440px' },
       },
@@ -58,6 +58,7 @@ export default {
       },
       lineHeight: {
         170: '1.7',
+        160: '1.6',
         120: '1.2',
       },
       animation: {

@@ -12,6 +12,7 @@ import NotFound from './pages/NotFound';
 import AdminLayout from './components/admin/common/AdminLayout';
 import LinkUpload from './pages/admin/contentUpload/LinkUpload';
 import AdminHome from './pages/admin/home/AdminHome';
+import MyWordList from './pages/MyWordList';
 
 const AppRoutes = (): JSX.Element => {
   // const Login = lazy(() => import('./pages/Login'));
@@ -39,6 +40,7 @@ const AppRoutes = (): JSX.Element => {
         <Route element={<ProtectedRoute />}>
           <Route path='/profile' element={<Profile />} />
           <Route path='/my-scrap' element={<MyScrap />} />
+          <Route path='/my-word-list' element={<MyWordList />} />
         </Route>
 
         <Route path='*' element={<NotFound />} />
