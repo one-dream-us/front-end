@@ -13,3 +13,5 @@ export type MyScrapStoreState = {
   setIsDelModalOpen: (isDelModalOpen: boolean) => void;
   setIsAllChecked: (isAllChecked: boolean) => void;
 };
+
+export type MyWordListMenuType = '스크랩' | '북마크' | '오답노트' | '졸업노트';
