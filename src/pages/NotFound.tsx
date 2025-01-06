@@ -1,5 +1,5 @@
 import notFoundImg from '@/assets/icons/not_found.svg';
-import Button from '@/components/common/Button';
+import Button from '@/components/myScrap/Button';
 import { useNavigate } from 'react-router-dom';
 
 export default function NotFound() {
