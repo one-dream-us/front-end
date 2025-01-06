@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Login from './pages/Login';
-import Layout from './components/common/Layout';
+import Layout from './components/common/layout/Layout';
 import Home from './pages/Home';
 import MyScrap from './pages/MyScrap';
 import ContentDetail from './pages/ContentDetail';
@@ -12,8 +12,11 @@ import NotFound from './pages/NotFound';
 import AdminLayout from './components/admin/common/AdminLayout';
 import LinkUpload from './pages/admin/contentUpload/LinkUpload';
 import AdminHome from './pages/admin/home/AdminHome';
-import QuizPage from './pages/QuizPage';
+import QuizPage from './pages/quiz/QuizPage';
 import QuizErrorPage from './components/quiz/QuizErrorPage';
+import QuizLoadingPage from './pages/quiz/QuizLoadingPage';
+import QuizLayout from './components/common/layout/QuizLayout';
+import QuizResultPage from './pages/quiz/QuizResultPage';
 
 export const router = createBrowserRouter(
   [
@@ -25,7 +28,6 @@ export const router = createBrowserRouter(
         { path: '/content/:id', element: <ContentDetail /> },
         { path: '/withdraw-success', element: <WithDrawSuccess /> },
         { path: '/contents', element: <ContentList /> },
-        { path: '/quiz', element: <QuizPage />, errorElement: <QuizErrorPage /> },
         {
           element: <ProtectedRoute />,
           children: [
@@ -34,6 +36,14 @@ export const router = createBrowserRouter(
           ],
         },
         { path: '*', element: <NotFound /> },
+      ],
+    },
+    {
+      element: <QuizLayout />,
+      children: [
+        { path: '/quiz', element: <QuizPage />, errorElement: <QuizErrorPage /> },
+        { path: '/quiz-loading', element: <QuizLoadingPage />, errorElement: <QuizErrorPage /> },
+        { path: '/quiz-result', element: <QuizResultPage />, errorElement: <QuizErrorPage /> },
       ],
     },
     {

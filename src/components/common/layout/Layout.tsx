@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom';
-import Header from './header/Header';
-import Footer from './Footer';
-import TrackRoute from './TrackRoute';
-import Toast from './Toast';
-import LoginModal from './LoginModal';
-import LoginConfirmModal from './LoginConfirmModal';
+import Header from '../header/Header';
+import Footer from '../Footer';
+import TrackRoute from '../TrackRoute';
+import Toast from '../Toast';
+import LoginModal from '../LoginModal';
+import LoginConfirmModal from '../LoginConfirmModal';
 
 export default function Layout() {
   return (
