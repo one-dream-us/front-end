@@ -50,4 +50,4 @@ export const adminTableHeader = [
   { id: 7, title: '상세보기', width: '160px' },
 ];
 
-export const myWordListMenu: MyWordListMenuType[] = ['스크랩', '북마크', '오답노트', '졸업노트'];
+export const myWordListMenu: MyWordListMenuType[] = ['스크랩', '핵심노트', '오답노트', '졸업노트'];

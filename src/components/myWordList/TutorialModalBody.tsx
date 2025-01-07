@@ -11,10 +11,10 @@ export default function TutorialModalBody({ activeMenu }: { activeMenu: MyWordLi
       title: '콘텐츠에서 가져온 스크랩',
       description: '콘텐츠에서 스크랩한<br/>단어들이 모여있어요.',
     },
-    북마크: {
+    핵심노트: {
       icon: BookMarkIcon,
       title: '중요한 단어는 북마크',
-      description: '중요한 단어는 북마크해서 관리하고,',
+      description: '중요한 단어는 핵심노트에서 관리하고,',
     },
     오답노트: {
       icon: ReviewNoteIcon,
@@ -34,7 +34,7 @@ export default function TutorialModalBody({ activeMenu }: { activeMenu: MyWordLi
       <h3 className='mb-1 font-bold'>{info[activeMenu].title}</h3>
       <div className='text-center text-sm leading-160 text-03'>
         <p dangerouslySetInnerHTML={{ __html: info[activeMenu].description }} />
-        {activeMenu === '북마크' ? (
+        {activeMenu === '핵심노트' ? (
           <p className='font-bold'>3개 이상 모이면 퀴즈가 출제돼요.</p>
         ) : (
           ''

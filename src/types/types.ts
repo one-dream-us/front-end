@@ -14,4 +14,4 @@ export type MyScrapStoreState = {
   setIsAllChecked: (isAllChecked: boolean) => void;
 };
 
-export type MyWordListMenuType = '스크랩' | '북마크' | '오답노트' | '졸업노트';
+export type MyWordListMenuType = '스크랩' | '핵심노트' | '오답노트' | '졸업노트';
