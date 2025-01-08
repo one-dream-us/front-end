@@ -25,6 +25,10 @@ body {
   column-gap: 85px;
 }
 
+#quiz-result-status > div:nth-child(2) {
+  @apply border-x-2;
+}
+
 @layer components {
   .skeleton {
     @apply animate-pulse rounded-[4px] bg-custom-gray-300;
