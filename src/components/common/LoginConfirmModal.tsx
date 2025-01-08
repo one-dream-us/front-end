@@ -30,10 +30,11 @@ export default function LoginConfirmModal() {
             }
             handleCloseModal();
           }}
-          onLogin={() => {
+          onProceed={() => {
             navigate('/login', { state: { prevPage: location.href } });
             handleCloseModal();
           }}
+          buttonText={{ close: '닫기', proceed: '로그인 하기' }}
         />
       </div>
     </ModalOverlay>
