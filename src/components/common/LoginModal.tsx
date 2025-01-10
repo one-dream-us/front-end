@@ -41,10 +41,11 @@ export default function LoginModal() {
             setIsChecked(false);
             return await authApi.unlinkSocial(prevPage);
           }}
-          onLogin={async () => {
+          onProceed={async () => {
             closeModal();
             return await authApi.joinSocial(prevPage);
           }}
+          buttonText={{ close: '닫기', proceed: '로그인 하기' }}
           isChecked={isChecked}
         />
       </div>

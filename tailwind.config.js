@@ -40,7 +40,9 @@ export default {
         edit: '#D3D3D3',
         view: '#FBFBFB',
         'view-bg': '#C2C2C2',
-        '03': '#616161',
+        'quiz-bg': '#F3F4F6',
+        'quiz-correct-bg': '#CDFFE8',
+        'quiz-wrong-bg': '#FFE7E7',
       },
       screens: {
         desktop: { min: '1440px' },
