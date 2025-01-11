@@ -1,4 +1,3 @@
-import { useCloseModal } from '@/hooks/ui/useCloseModal';
 import authApi from '@/services/authApi';
 import ModalButton from './modal/ModalButton';
 import ModalOverlay from './modal/ModalOverlay';
@@ -6,8 +5,6 @@ import useLoginModalHandler from '@/hooks/ui/useLoginModalHandler';
 
 export default function LoginModal() {
   const { isChecked, isLoginModalOpen, setIsChecked, closeModal } = useLoginModalHandler();
-
-  useCloseModal(() => closeModal());
 
   const prevPage = localStorage.getItem('prevPage') ?? location.origin;
   return (
