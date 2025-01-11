@@ -1,4 +1,3 @@
-import { useCloseModal } from '@/hooks/ui/useCloseModal';
 import { useNavigate } from 'react-router-dom';
 import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
 import ModalButton from './modal/ModalButton';
@@ -9,8 +8,6 @@ export default function LoginConfirmModal() {
   const navigate = useNavigate();
 
   const handleCloseModal = () => setIsOpen(false);
-
-  useCloseModal(handleCloseModal);
   return (
     <ModalOverlay isOpen={isOpen}>
       <div className='h-[166px] w-[372px] rounded-[10px] bg-custom-gray-lighter px-[28px] py-[24px]'>
