@@ -11,8 +11,8 @@ export default function TutorialModalBtn({
   setShowTutorial: Dispatch<SetStateAction<boolean>>;
 }) {
   const nextMenu: Record<MyWordListMenuType, MyWordListMenuType | null> = {
-    스크랩: '북마크',
-    북마크: '오답노트',
+    스크랩: '핵심노트',
+    핵심노트: '오답노트',
     오답노트: '졸업노트',
     졸업노트: null,
   };
@@ -24,7 +24,10 @@ export default function TutorialModalBtn({
         onClick={() => {
           const next = nextMenu[activeMenu];
           if (next) setActiveMenu(next);
-          else setShowTutorial(false);
+          else {
+            setShowTutorial(false);
+            setActiveMenu('스크랩');
+          }
         }}
       >
         {activeMenu !== '졸업노트' ? '다음' : '시작하기'}

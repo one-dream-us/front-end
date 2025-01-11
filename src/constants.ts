@@ -1,11 +1,14 @@
 import { myScrapMenu } from './types/types';
 import { MyWordListMenuType } from './types/types';
+import scrapIcon from '@/assets/p2/icon_bookmark_grey.png';
+import bookMarkIcon from '@/assets/p2/icon_bookmark_dark.png';
+import reviewNoteIcon from '@/assets/p2/icon_X_dark.png';
+import graduationIcon from '@/assets/p2/icon_grad.png';
 
 export const HeaderMenuList = [
   { id: 1, title: '홈', to: '/' },
   { id: 2, title: '콘텐츠', to: '/contents', sub: '/content/' },
   { id: 3, title: '나의 단어장', to: '/my-word-list' },
-  { id: 4, title: 'MY 스크랩', to: '/my-scrap' },
 ];
 
 export const FooterMenuList = [
@@ -51,3 +54,26 @@ export const adminTableHeader = [
 ];
 
 export const myWordListMenu: MyWordListMenuType[] = ['스크랩', '핵심노트', '오답노트', '졸업노트'];
+
+export const myWordListInfo = {
+  스크랩: {
+    icon: scrapIcon,
+    title: '콘텐츠에서 가져온 스크랩',
+    description: '콘텐츠에서 스크랩한<br/>단어들이 모여있어요.',
+  },
+  핵심노트: {
+    icon: bookMarkIcon,
+    title: '중요한 단어는 핵심노트',
+    description: '중요한 단어는 핵심노트에서 관리하고,',
+  },
+  오답노트: {
+    icon: reviewNoteIcon,
+    title: '틀린 단어는 오답노트',
+    description: '진행한 퀴즈에서 틀린 단어들을<br/>모아보고 학습해요.',
+  },
+  졸업노트: {
+    icon: graduationIcon,
+    title: '열심히 공부한 졸업노트',
+    description: '퀴즈에서 3번 이상 맞추면<br/>단어가 졸업노트로 이동해요!',
+  },
+};

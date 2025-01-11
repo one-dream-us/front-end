@@ -5,17 +5,23 @@ import { Dispatch, SetStateAction } from 'react';
 export default function MyWordListNavBar({
   activeMenu,
   setActiveMenu,
+  isTutorial,
 }: {
   activeMenu: MyWordListMenuType;
   setActiveMenu: Dispatch<SetStateAction<MyWordListMenuType>>;
+  isTutorial: boolean;
 }) {
   return (
-    <div className='w-[324px] md:w-[352px]'>
-      <ul className='flex w-full h-10 text-sm font-bold text-custom-gray-300'>
+    <div
+      className={`${isTutorial ? 'w-[323px] md:w-[353px]' : 'my-4 w-[343px] md:mt-6 md:w-[353px] desktop:w-full'}`}
+    >
+      <ul
+        className={`grid h-10 w-full grid-cols-4 text-sm font-bold ${isTutorial ? 'text-custom-gray-300' : 'text-custom-gray-500'}`}
+      >
         {myWordListMenu.map((item: MyWordListMenuType) => (
           <li
             key={item}
-            className={`relative flex h-full w-[81px] items-center justify-center md:w-[88px] ${activeMenu === item ? 'text-custom-gray-dark after:absolute after:-bottom-[1px] after:h-0.5 after:w-[81px] after:bg-custom-gray-dark after:md:w-[88px]' : ''}`}
+            className={`relative flex h-full items-center justify-center ${activeMenu === item ? 'text-custom-gray-dark after:absolute after:-bottom-[1px] after:h-0.5 after:w-[81px] after:bg-custom-gray-dark after:md:w-[88px] after:desktop:w-[203px]' : ''}`}
           >
             <button type='button' onClick={() => setActiveMenu(item)}>
               {item}
@@ -24,7 +30,7 @@ export default function MyWordListNavBar({
         ))}
       </ul>
       <div>
-        <hr className='w-full' />
+        <hr className='w-full border-custom-gray-300' />
       </div>
     </div>
   );
