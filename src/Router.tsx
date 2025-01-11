@@ -17,6 +17,10 @@ import QuizErrorPage from './components/quiz/QuizErrorPage';
 import QuizLoadingPage from './pages/quiz/QuizLoadingPage';
 import QuizLayout from './components/common/layout/QuizLayout';
 import QuizResultPage from './pages/quiz/QuizResultPage';
+import ContentDetailLayout from './components/common/layout/ContentDetailLayout';
+import CourseStart from './pages/contentDetail-phase2/CourseStart';
+import Course from './pages/contentDetail-phase2/Course';
+import CourseComplete from './pages/contentDetail-phase2/CourseComplete';
 
 export const router = createBrowserRouter(
   [
@@ -44,6 +48,14 @@ export const router = createBrowserRouter(
         { path: '/quiz', element: <QuizPage />, errorElement: <QuizErrorPage /> },
         { path: '/quiz-loading', element: <QuizLoadingPage />, errorElement: <QuizErrorPage /> },
         { path: '/quiz-result', element: <QuizResultPage />, errorElement: <QuizErrorPage /> },
+      ],
+    },
+    {
+      element: <ContentDetailLayout />,
+      children: [
+        { path: '/course-start', element: <CourseStart /> },
+        { path: '/course', element: <Course /> },
+        { path: '/course-complete', element: <CourseComplete /> },
       ],
     },
     {
