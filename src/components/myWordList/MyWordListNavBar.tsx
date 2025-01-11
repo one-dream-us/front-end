@@ -21,7 +21,7 @@ export default function MyWordListNavBar({
         {myWordListMenu.map((item: MyWordListMenuType) => (
           <li
             key={item}
-            className={`relative flex h-full items-center justify-center ${activeMenu === item ? 'text-custom-gray-dark after:absolute after:-bottom-[1px] after:h-0.5 after:w-[81px] after:bg-custom-gray-dark after:md:w-[88px] after:desktop:w-[203px]' : ''}`}
+            className={`relative flex h-full items-center justify-center ${activeMenu === item ? 'text-custom-gray-dark after:absolute after:-bottom-[1px] after:h-0.5 after:w-full after:bg-custom-gray-dark' : ''} `}
           >
             <button type='button' onClick={() => setActiveMenu(item)}>
               {item}
