@@ -1,4 +1,4 @@
-import Button from '@/components/common/Button';
+import Button from '@/components/myScrap/Button';
 import { myScrapMenu } from '@/types/types';
 import { useNavigate } from 'react-router-dom';
 import EmptyTerm from '@/assets/this_is_money_imgs/img_webp/image_for_emptyword.webp';
@@ -10,7 +10,7 @@ export default function EmptyState({ activeMenu }: { activeMenu: myScrapMenu }) 
 
   return (
     <div className='mb-[60px] flex w-[352px] flex-col desktop:ml-[352px]'>
-      <div className='flex flex-col items-center w-full'>
+      <div className='flex w-full flex-col items-center'>
         <div className='mb-[88px] mt-[72px] flex w-[200px] flex-col gap-y-8'>
           <p className='letter text-center -tracking-[0.01em] text-custom-black-light md:text-sm desktop:text-lg desktop:font-medium desktop:text-black'>
             {isScrap ? '콘텐츠함이 비었어요!' : '단어장이 비었어요!'}

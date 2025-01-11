@@ -143,10 +143,17 @@ export interface ScrappedItem {
   dictionaryScrapId: number | null;
   scrapped: boolean;
 }
+
 export interface VideoPlayerProps {
   youtubeId: string;
   playerRef: RefObject<ReactPlayer>;
   setPlaying: (playing: boolean) => void;
   playing: boolean;
   scriptParagraphs: ScriptParagraph[];
+}
+
+export interface WordType {
+  dictionaryId: number;
+  term: string;
+  details: string;
 }
