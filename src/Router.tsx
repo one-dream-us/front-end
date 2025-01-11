@@ -21,6 +21,7 @@ import ContentDetailLayout from './components/common/layout/ContentDetailLayout'
 import CourseStart from './pages/contentDetail-phase2/CourseStart';
 import Course from './pages/contentDetail-phase2/Course';
 import CourseComplete from './pages/contentDetail-phase2/CourseComplete';
+import RandomQuizResultPage from './pages/quiz/randomQuiz/RandomQuizResultPage';
 
 export const router = createBrowserRouter(
   [
@@ -48,6 +49,11 @@ export const router = createBrowserRouter(
         { path: '/quiz', element: <QuizPage />, errorElement: <QuizErrorPage /> },
         { path: '/quiz-loading', element: <QuizLoadingPage />, errorElement: <QuizErrorPage /> },
         { path: '/quiz-result', element: <QuizResultPage />, errorElement: <QuizErrorPage /> },
+        {
+          path: '/random-quiz-result',
+          element: <RandomQuizResultPage />,
+          errorElement: <QuizErrorPage />,
+        },
       ],
     },
     {
