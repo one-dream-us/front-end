@@ -7,7 +7,7 @@ import graduationIcon from '@/assets/p2/icon_grad.png';
 
 export const HeaderMenuList = [
   { id: 1, title: '홈', to: '/' },
-  { id: 2, title: '콘텐츠', to: '/contents', sub: '/content/' },
+  { id: 2, title: '머니뉴스', to: '/contents', sub: '/content/' },
   { id: 3, title: '나의 단어장', to: '/my-word-list' },
 ];
 

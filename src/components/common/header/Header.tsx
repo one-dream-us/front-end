@@ -6,8 +6,7 @@ import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
 import profile_main from '@/assets/this_is_money_imgs/img_png/Icon_profile_main.png';
 import profile_active from '@/assets/this_is_money_imgs/img_png/icon_profile_active.png';
 import { useImgHover } from '@/hooks/ui/useImgHover';
-import logo from '@/assets/imgs_v2/Logo_Icon+text_32_hor.png';
-import logo_mobile from '@/assets/imgs_v2/main_logo_32.png';
+import logo from '@/assets/p2/P2 에셋_2차전달/Logo_Icon+text_24H.png';
 
 export default function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -26,13 +25,12 @@ export default function Header() {
         {' '}
         <div className='flex items-center justify-start'>
           <Link
-            className='mr-10 flex items-center justify-center gap-x-1 text-xl font-extrabold'
+            className='flex items-center justify-center gap-x-1 text-xl font-extrabold md:mr-[84px] desktop:mr-[68px]'
             to={'/'}
             onMouseEnter={logoHover.handleMouseEnter}
             onMouseLeave={logoHover.handleMouseLeave}
           >
-            <img src={logo_mobile} className='block h-[40px] w-[40px] md:hidden' alt='logo-sm' />
-            <img className='hidden h-[28px] w-[117px] md:block' src={logo} alt='logo-md' />
+            <img className='h-[24px] desktop:h-[28px]' src={logo} alt='logo' />
           </Link>
 
           <ul className='hidden items-center justify-center text-custom-gray md:flex md:gap-8 desktop:gap-x-16'>
