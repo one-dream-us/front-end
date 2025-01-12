@@ -2,5 +2,8 @@
   @apply rounded-[10px] bg-custom-gray-200 text-xs transition hover:text-custom-gray-h md:hover:bg-edit;
 }
 .checkbox {
-  @apply w-5 h-5 bg-contain bg-unchecked checked:bg-checked;
+  @apply h-5 w-5 bg-unchecked bg-contain checked:bg-checked;
+}
+.primary-btn {
+  @apply bg-custom-gray-dark font-bold text-primary hover:bg-hover-80 hover:text-green-hover;
 }

@@ -17,6 +17,7 @@ import QuizErrorPage from './components/quiz/QuizErrorPage';
 import QuizLoadingPage from './pages/quiz/QuizLoadingPage';
 import QuizLayout from './components/common/layout/QuizLayout';
 import QuizResultPage from './pages/quiz/QuizResultPage';
+import MyWordList from './pages/MyWordList';
 import ContentDetailLayout from './components/common/layout/ContentDetailLayout';
 import CourseStart from './pages/contentDetail-phase2/CourseStart';
 import Course from './pages/contentDetail-phase2/Course';
@@ -38,6 +39,7 @@ export const router = createBrowserRouter(
           children: [
             { path: '/profile', element: <Profile /> },
             { path: '/my-scrap', element: <MyScrap /> },
+            { path: '/my-word-list', element: <MyWordList /> },
           ],
         },
         { path: '*', element: <NotFound /> },

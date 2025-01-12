@@ -40,11 +40,12 @@ export default {
         edit: '#D3D3D3',
         view: '#FBFBFB',
         'view-bg': '#C2C2C2',
-        'quiz-bg':'#F3F4F6',
-        "quiz-correct-bg":'#CDFFE8',
-        'quiz-wrong-bg':'#FFE7E7',
+        'quiz-bg': '#F3F4F6',
+        'quiz-correct-bg': '#CDFFE8',
+        'quiz-wrong-bg': '#FFE7E7',
+        'gray-070': '#616161',
+        'new-green': '#06EA82',
       },
-
       screens: {
         desktop: { min: '1440px' },
       },
@@ -61,6 +62,7 @@ export default {
       },
       lineHeight: {
         170: '1.7',
+        160: '1.6',
         120: '1.2',
       },
       animation: {

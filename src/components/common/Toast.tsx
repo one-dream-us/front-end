@@ -13,7 +13,7 @@ export default function Toast() {
 
   return (
     <div
-      className={`fixed bottom-3 right-4 z-[700] h-[42px] w-[343px] transform rounded-[10px] bg-custom-gray-dark px-5 py-3 opacity-95 shadow-custom transition-transform md:right-6 desktop:bottom-6 ${
+      className={`absolute bottom-[92px] left-0 right-0 z-[700] mx-auto h-[42px] w-[343px] transform rounded-[10px] bg-custom-gray-dark px-5 py-3 opacity-95 shadow-custom transition-transform md:bottom-1/3 desktop:left-auto desktop:right-1 ${
         isVisible ? 'animate-toast-slide-in' : 'animate-toast-slide-out'
       }`}
     >
