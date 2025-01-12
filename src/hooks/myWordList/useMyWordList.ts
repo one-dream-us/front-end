@@ -18,6 +18,7 @@ export default function useMyWordList() {
     parameters[initialMenu] ?? '스크랩',
   );
   const [showTooltip, setShowTooltip] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   useFirstLogin(setShowTutorial);
@@ -30,5 +31,14 @@ export default function useMyWordList() {
     }
   }, [activeMenu, location.search, navigate]);
 
-  return { showTutorial, setShowTutorial, activeMenu, setActiveMenu, showTooltip, setShowTooltip };
+  return {
+    showTutorial,
+    setShowTutorial,
+    activeMenu,
+    setActiveMenu,
+    showTooltip,
+    setShowTooltip,
+    showModal,
+    setShowModal,
+  };
 }
