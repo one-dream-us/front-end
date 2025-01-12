@@ -1,11 +1,14 @@
+import quizStore from '@/store/quiz/quizStore';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useStore } from 'zustand';
 
 export default function QuizLoadingPage() {
+  const { quizType } = useStore(quizStore);
   const naviagte = useNavigate();
   useEffect(() => {
     const timer = setTimeout(() => {
-      return naviagte('/quiz-result');
+      return quizType === 'normal' ? naviagte('/quiz-result') : naviagte('/random-quiz-result');
     }, 2000);
 
     return () => clearTimeout(timer);

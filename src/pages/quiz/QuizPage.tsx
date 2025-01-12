@@ -1,46 +1,42 @@
-import { useBlocker, useNavigate } from 'react-router-dom';
+import { useBlocker } from 'react-router-dom';
 import ProgressBar from '@/components/quiz/ProgressBar';
-import { useState } from 'react';
+import { useMemo } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import ModalOverlay from '@/components/common/modal/ModalOverlay';
 import ModalButton from '@/components/common/modal/ModalButton';
-// import QuizSkeleton from '@/components/quiz/QuizSkeleton';
-// import useQuizQuery, { IQuiz } from '@/hooks/quiz/useQuizQuery';
+import QuizSkeleton from '@/components/quiz/QuizSkeleton';
 import Accordion from '@/components/quiz/Accordion';
 import BottomSheet from '@/components/quiz/common/BottomSheet';
 import correctIcon from '@/assets/imgs_v2/icon_check_green.png';
 import wrongIcon from '@/assets/imgs_v2/icon_X_Pink.png';
 import quiz from '@/mocks/data/quiz';
+import { useQuery } from '@tanstack/react-query';
+import { quizApi } from '@/services/quizApi';
+import { useStore } from 'zustand';
+import quizStore from '@/store/quiz/quizStore';
+import { IQuiz } from '@/types/interface';
+import { formatQuestion } from '@/utils/quiz/quizHandlers';
+import { useQuizHandler } from '@/hooks/quiz/useQuizHandler';
 
 export default function QuizPage() {
-  const [isCorrect, setIsCorrect] = useState<null | boolean>(null);
-  const [myChoice, setMyChioce] = useState<null | string>(null);
-  const [index, setIndex] = useState(0);
-  const navigate = useNavigate();
-  // const { data: quiz, isLoading } = useQuizQuery();
+  const { index, isCorrect, setQuizType } = useStore(quizStore);
+  const { data, isLoading } = useQuery<IQuiz[]>({
+    queryKey: ['random-quiz'],
+    queryFn: () => {
+      setQuizType('random');
+      return quizApi.getRandomQuizzes();
+    },
+  });
+  const { handlePick, handleBottomSheetClick } = useQuizHandler();
 
-  // const currentQuiz = useMemo(() => {
-  //   if (isLoading || !quiz) return;
-  //   return quiz[index];
-  // }, [isLoading, index]) as IQuiz;
-
-  const currentQuiz = quiz[index];
-
-  const formatQuestion = () => {
-    if (currentQuiz === undefined) return;
-    const { answer, question } = currentQuiz;
-    return question.replace(answer, '_'.repeat(answer.length * 3));
-  };
-
-  const handlePick = (item: { id: number; option: string; desc: string }) => {
-    setMyChioce(item.option);
-    item.option === currentQuiz?.answer ? setIsCorrect(true) : setIsCorrect(false);
-  };
-
+  const currentQuiz = useMemo(() => {
+    if (isLoading || !data) return;
+    return data[index];
+  }, [isLoading, index]) as IQuiz;
   return (
     <div className=''>
       <ProgressBar index={index + 1} />
-      {/* {(isLoading || currentQuiz === undefined) && <QuizSkeleton />} */}
+      {(isLoading || currentQuiz === undefined) && <QuizSkeleton />}
 
       {quiz && (
         <div className='m-auto mb-40 min-h-[478px] w-[343px] rounded-[10px] bg-white p-4 md:h-[779px] md:w-[353px] md:p-5 desktop:h-[735px] desktop:w-[812px] desktop:p-[40px]'>
@@ -56,19 +52,24 @@ export default function QuizPage() {
             </div>
 
             <div className='h-[96px] w-full'>
-              {quiz && <h2 className='text-[16px] font-medium'>{formatQuestion()}</h2>}
+              {quiz && <h2 className='text-[16px] font-medium'>{formatQuestion(currentQuiz)}</h2>}
             </div>
           </div>
 
           {/* 선지 */}
           <ul className='min-h-[248px] w-full'>
-            {currentQuiz?.options.map((item) => (
-              <li key={item.id}>
+            {currentQuiz?.choices?.map((item, _, choices) => (
+              <li key={item.dictionaryId}>
                 <Accordion
-                  myChoice={myChoice}
-                  handlePick={() => handlePick(item)}
-                  answer={currentQuiz.answer}
-                  isCorrect={isCorrect}
+                  handlePick={() =>
+                    handlePick({
+                      answer: choices[currentQuiz.answerNum - 1].term,
+                      dictionaryId: item.dictionaryId,
+                      status: item.status,
+                      item,
+                    })
+                  }
+                  answer={choices[currentQuiz.answerNum - 1].term}
                   index={index}
                   {...item}
                 />
@@ -85,15 +86,7 @@ export default function QuizPage() {
             titleText={isCorrect ? '맞았어요!' : '틀렸어요!'}
             buttonText={index === 4 ? '퀴즈 결과 바로가기' : '다음 문제 도전하기'}
             buttonTextColor={index === 4 ? 'text-custom-green-money' : 'text-custom-gray-lighter'}
-            handleButtonClick={() => {
-              if (index === 4) {
-                return navigate('/quiz-loading');
-              } else {
-                setIsCorrect(null);
-                setMyChioce(null);
-                setIndex((prev) => (prev === 4 ? 4 : prev + 1));
-              }
-            }}
+            handleButtonClick={handleBottomSheetClick}
           />
         )}
       </AnimatePresence>
