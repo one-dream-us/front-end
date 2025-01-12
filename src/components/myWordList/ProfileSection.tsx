@@ -1,7 +1,7 @@
 import useProfileSectionLogic from '@/hooks/myWordList/useProfileSectionLogic';
 import ProfileImg from '@/assets/this_is_money_imgs/img_webp/profile_small.webp';
 import bookmarkIcon from '@/assets/p2/icon_bookmark_dark.png';
-import arrowRightIcon from '@/assets/p2/arrow_right.png';
+import arrowRightIcon from '@/assets/p2/arrow_right_black.svg';
 import logoIcon from '@/assets/imgs_v2/main_logo_32.svg';
 
 export default function ProfileSection({
@@ -43,7 +43,7 @@ export default function ProfileSection({
           <div className='flex items-center'>
             <img src={logoIcon} alt='로고' className='mr-1.5 h-5 w-5' />
             <span className='leading-6'>퀴즈 바로가기</span>
-            <img src={arrowRightIcon} alt='오른쪽 화살표 아이콘' className='h-5 w-5' />
+            <img src={arrowRightIcon} alt='오른쪽 화살표 아이콘' className='h-3 w-4' />
           </div>
         </div>
       )}

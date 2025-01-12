@@ -1,5 +1,5 @@
 import useMyWordList from '@/hooks/myWordList/useMyWordList';
-import TutorialModal from '@/components/myWordList/TutorialModal';
+import TutorialModal from '@/components/myWordList/Tutorial/TutorialModal';
 import ProfileSection from '@/components/myWordList/ProfileSection';
 import ScoreBoard from '@/components/myWordList/ScoreBoard';
 import MyWordListNavBar from '@/components/myWordList/MyWordListNavBar';
@@ -7,7 +7,8 @@ import WordList from '@/components/myWordList/WordList';
 import useScoreBoardLogic from '@/hooks/myWordList/useScoreBoardLogic';
 
 export default function MyWordList() {
-  const { showTutorial, setShowTutorial, activeMenu, setActiveMenu } = useMyWordList();
+  const { showTutorial, setShowTutorial, activeMenu, setActiveMenu, showTooltip, setShowTooltip } =
+    useMyWordList();
   const { username, totalScrap, totalGraduation, totalKeyNote, accuracyRate } =
     useScoreBoardLogic();
 
@@ -16,8 +17,7 @@ export default function MyWordList() {
       <TutorialModal
         showTutorial={showTutorial}
         setShowTutorial={setShowTutorial}
-        activeMenu={activeMenu}
-        setActiveMenu={setActiveMenu}
+        setShowTooltip={setShowTooltip}
       />
       <div className='relative mx-auto min-w-[343px] max-w-[353px] desktop:max-w-[812px]'>
         <div className='mx-auto w-full max-w-[353px] pb-[22px] desktop:pb-6'>
@@ -34,7 +34,11 @@ export default function MyWordList() {
           setActiveMenu={setActiveMenu}
           isTutorial={false}
         />
-        <WordList activeMenu={activeMenu} />
+        <WordList
+          activeMenu={activeMenu}
+          showTooltip={showTooltip}
+          setShowTooltip={setShowTooltip}
+        />
       </div>
     </section>
   );

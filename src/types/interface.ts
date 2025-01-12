@@ -152,8 +152,27 @@ export interface VideoPlayerProps {
   scriptParagraphs: ScriptParagraph[];
 }
 
-export interface WordType {
+export interface ScrapDictionary {
   dictionaryId: number;
   term: string;
   details: string;
+}
+
+export interface WordDictionary {
+  id: number;
+  term: string;
+  details: string;
+}
+
+export interface KeyNoteDictionary {
+  keyNoteId: number;
+  dictionary: WordDictionary;
+}
+
+export interface KeyNoteWord {
+  keyNoteList: KeyNoteDictionary[];
+}
+
+export interface WordInterface {
+  dictionary: WordDictionary;
 }
