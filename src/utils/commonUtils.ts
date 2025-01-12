@@ -8,7 +8,7 @@ export function getToastStyles(type: string) {
       return {
         icon: closeIcon,
         textColor: 'text-custom-gray-300',
-        alt: '삭제하기 아이콘',
+        alt: '삭제하기',
         size: 'w-[11px] h-[15px]',
       };
     case 'addScrap':
@@ -16,14 +16,14 @@ export function getToastStyles(type: string) {
       return {
         icon: checkIcon,
         textColor: 'text-primary',
-        alt: '추가하기 아이콘',
+        alt: '추가하기',
         size: 'w-[15px] h-[15px]',
       };
     case 'copy':
       return {
         icon: checkIcon,
         textColor: 'text-primary',
-        alt: '추가하기 아이콘',
+        alt: '추가하기',
         size: 'w-[15px] h-[15px]',
       };
   }

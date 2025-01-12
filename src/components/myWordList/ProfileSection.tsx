@@ -24,7 +24,7 @@ export default function ProfileSection({
       </div>
       {totalKeyNote <= 3 ? (
         <div className='ml-[74px] flex h-6 w-[268px] items-center gap-x-1'>
-          <img src={bookmarkIcon} alt='핵심노트 아이콘' className='h-6 w-6' />
+          <img src={bookmarkIcon} alt='핵심노트' className='h-6 w-6' />
           <div className='h-[7px] w-60 rounded-full bg-custom-gray-300 drop-shadow'>
             <div className='h-full rounded-full bg-new-green' style={{ width: progressBarWidth }} />
           </div>
@@ -43,7 +43,7 @@ export default function ProfileSection({
           <div className='flex items-center'>
             <img src={logoIcon} alt='로고' className='mr-1.5 h-5 w-5' />
             <span className='leading-6'>퀴즈 바로가기</span>
-            <img src={arrowRightIcon} alt='오른쪽 화살표 아이콘' className='h-3 w-4' />
+            <img src={arrowRightIcon} alt='오른쪽 화살표' className='h-3 w-4' />
           </div>
         </div>
       )}

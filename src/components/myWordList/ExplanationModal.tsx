@@ -18,8 +18,9 @@ export default function ExplanationModal({
           type='button'
           className='absolute -top-9 right-0'
           onClick={() => setShowModal(false)}
+          aria-label='설명 모달 닫기'
         >
-          <img src={closeIcon} alt='설명 모달 닫기 아이콘' />
+          <img src={closeIcon} alt='설명 모달 닫기' className='h-6 w-6' />
         </button>
         <p className='text-xs leading-120 text-custom-gray-400'>단어 해석</p>
         <p className='text-sm font-bold text-custom-gray-dark'>{description}</p>

@@ -41,7 +41,7 @@ export default function ScrapWord({
         onClick={() => setShowModal(true)}
       >
         <span className='text-sm leading-170 text-custom-gray-500'>해석 보기</span>
-        <img src={arrowRightIcon} alt='해석 보기 아이콘' className='h-4 w-4' />
+        <img src={arrowRightIcon} alt='해석 보기' className='h-4 w-4' />
       </button>
       {showModal && (
         <ExplanationModal
