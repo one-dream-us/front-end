@@ -14,11 +14,7 @@ export default function MyWordList() {
 
   return (
     <section className='px-4 pt-10'>
-      <TutorialModal
-        showTutorial={showTutorial}
-        setShowTutorial={setShowTutorial}
-        setShowTooltip={setShowTooltip}
-      />
+      <TutorialModal showTutorial={showTutorial} setShowTutorial={setShowTutorial} />
       <div className='relative mx-auto min-w-[343px] max-w-[353px] desktop:max-w-[812px]'>
         <div className='mx-auto w-full max-w-[353px] pb-[22px] desktop:pb-6'>
           <ProfileSection username={username} totalKeyNote={totalKeyNote} />
@@ -38,6 +34,7 @@ export default function MyWordList() {
           activeMenu={activeMenu}
           showTooltip={showTooltip}
           setShowTooltip={setShowTooltip}
+          showTutorial={showTutorial}
         />
       </div>
     </section>

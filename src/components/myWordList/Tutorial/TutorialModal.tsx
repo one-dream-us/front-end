@@ -9,11 +9,9 @@ import { MyWordListMenuType } from '@/types/types';
 export default function TutorialModal({
   showTutorial,
   setShowTutorial,
-  setShowTooltip,
 }: {
   showTutorial: boolean;
   setShowTutorial: Dispatch<SetStateAction<boolean>>;
-  setShowTooltip: Dispatch<SetStateAction<boolean>>;
 }) {
   const [menu, setMenu] = useState<MyWordListMenuType>('스크랩');
 
@@ -23,12 +21,7 @@ export default function TutorialModal({
         <div className='mx-auto flex h-full flex-col justify-between py-6 md:py-5'>
           <TutorialNav menu={menu} setMenu={setMenu} />
           <TutorialModalBody menu={menu} />
-          <TutorialModalBtn
-            menu={menu}
-            setMenu={setMenu}
-            setShowTutorial={setShowTutorial}
-            setShowTooltip={setShowTooltip}
-          />
+          <TutorialModalBtn menu={menu} setMenu={setMenu} setShowTutorial={setShowTutorial} />
         </div>
       </div>
     </ModalOverlay>

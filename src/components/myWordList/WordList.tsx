@@ -14,14 +14,17 @@ export default function WordList({
   activeMenu,
   showTooltip,
   setShowTooltip,
+  showTutorial,
 }: {
   activeMenu: MyWordListMenuType;
   showTooltip: boolean;
   setShowTooltip: Dispatch<SetStateAction<boolean>>;
+  showTutorial: boolean;
 }) {
   const { title, wordList, wordNum, navigate, listRef, handleScroll } = useWordList(
     activeMenu,
     setShowTooltip,
+    showTutorial,
   );
 
   return (
@@ -40,7 +43,7 @@ export default function WordList({
       {wordList.length > 0 ? (
         <div
           ref={listRef}
-          className={`md:gap-y-4.5 mb-12 flex h-96 flex-col gap-y-3 overflow-y-auto pr-2 desktop:h-[340px] desktop:gap-y-4 ${activeMenu === '스크랩' && 'pt-3'}`}
+          className={`md:gap-y-4.5 mb-12 flex h-96 flex-col gap-y-3 overflow-y-auto pr-2 desktop:h-[340px] desktop:gap-y-4 ${activeMenu === '스크랩' && showTooltip && 'pt-1'}`}
           onScroll={handleScroll}
         >
           {activeMenu === '스크랩' &&
@@ -61,7 +64,7 @@ export default function WordList({
                 />
               )))}
           {activeMenu === '스크랩' && showTooltip && (
-            <div className="absolute right-[18px] top-6 z-[999] rounded bg-custom-gray-dark px-2.5 py-2 text-xs text-primary drop-shadow-xl after:absolute after:-bottom-2 after:right-3 after:border-x-[6px] after:border-t-[8px] after:border-transparent after:border-t-custom-gray-dark after:content-['']">
+            <div className="absolute right-[18px] top-[18px] z-[999] rounded bg-custom-gray-dark px-2.5 py-2 text-xs text-primary drop-shadow-xl after:absolute after:-bottom-2 after:right-3 after:border-x-[6px] after:border-t-[8px] after:border-transparent after:border-t-custom-gray-dark after:content-['']">
               중요한 단어를 핵심노트에 추가하고 퀴즈를 풀어보세요!
             </div>
           )}

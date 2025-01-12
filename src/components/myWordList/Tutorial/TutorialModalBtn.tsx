@@ -5,12 +5,10 @@ export default function TutorialModalBtn({
   menu,
   setMenu,
   setShowTutorial,
-  setShowTooltip,
 }: {
   menu: MyWordListMenuType;
   setMenu: Dispatch<SetStateAction<MyWordListMenuType>>;
   setShowTutorial: Dispatch<SetStateAction<boolean>>;
-  setShowTooltip: Dispatch<SetStateAction<boolean>>;
 }) {
   const nextMenu: Record<MyWordListMenuType, MyWordListMenuType | null> = {
     스크랩: '핵심노트',
@@ -28,10 +26,6 @@ export default function TutorialModalBtn({
           if (next) setMenu(next);
           else {
             setShowTutorial(false);
-            setShowTooltip(true);
-            setTimeout(() => {
-              setShowTooltip(false);
-            }, 3000);
           }
         }}
       >
