@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import useFirstLogin from './useFirstLogin';
+// import useFirstLogin from './useFirstLogin';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { MyWordListMenuType } from '@/types/types';
 
@@ -21,7 +21,7 @@ export default function useMyWordList() {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
-  useFirstLogin(setShowTutorial);
+  // useFirstLogin(setShowTutorial);
 
   useEffect(() => {
     const currentParams = new URLSearchParams(location.search);
