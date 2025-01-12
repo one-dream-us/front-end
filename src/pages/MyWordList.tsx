@@ -7,13 +7,18 @@ import WordList from '@/components/myWordList/WordList';
 import useScoreBoardLogic from '@/hooks/myWordList/useScoreBoardLogic';
 
 export default function MyWordList() {
-  const { showTutorial, setShowTutorial, activeMenu, setActiveMenu } = useMyWordList();
+  const { showTutorial, setShowTutorial, activeMenu, setActiveMenu, showTooltip, setShowTooltip } =
+    useMyWordList();
   const { username, totalScrap, totalGraduation, totalKeyNote, accuracyRate } =
     useScoreBoardLogic();
 
   return (
     <section className='px-4 pt-10'>
-      <TutorialModal showTutorial={showTutorial} setShowTutorial={setShowTutorial} />
+      <TutorialModal
+        showTutorial={showTutorial}
+        setShowTutorial={setShowTutorial}
+        setShowTooltip={setShowTooltip}
+      />
       <div className='relative mx-auto min-w-[343px] max-w-[353px] desktop:max-w-[812px]'>
         <div className='mx-auto w-full max-w-[353px] pb-[22px] desktop:pb-6'>
           <ProfileSection username={username} totalKeyNote={totalKeyNote} />
@@ -29,7 +34,11 @@ export default function MyWordList() {
           setActiveMenu={setActiveMenu}
           isTutorial={false}
         />
-        <WordList activeMenu={activeMenu} />
+        <WordList
+          activeMenu={activeMenu}
+          showTooltip={showTooltip}
+          setShowTooltip={setShowTooltip}
+        />
       </div>
     </section>
   );
