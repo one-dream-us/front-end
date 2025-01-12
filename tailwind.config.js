@@ -54,6 +54,7 @@ export default {
       boxShadow: {
         custom: '0px 4px 8px rgba(0, 0, 0, 0.3)',
         login: '0px 6px 12px rgba(0, 0, 0, 0.3)',
+        top: '0 -4px 8px rgba(0, 0, 0, 0.2)',
       },
       backgroundImage: {
         unchecked: "url('@/assets/icons/icon_checkbox_false.svg')",

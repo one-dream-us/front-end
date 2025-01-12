@@ -12,6 +12,15 @@ import tabletImage1 from '@/assets/p2/P2 에셋_2차전달/onboarding_1_tab.web.
 import tabletImage2 from '@/assets/p2/P2 에셋_2차전달/onboarding_2_tab.web.png';
 import tabletImage3 from '@/assets/p2/P2 에셋_2차전달/onboarding_3_tab.web.png';
 import tabletImage4 from '@/assets/p2/P2 에셋_2차전달/onboarding_4_tab.web.png';
+import mobileBanner1 from '@/assets/p2/P2 에셋_2차전달/모바일 배너 (1).png';
+import mobileBanner2 from '@/assets/p2/P2 에셋_2차전달/모바일 배너 (2).png';
+import mobileBanner3 from '@/assets/p2/P2 에셋_2차전달/모바일 배너 (3).png';
+import tabBanner1 from '@/assets/p2/P2 에셋_2차전달/태블릿 배너 (1).png';
+import tabBanner2 from '@/assets/p2/P2 에셋_2차전달/태블릿 배너 (2).png';
+import tabBanner3 from '@/assets/p2/P2 에셋_2차전달/태블릿 배너 (3).png';
+import webBanner1 from '@/assets/p2/P2 에셋_2차전달/웹배너 (1).png';
+import webBanner2 from '@/assets/p2/P2 에셋_2차전달/웹배너 (2).png';
+import webBanner3 from '@/assets/p2/P2 에셋_2차전달/웹배너 (3).png';
 
 export const HeaderMenuList = [
   { id: 1, title: '홈', to: '/' },
@@ -111,5 +120,23 @@ export const onboardingSteps = [
     tabletImage: tabletImage4,
     title: '틀린 단어는 오답 노트로 복습',
     description: '틀린 단어는 오답 노트를 통해 복습하여<br />어렵기만 한 금융단어를 졸업해 보세요.',
+  },
+];
+
+export const Banners = [
+  {
+    mobileImage: mobileBanner1,
+    tabletImage: tabBanner1,
+    webImage: webBanner1,
+  },
+  {
+    mobileImage: mobileBanner2,
+    tabletImage: tabBanner2,
+    webImage: webBanner2,
+  },
+  {
+    mobileImage: mobileBanner3,
+    tabletImage: tabBanner3,
+    webImage: webBanner3,
   },
 ];
