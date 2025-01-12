@@ -16,7 +16,7 @@ export default function WordList({ activeMenu }: { activeMenu: MyWordListMenuTyp
   return (
     <div className='relative'>
       <p
-        className={`${activeMenu === '핵심노트' ? '' : 'mb-[23px]'} text-xs font-medium text-custom-gray-700`}
+        className={`${activeMenu === '핵심노트' && wordNum < 3 ? '' : 'mb-[23px]'} text-xs font-medium text-custom-gray-700`}
       >
         {title}
         <span className='ml-2 font-bold'>{wordNum}</span>
@@ -34,7 +34,7 @@ export default function WordList({ activeMenu }: { activeMenu: MyWordListMenuTyp
         >
           {activeMenu === '스크랩' &&
             wordList.map((word: ScrapDictionary) => (
-              <ScrapWord activeMenu={activeMenu} word={word} key={activeMenu} />
+              <ScrapWord activeMenu={activeMenu} word={word} key={activeMenu + word.dictionaryId} />
             ))}
           {activeMenu === '핵심노트' &&
             wordList.map((word: KeyNoteDictionary) => (
