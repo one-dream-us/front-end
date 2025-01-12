@@ -8,10 +8,21 @@ import Toast from '../common/Toast';
 import { KeyNoteDictionary, ScrapDictionary, WordInterface } from '@/types/interface';
 import ScrapWord from './Words/ScapWord';
 import WordNote from './Words/WordNote';
+import { Dispatch, SetStateAction } from 'react';
 
-export default function WordList({ activeMenu }: { activeMenu: MyWordListMenuType }) {
-  const { title, wordList, wordNum, navigate, showTooltip, listRef, handleScroll } =
-    useWordList(activeMenu);
+export default function WordList({
+  activeMenu,
+  showTooltip,
+  setShowTooltip,
+}: {
+  activeMenu: MyWordListMenuType;
+  showTooltip: boolean;
+  setShowTooltip: Dispatch<SetStateAction<boolean>>;
+}) {
+  const { title, wordList, wordNum, navigate, listRef, handleScroll } = useWordList(
+    activeMenu,
+    setShowTooltip,
+  );
 
   return (
     <div className='relative'>
