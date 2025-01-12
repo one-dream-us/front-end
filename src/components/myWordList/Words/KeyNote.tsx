@@ -1,6 +1,5 @@
 import { MyWordListMenuType } from '@/types/types';
 import { KeyNoteDictionary } from '@/types/interface';
-import bookMarkIcon from '@/assets/p2/icon_bookmark_dark.png';
 import useDeleteKeyNote from '@/hooks/myWordList/api/useDeleteKeyNote';
 import arrowRightIcon from '@/assets/p2/arrow_right.png';
 import { Dispatch, SetStateAction } from 'react';
@@ -29,9 +28,8 @@ export default function KeyNote({
               deleteKeyNote();
             }
           }}
-        >
-          <img src={bookMarkIcon} alt={activeMenu} className='h-[22px] w-[22px]' />
-        </button>
+          className='bg-keynote hover:bg-scrap h-[22px] w-[22px] bg-contain'
+        />
       </div>
       <p className='text-sm leading-160 text-custom-gray-dark'>{word.dictionary.details}</p>
       <button
