@@ -1,5 +1,4 @@
 import { MyWordListMenuType } from '@/types/types';
-import scrapIcon from '@/assets/p2/icon_bookmark_grey.png';
 import useAddKeyNote from '@/hooks/myWordList/api/useAddKeyNote';
 import { ScrapDictionary } from '@/types/interface';
 import arrowRightIcon from '@/assets/p2/arrow_right.png';
@@ -30,9 +29,8 @@ export default function ScrapWord({
               addKeyNote();
             }
           }}
-        >
-          <img src={scrapIcon} alt={activeMenu} className='h-[22px] w-[22px]' />
-        </button>
+          className='bg-scrap hover:bg-keynote h-[22px] w-[22px] bg-contain'
+        />
       </div>
       <p className='text-sm leading-160 text-custom-gray-dark'>{word.details}</p>
       <button
