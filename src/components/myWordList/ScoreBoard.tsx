@@ -13,7 +13,7 @@ export default function ScoreBoard({
     <div className='mt-[23px] flex h-[60px] text-xs leading-120 text-gray-070'>
       <div className='flex w-[114px] flex-col items-center justify-center gap-y-2 border-r border-custom-gray-300'>
         <div className='flex items-center gap-x-1'>
-          <img src={graduationIcon} alt='졸업단어 아이콘' className='h-4 w-4' />
+          <img src={graduationIcon} alt='졸업단어' className='h-4 w-4' />
           <span>졸업단어</span>
         </div>
         <p className='leading-120 text-custom-gray-600'>
