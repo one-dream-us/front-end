@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
 import { MyWordListMenuType } from '@/types/types';
 
-export default function useWordList(activeMenu: MyWordListMenuType) {
-  const { title, wordList, isLoading } = useGetWordList({ activeMenu });
+export default function useWordList<T extends MyWordListMenuType>(activeMenu: T) {
+  const { title, wordList, isLoading } = useGetWordList(activeMenu);
   const wordNum = wordList.length;
   const navigate = useNavigate();
   const [showTooltip, setShowTooltip] = useState(false);
@@ -25,5 +25,14 @@ export default function useWordList(activeMenu: MyWordListMenuType) {
   const handleScroll = () => {
     setShowTooltip(false);
   };
-  return { title, wordList, wordNum, navigate, showTooltip, listRef, handleScroll, isLoading };
+  return {
+    title,
+    wordList: wordList,
+    wordNum,
+    navigate,
+    showTooltip,
+    listRef,
+    handleScroll,
+    isLoading,
+  };
 }
