@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { MyWordListMenuType } from '@/types/types';
 
 export default function useMyWordList() {
-  const [showTutorial, setShowTutorial] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(true);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const initialMenu = queryParams.get('tab') || 'scrap';
