@@ -7,7 +7,6 @@ import { Dispatch, SetStateAction } from 'react';
 export default function useWordList<T extends MyWordListMenuType>(
   activeMenu: T,
   setShowTooltip: Dispatch<SetStateAction<boolean>>,
-  showTutorial: boolean,
 ) {
   const { title, wordList, isLoading } = useGetWordList(activeMenu);
   const wordNum = wordList.length;
@@ -16,7 +15,7 @@ export default function useWordList<T extends MyWordListMenuType>(
   const listRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (activeMenu === '스크랩' && !showTutorial) {
+    if (activeMenu === '스크랩') {
       setShowTooltip(true);
 
       const timer = setTimeout(() => {
