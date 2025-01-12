@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Login from './pages/Login';
 import Layout from './components/common/layout/Layout';
-import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
 import MyScrap from './pages/MyScrap';
 import ContentDetail from './pages/ContentDetail';
 import Profile from './pages/Profile';
@@ -28,7 +28,7 @@ export const router = createBrowserRouter(
     {
       element: <Layout />,
       children: [
-        { path: '/', element: <Home /> },
+        { path: '/', element: <Dashboard /> },
         { path: '/login', element: <Login /> },
         { path: '/content/:id', element: <ContentDetail /> },
         { path: '/withdraw-success', element: <WithDrawSuccess /> },

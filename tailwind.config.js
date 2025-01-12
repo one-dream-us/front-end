@@ -45,6 +45,8 @@ export default {
         'quiz-wrong-bg': '#FFE7E7',
         'gray-070': '#616161',
         'new-green': '#06EA82',
+        'active-green': '#1bba71',
+        inactive: '#d9d9d9',
       },
       screens: {
         desktop: { min: '1440px' },

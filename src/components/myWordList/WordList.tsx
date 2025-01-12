@@ -1,4 +1,4 @@
-import { MyWordListMenuType } from '@/types/types';
+import { WordListProps } from '@/types/interface';
 import useWordList from '@/hooks/myWordList/useWordList';
 import KeyNote from './Words/KeyNote';
 import emptyScrapIcon from '@/assets/p2/P2 에셋_2차전달/word_empty.png';
@@ -8,23 +8,17 @@ import Toast from '../common/Toast';
 import { KeyNoteDictionary, ScrapDictionary, WordInterface } from '@/types/interface';
 import ScrapWord from './Words/ScapWord';
 import WordNote from './Words/WordNote';
-import { Dispatch, SetStateAction } from 'react';
 
 export default function WordList({
   activeMenu,
   showTooltip,
   setShowTooltip,
-  showTutorial,
-}: {
-  activeMenu: MyWordListMenuType;
-  showTooltip: boolean;
-  setShowTooltip: Dispatch<SetStateAction<boolean>>;
-  showTutorial: boolean;
-}) {
+  setShowModal,
+  showModal,
+}: WordListProps) {
   const { title, wordList, wordNum, navigate, listRef, handleScroll } = useWordList(
     activeMenu,
     setShowTooltip,
-    showTutorial,
   );
 
   return (
@@ -48,11 +42,23 @@ export default function WordList({
         >
           {activeMenu === '스크랩' &&
             wordList.map((word: ScrapDictionary) => (
-              <ScrapWord activeMenu={activeMenu} word={word} key={activeMenu + word.dictionaryId} />
+              <ScrapWord
+                activeMenu={activeMenu}
+                word={word}
+                key={activeMenu + word.dictionaryId}
+                showModal={showModal}
+                setShowModal={setShowModal}
+              />
             ))}
           {activeMenu === '핵심노트' &&
             wordList.map((word: KeyNoteDictionary) => (
-              <KeyNote activeMenu={activeMenu} word={word} key={word.keyNoteId} />
+              <KeyNote
+                activeMenu={activeMenu}
+                word={word}
+                key={word.keyNoteId}
+                showModal={showModal}
+                setShowModal={setShowModal}
+              />
             ))}
           {activeMenu === '졸업노트' ||
             (activeMenu === '오답노트' &&
@@ -61,9 +67,11 @@ export default function WordList({
                   activeMenu={activeMenu}
                   word={word}
                   key={activeMenu + word.dictionary.id}
+                  showModal={showModal}
+                  setShowModal={setShowModal}
                 />
               )))}
-          {activeMenu === '스크랩' && showTooltip && (
+          {activeMenu === '스크랩' && showTooltip && wordNum < 3 && (
             <div className="absolute right-[18px] top-[18px] z-[999] rounded bg-custom-gray-dark px-2.5 py-2 text-xs text-primary drop-shadow-xl after:absolute after:-bottom-2 after:right-3 after:border-x-[6px] after:border-t-[8px] after:border-transparent after:border-t-custom-gray-dark after:content-['']">
               중요한 단어를 핵심노트에 추가하고 퀴즈를 풀어보세요!
             </div>
