@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { MyWordListMenuType } from '@/types/types';
 import scrapApi from '@/services/scrapApi';
+import { useEffect } from 'react';
 
 export default function useGetWordListData(activeMenu: MyWordListMenuType) {
   const navigate = useNavigate();
@@ -27,6 +28,10 @@ export default function useGetWordListData(activeMenu: MyWordListMenuType) {
       navigate('/login');
     }
   }
+
+  useEffect(() => {
+    refetch();
+  }, [activeMenu]);
 
   const wordList = data
     ? activeMenu === '스크랩'
