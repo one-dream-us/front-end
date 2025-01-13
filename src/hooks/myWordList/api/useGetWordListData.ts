@@ -29,7 +29,9 @@ export default function useGetWordListData(activeMenu: MyWordListMenuType) {
   }
 
   useEffect(() => {
-    refetch();
+    if (isLogin) {
+      refetch();
+    }
   }, [activeMenu]);
 
   const wordList = data
