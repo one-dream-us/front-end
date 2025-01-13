@@ -7,7 +7,7 @@ import NewsCard from '@/components/common/NewsCard';
 //import { News } from '@/types/interface';
 
 export default function Dashboard() {
-  const { showOnboarding, setShowOnboarding, latestNews, newsList } = useDashboard();
+  const { showOnboarding, setShowOnboarding, latestNews } = useDashboard();
 
   return (
     <div>

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import useBanner from '@/hooks/dashboard/useBanner';
 import NotificationModal from './NotificationModal';
 import { handleBannerClick } from '@/utils/dashboardUtils';
+
 export default function Banner() {
   const {
     isLogin,
@@ -17,6 +18,7 @@ export default function Banner() {
     isKeynote,
     setIsKeynote,
   } = useBanner();
+
   return (
     <section className='mx-auto mb-10 mt-3 w-[347px] overflow-hidden md:w-[357px] desktop:mb-7 desktop:w-[814px]'>
       <Slider {...settings}>
