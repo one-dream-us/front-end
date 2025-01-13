@@ -89,7 +89,7 @@ export default function Drawer({
           )}
         </div>
 
-        <ul className='absolute top-[262px] flex h-[139px] w-[200px] flex-col items-start justify-between text-[22px] font-bold text-custom-gray-medium'>
+        <ul className='absolute top-[262px] flex h-[139px] w-[200px] flex-col items-start justify-between text-[22px] font-medium text-custom-gray-medium'>
           {HeaderMenuList.map((item) => (
             <li key={item.id}>
               <Link
