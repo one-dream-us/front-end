@@ -11,7 +11,7 @@ export default function OnBoarding({
   setShowOnboarding: Dispatch<SetStateAction<boolean>>;
 }) {
   const onboardingStepsLen = onboardingSteps.length;
-  const { currentStep, handleNext } = useOnboarding({
+  const { currentStep, handleNext, setShowTooltip } = useOnboarding({
     onboardingStepsLen,
     setShowOnboarding,
   });
@@ -30,7 +30,11 @@ export default function OnBoarding({
             type='button'
             className='absolute right-0 top-[43px] h-5 w-5'
             aria-label='온보딩 모달 닫기'
-            onClick={() => setShowOnboarding(false)}
+            onClick={() => {
+              setShowOnboarding(false);
+              setShowTooltip(true);
+              setTimeout(() => setShowTooltip(false), 3000);
+            }}
           >
             <img src={closeIcon} alt='온보딩 모달 닫기' />
           </button>
