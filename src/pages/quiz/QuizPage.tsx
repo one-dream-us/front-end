@@ -38,7 +38,9 @@ export default function QuizPage() {
       {(isLoading || currentQuiz === undefined) && <QuizSkeleton />}
 
       {currentQuiz && (
-        <div className='m-auto mb-[200px] min-h-[478px] w-[343px] rounded-[10px] bg-white p-4 md:w-[353px] md:p-5 desktop:w-[812px] desktop:p-[40px]'>
+        <div
+          className={`m-auto min-h-[478px] w-[343px] rounded-[10px] bg-white p-4 md:w-[353px] md:p-5 desktop:w-[812px] desktop:p-[40px] ${isCorrect !== null && 'mb-[200px]'}`}
+        >
           {/* 문제 */}
           <div className='mb-[40px] h-[158px] w-full text-custom-black desktop:mb-[30px]'>
             <div className='mb-[20px] h-[42px] w-full border-b border-custom-gray-200'>
