@@ -6,6 +6,8 @@ import tutorialStore from '@/store/course/tutorialStore';
 import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
 import { useEffect, useState } from 'react';
 import { useStore } from 'zustand';
+import quizResult100 from '@/assets/p2/quiz result=100.png';
+import tutorialImg from '@/assets/p2/P2 에셋_2차전달/코니_학습 완료.png';
 
 export default function CourseComplete() {
   const { setIsNewUser, isNewUser } = useStore(tutorialStore);
@@ -15,11 +17,11 @@ export default function CourseComplete() {
   }, []);
   return (
     <div className='m-auto w-[343px]'>
-      <div className='mb-[20px] mt-[40px] h-[165px] w-full border'>
+      <div className='mb-[20px] mt-[40px] h-[165px] w-full'>
         <h1 className='mb-[8px] text-center text-[22px] font-bold text-custom-black'>
           학습을 완료했어요!
         </h1>
-        <img className='h-[124px] w-full border' src='#' alt='img' />
+        <img className='h-[124px] w-full' src={quizResult100} alt='img' />
       </div>
 
       <div
@@ -42,7 +44,21 @@ export default function CourseComplete() {
             </h1>
           </div>
 
-          <div className='m-auto mb-[54px] flex h-[184px] w-[293px] flex-col gap-y-2 desktop:w-full'>
+          <div className='relative m-auto mb-[54px] flex h-[184px] w-[293px] flex-col gap-y-2 desktop:w-full'>
+            {isNewUser && (
+              <>
+                <img
+                  className='absolute -right-[17px] bottom-0 top-[30px] z-[10001] size-9'
+                  src={tutorialImg}
+                  alt='cony'
+                />
+                <div className='absolute -top-[75px] right-0 z-[10000]'>
+                  <div className='chat-bubble chat-bubble-rb h-[58px] w-[215px]'>
+                    단어를 북마크 하고 <br /> 단어장에서 복습 퀴즈를 풀어봐요!
+                  </div>
+                </div>
+              </>
+            )}
             {todayswordList.map((item, index) => (
               <TodaysWord key={item.id} {...item} index={index} />
             ))}

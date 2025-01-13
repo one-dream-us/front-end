@@ -10,7 +10,7 @@ export default function CourseStart() {
     <div className='left-0 top-0 w-full items-center justify-center md:absolute md:flex md:h-screen'>
       <div className='m-auto w-[341px] desktop:w-[440px]'>
         {/* mt-[138px] */}
-        <div className='m-auto mb-[24px] h-[51px] w-[176px] text-center'>
+        <div className='m-auto mb-[24px] mt-[40px] h-[51px] w-[176px] text-center md:mt-0'>
           <Title main='오늘 배울 단어예요!' sub='오늘의 학습' />
         </div>
 
@@ -28,7 +28,7 @@ export default function CourseStart() {
           />
         </div>
         <Link to={'/course'}>
-          <button className='h-[44px] w-full rounded-[10px] bg-custom-gray-dark text-[14px] font-bold text-custom-green-money transition-all duration-200 hover:bg-hover-80'>
+          <button className='mb-[40px] h-[44px] w-full rounded-[10px] bg-custom-gray-dark text-[14px] font-bold text-custom-green-money transition-all duration-200 hover:bg-hover-80 md:mb-0'>
             학습 시작하기
           </button>
         </Link>

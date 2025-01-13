@@ -11,7 +11,7 @@ export default function QuizLayout() {
       <div className='flex min-h-screen w-full flex-col justify-between'>
         <Header />
         <main
-          className={`min-h-screen w-full px-[16px] pt-[52px] desktop:pt-[80px] ${pathname === '/quiz-result' ? 'bg-quiz-bg desktop:bg-white' : 'bg-quiz-bg'}`}
+          className={`min-h-screen w-full px-[16px] pt-[52px] desktop:pt-[80px] ${pathname === '/quiz-result' || pathname === '/random-quiz-result' ? 'bg-quiz-bg desktop:bg-white' : 'bg-quiz-bg'}`}
         >
           <Outlet />
         </main>
