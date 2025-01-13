@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { onboardingSteps } from '@/constants';
 import useImagePreloader from '../common/useImagePreloader';
 // import useCheckFirstVisit from './useCheckFirstVisit';
+import useKeywordTooltip from '@/store/useKeywordTooltip';
 
 export default function useOnboarding({
   onboardingStepsLen,
@@ -33,12 +34,16 @@ export default function useOnboarding({
   useImagePreloader(imageSrcs);
   useImagePreloader(imageSrcs);
 
+  const { setShowTooltip } = useKeywordTooltip();
+
   const handleNext = () => {
     if (currentStep < onboardingStepsLen - 1) {
       setCurrentStep((prev) => prev + 1);
     } else {
       setShowOnboarding(false);
+      setShowTooltip(true);
+      setTimeout(() => setShowTooltip(false), 3000);
     }
   };
-  return { currentStep, setCurrentStep, handleNext };
+  return { currentStep, handleNext, setShowTooltip };
 }

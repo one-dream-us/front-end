@@ -13,6 +13,10 @@ const wordListAPi = {
     const { data: response } = await client.get('/note/key-note');
     return response;
   },
+  getScrap: async () => {
+    const { data: response } = await client.get('/scraps/news/dictionaries');
+    return response;
+  },
   getLearningStatus: async () => {
     const { data: response } = await client.get('/note/learning-status/');
     return response;
