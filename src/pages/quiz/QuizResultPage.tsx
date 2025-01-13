@@ -1,9 +1,12 @@
-import quizResultPerfect from '@/assets/imgs_v2/quiz_result_perfect.png';
 import QuizResultItem from '@/components/quiz/quizResult/QuizResultItem';
-import quizGraduation from '@/assets/imgs_v2/quiz-graduation.png';
-import correctIcon from '@/assets/imgs_v2/icon_check_green.png';
-import wrongIcon from '@/assets/imgs_v2/icon_X_Pink.png';
+import correctIcon from '@/assets/p2/icon_check_right.png';
+import wrongIcon from '@/assets/p2/icon_x_wrg.png';
 import BottomSheet from '@/components/quiz/common/BottomSheet';
+import quizResult100 from '@/assets/p2/quiz result=100.png';
+// import quizResult50 from '@/assets/p2/quiz result=2080.png';
+// import quizResult0 from '@/assets/p2/quiz result=0.png';
+import BottomSheetImg from '@/assets/p2/icon_quiz.png';
+import iconGrad from '@/assets/p2/icon_grad.png';
 
 export default function QuizResultPage() {
   const checkIsRedText = (status: string) => {
@@ -17,34 +20,58 @@ export default function QuizResultPage() {
     }
   };
 
+  // const createTitle = () => {
+  //   if (!result) return;
+  //   const { accuracyRate } = result;
+  //   const obj = {
+  //     mainTitle: '',
+  //     subTitlt: '',
+  //     src: '',
+  //   };
+
+  //   switch (accuracyRate) {
+  //     case 100:
+  //       obj.mainTitle = '전부 다 맞췄어요!';
+  //       (obj.subTitlt = '외운 단어는 졸업노트에 넣어둘게요!'), (obj.src = quizResult100);
+  //       break;
+  //     case 0:
+  //       obj.mainTitle = '조금 어려웠나봐요!';
+  //       (obj.subTitlt = '놓친 단어는 오답노트에 넣었어요'), (obj.src = quizResult50);
+  //       break;
+  //     default:
+  //       obj.mainTitle = '퀴즈를 다 풀었어요!';
+  //       (obj.subTitlt = '놓친 단어는 오답노트에 넣었어요'), (obj.src = quizResult0);
+  //   }
+  //   return obj;
+  // };
   return (
     <div className='m-auto'>
       <div className='mb-[16px] mt-[40px] text-center md:mt-[60px]'>
-        <div className='m-auto mb-1 h-[33px] w-[156px]'>
+        <div className='m-auto mb-1 h-[33px] min-w-[156px]'>
           <h1 className='mb-1 text-[22px] font-bold leading-[160%]'>전부 다 맞췄어요!</h1>
         </div>
-        <div className='m-auto h-[22px] w-[202px]'>
+        <div className='m-auto h-[22px] min-w-[202px]'>
           <span className='text-[14px] text-custom-gray-dark'>
             외운 단어는 졸업노트에 넣어둘게요!
           </span>
         </div>
 
-        <img className='m-auto h-[124px]' src={quizResultPerfect} alt='quiz result image' />
+        <img className='m-auto mb-[16px] h-[124px]' src={quizResult100} alt='quiz result image' />
       </div>
       {/* quiz result status */}
       <div
         id='quiz-result-status'
         className='m-auto mb-[24px] grid h-[60px] max-w-[353px] grid-cols-3 grid-rows-1'
       >
-        <QuizResultItem quantity={1} status='졸업단어' unit='개' src={quizGraduation} />
+        <QuizResultItem quantity={1} status='졸업단어' unit='개' src={iconGrad} />
         <QuizResultItem quantity={5} status='오답단어' unit='개' />
         <QuizResultItem quantity={80} status='정답률' unit='%' />
       </div>
 
-      <div className='left-0 min-h-screen w-full pt-[24px] desktop:absolute desktop:bg-quiz-bg'>
+      <div className='left-0 h-auto w-full desktop:absolute desktop:bg-quiz-bg desktop:pt-[24px]'>
         {' '}
         {/* questions */}
-        <ul className='m-auto max-w-[353px] desktop:grid desktop:max-w-[812px] desktop:grid-cols-2 desktop:gap-x-[20px] desktop:gap-y-[12px]'>
+        <ul className='m-auto mb-[200px] max-w-[353px] desktop:grid desktop:max-w-[812px] desktop:grid-cols-2 desktop:gap-x-[20px] desktop:gap-y-[12px]'>
           {resultList.map((item) => (
             // 단어 카드
             <li
@@ -64,7 +91,7 @@ export default function QuizResultPage() {
                   className={`mb-1 flex h-[24px] w-full items-center justify-start gap-x-1 text-[14px] leading-170 ${checkIsRedText(item.status) ? 'text-[#FB8888]' : 'text-custom-gray-700'}`}
                 >
                   {item.status.includes('졸업') && (
-                    <img src={quizGraduation} alt='graduation icon' />
+                    <img src={iconGrad} className='size-4' alt='graduation icon' />
                   )}
                   <span> {item.status}</span>
                 </div>
@@ -98,7 +125,7 @@ export default function QuizResultPage() {
 
       <BottomSheet
         titleText='오늘의 퀴즈 완료!'
-        imgSrc={correctIcon}
+        imgSrc={BottomSheetImg}
         buttonTextColor='text-custom-green-money'
         handleButtonClick={() => console.log('ok')}
         buttonText={

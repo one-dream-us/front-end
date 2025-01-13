@@ -3,22 +3,23 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { IChoice } from '@/types/interface';
 import { useStore } from 'zustand';
 import quizStore from '@/store/quiz/quizStore';
+import { matchOptionImgColor } from '@/utils/quiz/quizHandlers';
 
 interface AccordionProps extends IChoice {
   handlePick: () => void;
   answer: string;
-  index: number;
+  optionIndex: number;
 }
 export default function Accordion({
   answer,
   handlePick,
-  index,
   detail,
   dictionaryId,
   term,
+  optionIndex,
 }: AccordionProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const { myChoice, isCorrect } = useStore(quizStore);
+  const { myChoice, isCorrect, index } = useStore(quizStore);
 
   const handleAccordion = () => {
     if (!myChoice) {
@@ -48,6 +49,11 @@ export default function Accordion({
         className={`flex h-[56px] w-full cursor-pointer items-center justify-start gap-x-2 bg-quiz-bg p-4 text-[14px] font-bold text-custom-gray-dark desktop:h-[62px] ${isOpen ? 'mb-0 rounded-b-none rounded-t-[10px]' : 'mb-2 rounded-[10px]'} ${correctBg} ${wrongBg} `}
         onClick={handleAccordion}
       >
+        <img
+          className='size-5'
+          src={matchOptionImgColor(isCorrect, optionIndex, answer, term, myChoice)}
+          alt='option image'
+        />
         {term}
         {myChoice && term !== answer && (
           <motion.svg
