@@ -1,20 +1,30 @@
-import { MyWordListMenuType } from '@/types/types';
+import { WordListProps } from '@/types/interface';
 import useWordList from '@/hooks/myWordList/useWordList';
-import Word from './Word';
-import { WordType } from '@/types/interface';
+import KeyNote from './Words/KeyNote';
 import emptyScrapIcon from '@/assets/p2/P2 에셋_2차전달/word_empty.png';
 import Button from '../myScrap/Button';
 import { myWordListInfo } from '@/constants';
 import Toast from '../common/Toast';
+import { KeyNoteDictionary, ScrapDictionary, WordInterface } from '@/types/interface';
+import ScrapWord from './Words/ScapWord';
+import WordNote from './Words/WordNote';
 
-export default function WordList({ activeMenu }: { activeMenu: MyWordListMenuType }) {
-  const { title, wordList, wordNum, navigate, showTooltip, listRef, handleScroll } =
-    useWordList(activeMenu);
+export default function WordList({
+  activeMenu,
+  showTooltip,
+  setShowTooltip,
+  setShowModal,
+  showModal,
+}: WordListProps) {
+  const { title, wordList, wordNum, navigate, listRef, handleScroll } = useWordList(
+    activeMenu,
+    setShowTooltip,
+  );
 
   return (
     <div className='relative'>
       <p
-        className={`${activeMenu === '핵심노트' ? '' : 'mb-[23px]'} text-xs font-medium text-custom-gray-700`}
+        className={`${activeMenu === '핵심노트' && wordNum < 3 ? '' : 'mb-[23px]'} text-xs font-medium text-custom-gray-700`}
       >
         {title}
         <span className='ml-2 font-bold'>{wordNum}</span>
@@ -27,14 +37,42 @@ export default function WordList({ activeMenu }: { activeMenu: MyWordListMenuTyp
       {wordList.length > 0 ? (
         <div
           ref={listRef}
-          className={`md:gap-y-4.5 mb-12 flex h-96 flex-col gap-y-3 overflow-y-auto pr-2 desktop:h-[340px] desktop:gap-y-4 ${activeMenu === '스크랩' && 'pt-3'}`}
+          className={`md:gap-y-4.5 mb-12 flex h-96 flex-col gap-y-3 overflow-y-auto pr-2 desktop:h-[340px] desktop:gap-y-4 ${activeMenu === '스크랩' && showTooltip && 'pt-1'}`}
           onScroll={handleScroll}
         >
-          {wordList.map((word: WordType) => (
-            <Word activeMenu={activeMenu} word={word} key={word.term} />
-          ))}
-          {activeMenu === '스크랩' && showTooltip && (
-            <div className="absolute right-[18px] top-6 z-[999] rounded bg-custom-gray-dark px-2.5 py-2 text-xs text-primary drop-shadow-xl after:absolute after:-bottom-2 after:right-3 after:border-x-[6px] after:border-t-[8px] after:border-transparent after:border-t-custom-gray-dark after:content-['']">
+          {activeMenu === '스크랩' &&
+            wordList.map((word: ScrapDictionary) => (
+              <ScrapWord
+                activeMenu={activeMenu}
+                word={word}
+                key={activeMenu + word.dictionaryId}
+                showModal={showModal}
+                setShowModal={setShowModal}
+              />
+            ))}
+          {activeMenu === '핵심노트' &&
+            wordList.map((word: KeyNoteDictionary) => (
+              <KeyNote
+                activeMenu={activeMenu}
+                word={word}
+                key={word.keyNoteId}
+                showModal={showModal}
+                setShowModal={setShowModal}
+              />
+            ))}
+          {activeMenu === '졸업노트' ||
+            (activeMenu === '오답노트' &&
+              wordList.map((word: WordInterface) => (
+                <WordNote
+                  activeMenu={activeMenu}
+                  word={word}
+                  key={activeMenu + word.dictionary.id}
+                  showModal={showModal}
+                  setShowModal={setShowModal}
+                />
+              )))}
+          {activeMenu === '스크랩' && showTooltip && wordNum < 3 && (
+            <div className="absolute right-[18px] top-[18px] z-[999] rounded bg-custom-gray-dark px-2.5 py-2 text-xs text-primary drop-shadow-xl after:absolute after:-bottom-2 after:right-3 after:border-x-[6px] after:border-t-[8px] after:border-transparent after:border-t-custom-gray-dark after:content-['']">
               중요한 단어를 핵심노트에 추가하고 퀴즈를 풀어보세요!
             </div>
           )}

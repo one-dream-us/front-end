@@ -45,6 +45,8 @@ export default {
         'quiz-wrong-bg': '#FFE7E7',
         'gray-070': '#616161',
         'new-green': '#06EA82',
+        'active-green': '#1bba71',
+        inactive: '#d9d9d9',
       },
       screens: {
         desktop: { min: '1440px' },
@@ -52,6 +54,7 @@ export default {
       boxShadow: {
         custom: '0px 4px 8px rgba(0, 0, 0, 0.3)',
         login: '0px 6px 12px rgba(0, 0, 0, 0.3)',
+        top: '0 -4px 8px rgba(0, 0, 0, 0.2)',
       },
       backgroundImage: {
         unchecked: "url('@/assets/icons/icon_checkbox_false.svg')",
@@ -59,6 +62,8 @@ export default {
         play: "url('@/assets/icons/video_btn_style=main.svg')",
         'play-hover': "url('@/assets/icons/video_btn_style=hover.svg')",
         'play-disabled': "url('@/assets/icons/video_btn_style=disabled.svg')",
+        keynote: "url('@/assets/p2/icon_bookmark_dark.png')",
+        scrap: "url('@/assets/p2/icon_bookmark_grey.png')",
       },
       lineHeight: {
         170: '1.7',

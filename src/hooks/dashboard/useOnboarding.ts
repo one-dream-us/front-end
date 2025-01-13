@@ -1,0 +1,44 @@
+import { useState, useEffect } from 'react';
+import { Dispatch, SetStateAction } from 'react';
+import { onboardingSteps } from '@/constants';
+import useImagePreloader from '../common/useImagePreloader';
+// import useCheckFirstVisit from './useCheckFirstVisit';
+
+export default function useOnboarding({
+  onboardingStepsLen,
+  setShowOnboarding,
+}: {
+  onboardingStepsLen: number;
+  setShowOnboarding: Dispatch<SetStateAction<boolean>>;
+}) {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [isTablet, setIsTablet] = useState(false);
+  // useCheckFirstVisit(setShowOnboarding);
+
+  useEffect(() => {
+    const updateIsTablet = () => {
+      setIsTablet(window.innerWidth >= 768);
+    };
+
+    updateIsTablet();
+    window.addEventListener('resize', updateIsTablet);
+
+    return () => {
+      window.removeEventListener('resize', updateIsTablet);
+    };
+  }, []);
+
+  const imageSrcs = onboardingSteps.map((step) => (isTablet ? step.tabletImage : step.mobileImage));
+
+  useImagePreloader(imageSrcs);
+  useImagePreloader(imageSrcs);
+
+  const handleNext = () => {
+    if (currentStep < onboardingStepsLen - 1) {
+      setCurrentStep((prev) => prev + 1);
+    } else {
+      setShowOnboarding(false);
+    }
+  };
+  return { currentStep, setCurrentStep, handleNext };
+}

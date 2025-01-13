@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import useFirstLogin from './useFirstLogin';
+// import useFirstLogin from './useFirstLogin';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { MyWordListMenuType } from '@/types/types';
 
 export default function useMyWordList() {
-  const [showTutorial, setShowTutorial] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(true);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const initialMenu = queryParams.get('tab') || 'scrap';
@@ -17,9 +17,11 @@ export default function useMyWordList() {
   const [activeMenu, setActiveMenu] = useState<MyWordListMenuType>(
     parameters[initialMenu] ?? '스크랩',
   );
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
-  useFirstLogin(setShowTutorial);
+  // useFirstLogin(setShowTutorial);
 
   useEffect(() => {
     const currentParams = new URLSearchParams(location.search);
@@ -29,5 +31,14 @@ export default function useMyWordList() {
     }
   }, [activeMenu, location.search, navigate]);
 
-  return { showTutorial, setShowTutorial, activeMenu, setActiveMenu };
+  return {
+    showTutorial,
+    setShowTutorial,
+    activeMenu,
+    setActiveMenu,
+    showTooltip,
+    setShowTooltip,
+    showModal,
+    setShowModal,
+  };
 }
