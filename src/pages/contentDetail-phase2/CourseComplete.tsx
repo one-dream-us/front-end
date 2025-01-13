@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import { useStore } from 'zustand';
 import quizResult100 from '@/assets/p2/quiz result=100.png';
 import tutorialImg from '@/assets/p2/P2 에셋_2차전달/코니_학습 완료.png';
+import scrapActive from '@/assets/p2/P2 에셋_2차전달/icon_scrap.png';
+import scrapDisable from '@/assets/p2/P2 에셋_2차전달/icon_scrap_greyline.png';
 
 export default function CourseComplete() {
   const { setIsNewUser, isNewUser } = useStore(tutorialStore);
@@ -48,7 +50,7 @@ export default function CourseComplete() {
             {isNewUser && (
               <>
                 <img
-                  className='absolute -right-[17px] bottom-0 top-[30px] z-[10001] size-9'
+                  className='absolute -right-[17px] bottom-0 top-[30px] z-[10001] size-9 h-[37px] w-[34px]'
                   src={tutorialImg}
                   alt='cony'
                 />
@@ -115,20 +117,11 @@ const TodaysWord = ({ word, index }: { index: number; word: string }) => {
       <h1 className='text-[16px] font-medium text-custom-gray-dark'>{word}</h1>
 
       <button onClick={handleScrap} disabled={showTutorial ?? true}>
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          viewBox='0 0 24 24'
-          strokeWidth={1.5}
-          stroke='currentColor'
-          className={`size-6 ${isScrap || showTutorial ? 'fill-[#1BBA71] stroke-none' : 'stroke-1'}`}
-        >
-          <path
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            d='M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z'
-          />
-        </svg>
+        <img
+          className={`h-[19px] w-[18px]`}
+          src={isScrap || showTutorial ? scrapActive : scrapDisable}
+          alt='scrap img'
+        />
       </button>
     </div>
   );
