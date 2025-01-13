@@ -8,6 +8,7 @@ import Toast from '../common/Toast';
 import { KeyNoteDictionary, ScrapDictionary, WordInterface } from '@/types/interface';
 import ScrapWord from './Words/ScapWord';
 import WordNote from './Words/WordNote';
+import ExplanationModal from './ExplanationModal';
 
 export default function WordList({
   activeMenu,
@@ -46,7 +47,6 @@ export default function WordList({
                 activeMenu={activeMenu}
                 word={word}
                 key={activeMenu + word.dictionaryId}
-                showModal={showModal}
                 setShowModal={setShowModal}
               />
             ))}
@@ -56,7 +56,6 @@ export default function WordList({
                 activeMenu={activeMenu}
                 word={word}
                 key={word.keyNoteId}
-                showModal={showModal}
                 setShowModal={setShowModal}
               />
             ))}
@@ -67,7 +66,6 @@ export default function WordList({
                   activeMenu={activeMenu}
                   word={word}
                   key={activeMenu + word.dictionary.id}
-                  showModal={showModal}
                   setShowModal={setShowModal}
                 />
               )))}
@@ -76,6 +74,7 @@ export default function WordList({
               중요한 단어를 핵심노트에 추가하고 퀴즈를 풀어보세요!
             </div>
           )}
+          {showModal && <ExplanationModal showModal={showModal} setShowModal={setShowModal} />}
         </div>
       ) : activeMenu === '스크랩' ? (
         <div className='mb-[71px] mt-[30px] flex h-[270px] w-full flex-col items-center justify-between'>
