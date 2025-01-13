@@ -186,3 +186,42 @@ export interface WordListProps {
   setShowModal: Dispatch<SetStateAction<boolean>>;
   showModal: boolean;
 }
+
+// quiz
+export interface IQuiz {
+  question: string;
+  answerNum: number;
+  choices: IChoice[];
+}
+
+export interface IChoice {
+  dictionaryId: number;
+  term: string;
+  detail: string;
+  quizNum: number;
+  status: string;
+}
+
+export interface IQuestionResult extends Pick<IChoice, 'dictionaryId' | 'status'> {
+  isCorrect: boolean;
+}
+
+export interface IQuizResult {
+  graduationCnt: number;
+  totalWrong: number;
+  accuracyRate: number;
+  resultDetails: ResultDetail[];
+}
+
+export interface ResultDetail {
+  status: string;
+  term: string;
+  correctCnt: number;
+  wrongCnt: number;
+  isCorrect: boolean;
+}
+
+export interface IHandlePick extends Pick<IChoice, 'dictionaryId' | 'status'> {
+  item: IChoice;
+  answer: string;
+}

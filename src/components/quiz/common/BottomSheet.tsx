@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 
 export default function BottomSheet({
   imgSrc,
@@ -13,6 +14,7 @@ export default function BottomSheet({
   buttonTextColor: 'text-custom-green-money' | 'text-custom-gray-lighter';
   handleButtonClick: () => void;
 }) {
+  const { pathname } = useLocation();
   return (
     <motion.div
       initial={{ y: 150 }}
@@ -23,7 +25,7 @@ export default function BottomSheet({
     >
       <div className='m-auto max-w-[375px]'>
         <div className='mb-[20px] mt-[33px] flex items-center justify-start gap-x-2 md:justify-center'>
-          <img className='size-6' src={imgSrc} alt='correct' />
+          <img className={`size-${pathname === '/quiz' ? '6' : '9'}`} src={imgSrc} alt='correct' />
           <h1 className='text-[22px] font-bold text-custom-gray-dark'>{titleText}</h1>
         </div>
 
