@@ -1,31 +1,36 @@
 import quizResultStore from '@/store/quiz/quizResultStore';
 import quizStore from '@/store/quiz/quizStore';
-import { IHandlePick } from '@/types/interface';
+import { IChoice, IHandlePick, IQuestionResult } from '@/types/interface';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from 'zustand';
 import useSubmitQuiz from './useSubmitQuiz';
 
 export const useQuizHandler = () => {
   const navigate = useNavigate();
-  const { setMyChoice, setIsCorrect, setIndex, index } = useStore(quizStore);
+  const { setMyChoice, setIsCorrect, setIndex, index, setRemainQuestion } = useStore(quizStore);
   const { setResults, results } = useStore(quizResultStore);
   const submitQuiz = useSubmitQuiz();
 
-  // const addQuizResults = () => {}; // 2. 결과 전달 위해 각 문제 결과 누적
-
-  const handlePick = ({ answer, dictionaryId, item, status }: IHandlePick) => {
-    // 1. ui,정답인지 아닌지 상테 판단
+  /**1. ui,정답인지 아닌지 상태 판단 */
+  const checkIsCorrect = (item: IChoice, answer: string) => {
     setMyChoice(item.term);
     const isCorrect = item.term === answer;
     isCorrect ? setIsCorrect(true) : setIsCorrect(false);
-
-    // 2. 결과 전달위해 각 문제 결과 누적
-    const payload = { dictionaryId, status, isCorrect };
-    setResults(payload);
-
-    // 분리 필요
+    return isCorrect;
   };
 
+  /**2. 결과 전달 위해 각 문제 결과 누적 */
+  const addQuizResults = (payload: IQuestionResult) => setResults(payload);
+
+  /**퀴즈 보기 클릭 함수 */
+  const handlePick = ({ answer, dictionaryId, item, status }: IHandlePick) => {
+    const isCorrect = checkIsCorrect(item, answer);
+    addQuizResults({ dictionaryId, status, isCorrect });
+    // 3. 나가기 모달 남은 문제 수 업데이트
+    setRemainQuestion();
+  };
+
+  /**퀴즈 페이지 내 바텀시트 버튼 클릭 함수 */
   const handleBottomSheetClick = () => {
     const isLastQuestion = index === 4;
     if (isLastQuestion) {

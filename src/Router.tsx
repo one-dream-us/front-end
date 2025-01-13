@@ -48,13 +48,22 @@ export const router = createBrowserRouter(
     {
       element: <QuizLayout />,
       children: [
-        { path: '/quiz', element: <QuizPage />, errorElement: <QuizErrorPage /> },
-        { path: '/quiz-loading', element: <QuizLoadingPage />, errorElement: <QuizErrorPage /> },
-        { path: '/quiz-result', element: <QuizResultPage />, errorElement: <QuizErrorPage /> },
         {
-          path: '/random-quiz-result',
-          element: <RandomQuizResultPage />,
-          errorElement: <QuizErrorPage />,
+          element: <ProtectedRoute />,
+          children: [
+            { path: '/quiz', element: <QuizPage />, errorElement: <QuizErrorPage /> },
+            {
+              path: '/quiz-loading',
+              element: <QuizLoadingPage />,
+              errorElement: <QuizErrorPage />,
+            },
+            { path: '/quiz-result', element: <QuizResultPage />, errorElement: <QuizErrorPage /> },
+            {
+              path: '/random-quiz-result',
+              element: <RandomQuizResultPage />,
+              errorElement: <QuizErrorPage />,
+            },
+          ],
         },
       ],
     },

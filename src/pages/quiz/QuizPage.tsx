@@ -7,9 +7,8 @@ import ModalButton from '@/components/common/modal/ModalButton';
 import QuizSkeleton from '@/components/quiz/QuizSkeleton';
 import Accordion from '@/components/quiz/Accordion';
 import BottomSheet from '@/components/quiz/common/BottomSheet';
-import correctIcon from '@/assets/imgs_v2/icon_check_green.png';
-import wrongIcon from '@/assets/imgs_v2/icon_X_Pink.png';
-import quiz from '@/mocks/data/quiz';
+import correctIcon from '@/assets/p2/icon_check_right.png';
+import wrongIcon from '@/assets/p2/icon_x_wrg.png';
 import { useQuery } from '@tanstack/react-query';
 import { quizApi } from '@/services/quizApi';
 import { useStore } from 'zustand';
@@ -38,8 +37,8 @@ export default function QuizPage() {
       <ProgressBar index={index + 1} />
       {(isLoading || currentQuiz === undefined) && <QuizSkeleton />}
 
-      {quiz && (
-        <div className='m-auto mb-40 min-h-[478px] w-[343px] rounded-[10px] bg-white p-4 md:h-[779px] md:w-[353px] md:p-5 desktop:h-[735px] desktop:w-[812px] desktop:p-[40px]'>
+      {currentQuiz && (
+        <div className='m-auto mb-[200px] min-h-[478px] w-[343px] rounded-[10px] bg-white p-4 md:w-[353px] md:p-5 desktop:w-[812px] desktop:p-[40px]'>
           {/* 문제 */}
           <div className='mb-[40px] h-[158px] w-full text-custom-black desktop:mb-[30px]'>
             <div className='mb-[20px] h-[42px] w-full border-b border-custom-gray-200'>
@@ -52,13 +51,15 @@ export default function QuizPage() {
             </div>
 
             <div className='h-[96px] w-full'>
-              {quiz && <h2 className='text-[16px] font-medium'>{formatQuestion(currentQuiz)}</h2>}
+              {currentQuiz && (
+                <h2 className='text-[16px] font-medium'>{formatQuestion(currentQuiz)}</h2>
+              )}
             </div>
           </div>
 
           {/* 선지 */}
           <ul className='min-h-[248px] w-full'>
-            {currentQuiz?.choices?.map((item, _, choices) => (
+            {currentQuiz?.choices?.map((item, index, choices) => (
               <li key={item.dictionaryId}>
                 <Accordion
                   handlePick={() =>
@@ -69,8 +70,8 @@ export default function QuizPage() {
                       item,
                     })
                   }
+                  optionIndex={index}
                   answer={choices[currentQuiz.answerNum - 1].term}
-                  index={index}
                   {...item}
                 />
               </li>
@@ -90,23 +91,28 @@ export default function QuizPage() {
           />
         )}
       </AnimatePresence>
-      <Block rest={5 - index} />
+      <Block />
     </div>
   );
 }
 
-const Block = ({ rest }: { rest: number }) => {
+const Block = () => {
   const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
       currentLocation !== nextLocation && nextLocation.pathname !== '/quiz-loading',
   );
+  const { remainQuestion } = useStore(quizStore);
   return (
     <>
       {blocker.state === 'blocked' && (
         <ModalOverlay isOpen={blocker.state === 'blocked'}>
           <div className='h-[142px] w-[343px] rounded-[10px] bg-custom-gray-lighter p-5 md:h-[148px] md:w-[375px]'>
             <h1 className='mb-[16px] text-center text-[14px] font-medium text-custom-gray-dark md:text-[16px]'>
-              퀴즈를 포기하시겠어요? <br /> {rest}개만 더 풀면 오늘의 퀴즈를 완료할 수 있어요!
+              퀴즈를 포기하시겠어요? <br />
+              {remainQuestion === 0
+                ? '퀴즈 결과를 확인해보세요.'
+                : `${remainQuestion}개만 더 풀면 오늘의 퀴즈를 완료할 수
+              있어요!`}
             </h1>
             <ModalButton
               onProceed={() => blocker.reset()}
