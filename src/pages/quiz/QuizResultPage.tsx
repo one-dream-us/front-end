@@ -46,7 +46,7 @@ export default function QuizResultPage() {
   // };
   return (
     <div className='m-auto'>
-      <div className='mb-[16px] mt-[40px] text-center md:mt-[60px]'>
+      <div className='mb-[16px] mt-[40px] text-center'>
         <div className='m-auto mb-1 h-[33px] min-w-[156px]'>
           <h1 className='mb-1 text-[22px] font-bold leading-[160%]'>전부 다 맞췄어요!</h1>
         </div>

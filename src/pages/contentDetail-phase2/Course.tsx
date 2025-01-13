@@ -17,7 +17,7 @@ export default function Course() {
   }, []);
   return (
     <div className='m-auto mt-[40px] w-[341px] desktop:w-[440px]'>
-      <div className='m-auto mb-[24px] h-[51px] w-[196px] text-center'>
+      <div className='m-auto mb-[24px] h-[51px] min-w-[196px] text-center'>
         <Title main='한 문장씩 읽어보세요!' sub='오늘의 뉴스 문장' />
       </div>
 
@@ -61,10 +61,8 @@ const NavigateBlocker = () => {
       {blocker.state === 'blocked' && (
         <ModalOverlay isOpen={blocker.state === 'blocked'}>
           <div className='h-[161px] w-[372px] rounded-[10px] bg-custom-gray-lighter px-[28px] py-[24px]'>
-            <div className='m-auto mb-[20px] h-[49px] w-full text-center'>
-              <h1 className='mb-[8px] text-[18px] font-bold text-custom-black'>
-                학습을 그만 하시겠어요?
-              </h1>
+            <div className='mb-[20px] h-[49px] w-full text-center'>
+              <h1 className='text-[18px] font-bold text-custom-black'>학습을 그만 하시겠어요?</h1>
               <span className='text-[12px] leading-[120%] tracking-[0px] text-custom-gray-600'>
                 지금까지의 학습 정보는 저장되지 않습니다.
               </span>

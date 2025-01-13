@@ -9,23 +9,18 @@ import Accordion from '@/components/quiz/Accordion';
 import BottomSheet from '@/components/quiz/common/BottomSheet';
 import correctIcon from '@/assets/p2/icon_check_right.png';
 import wrongIcon from '@/assets/p2/icon_x_wrg.png';
-import { useQuery } from '@tanstack/react-query';
-import { quizApi } from '@/services/quizApi';
 import { useStore } from 'zustand';
 import quizStore from '@/store/quiz/quizStore';
 import { IQuiz } from '@/types/interface';
 import { formatQuestion } from '@/utils/quiz/quizHandlers';
 import { useQuizHandler } from '@/hooks/quiz/useQuizHandler';
+import useChoiceQuizType from '@/hooks/quiz/useChioceQuizType';
 
 export default function QuizPage() {
-  const { index, isCorrect, setQuizType } = useStore(quizStore);
-  const { data, isLoading } = useQuery<IQuiz[]>({
-    queryKey: ['random-quiz'],
-    queryFn: () => {
-      setQuizType('random');
-      return quizApi.getRandomQuizzes();
-    },
-  });
+  const { index, isCorrect } = useStore(quizStore);
+  const { data, isLoading } = useChoiceQuizType();
+
+  console.log(data);
   const { handlePick, handleBottomSheetClick } = useQuizHandler();
 
   const currentQuiz = useMemo(() => {
@@ -52,7 +47,7 @@ export default function QuizPage() {
               </h1>
             </div>
 
-            <div className='h-[96px] w-full'>
+            <div className='min-h-[96px] w-full'>
               {currentQuiz && (
                 <h2 className='text-[16px] font-medium'>{formatQuestion(currentQuiz)}</h2>
               )}

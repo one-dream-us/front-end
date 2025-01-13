@@ -10,6 +10,7 @@ import { useState } from 'react';
 import PrevButton from './PrevButton';
 import NextButton from './NextButton';
 import tutorialStore from '@/store/course/tutorialStore';
+import swipeImg from '@/assets/p2/P2 에셋_2차전달/swipe_image.png';
 
 export default function Slider() {
   const [swiper, setSwiper] = useState<SwiperClass>();
@@ -53,11 +54,19 @@ export default function Slider() {
 
       {/* tutorial */}
       {isNewUser && (
-        <div className='absolute -top-[60px] right-0 z-[10000] md:-right-[65px] md:-top-[10px]'>
-          <div className='chat-bubble chat-bubble-rb h-[37px] w-[255px]'>
-            좌우로 넘겨서 문장별로 단어를 공부해요!
+        <>
+          <div className='absolute -top-[60px] right-0 z-[10000] md:-right-[65px] md:-top-[10px]'>
+            <div className='chat-bubble chat-bubble-rb h-[37px] w-[255px]'>
+              좌우로 넘겨서 문장별로 단어를 공부해요!
+            </div>
           </div>
-        </div>
+
+          <img
+            className='absolute right-0 top-0 z-[10000] block h-[38px] w-[45px] md:hidden'
+            src={swipeImg}
+            alt='tutorial swipe img'
+          />
+        </>
       )}
 
       <NextButton disable={index === 2} onClick={handleNext} />
