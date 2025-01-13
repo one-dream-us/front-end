@@ -3,7 +3,6 @@ import wordListAPi from '@/services/wordListApi';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { MyWordListMenuType } from '@/types/types';
-import scrapApi from '@/services/scrapApi';
 import { useEffect } from 'react';
 
 export default function useGetWordListData(activeMenu: MyWordListMenuType) {
@@ -11,7 +10,7 @@ export default function useGetWordListData(activeMenu: MyWordListMenuType) {
   const { isLogin } = useLoginStore((state) => state);
 
   const apiFunctions: Record<MyWordListMenuType, () => Promise<any>> = {
-    스크랩: scrapApi.getScrapedTerms,
+    스크랩: wordListAPi.getScrap,
     핵심노트: wordListAPi.getKeyNote,
     오답노트: wordListAPi.getIncorrectNote,
     졸업노트: wordListAPi.getGraduationNote,

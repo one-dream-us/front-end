@@ -158,7 +158,8 @@ export interface VideoPlayerProps {
 export interface ScrapDictionary {
   dictionaryId: number;
   term: string;
-  details: string;
+  definition: string;
+  description: string;
 }
 
 export interface WordDictionary {
