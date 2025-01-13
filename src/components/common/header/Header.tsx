@@ -35,11 +35,11 @@ export default function Header() {
             <img className='hidden h-[28px] w-[117px] md:block' src={logo} alt='logo-md' />
           </Link>
 
-          <ul className='hidden items-center justify-center text-custom-gray md:flex md:gap-8 desktop:gap-x-16'>
+          <ul className='hidden items-center justify-center font-bold text-custom-gray md:flex md:gap-8 desktop:gap-x-16'>
             {HeaderMenuList.map((item, index) => (
               <li key={item.id}>
                 <Link
-                  className={`${item.to === pathname || pathname.includes(item.sub || 'sub') ? 'font-medium text-black' : 'hover:text-custom-gray-h'}`}
+                  className={`${item.to === pathname || pathname.includes(item.sub || 'sub') ? 'text-custom-gray-dark' : 'hover:text-custom-gray-400'}`}
                   to={item.to}
                   id={`${index === 1 && 'content-list'}`}
                 >
