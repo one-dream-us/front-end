@@ -2,6 +2,7 @@ import ReactPlayer from 'react-player';
 import { RefObject } from 'react';
 import { MyWordListMenuType } from './types';
 import { Dispatch, SetStateAction } from 'react';
+import { NavigateFunction } from 'react-router-dom';
 
 export interface ContentCardTypes {
   id: number;
@@ -224,4 +225,15 @@ export interface ResultDetail {
 export interface IHandlePick extends Pick<IChoice, 'dictionaryId' | 'status'> {
   item: IChoice;
   answer: string;
+}
+
+export interface HandleBannerClickProps {
+  index: number;
+  isLogin: boolean;
+  isFirstQuizAttempt: boolean;
+  keyNoteListLen: number;
+  navigate: NavigateFunction;
+  setIsOpen: (open: boolean) => void;
+  setModalOpen: (open: boolean) => void;
+  setIsKeynote: (isKeynote: boolean) => void;
 }

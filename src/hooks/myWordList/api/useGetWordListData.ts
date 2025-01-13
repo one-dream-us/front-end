@@ -44,10 +44,12 @@ export default function useGetWordListData(activeMenu: MyWordListMenuType) {
             ? data.graduationNotes
             : []
     : [];
+  const keyNoteListLen = activeMenu === '핵심노트' ? data?.keyNoteCount : 0;
 
   return {
     wordList: isLogin ? wordList : [],
     refetch: isLogin ? refetch : async () => Promise.resolve(),
     isLoading: isLogin && isLoading,
+    keyNoteListLen: isLogin ? keyNoteListLen : 0,
   };
 }
