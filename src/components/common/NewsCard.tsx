@@ -5,7 +5,7 @@ import Keywords from './Keywords';
 import { Link } from 'react-router-dom';
 
 export default function NewsCard({ news, isToday = false }: { news: News; isToday?: boolean }) {
-  const { thumbnailUrl, title, viewCount, createdAt, tags } = news;
+  const { title, viewCount, createdAt } = news;
   const tags2 = ['달러 환산 코스피', '저가 매수세 유입', '코스피 지수'];
 
   return (
