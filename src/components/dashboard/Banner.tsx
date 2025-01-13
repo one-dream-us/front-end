@@ -18,7 +18,7 @@ export default function Banner() {
     setIsKeynote,
   } = useBanner();
   return (
-    <div className='mx-auto mt-3.5 w-[347px] overflow-hidden md:w-[357px] desktop:w-[814px]'>
+    <section className='mx-auto mb-10 mt-3 w-[347px] overflow-hidden md:w-[357px] desktop:mb-7 desktop:w-[814px]'>
       <Slider {...settings}>
         {Banners.map((banner, index) => {
           return (
@@ -53,6 +53,6 @@ export default function Banner() {
         })}
       </Slider>
       <NotificationModal modalOpen={modalOpen} isKeynote={isKeynote} setModalOpen={setModalOpen} />
-    </div>
+    </section>
   );
 }
