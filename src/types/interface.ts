@@ -164,7 +164,8 @@ export interface ScrapDictionary {
 export interface WordDictionary {
   id: number;
   term: string;
-  details: string;
+  definition: string;
+  description: string;
 }
 
 export interface KeyNoteDictionary {
@@ -236,4 +237,13 @@ export interface HandleBannerClickProps {
   setIsOpen: (open: boolean) => void;
   setModalOpen: (open: boolean) => void;
   setIsKeynote: (isKeynote: boolean) => void;
+}
+
+export interface News {
+  newsId: number;
+  title: string;
+  thumbnailUrl: string;
+  createdAt: string;
+  viewCount: string;
+  tags: string[];
 }

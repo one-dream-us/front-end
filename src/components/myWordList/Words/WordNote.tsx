@@ -27,7 +27,7 @@ export default function WordNote({
         <img src={info[activeMenu]} alt={activeMenu} className='h-[22px] w-[22px]' />
         <p className='font-bold text-custom-black'>{word.dictionary.term}</p>
       </div>
-      <p className='text-sm leading-160 text-custom-gray-dark'>{word.dictionary.details}</p>
+      <p className='text-sm leading-160 text-custom-gray-dark'>{word.dictionary.definition}</p>
       <button
         type='button'
         className='flex items-center self-end'
@@ -40,7 +40,7 @@ export default function WordNote({
         <ExplanationModal
           showModal={showModal}
           setShowModal={setShowModal}
-          description={word.dictionary.details}
+          description={word.dictionary.description}
         />
       )}
     </div>

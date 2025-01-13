@@ -28,10 +28,10 @@ export default function KeyNote({
               deleteKeyNote();
             }
           }}
-          className='bg-keynote hover:bg-scrap h-[22px] w-[22px] bg-contain'
+          className='h-[22px] w-[22px] bg-keynote bg-contain hover:bg-scrap'
         />
       </div>
-      <p className='text-sm leading-160 text-custom-gray-dark'>{word.dictionary.details}</p>
+      <p className='text-sm leading-160 text-custom-gray-dark'>{word.dictionary.definition}</p>
       <button
         type='button'
         className='flex items-center self-end'
@@ -44,7 +44,7 @@ export default function KeyNote({
         <ExplanationModal
           showModal={showModal}
           setShowModal={setShowModal}
-          description={word.dictionary.details}
+          description={word.dictionary.description}
         />
       )}
     </div>
