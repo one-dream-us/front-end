@@ -43,6 +43,7 @@ export default function Banner() {
               >
                 <picture>
                   <source srcSet={banner.webImage} media='(min-width: 1440px)' />
+                  <source srcSet={banner.tabImage} media='(min-width: 768px)' />
                   <img
                     src={banner.mobileImage}
                     alt={`배너 ${index + 1}`}
