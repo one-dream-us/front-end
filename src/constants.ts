@@ -15,13 +15,16 @@ import tabletImage4 from '@/assets/p2/P2 에셋_2차전달/onboarding_4_tab.web.
 import mobileBanner1 from '@/assets/p2/P2 에셋_2차전달/모바일 배너 (3).png';
 import mobileBanner2 from '@/assets/p2/P2 에셋_2차전달/모바일 배너 (1).png';
 import mobileBanner3 from '@/assets/p2/P2 에셋_2차전달/모바일 배너 (2).png';
+import tabBanner1 from '@/assets/p2/P2 에셋_2차전달/태블릿 배너 (2).png';
+import tabBanner2 from '@/assets/p2/P2 에셋_2차전달/태블릿 배너 (3).png';
+import tabBanner3 from '@/assets/p2/P2 에셋_2차전달/태블릿 배너 (1).png';
 import webBanner1 from '@/assets/p2/P2 에셋_2차전달/웹배너 (2).png';
 import webBanner2 from '@/assets/p2/P2 에셋_2차전달/웹배너 (3).png';
 import webBanner3 from '@/assets/p2/P2 에셋_2차전달/웹배너 (1).png';
 
 export const HeaderMenuList = [
   { id: 1, title: '홈', to: '/' },
-  { id: 2, title: '머니뉴스', to: '/contents', sub: '/content/' },
+  { id: 2, title: '머니뉴스', to: '/news', sub: '/news/' },
   { id: 3, title: '나의 단어장', to: '/my-word-list' },
 ];
 
@@ -123,16 +126,19 @@ export const onboardingSteps = [
 export const Banners = [
   {
     mobileImage: mobileBanner1,
+    tabImage: tabBanner1,
     webImage: webBanner1,
     url: '/',
   },
   {
     mobileImage: mobileBanner2,
+    tabImage: tabBanner2,
     webImage: webBanner2,
     url: '/quiz',
   },
   {
     mobileImage: mobileBanner3,
+    tabImage: tabBanner3,
     webImage: webBanner3,
     url: `/my-word-list?tab="scrap"`,
   },

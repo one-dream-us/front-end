@@ -4,10 +4,10 @@ import Banner from '@/components/dashboard/Banner';
 import { Link } from 'react-router-dom';
 import arrowRightIcon from '@/assets/p2/arrow_right.png';
 import NewsCard from '@/components/common/NewsCard';
-//import { News } from '@/types/interface';
+import { News } from '@/types/interface';
 
 export default function Dashboard() {
-  const { showOnboarding, setShowOnboarding, latestNews } = useDashboard();
+  const { showOnboarding, setShowOnboarding, latestNews, newsList } = useDashboard();
 
   return (
     <div>
@@ -27,10 +27,7 @@ export default function Dashboard() {
         <section className='mb-[76px] md:mb-8 desktop:mb-[54px]'>
           <p className='mb-3 text-lg font-bold text-custom-gray-dark'>인기 뉴스</p>
           <div className='grid grid-cols-1 gap-y-10 desktop:grid-cols-2 desktop:gap-x-5 desktop:gap-y-10'>
-            {latestNews && <NewsCard news={latestNews} />}
-            {latestNews && <NewsCard news={latestNews} />}
-            {latestNews && <NewsCard news={latestNews} />}
-            {latestNews && <NewsCard news={latestNews} />}
+            {newsList && newsList.map((news: News) => <NewsCard news={news} />)}
           </div>
         </section>
       </div>
