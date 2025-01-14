@@ -10,7 +10,7 @@ export default function NewsCard({ news, isToday = false }: { news: News; isToda
 
   return (
     <Link
-      to={`/news-list/${news.newsId}`}
+      to={`/newsPending/${news.newsId}`}
       className={`flex flex-col ${isToday && 'desktop:flex-row desktop:gap-x-5'}`}
     >
       <div

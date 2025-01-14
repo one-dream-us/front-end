@@ -11,7 +11,7 @@ export function handleBannerClick({
   latestNewsId,
 }: HandleBannerClickProps) {
   if (index === 0) {
-    navigate(`/news-list/${latestNewsId}`);
+    navigate(`/newsPending/${latestNewsId}`);
   } else if (index === 1) {
     handleQuizBannerClick({
       isLogin,
