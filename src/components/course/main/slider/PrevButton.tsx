@@ -9,7 +9,7 @@ export default function PrevButton({
     <button
       onClick={onClick}
       disabled={disable}
-      className={`absolute -left-[61px] bottom-0 top-0 my-auto hidden h-[38px] w-[38px] items-center justify-center rounded-full border-2 text-custom-gray-400 transition-all duration-200 hover:bg-[rgba(0,0,0,.5)] md:flex ${disable && 'opacity-0'}`}
+      className={`absolute -left-[61px] bottom-0 top-0 my-auto hidden h-[38px] w-[38px] items-center justify-center rounded-full border-2 border-custom-gray-400 text-custom-gray-400 transition-all duration-200 hover:border-custom-gray-600 hover:text-custom-gray-600 md:flex ${disable && 'opacity-0'}`}
     >
       <svg
         xmlns='http://www.w3.org/2000/svg'

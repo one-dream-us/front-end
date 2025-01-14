@@ -62,7 +62,7 @@ export default function Slider() {
           </div>
 
           <img
-            className='absolute right-0 top-0 z-[10000] block h-[38px] w-[45px] md:hidden'
+            className='absolute right-[35px] top-[30px] z-[10000] block h-[38px] w-[45px] md:hidden'
             src={swipeImg}
             alt='tutorial swipe img'
           />

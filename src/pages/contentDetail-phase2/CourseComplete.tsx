@@ -37,7 +37,7 @@ export default function CourseComplete() {
 
       <div className='absolute left-0 w-full bg-quiz-bg pt-[36px]'>
         <div className='m-auto h-[276px] w-[293px] desktop:w-[440px]'>
-          <div className='m-auto mb-[20px] h-[72px] min-w-[210px] text-center md:mb-[24px]'>
+          <div className='m-auto mb-[24px] h-[72px] min-w-[210px] text-center'>
             <span className='mb-1 text-[12px] leading-[120%] text-custom-gray-700'>
               오늘의 단어
             </span>
@@ -112,7 +112,7 @@ const TodaysWord = ({ word, index }: { index: number; word: string }) => {
   };
   return (
     <div
-      className={`flex h-[56px] w-full items-center justify-between rounded-[4px] bg-white px-6 py-4 ${isScrap ? 'todays-word-card-shadow border-[2px] border-[#5BBF6A]' : ''} ${showTutorial ? 'z-[10000]' : ''}`}
+      className={`box-border flex h-[56px] w-full items-center justify-between rounded-[4px] bg-white px-6 py-4 ${isScrap ? 'todays-word-card-shadow border-[2px] border-[#5BBF6A]' : 'border-[2px] border-quiz-bg'} ${showTutorial ? 'z-[10000]' : ''}`}
     >
       <h1 className='text-[16px] font-medium text-custom-gray-dark'>{word}</h1>
 
