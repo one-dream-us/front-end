@@ -31,7 +31,7 @@ export const router = createBrowserRouter(
       element: <Layout />,
       children: [
         { path: '/', element: <Dashboard /> },
-        { path: '/news', element: <NewsList /> },
+        { path: '/news-list', element: <NewsList /> },
         { path: '/login', element: <Login /> },
         { path: '/content/:id', element: <ContentDetail /> },
         { path: '/withdraw-success', element: <WithDrawSuccess /> },
