@@ -28,7 +28,7 @@ export default function KeyNote({
               deleteKeyNote();
             }
           }}
-          className='h-[22px] w-[22px] bg-keynote bg-contain hover:bg-scrap'
+          className='h-[22px] w-[22px] bg-keynote bg-contain bg-no-repeat hover:bg-scrap'
         />
       </div>
       <p className='text-sm leading-160 text-custom-gray-dark'>{word.dictionary.definition}</p>

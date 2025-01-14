@@ -27,7 +27,7 @@ export default function ScrapWord({
               addKeyNote();
             }
           }}
-          className='h-[22px] w-[22px] bg-scrap bg-contain hover:bg-keynote'
+          className='h-[22px] w-[22px] bg-scrap bg-contain bg-no-repeat hover:bg-keynote'
         />
       </div>
       <p className='text-sm leading-160 text-custom-gray-dark'>{word.definition}</p>
