@@ -36,21 +36,21 @@ export default function useBanner() {
     ],
   };
   const { keyNoteListLen } = useGetWordListData('핵심노트');
+  const { wordList } = useGetWordListData('스크랩');
+  const isKeynote = keyNoteListLen < 3 && wordList.length >= 3;
   const { isFirstQuizAttempt } = useCheckFirstQuiz();
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
-  const [isKeynote, setIsKeynote] = useState(false);
 
   return {
     isLogin,
     setIsOpen,
     settings,
-    keyNoteListLen,
+    isKeynote,
     isFirstQuizAttempt,
     navigate,
     modalOpen,
     setModalOpen,
-    isKeynote,
-    setIsKeynote,
+    keyNoteListLen,
   };
 }

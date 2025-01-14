@@ -10,13 +10,12 @@ export default function Banner() {
     isLogin,
     setIsOpen,
     settings,
-    keyNoteListLen,
+    isKeynote,
     isFirstQuizAttempt,
     navigate,
     modalOpen,
     setModalOpen,
-    isKeynote,
-    setIsKeynote,
+    keyNoteListLen,
   } = useBanner();
 
   return (
@@ -37,7 +36,6 @@ export default function Banner() {
                     navigate,
                     setIsOpen,
                     setModalOpen,
-                    setIsKeynote,
                   })
                 }
               >

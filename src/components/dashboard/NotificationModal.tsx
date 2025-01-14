@@ -17,6 +17,7 @@ export default function NotificationModal({
   const proceedText = isKeynote ? '단어장 확인하기' : '머니뉴스 보기';
   const navigate = useNavigate();
   const title = isKeynote ? '핵심노트가 부족해요!' : '스크랩이 필요해요!';
+
   return (
     <ModalOverlay isOpen={modalOpen}>
       <section className='flex h-[124px] w-[343px] flex-col items-center gap-y-4 rounded-[10px] bg-white p-5 md:w-[375px]'>
@@ -32,7 +33,7 @@ export default function NotificationModal({
           onClose={() => setModalOpen(false)}
           onProceed={() => {
             if (isKeynote) navigate('/my-word-list?tab="bookmark"');
-            else navigate('/'); // 콘텐츠 목록 랜딩
+            else navigate('/news');
           }}
           buttonText={{ close: '닫기', proceed: proceedText }}
         />
