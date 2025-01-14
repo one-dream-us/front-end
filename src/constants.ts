@@ -24,7 +24,7 @@ import webBanner3 from '@/assets/p2/P2 에셋_2차전달/웹배너 (1).png';
 
 export const HeaderMenuList = [
   { id: 1, title: '홈', to: '/' },
-  { id: 2, title: '머니뉴스', to: '/news-list', sub: '/news/' },
+  { id: 2, title: '머니뉴스', to: '/news-list', sub: '/newsPending/' },
   { id: 3, title: '나의 단어장', to: '/my-word-list' },
 ];
 
