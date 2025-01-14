@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import useKeywordTooltip from '@/store/useKeywordTooltip';
+import { useOnboardingStore } from '@/store/useOnBoardingStore';
 
 export default function useKeywords(withTooltip: boolean) {
   const { showTooltip, setShowTooltip } = useKeywordTooltip();
+  const { showOnboarding } = useOnboardingStore();
 
   useEffect(() => {
-    if (withTooltip) {
+    if (withTooltip && !showOnboarding) {
       setShowTooltip(true);
       const timer = setTimeout(() => {
         setShowTooltip(false);

@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
 import closeIcon from '@/assets/p2/close.svg';
 import useOnboarding from '@/hooks/dashboard/useOnboarding';
 import { onboardingSteps } from '@/constants';
@@ -8,7 +7,7 @@ export default function OnBoarding({
   setShowOnboarding,
 }: {
   showOnboarding: boolean;
-  setShowOnboarding: Dispatch<SetStateAction<boolean>>;
+  setShowOnboarding: (onBoardingStatus: boolean) => void;
 }) {
   const onboardingStepsLen = onboardingSteps.length;
   const { currentStep, handleNext, setShowTooltip } = useOnboarding({

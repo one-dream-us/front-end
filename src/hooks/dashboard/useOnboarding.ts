@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Dispatch, SetStateAction } from 'react';
 import { onboardingSteps } from '@/constants';
 import useImagePreloader from '../common/useImagePreloader';
 // import useCheckFirstVisit from './useCheckFirstVisit';
@@ -10,7 +9,7 @@ export default function useOnboarding({
   setShowOnboarding,
 }: {
   onboardingStepsLen: number;
-  setShowOnboarding: Dispatch<SetStateAction<boolean>>;
+  setShowOnboarding: (onBoardingStatus: boolean) => void;
 }) {
   const [currentStep, setCurrentStep] = useState(0);
   const [isTablet, setIsTablet] = useState(false);
