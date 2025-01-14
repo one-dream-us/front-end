@@ -37,7 +37,7 @@ export default function Header() {
             {HeaderMenuList.map((item, index) => (
               <li key={item.id}>
                 <Link
-                  className={`${item.to === pathname ? 'text-custom-gray-dark' : 'hover:text-custom-gray-400'}`}
+                  className={`${item.to === pathname || pathname.includes(item.sub || 'sub') ? 'text-custom-gray-dark' : 'hover:text-custom-gray-400'}`}
                   to={item.to}
                   id={`${index === 1 && 'content-list'}`}
                 >
