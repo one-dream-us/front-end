@@ -128,18 +128,15 @@ export const Banners = [
     mobileImage: mobileBanner1,
     tabImage: tabBanner1,
     webImage: webBanner1,
-    url: '/',
   },
   {
     mobileImage: mobileBanner2,
     tabImage: tabBanner2,
     webImage: webBanner2,
-    url: '/quiz',
   },
   {
     mobileImage: mobileBanner3,
     tabImage: tabBanner3,
     webImage: webBanner3,
-    url: `/my-word-list?tab="scrap"`,
   },
 ];
