@@ -5,7 +5,7 @@ import Toast from '../Toast';
 import LoginModal from '../LoginModal';
 import LoginConfirmModal from '../LoginConfirmModal';
 
-export default function ContentDetailLayout() {
+export default function NewsDetailLayout() {
   const { pathname } = useLocation();
   return (
     <>

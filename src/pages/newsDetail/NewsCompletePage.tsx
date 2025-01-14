@@ -11,7 +11,7 @@ import tutorialImg from '@/assets/p2/P2 에셋_2차전달/코니_학습 완료.p
 import scrapActive from '@/assets/p2/P2 에셋_2차전달/icon_scrap.png';
 import scrapDisable from '@/assets/p2/P2 에셋_2차전달/icon_scrap_greyline.png';
 
-export default function CourseComplete() {
+export default function NewsCompletePage() {
   const { setIsNewUser, isNewUser } = useStore(tutorialStore);
 
   useEffect(() => {

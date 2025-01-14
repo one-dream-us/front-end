@@ -3,7 +3,7 @@ import { contentdetailList as data } from '@/mocks/data/contentdetail/contentDet
 import { highlightedDesc } from '@/utils/contentDetail/highlightedDesc';
 import { Link } from 'react-router-dom';
 
-export default function CourseStart() {
+export default function NewsPendingPage() {
   const { company, desc, title, keywords } = data;
 
   return (

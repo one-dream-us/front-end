@@ -18,12 +18,11 @@ import QuizLoadingPage from './pages/quiz/QuizLoadingPage';
 import QuizLayout from './components/common/layout/QuizLayout';
 import QuizResultPage from './pages/quiz/QuizResultPage';
 import MyWordList from './pages/MyWordList';
-import ContentDetailLayout from './components/common/layout/ContentDetailLayout';
-import CourseStart from './pages/contentDetail-phase2/CourseStart';
-import Course from './pages/contentDetail-phase2/Course';
-import CourseComplete from './pages/contentDetail-phase2/CourseComplete';
 import RandomQuizResultPage from './pages/quiz/randomQuiz/RandomQuizResultPage';
 import NewsList from './pages/NewsList';
+import NewsDetailLayout from './components/common/layout/NewsDetailLayout';
+import NewsPendingPage from './pages/newsDetail/NewsPendingPage';
+import NewsCompletePage from './pages/newsDetail/NewsCompletePage';
 
 export const router = createBrowserRouter(
   [
@@ -70,11 +69,11 @@ export const router = createBrowserRouter(
       ],
     },
     {
-      element: <ContentDetailLayout />,
+      element: <NewsDetailLayout />,
       children: [
-        { path: '/course-start', element: <CourseStart /> },
-        { path: '/course', element: <Course /> },
-        { path: '/course-complete', element: <CourseComplete /> },
+        { path: '/news-list/:id', element: <NewsPendingPage /> },
+        { path: '/news/:id', element: <NewsDetailLayout /> },
+        { path: '/newsComplete/:id', element: <NewsCompletePage /> },
       ],
     },
     {

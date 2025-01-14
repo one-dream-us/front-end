@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { useBlocker } from 'react-router-dom';
 import { useStore } from 'zustand';
 
-export default function Course() {
+export default function NewsDetailPage() {
   const { setIsNewUser, isNewUser } = useStore(tutorialStore);
 
   useEffect(() => {
