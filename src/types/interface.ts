@@ -229,15 +229,18 @@ export interface IHandlePick extends Pick<IChoice, 'dictionaryId' | 'status'> {
   answer: string;
 }
 
-export interface HandleBannerClickProps {
+export interface HandleBannerClickProps extends HandleQBannerClickProps {
   index: number;
+  latestNewsId: number;
+}
+
+export interface HandleQBannerClickProps {
   isLogin: boolean;
   isFirstQuizAttempt: boolean;
   keyNoteListLen: number;
   navigate: NavigateFunction;
   setIsOpen: (open: boolean) => void;
   setModalOpen: (open: boolean) => void;
-  setIsKeynote: (isKeynote: boolean) => void;
 }
 
 export interface News {

@@ -4,9 +4,24 @@ import NewsCard from '@/components/common/NewsCard';
 import quizBannerM from '@/assets/p2/P2 에셋_2차전달/quiz banner_mobile03.png';
 import quizBannerT from '@/assets/p2/P2 에셋_2차전달/quiz banner_tab03.png';
 import quizBannerW from '@/assets/p2/P2 에셋_2차전달/quiz banner_web03.png';
+import NotificationModal from '@/components/dashboard/NotificationModal';
+import { handleQuizBannerClick } from '@/utils/dashboardUtils';
+import useImagePreloader from '@/hooks/common/useImagePreloader';
 
 export default function NewsList() {
-  const { latestNews, newsList } = useNewsListLogic();
+  const {
+    latestNews,
+    newsList,
+    isLogin,
+    navigate,
+    setIsOpen,
+    isKeynote,
+    keyNoteListLen,
+    isFirstQuizAttempt,
+    modalOpen,
+    setModalOpen,
+  } = useNewsListLogic();
+  useImagePreloader([quizBannerM, quizBannerT, quizBannerW]);
 
   return (
     <div className='mx-auto mb-[37px] mt-10 flex w-[343px] flex-col md:mb-8 md:w-[353px] desktop:mb-40 desktop:w-[812px]'>
@@ -21,11 +36,29 @@ export default function NewsList() {
         {latestNews && <NewsCard news={latestNews} />}
       </section>
       <section className='my-9'>
-        <picture>
-          <source srcSet={quizBannerW} media='(min-width: 1440px)' />
-          <source srcSet={quizBannerT} media='(min-width: 768px)' />
-          <img src={quizBannerM} alt='퀴즈 배너' className='h-[88px] w-full' />
-        </picture>
+        <button
+          onClick={() =>
+            handleQuizBannerClick({
+              isLogin,
+              setIsOpen,
+              keyNoteListLen,
+              isFirstQuizAttempt,
+              navigate,
+              setModalOpen,
+            })
+          }
+        >
+          <picture>
+            <source srcSet={quizBannerW} media='(min-width: 1440px)' />
+            <source srcSet={quizBannerT} media='(min-width: 768px)' />
+            <img src={quizBannerM} alt='퀴즈 배너' className='h-[88px] w-full' />
+          </picture>
+        </button>
+        <NotificationModal
+          modalOpen={modalOpen}
+          isKeynote={isKeynote}
+          setModalOpen={setModalOpen}
+        />
       </section>
       <section className='grid grid-cols-1 gap-y-10 desktop:grid-cols-2 desktop:gap-x-5 desktop:gap-y-10'>
         {newsList && newsList.map((news: News) => <NewsCard news={news} key={news.newsId} />)}

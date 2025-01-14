@@ -7,12 +7,12 @@ import NewsCard from '@/components/common/NewsCard';
 import { News } from '@/types/interface';
 
 export default function Dashboard() {
-  const { showOnboarding, setShowOnboarding, latestNews, newsList } = useDashboard();
+  const { showOnboarding, setShowOnboarding, latestNews, newsList, latestNewsId } = useDashboard();
 
   return (
     <div>
       <OnBoarding showOnboarding={showOnboarding} setShowOnboarding={setShowOnboarding} />
-      <Banner />
+      <Banner latestNewsId={latestNewsId} />
       <div className='mx-auto flex w-[343px] flex-col md:w-[353px] desktop:w-[812px]'>
         <section>
           <div className='mb-3 flex items-center justify-between'>
@@ -27,7 +27,7 @@ export default function Dashboard() {
         <section className='mb-[76px] md:mb-8 desktop:mb-[54px]'>
           <p className='mb-3 text-lg font-bold text-custom-gray-dark'>인기 뉴스</p>
           <div className='grid grid-cols-1 gap-y-10 desktop:grid-cols-2 desktop:gap-x-5 desktop:gap-y-10'>
-            {newsList && newsList.map((news: News) => <NewsCard news={news} />)}
+            {newsList && newsList.map((news: News) => <NewsCard news={news} key={news.newsId} />)}
           </div>
         </section>
       </div>

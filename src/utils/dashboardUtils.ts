@@ -1,4 +1,4 @@
-import { HandleBannerClickProps } from '@/types/interface';
+import { HandleBannerClickProps, HandleQBannerClickProps } from '@/types/interface';
 
 export function handleBannerClick({
   index,
@@ -8,26 +8,38 @@ export function handleBannerClick({
   navigate,
   setIsOpen,
   setModalOpen,
-  setIsKeynote,
+  latestNewsId,
 }: HandleBannerClickProps) {
   if (index === 0) {
-    navigate('/'); // 오늘 업로드된 콘텐츠 페이지
+    navigate(`/news/${latestNewsId}`);
   } else if (index === 1) {
-    if (!isLogin) {
-      setIsOpen(true);
-    } else if (isLogin && keyNoteListLen < 3) {
-      if (isFirstQuizAttempt) {
-        navigate('/quiz');
-      } else {
-        setModalOpen(true);
-        setIsKeynote(true);
-      }
-    }
+    handleQuizBannerClick({
+      isLogin,
+      setIsOpen,
+      keyNoteListLen,
+      isFirstQuizAttempt,
+      navigate,
+      setModalOpen,
+    });
   } else {
-    if (isLogin) {
-      navigate('/my-word-list?tab="scrap"');
-    } else {
-      setIsOpen(true);
-    }
+    if (isLogin) navigate('/my-word-list?tab="scrap"');
+    else setIsOpen(true);
   }
+}
+
+export function handleQuizBannerClick({
+  isLogin,
+  setIsOpen,
+  keyNoteListLen,
+  isFirstQuizAttempt,
+  navigate,
+  setModalOpen,
+}: HandleQBannerClickProps) {
+  if (!isLogin) {
+    setIsOpen(true);
+  } else if (isLogin && keyNoteListLen < 3) {
+    if (isFirstQuizAttempt)
+      navigate('/quiz'); //랜덤
+    else setModalOpen(true);
+  } else if (isLogin && keyNoteListLen >= 3) navigate('/quiz'); // 스크랩 기반
 }

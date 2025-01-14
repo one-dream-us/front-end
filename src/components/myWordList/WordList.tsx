@@ -80,7 +80,7 @@ export default function WordList({
         <div className='mb-[71px] mt-[30px] flex h-[270px] w-full flex-col items-center justify-between'>
           <h3 className='text-sm leading-170 text-custom-gray-dark'>단어장이 비었어요!</h3>
           <img src={emptyScrapIcon} alt='빈 스크랩 단어장' className='h-[120px] w-[200px]' />
-          <Button text='단어 모으러 가기' onClick={() => navigate('/')} />
+          <Button text='단어 모으러 가기' onClick={() => navigate('/news')} />
         </div>
       ) : (
         <div className='mb-[71px] mt-[30px] h-[270px] w-full text-center text-custom-gray-dark'>

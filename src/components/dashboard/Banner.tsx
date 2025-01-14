@@ -1,22 +1,20 @@
 import Slider from 'react-slick';
 import { Banners } from '@/constants';
-import { Link } from 'react-router-dom';
 import useBanner from '@/hooks/dashboard/useBanner';
 import NotificationModal from './NotificationModal';
 import { handleBannerClick } from '@/utils/dashboardUtils';
 
-export default function Banner() {
+export default function Banner({ latestNewsId }: { latestNewsId: number }) {
   const {
     isLogin,
     setIsOpen,
     settings,
-    keyNoteListLen,
+    isKeynote,
     isFirstQuizAttempt,
     navigate,
     modalOpen,
     setModalOpen,
-    isKeynote,
-    setIsKeynote,
+    keyNoteListLen,
   } = useBanner();
 
   return (
@@ -25,8 +23,7 @@ export default function Banner() {
         {Banners.map((banner, index) => {
           return (
             <div key={index} className='slick-slide'>
-              <Link
-                to={banner.url}
+              <button
                 rel='noopener noreferrer'
                 onClick={() =>
                   handleBannerClick({
@@ -37,7 +34,7 @@ export default function Banner() {
                     navigate,
                     setIsOpen,
                     setModalOpen,
-                    setIsKeynote,
+                    latestNewsId,
                   })
                 }
               >
@@ -50,7 +47,7 @@ export default function Banner() {
                     className='h-[150px] w-full desktop:h-[180px]'
                   />
                 </picture>
-              </Link>
+              </button>
             </div>
           );
         })}
