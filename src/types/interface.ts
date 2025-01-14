@@ -2,6 +2,7 @@ import ReactPlayer from 'react-player';
 import { RefObject } from 'react';
 import { MyWordListMenuType } from './types';
 import { Dispatch, SetStateAction } from 'react';
+import { NavigateFunction } from 'react-router-dom';
 
 export interface ContentCardTypes {
   id: number;
@@ -157,13 +158,15 @@ export interface VideoPlayerProps {
 export interface ScrapDictionary {
   dictionaryId: number;
   term: string;
-  details: string;
+  definition: string;
+  description: string;
 }
 
 export interface WordDictionary {
   id: number;
   term: string;
-  details: string;
+  definition: string;
+  description: string;
 }
 
 export interface KeyNoteDictionary {
@@ -224,4 +227,27 @@ export interface ResultDetail {
 export interface IHandlePick extends Pick<IChoice, 'dictionaryId' | 'status'> {
   item: IChoice;
   answer: string;
+}
+
+export interface HandleBannerClickProps extends HandleQBannerClickProps {
+  index: number;
+  latestNewsId: number;
+}
+
+export interface HandleQBannerClickProps {
+  isLogin: boolean;
+  isFirstQuizAttempt: boolean;
+  keyNoteListLen: number;
+  navigate: NavigateFunction;
+  setIsOpen: (open: boolean) => void;
+  setModalOpen: (open: boolean) => void;
+}
+
+export interface News {
+  newsId: number;
+  title: string;
+  thumbnailUrl: string;
+  createdAt: string;
+  viewCount: string;
+  tags: string[];
 }

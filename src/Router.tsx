@@ -23,6 +23,7 @@ import CourseStart from './pages/contentDetail-phase2/CourseStart';
 import Course from './pages/contentDetail-phase2/Course';
 import CourseComplete from './pages/contentDetail-phase2/CourseComplete';
 import RandomQuizResultPage from './pages/quiz/randomQuiz/RandomQuizResultPage';
+import NewsList from './pages/NewsList';
 
 export const router = createBrowserRouter(
   [
@@ -30,6 +31,7 @@ export const router = createBrowserRouter(
       element: <Layout />,
       children: [
         { path: '/', element: <Dashboard /> },
+        { path: '/news-list', element: <NewsList /> },
         { path: '/login', element: <Login /> },
         { path: '/content/:id', element: <ContentDetail /> },
         { path: '/withdraw-success', element: <WithDrawSuccess /> },
