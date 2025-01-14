@@ -5,7 +5,7 @@ import useBanner from '@/hooks/dashboard/useBanner';
 import NotificationModal from './NotificationModal';
 import { handleBannerClick } from '@/utils/dashboardUtils';
 
-export default function Banner() {
+export default function Banner({ latestNewsId }: { latestNewsId: number }) {
   const {
     isLogin,
     setIsOpen,
@@ -36,6 +36,7 @@ export default function Banner() {
                     navigate,
                     setIsOpen,
                     setModalOpen,
+                    latestNewsId,
                   })
                 }
               >

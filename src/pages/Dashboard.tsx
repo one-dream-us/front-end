@@ -7,12 +7,12 @@ import NewsCard from '@/components/common/NewsCard';
 import { News } from '@/types/interface';
 
 export default function Dashboard() {
-  const { showOnboarding, setShowOnboarding, latestNews, newsList } = useDashboard();
+  const { showOnboarding, setShowOnboarding, latestNews, newsList, latestNewsId } = useDashboard();
 
   return (
     <div>
       <OnBoarding showOnboarding={showOnboarding} setShowOnboarding={setShowOnboarding} />
-      <Banner />
+      <Banner latestNewsId={latestNewsId} />
       <div className='mx-auto flex w-[343px] flex-col md:w-[353px] desktop:w-[812px]'>
         <section>
           <div className='mb-3 flex items-center justify-between'>

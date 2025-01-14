@@ -6,6 +6,7 @@ export default function useDashboard() {
   const [showOnboarding, setShowOnboarding] = useState(true);
   const { latestNews } = useLatestNews();
   const { newsList } = useNewsList();
+  const latestNewsId = latestNews ? latestNews.newsId : 0;
 
-  return { showOnboarding, setShowOnboarding, latestNews, newsList };
+  return { showOnboarding, setShowOnboarding, latestNews, newsList, latestNewsId };
 }

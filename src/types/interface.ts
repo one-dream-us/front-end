@@ -231,6 +231,7 @@ export interface IHandlePick extends Pick<IChoice, 'dictionaryId' | 'status'> {
 
 export interface HandleBannerClickProps extends HandleQBannerClickProps {
   index: number;
+  latestNewsId: number;
 }
 
 export interface HandleQBannerClickProps {

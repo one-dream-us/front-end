@@ -8,9 +8,10 @@ export function handleBannerClick({
   navigate,
   setIsOpen,
   setModalOpen,
+  latestNewsId,
 }: HandleBannerClickProps) {
   if (index === 0) {
-    navigate('/'); // 오늘 업로드된 콘텐츠 페이지
+    navigate(`/news/${latestNewsId}`);
   } else if (index === 1) {
     handleQuizBannerClick({
       isLogin,
