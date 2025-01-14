@@ -24,9 +24,7 @@ export default function KeyNote({
         <button
           type='button'
           onClick={() => {
-            {
-              deleteKeyNote();
-            }
+            deleteKeyNote();
           }}
           className='h-[22px] w-[22px] bg-keynote bg-contain bg-no-repeat hover:bg-scrap'
         />

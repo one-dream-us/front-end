@@ -23,9 +23,7 @@ export default function ScrapWord({
         <button
           type='button'
           onClick={() => {
-            {
-              addKeyNote();
-            }
+            addKeyNote();
           }}
           className='h-[22px] w-[22px] bg-scrap bg-contain bg-no-repeat hover:bg-keynote'
         />
