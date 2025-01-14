@@ -75,8 +75,8 @@ export const myWordListMenu: MyWordListMenuType[] = ['스크랩', '핵심노트'
 export const myWordListInfo = {
   스크랩: {
     icon: scrapIcon,
-    title: '콘텐츠에서 가져온 스크랩',
-    description: '콘텐츠에서 스크랩한<br/>단어들이 모여있어요.',
+    title: '머니뉴스에서 가져온 스크랩',
+    description: '머니뉴스에서 스크랩한<br/>단어들이 모여있어요.',
   },
   핵심노트: {
     icon: bookMarkIcon,
