@@ -33,7 +33,7 @@ export default function NewsList() {
           </span>
         </div>
         <h2 className='mb-3 text-lg font-bold text-custom-gray-dark'>오늘의 머니뉴스</h2>
-        {latestNews && <NewsCard news={latestNews} />}
+        {latestNews && <NewsCard news={latestNews} isToday />}
       </section>
       <section className='my-9'>
         <button

@@ -4,7 +4,15 @@ import { formatDate } from '@/utils/myScrapUtils';
 import Keywords from './Keywords';
 import { Link } from 'react-router-dom';
 
-export default function NewsCard({ news, isToday = false }: { news: News; isToday?: boolean }) {
+export default function NewsCard({
+  news,
+  isToday = false,
+  isDesktop = false,
+}: {
+  news: News;
+  isToday?: boolean;
+  isDesktop?: boolean;
+}) {
   const { title, viewCount, createdAt, thumbnailUrl, newsId } = news;
   const tags2 = ['달러 환산 코스피', '저가 매수세 유입', '코스피 지수'];
 
@@ -14,7 +22,7 @@ export default function NewsCard({ news, isToday = false }: { news: News; isToda
       className={`flex flex-col ${isToday && 'desktop:flex-row desktop:gap-x-5'}`}
     >
       <img
-        className={`mb-3 h-40 w-full rounded bg-gray-200 md:h-[164px] ${isToday && 'desktop:w-[396px]'}`}
+        className={`mb-3 h-40 w-full rounded bg-gray-200 md:h-[164px] ${(isToday || isDesktop) && 'desktop:w-[396px]'}`}
         src={thumbnailUrl}
         alt={title + '썸네일 이미지'}
       />
