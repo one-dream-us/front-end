@@ -1,11 +1,16 @@
 import Title from '@/components/course/common/Title';
-import { contentdetailList as data } from '@/mocks/data/contentdetail/contentDetailList';
+import NewsPendingSkeleton from '@/components/course/main/NewsPendingSkeleton';
+import useNewsDetail from '@/hooks/newDetail/useNewsDetail';
+import { INewsDetail } from '@/types/interface';
 import { highlightedDesc } from '@/utils/contentDetail/highlightedDesc';
 import { Link } from 'react-router-dom';
 
 export default function NewsPendingPage() {
-  const { company, desc, title, keywords } = data;
+  const { isLoading, news, newsId } = useNewsDetail<INewsDetail>();
 
+  const terms = news?.descriptions.map((item) => item.term);
+
+  if (isLoading) return <NewsPendingSkeleton />;
   return (
     <div className='left-0 top-0 w-full items-center justify-center md:absolute md:flex md:h-screen'>
       <div className='m-auto w-[341px] desktop:w-[440px]'>
@@ -15,19 +20,19 @@ export default function NewsPendingPage() {
         </div>
 
         {/* 뉴스 기사 */}
-        <div className='mb-[182px] h-[276px] w-full rounded-[10px] bg-white p-[24px] md:mb-[24px] desktop:h-[253px]'>
+        <div className='mb-[182px] h-auto w-full rounded-[10px] bg-white p-[24px] md:mb-[24px] desktop:h-[253px]'>
           <span className='mb-2 text-[12px] leading-[120%] tracking-[0px] text-custom-gray-400'>
-            {company}
+            {news?.newsAgency}
           </span>
-          <h1 className='mb-2 text-[20px] font-bold text-custom-gray-dark'>{title}</h1>
+          <h1 className='mb-2 text-[20px] font-bold text-custom-gray-dark'>{news?.title}</h1>
           <div
             className='text-[16px] tracking-[-0.16px] text-custom-gray-dark'
             dangerouslySetInnerHTML={{
-              __html: highlightedDesc(desc, keywords, 'highlight_underline'),
+              __html: highlightedDesc(news?.fullSentence || '', terms!, 'highlight_underline'),
             }}
           />
         </div>
-        <Link to={'/course'}>
+        <Link to={`/news/${newsId}`}>
           <button className='mb-[40px] h-[44px] w-full rounded-[10px] bg-custom-gray-dark text-[14px] font-bold text-custom-green-money transition-all duration-200 hover:bg-hover-80 md:mb-0'>
             학습 시작하기
           </button>

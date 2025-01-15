@@ -2,20 +2,23 @@ import { highlightedDesc } from '@/utils/contentDetail/highlightedDesc';
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
-import { courseData } from '@/mocks/data/contentdetail/contentDetailList';
 import { useStore } from 'zustand';
 import courseIndexState from '@/store/course/courseStore';
 import { Swiper as SwiperType } from 'swiper/types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PrevButton from './PrevButton';
 import NextButton from './NextButton';
 import tutorialStore from '@/store/course/tutorialStore';
 import swipeImg from '@/assets/p2/P2 에셋_2차전달/swipe_image.png';
+import useNewsDetail from '@/hooks/newDetail/useNewsDetail';
+import { SHOW_NEWS_DETAIL_PAGE_TURORIAL } from '@/constants';
+import SliderSKeleton from './SliderSKeleton';
 
 export default function Slider() {
+  const { news, isLoading } = useNewsDetail((data) => data.descriptions);
   const [swiper, setSwiper] = useState<SwiperClass>();
   const { setIndex, index } = useStore(courseIndexState);
-  const { isNewUser } = useStore(tutorialStore);
+  const { newsDeatilTutorial } = useStore(tutorialStore);
 
   const handleSlide = (swiper: SwiperType) => {
     setIndex(swiper.activeIndex);
@@ -24,6 +27,11 @@ export default function Slider() {
   const handlePrev = () => swiper?.slidePrev();
   const handleNext = () => swiper?.slideNext();
 
+  useEffect(() => {
+    setIndex(0);
+  }, []);
+
+  if (isLoading || !news) return <SliderSKeleton />;
   return (
     <div className='relative flex'>
       <PrevButton disable={index === 0} onClick={handlePrev} />
@@ -40,11 +48,11 @@ export default function Slider() {
         }}
         className='mySwiper flex h-auto w-full flex-col-reverse rounded-[10px] bg-custom-gray-dark p-[24px]'
       >
-        {courseData.map((item) => (
-          <SwiperSlide key={item.id} className='mt-auto'>
+        {news?.map((item) => (
+          <SwiperSlide key={item.dictionaryId} className='mt-auto'>
             <div
               dangerouslySetInnerHTML={{
-                __html: highlightedDesc(item.article, item.keyword, 'highlight_text'),
+                __html: highlightedDesc(item.sentence, item.term, 'highlight_text'),
               }}
               className='h-auto text-[16px] tracking-[-0.16px] text-custom-gray-200'
             />
@@ -53,7 +61,7 @@ export default function Slider() {
       </Swiper>
 
       {/* tutorial */}
-      {isNewUser && (
+      {SHOW_NEWS_DETAIL_PAGE_TURORIAL && !newsDeatilTutorial && (
         <>
           <div className='absolute -top-[60px] right-0 z-[10000] md:-right-[65px] md:-top-[10px]'>
             <div className='chat-bubble chat-bubble-rb h-[37px] w-[255px]'>
@@ -71,47 +79,5 @@ export default function Slider() {
 
       <NextButton disable={index === 2} onClick={handleNext} />
     </div>
-
-    // <div className='relative flex'>
-    //   <PrevButton disable={index === 0} onClick={handlePrev} />
-
-    //   <AnimatePresence>
-    //     <Swiper
-    //       pagination={true}
-    //       navigation={true}
-    //       modules={[Pagination, Navigation]}
-    //       slidesPerView={1}
-    //       spaceBetween={50}
-    //       onSlideChange={handleSlide}
-    //       onSwiper={(e) => {
-    //         setSwiper(e);
-    //       }}
-    //     >
-    //       {courseData.map((item) => (
-    //         <SwiperSlide key={item.id} className='mt-auto'>
-    //           <div className='mySwiper flex h-auto w-full flex-col-reverse rounded-[10px] bg-custom-gray-dark p-[24px]'>
-    //             <div
-    //               dangerouslySetInnerHTML={{
-    //                 __html: highlightedDesc(item.article, item.keyword, 'highlight_text'),
-    //               }}
-    //               className='h-auto text-[16px] tracking-[-0.16px] text-custom-gray-200'
-    //             />
-    //           </div>
-    //         </SwiperSlide>
-    //       ))}
-    //     </Swiper>
-    //   </AnimatePresence>
-
-    //   {/* tutorial */}
-    //   {isNewUser && (
-    //     <div className='absolute -top-[60px] right-0 z-[10000] md:-right-[65px] md:-top-[10px]'>
-    //       <div className='chat-bubble chat-bubble-rb h-[37px] w-[255px]'>
-    //         좌우로 넘겨서 문장별로 단어를 공부해요!
-    //       </div>
-    //     </div>
-    //   )}
-
-    //   <NextButton disable={index === 2} onClick={handleNext} />
-    // </div>
   );
 }
