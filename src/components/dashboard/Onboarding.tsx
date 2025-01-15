@@ -24,7 +24,7 @@ export default function OnBoarding({
   return (
     <>
       <section className='fixed inset-0 z-[9990] flex justify-center bg-black bg-opacity-60'>
-        <div className='relative'>
+        <div className='relative mx-auto w-[217px] md:w-[373px] desktop:w-auto'>
           <button
             type='button'
             className='absolute right-0 top-[43px] h-5 w-5'
@@ -42,7 +42,7 @@ export default function OnBoarding({
             <img
               src={mobileImage}
               alt={`온보딩 스텝 ${currentStep + 1}`}
-              className='mx-auto mt-[74px] h-3/5 rounded-2xl md:h-[94%]'
+              className='mt-[74px] h-3/5 rounded-2xl md:h-[94%]'
             />
           </picture>
         </div>
