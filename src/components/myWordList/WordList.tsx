@@ -26,9 +26,7 @@ export default function WordList({
 
   return (
     <div className='relative'>
-      <p
-        className={`${activeMenu === '핵심노트' && wordNum < 3 ? '' : 'mb-[23px]'} text-xs font-medium text-custom-gray-700`}
-      >
+      <p className='mb-[23px] text-xs font-medium text-custom-gray-700'>
         {title}
         <span className='ml-2 font-bold'>{wordNum}</span>
       </p>
