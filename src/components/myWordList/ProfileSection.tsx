@@ -14,7 +14,7 @@ export default function ProfileSection({
   const { text, progressBarWidth, navigate } = useProfileSectionLogic(totalKeyNote);
 
   return (
-    <div className='h-[126px] w-full'>
+    <div className='flex h-[126px] w-full flex-col items-end'>
       <div className='flex h-[66px] w-full items-center gap-x-2'>
         <img src={ProfileImg} alt='프로필' className='h-[66px] w-[66px]' />
         <div>
@@ -23,7 +23,7 @@ export default function ProfileSection({
         </div>
       </div>
       {totalKeyNote <= 3 ? (
-        <div className='ml-[74px] flex h-6 w-[268px] items-center gap-x-1'>
+        <div className='flex h-6 w-[268px] items-center gap-x-1'>
           <img src={bookmarkIcon} alt='핵심노트' className='h-6 w-6' />
           <div className='h-[7px] w-60 rounded-full bg-custom-gray-300 drop-shadow'>
             <div className='h-full rounded-full bg-new-green' style={{ width: progressBarWidth }} />
@@ -33,7 +33,7 @@ export default function ProfileSection({
         ''
       )}
       {totalKeyNote < 3 ? (
-        <div className='mt-1 h-8 w-[106px] place-self-end whitespace-nowrap rounded-full border border-custom-gray-200 px-2.5 py-1 text-sm font-medium leading-170 text-gray-070'>
+        <div className='mt-1 h-8 w-[106px] whitespace-nowrap rounded-full border border-custom-gray-200 px-2.5 py-1 text-sm font-medium leading-170 text-gray-070'>
           핵심노트 {totalKeyNote} <span className='text-custom-gray-500'>/ 3</span>
         </div>
       ) : (
