@@ -24,7 +24,7 @@ export default function OnBoarding({
   return (
     <>
       <section className='fixed inset-0 z-[9990] flex justify-center bg-black bg-opacity-60'>
-        <div className='relative mx-auto w-[217px] md:w-[412px] desktop:w-auto'>
+        <div className='relative mx-auto w-[217px] md:w-[512px] desktop:w-auto'>
           <button
             type='button'
             className='absolute right-0 top-[43px] h-5 w-5'
