@@ -16,10 +16,12 @@ export default function WordList({
   setShowTooltip,
   setShowModal,
   showModal,
+  showTutorial,
 }: WordListProps) {
   const { title, wordList, wordNum, navigate, listRef, handleScroll } = useWordList(
     activeMenu,
     setShowTooltip,
+    showTutorial,
   );
 
   return (
@@ -69,7 +71,7 @@ export default function WordList({
                   setShowModal={setShowModal}
                 />
               )))}
-          {activeMenu === '스크랩' && showTooltip && wordNum < 3 && (
+          {activeMenu === '스크랩' && showTooltip && wordNum < 3 && !showTutorial && (
             <div className="absolute right-[18px] top-[18px] z-[999] rounded bg-custom-gray-dark px-2.5 py-2 text-xs text-primary drop-shadow-xl after:absolute after:-bottom-2 after:right-3 after:border-x-[6px] after:border-t-[8px] after:border-transparent after:border-t-custom-gray-dark after:content-['']">
               중요한 단어를 핵심노트에 추가하고 퀴즈를 풀어보세요!
             </div>
