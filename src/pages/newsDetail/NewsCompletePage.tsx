@@ -4,19 +4,28 @@ import QuizResultItem from '@/components/quiz/quizResult/QuizResultItem';
 import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
 import tutorialStore from '@/store/course/tutorialStore';
 import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
-import { useEffect, useState } from 'react';
 import { useStore } from 'zustand';
 import quizResult100 from '@/assets/p2/quiz result=100.png';
 import tutorialImg from '@/assets/p2/P2 에셋_2차전달/코니_학습 완료.png';
 import scrapActive from '@/assets/p2/P2 에셋_2차전달/icon_scrap.png';
 import scrapDisable from '@/assets/p2/P2 에셋_2차전달/icon_scrap_greyline.png';
+import useNewsDetail from '@/hooks/newDetail/useNewsDetail';
+import { IDescription } from '@/types/interface';
+import {
+  SHOW_NEWS_COMPLETE_PAGE_TURORIAL,
+  SHOW_NEWS_COMPLETE_PAGE_TURORIAL_KEY,
+} from '@/constants';
+import { useEffect, useState } from 'react';
+import client from '@/utils/client';
 
 export default function NewsCompletePage() {
-  const { setIsNewUser, isNewUser } = useStore(tutorialStore);
+  const { newsCompleteTutorial, setNewsCompleteTutorial } = useStore(tutorialStore);
 
-  useEffect(() => {
-    setIsNewUser(true);
-  }, []);
+  const { news, isLoading } = useNewsDetail((data) => data.descriptions);
+
+  console.log(news);
+
+  if (isLoading || !news) return <h1>loading...</h1>;
   return (
     <div className='m-auto w-[343px]'>
       <div className='mb-[20px] mt-[40px] h-[165px] w-full'>
@@ -47,7 +56,7 @@ export default function NewsCompletePage() {
           </div>
 
           <div className='relative m-auto mb-[54px] flex h-[184px] w-[293px] flex-col gap-y-2 desktop:w-full'>
-            {isNewUser && (
+            {SHOW_NEWS_COMPLETE_PAGE_TURORIAL && !newsCompleteTutorial && (
               <>
                 <img
                   className='absolute -right-[17px] bottom-0 top-[30px] z-[10001] size-9 h-[37px] w-[34px]'
@@ -61,19 +70,25 @@ export default function NewsCompletePage() {
                 </div>
               </>
             )}
-            {todayswordList.map((item, index) => (
-              <TodaysWord key={item.id} {...item} index={index} />
+            {news?.map((item, index) => (
+              <TodaysWord key={item.dictionaryId} {...item} index={index} />
             ))}
           </div>
         </div>
 
         <CompleteButton />
 
-        {isNewUser && (
+        {SHOW_NEWS_COMPLETE_PAGE_TURORIAL && !newsCompleteTutorial && (
           <>
-            <ModalOverlay isOpen={isNewUser} children={<div />} />
+            <ModalOverlay
+              isOpen={SHOW_NEWS_COMPLETE_PAGE_TURORIAL && !newsCompleteTutorial}
+              children={<div />}
+            />
             <button
-              onClick={() => setIsNewUser(false)}
+              onClick={() => {
+                localStorage.setItem(SHOW_NEWS_COMPLETE_PAGE_TURORIAL_KEY, 'false');
+                setNewsCompleteTutorial(true);
+              }}
               className='fixed bottom-[45px] left-0 right-0 z-[10000] m-auto flex h-[38px] w-[38px] items-center justify-center rounded-full border text-custom-gray-light'
             >
               <svg
@@ -94,27 +109,44 @@ export default function NewsCompletePage() {
   );
 }
 
-const TodaysWord = ({ word, index }: { index: number; word: string }) => {
+const TodaysWord = ({
+  dictionaryId,
+  term,
+  index,
+}: Pick<IDescription, 'term' | 'dictionaryId'> & { index: number }) => {
   const [isScrap, setIsScrap] = useState(false);
   const { data } = useAuthCheckQuery();
   const { setIsOpen, setIsNavigate } = useLoginConfirmModalState();
-  const { isNewUser } = useStore(tutorialStore);
+  const { newsCompleteTutorial } = useStore(tutorialStore);
 
-  const showTutorial = isNewUser && index === 0;
+  const showTutorial = !newsCompleteTutorial && SHOW_NEWS_COMPLETE_PAGE_TURORIAL && index === 0;
 
   const handleScrap = () => {
+    console.log(dictionaryId);
     if (!data) {
       setIsOpen(true);
       setIsNavigate(false);
     } else {
+      if (isScrap) {
+        // 스크랩 삭제
+      } else if (!isScrap) {
+        // 스크랩 추가
+      }
       setIsScrap((prev) => !prev);
     }
   };
+
+  useEffect(() => {
+    (async () => {
+      const res = (await client.get('/scraps/news/dictionaries')).data;
+      console.log(res);
+    })();
+  }, []);
   return (
     <div
       className={`box-border flex h-[56px] w-full items-center justify-between rounded-[4px] bg-white px-6 py-4 ${isScrap ? 'todays-word-card-shadow border-[2px] border-[#5BBF6A]' : 'border-[2px] border-quiz-bg'} ${showTutorial ? 'z-[10000]' : ''}`}
     >
-      <h1 className='text-[16px] font-medium text-custom-gray-dark'>{word}</h1>
+      <h1 className='text-[16px] font-medium text-custom-gray-dark'>{term}</h1>
 
       <button onClick={handleScrap} disabled={showTutorial ?? true}>
         <img
@@ -126,9 +158,3 @@ const TodaysWord = ({ word, index }: { index: number; word: string }) => {
     </div>
   );
 };
-
-const todayswordList = [
-  { id: 1, word: '달러 환산 코스피' },
-  { id: 2, word: '저가 매수세 유입' },
-  { id: 3, word: '코스피 지수' },
-];

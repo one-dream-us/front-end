@@ -140,3 +140,11 @@ export const Banners = [
     webImage: webBanner3,
   },
 ];
+
+export const SHOW_NEWS_DETAIL_PAGE_TURORIAL_KEY = 'shownewsDetailPageTurotial';
+export const SHOW_NEWS_DETAIL_PAGE_TURORIAL =
+  localStorage.getItem('shownewsDetailPageTurotial') === null;
+
+export const SHOW_NEWS_COMPLETE_PAGE_TURORIAL_KEY = 'shownewsCompleteTurotial';
+export const SHOW_NEWS_COMPLETE_PAGE_TURORIAL =
+  localStorage.getItem('shownewsCompleteTurotial') === null;
