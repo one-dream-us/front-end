@@ -42,7 +42,7 @@ export default function OnBoarding({
             <img
               src={mobileImage}
               alt={`온보딩 스텝 ${currentStep + 1}`}
-              className='mt-[74px] h-3/5 rounded-2xl md:h-[94%]'
+              className='mt-[74px] h-[57%] w-full rounded-2xl md:h-[94%]'
             />
           </picture>
         </div>
