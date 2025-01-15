@@ -18,8 +18,8 @@ export default function useDeleteKeyNote(dictionaryId: number, activeMenu: MyWor
     },
     onSuccess: () => {
       showToast('스크랩함으로 이동하였습니다.', 'addTerm');
-      setTimeout(() => refetch(), 500);
-      setTimeout(() => refetchBoard(), 500);
+      setTimeout(() => refetch(), 300);
+      setTimeout(() => refetchBoard(), 300);
     },
   });
 
