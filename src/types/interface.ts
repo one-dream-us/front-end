@@ -251,3 +251,18 @@ export interface News {
   viewCount: string;
   tags: string[];
 }
+
+export interface INewsDetail {
+  title: string;
+  newsAgency: string;
+  fullSentence: string;
+  descriptions: IDescription[];
+}
+
+export interface IDescription {
+  sentence: string;
+  description: string;
+  definition: string;
+  dictionaryId: number;
+  term: string;
+}
