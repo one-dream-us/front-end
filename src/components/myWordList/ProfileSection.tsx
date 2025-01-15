@@ -33,18 +33,14 @@ export default function ProfileSection({
         ''
       )}
       {totalKeyNote < 3 ? (
-        <div className='mt-1 h-8 w-[106px] whitespace-nowrap rounded-full border border-custom-gray-200 px-2.5 py-1 text-sm font-medium leading-170 text-gray-070'>
+        <div className='mt-1 h-8 whitespace-nowrap rounded-full border border-custom-gray-200 px-2.5 py-1 text-sm font-medium leading-170 text-gray-070'>
           핵심노트 {totalKeyNote} <span className='text-custom-gray-500'>/ 3</span>
         </div>
       ) : (
         <div
-          className={`h-8 place-self-end rounded-full border border-custom-gray-200 py-1 pl-2 pr-1 text-sm font-medium text-custom-gray-dark ${totalKeyNote > 3 ? 'mt-7' : 'mt-1'}`}
+          className={`h-8 rounded-full border border-custom-gray-200 py-1 pl-2 pr-1 text-sm font-medium text-custom-gray-dark ${totalKeyNote > 3 ? 'mt-7' : 'mt-1'}`}
         >
-          <button
-            type='button'
-            className='flex w-[139px] items-center'
-            onClick={() => navigate('/quiz')}
-          >
+          <button type='button' className='flex items-center' onClick={() => navigate('/quiz')}>
             <img src={logoIcon} alt='로고' className='mr-1.5 h-5 w-5' />
             <span className='leading-6'>퀴즈 바로가기</span>
             <img src={arrowRightIcon} alt='오른쪽 화살표' className='h-3 w-4' />
