@@ -266,3 +266,16 @@ export interface IDescription {
   dictionaryId: number;
   term: string;
 }
+
+export interface IScrapList {
+  scrapCnt: number;
+  dictionaryScraps: IScrapWord[];
+}
+
+export interface IScrapWord {
+  scrapId: number;
+  dictionaryId: number;
+  term: string;
+  definition: string;
+  description: string;
+}

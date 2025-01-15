@@ -4,5 +4,8 @@ const newsApi = {
   fetchNewsDetail: async (newsId: string) => {
     return (await client.get(`/contents/news/${newsId}`)).data;
   },
+  postScrapWord: async (wordId: number) => {
+    (await client.post(`/scraps/dictionaries/${wordId}`)).data;
+  },
 };
 export default newsApi;
