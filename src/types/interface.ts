@@ -188,6 +188,7 @@ export interface WordListProps {
   setShowTooltip: Dispatch<SetStateAction<boolean>>;
   setShowModal: Dispatch<SetStateAction<boolean>>;
   showModal: boolean;
+  showTutorial: boolean;
 }
 
 // quiz

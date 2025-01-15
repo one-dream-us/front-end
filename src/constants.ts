@@ -4,10 +4,10 @@ import scrapIcon from '@/assets/p2/icon_bookmark_grey.png';
 import bookMarkIcon from '@/assets/p2/icon_bookmark_dark.png';
 import reviewNoteIcon from '@/assets/p2/icon_X_dark.png';
 import graduationIcon from '@/assets/p2/icon_grad.png';
-import mobileImage1 from '@/assets/p2/P2 에셋_2차전달/onboarding_1_m.png';
-import mobileImage2 from '@/assets/p2/P2 에셋_2차전달/onboarding_2_m.png';
-import mobileImage3 from '@/assets/p2/P2 에셋_2차전달/onboarding_3_m.png';
-import mobileImage4 from '@/assets/p2/P2 에셋_2차전달/onboarding_4_m.png';
+import mobileImage1 from '@/assets/p2/P2 에셋_2차전달/onboarding_1_m.jpg';
+import mobileImage2 from '@/assets/p2/P2 에셋_2차전달/onboarding_2_m.jpg';
+import mobileImage3 from '@/assets/p2/P2 에셋_2차전달/onboarding_3_m.jpg';
+import mobileImage4 from '@/assets/p2/P2 에셋_2차전달/onboarding_4_m.jpg';
 import tabletImage1 from '@/assets/p2/P2 에셋_2차전달/onboarding_1_tab.web.png';
 import tabletImage2 from '@/assets/p2/P2 에셋_2차전달/onboarding_2_tab.web.png';
 import tabletImage3 from '@/assets/p2/P2 에셋_2차전달/onboarding_3_tab.web.png';
@@ -75,8 +75,8 @@ export const myWordListMenu: MyWordListMenuType[] = ['스크랩', '핵심노트'
 export const myWordListInfo = {
   스크랩: {
     icon: scrapIcon,
-    title: '콘텐츠에서 가져온 스크랩',
-    description: '콘텐츠에서 스크랩한<br/>단어들이 모여있어요.',
+    title: '머니뉴스에서 가져온 스크랩',
+    description: '머니뉴스에서 스크랩한<br/>단어들이 모여있어요.',
   },
   핵심노트: {
     icon: bookMarkIcon,

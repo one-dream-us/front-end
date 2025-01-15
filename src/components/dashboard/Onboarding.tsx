@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
 import closeIcon from '@/assets/p2/close.svg';
 import useOnboarding from '@/hooks/dashboard/useOnboarding';
 import { onboardingSteps } from '@/constants';
@@ -8,7 +7,7 @@ export default function OnBoarding({
   setShowOnboarding,
 }: {
   showOnboarding: boolean;
-  setShowOnboarding: Dispatch<SetStateAction<boolean>>;
+  setShowOnboarding: (onBoardingStatus: boolean) => void;
 }) {
   const onboardingStepsLen = onboardingSteps.length;
   const { currentStep, handleNext, setShowTooltip } = useOnboarding({
@@ -43,12 +42,12 @@ export default function OnBoarding({
             <img
               src={mobileImage}
               alt={`온보딩 스텝 ${currentStep + 1}`}
-              className='mt-[74px] w-[323px] md:w-[512px]'
+              className='mt-[74px] h-3/5 md:h-[94%] desktop:h-3/4'
             />
           </picture>
         </div>
       </section>
-      <section className='fixed bottom-0 z-[9995] h-[253px] w-full bg-white px-4 pb-[38px] pt-[30px] shadow-top'>
+      <section className='fixed bottom-0 z-[9995] h-[253px] w-full bg-white px-4 pb-[38px] pt-[30px] text-center shadow-top'>
         <div className='mx-auto flex w-[343px] flex-col items-center md:w-[353px] desktop:w-[812px]'>
           <h1 className='mb-3 text-lg font-bold text-custom-gray-dark'>{title}</h1>
           <h2
