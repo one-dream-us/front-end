@@ -12,8 +12,6 @@ export default function WordDescription() {
   const { index: contentIndex } = useStore(courseIndexState);
   const { newsDeatilTutorial } = useStore(tutorialStore);
 
-  console.log(news);
-
   if (isLoading || !news) return <WordDescriptionSkeleton />;
   return (
     <div className='relative mx-auto mb-[20px] mt-[16px] h-auto w-full rounded-[10px] bg-white p-[24px] desktop:mb-[24px]'>
