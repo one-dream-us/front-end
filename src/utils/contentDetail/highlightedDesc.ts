@@ -11,8 +11,12 @@ export const highlightedDesc = (
   }
   const keywordArray = Array.isArray(keywords) ? keywords : [keywords];
 
-  return keywordArray.reduce((acc, keyword) => {
-    const regex = new RegExp(`(${keyword})`, 'g');
+  const res = keywordArray.reduce((acc, keyword) => {
+    // 괄호를 이스케이프 처리하여 정규식 생성
+    const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${escapedKeyword})`, 'g');
     return acc.replace(regex, `<span id=${spanId}>$1</span>`);
   }, desc);
+
+  return res;
 };
