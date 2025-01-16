@@ -252,3 +252,31 @@ export interface News {
   viewCount: string;
   tags: string[];
 }
+
+export interface INewsDetail {
+  title: string;
+  newsAgency: string;
+  fullSentence: string;
+  descriptions: IDescription[];
+}
+
+export interface IDescription {
+  sentence: string;
+  description: string;
+  definition: string;
+  dictionaryId: number;
+  term: string;
+}
+
+export interface IScrapList {
+  scrapCnt: number;
+  dictionaryScraps: IScrapWord[];
+}
+
+export interface IScrapWord {
+  scrapId: number;
+  dictionaryId: number;
+  term: string;
+  definition: string;
+  description: string;
+}

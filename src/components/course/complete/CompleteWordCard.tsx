@@ -1,0 +1,62 @@
+import { SHOW_NEWS_COMPLETE_PAGE_TURORIAL } from '@/constants';
+import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
+import useRemoveScrapWord from '@/hooks/newDetail/useRemoveScrapWord';
+import useScrapList from '@/hooks/newDetail/useScrapList';
+import useScrapWord from '@/hooks/newDetail/useScrapWord';
+import tutorialStore from '@/store/course/tutorialStore';
+import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
+import { IDescription } from '@/types/interface';
+import { useStore } from 'zustand';
+import scrapActive from '@/assets/p2/P2 에셋_2차전달/icon_scrap.png';
+import scrapDisable from '@/assets/p2/P2 에셋_2차전달/icon_scrap_greyline.png';
+
+export default function CompleteWordCard({
+  dictionaryId,
+  term,
+  index,
+}: Pick<IDescription, 'term' | 'dictionaryId'> & { index: number }) {
+  const { data } = useAuthCheckQuery();
+  const { setIsOpen, setIsNavigate } = useLoginConfirmModalState();
+  const { newsCompleteTutorial } = useStore(tutorialStore);
+  const scrap = useScrapWord();
+  const scrapCancel = useRemoveScrapWord();
+  const { scrapList } = useScrapList((data) => data.dictionaryScraps);
+
+  const alreadyScrapped = scrapList?.find((item) => item.dictionaryId === dictionaryId);
+
+  const showTutorial = !newsCompleteTutorial && SHOW_NEWS_COMPLETE_PAGE_TURORIAL && index === 0;
+
+  const handleScrap = () => {
+    if (!data) {
+      // 비로그인 시 로그인 모달 띄우기
+      setIsOpen(true);
+      setIsNavigate(false);
+    } else {
+      // 로그인 시
+      if (alreadyScrapped) {
+        // 스크랩 삭제
+        scrapCancel(alreadyScrapped.scrapId);
+        console.log('스크랩 취소 : ', term);
+      } else {
+        // 스크랩 추가
+        console.log('스크랩', term);
+        scrap(dictionaryId);
+      }
+    }
+  };
+  return (
+    <div
+      className={`box-border flex h-[56px] w-full items-center justify-between rounded-[4px] bg-white px-6 py-4 ${alreadyScrapped ? 'todays-word-card-shadow border-[2px] border-[#5BBF6A]' : 'border-[2px] border-quiz-bg'} ${showTutorial ? 'z-[10000]' : ''}`}
+    >
+      <h1 className='text-[16px] font-medium text-custom-gray-dark'>{term}</h1>
+
+      <button onClick={handleScrap} disabled={showTutorial ?? true}>
+        <img
+          className={`h-[19px] w-[18px]`}
+          src={showTutorial || alreadyScrapped ? scrapActive : scrapDisable}
+          alt='scrap img'
+        />
+      </button>
+    </div>
+  );
+}

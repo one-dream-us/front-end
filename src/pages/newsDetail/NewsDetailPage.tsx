@@ -4,20 +4,16 @@ import Title from '@/components/course/common/Title';
 import CompleteButton from '@/components/course/main/CompleteButton';
 import Slider from '@/components/course/main/slider/Slider';
 import WordDescription from '@/components/course/main/WordDescription';
+import { SHOW_NEWS_DETAIL_PAGE_TURORIAL, SHOW_NEWS_DETAIL_PAGE_TURORIAL_KEY } from '@/constants';
 import tutorialStore from '@/store/course/tutorialStore';
-import { useEffect } from 'react';
-import { useBlocker } from 'react-router-dom';
+import { useBlocker, useParams } from 'react-router-dom';
 import { useStore } from 'zustand';
 
-export default function Course() {
-  const { setIsNewUser, isNewUser } = useStore(tutorialStore);
-
-  useEffect(() => {
-    setIsNewUser(true);
-  }, []);
+export default function NewsDetailPage() {
+  const { newsDeatilTutorial, setNewsDeatilTutorial } = useStore(tutorialStore);
   return (
     <div className='m-auto mt-[40px] w-[341px] desktop:w-[440px]'>
-      <div className='m-auto mb-[24px] h-[51px] w-[196px] text-center'>
+      <div className='m-auto mb-[24px] h-[51px] min-w-[196px] text-center'>
         <Title main='한 문장씩 읽어보세요!' sub='오늘의 뉴스 문장' />
       </div>
 
@@ -26,13 +22,17 @@ export default function Course() {
 
       <WordDescription />
 
-      {!isNewUser && <CompleteButton />}
+      <CompleteButton />
+      {/* {!SHOW_NEWS_DETAIL_PAGE_TURORIAL && !isNewUser && <CompleteButton />} */}
 
       <NavigateBlocker />
 
-      {isNewUser && (
+      {SHOW_NEWS_DETAIL_PAGE_TURORIAL && !newsDeatilTutorial && (
         <button
-          onClick={() => setIsNewUser(false)}
+          onClick={() => {
+            localStorage.setItem(SHOW_NEWS_DETAIL_PAGE_TURORIAL_KEY, 'false');
+            setNewsDeatilTutorial(true);
+          }}
           className='fixed bottom-[45px] left-0 right-0 z-[10000] m-auto flex h-[38px] w-[38px] items-center justify-center rounded-full border text-custom-gray-light'
         >
           <svg
@@ -52,8 +52,9 @@ export default function Course() {
 }
 
 const NavigateBlocker = () => {
+  const { id } = useParams();
   const blocker = useBlocker(({ currentLocation, nextLocation }) => {
-    return currentLocation !== nextLocation && nextLocation.pathname !== '/course-complete';
+    return currentLocation !== nextLocation && nextLocation.pathname !== `/newsComplete/${id}`;
   });
 
   return (
@@ -61,10 +62,8 @@ const NavigateBlocker = () => {
       {blocker.state === 'blocked' && (
         <ModalOverlay isOpen={blocker.state === 'blocked'}>
           <div className='h-[161px] w-[372px] rounded-[10px] bg-custom-gray-lighter px-[28px] py-[24px]'>
-            <div className='m-auto mb-[20px] h-[49px] w-full text-center'>
-              <h1 className='mb-[8px] text-[18px] font-bold text-custom-black'>
-                학습을 그만 하시겠어요?
-              </h1>
+            <div className='mb-[20px] h-[49px] w-full text-center'>
+              <h1 className='text-[18px] font-bold text-custom-black'>학습을 그만 하시겠어요?</h1>
               <span className='text-[12px] leading-[120%] tracking-[0px] text-custom-gray-600'>
                 지금까지의 학습 정보는 저장되지 않습니다.
               </span>
