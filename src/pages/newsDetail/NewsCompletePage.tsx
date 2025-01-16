@@ -1,29 +1,21 @@
 import ModalOverlay from '@/components/common/modal/ModalOverlay';
 import CompleteButton from '@/components/course/complete/CompleteButton';
 import QuizResultItem from '@/components/quiz/quizResult/QuizResultItem';
-import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
 import tutorialStore from '@/store/course/tutorialStore';
-import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
 import { useStore } from 'zustand';
 import quizResult100 from '@/assets/p2/quiz result=100.png';
 import tutorialImg from '@/assets/p2/P2 에셋_2차전달/코니_학습 완료.png';
-import scrapActive from '@/assets/p2/P2 에셋_2차전달/icon_scrap.png';
-import scrapDisable from '@/assets/p2/P2 에셋_2차전달/icon_scrap_greyline.png';
 import useNewsDetail from '@/hooks/newDetail/useNewsDetail';
-import { IDescription } from '@/types/interface';
 import {
   SHOW_NEWS_COMPLETE_PAGE_TURORIAL,
   SHOW_NEWS_COMPLETE_PAGE_TURORIAL_KEY,
 } from '@/constants';
-import { useEffect, useState } from 'react';
-import client from '@/utils/client';
+import CompleteWordCard from '@/components/course/complete/CompleteWordCard';
 
 export default function NewsCompletePage() {
   const { newsCompleteTutorial, setNewsCompleteTutorial } = useStore(tutorialStore);
 
   const { news, isLoading } = useNewsDetail((data) => data.descriptions);
-
-  console.log(news);
 
   if (isLoading || !news) return <h1>loading...</h1>;
   return (
@@ -71,7 +63,7 @@ export default function NewsCompletePage() {
               </>
             )}
             {news?.map((item, index) => (
-              <TodaysWord key={item.dictionaryId} {...item} index={index} />
+              <CompleteWordCard key={item.dictionaryId} {...item} index={index} />
             ))}
           </div>
         </div>
@@ -108,53 +100,3 @@ export default function NewsCompletePage() {
     </div>
   );
 }
-
-const TodaysWord = ({
-  dictionaryId,
-  term,
-  index,
-}: Pick<IDescription, 'term' | 'dictionaryId'> & { index: number }) => {
-  const [isScrap, setIsScrap] = useState(false);
-  const { data } = useAuthCheckQuery();
-  const { setIsOpen, setIsNavigate } = useLoginConfirmModalState();
-  const { newsCompleteTutorial } = useStore(tutorialStore);
-
-  const showTutorial = !newsCompleteTutorial && SHOW_NEWS_COMPLETE_PAGE_TURORIAL && index === 0;
-
-  const handleScrap = () => {
-    console.log(dictionaryId);
-    if (!data) {
-      setIsOpen(true);
-      setIsNavigate(false);
-    } else {
-      if (isScrap) {
-        // 스크랩 삭제
-      } else if (!isScrap) {
-        // 스크랩 추가
-      }
-      setIsScrap((prev) => !prev);
-    }
-  };
-
-  useEffect(() => {
-    (async () => {
-      const res = (await client.get('/scraps/news/dictionaries')).data;
-      console.log(res);
-    })();
-  }, []);
-  return (
-    <div
-      className={`box-border flex h-[56px] w-full items-center justify-between rounded-[4px] bg-white px-6 py-4 ${isScrap ? 'todays-word-card-shadow border-[2px] border-[#5BBF6A]' : 'border-[2px] border-quiz-bg'} ${showTutorial ? 'z-[10000]' : ''}`}
-    >
-      <h1 className='text-[16px] font-medium text-custom-gray-dark'>{term}</h1>
-
-      <button onClick={handleScrap} disabled={showTutorial ?? true}>
-        <img
-          className={`h-[19px] w-[18px]`}
-          src={isScrap || showTutorial ? scrapActive : scrapDisable}
-          alt='scrap img'
-        />
-      </button>
-    </div>
-  );
-};

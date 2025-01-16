@@ -23,6 +23,7 @@ import NewsList from './pages/NewsList';
 import NewsDetailLayout from './components/common/layout/NewsDetailLayout';
 import NewsPendingPage from './pages/newsDetail/NewsPendingPage';
 import NewsCompletePage from './pages/newsDetail/NewsCompletePage';
+import NewsDetailPage from './pages/newsDetail/NewsDetailPage';
 
 export const router = createBrowserRouter(
   [
@@ -31,7 +32,7 @@ export const router = createBrowserRouter(
       children: [
         { path: '/', element: <Dashboard /> },
         { path: '/news-list', element: <NewsList /> },
-        { path: '/login', element: <Login /> },
+        { path: '/login', element: <Login />, errorElement: <QuizErrorPage /> },
         { path: '/content/:id', element: <ContentDetail /> },
         { path: '/withdraw-success', element: <WithDrawSuccess /> },
         { path: '/contents', element: <ContentList /> },
@@ -71,8 +72,8 @@ export const router = createBrowserRouter(
     {
       element: <NewsDetailLayout />,
       children: [
-        { path: '/news-list/:id', element: <NewsPendingPage /> },
-        { path: '/news/:id', element: <NewsDetailLayout /> },
+        { path: '/newsPending/:id', element: <NewsPendingPage /> },
+        { path: '/news/:id', element: <NewsDetailPage /> },
         { path: '/newsComplete/:id', element: <NewsCompletePage /> },
       ],
     },
