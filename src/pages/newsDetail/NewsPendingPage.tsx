@@ -20,7 +20,7 @@ export default function NewsPendingPage() {
         </div>
 
         {/* 뉴스 기사 */}
-        <div className='mb-[182px] h-auto w-full rounded-[10px] bg-white p-[24px] md:mb-[24px] desktop:h-[253px]'>
+        <div className='mb-[182px] h-auto w-full rounded-[10px] bg-white p-[24px] md:mb-[24px]'>
           <span className='mb-2 text-[12px] leading-[120%] tracking-[0px] text-custom-gray-400'>
             {news?.newsAgency}
           </span>

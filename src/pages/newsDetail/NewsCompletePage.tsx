@@ -17,7 +17,6 @@ export default function NewsCompletePage() {
 
   const { news, isLoading } = useNewsDetail((data) => data.descriptions);
 
-  if (isLoading || !news) return <h1>loading...</h1>;
   return (
     <div className='m-auto w-[343px]'>
       <div className='mb-[20px] mt-[40px] h-[165px] w-full'>
@@ -62,9 +61,23 @@ export default function NewsCompletePage() {
                 </div>
               </>
             )}
-            {news?.map((item, index) => (
-              <CompleteWordCard key={item.dictionaryId} {...item} index={index} />
-            ))}
+
+            {isLoading ? (
+              <>
+                {[1, 2, 3].map((item) => (
+                  <div
+                    key={item}
+                    className={`skeleton box-border flex h-[56px] w-full items-center justify-between rounded-[4px] px-6 py-4`}
+                  ></div>
+                ))}
+              </>
+            ) : (
+              <>
+                {news?.map((item, index) => (
+                  <CompleteWordCard key={item.dictionaryId} {...item} index={index} />
+                ))}
+              </>
+            )}
           </div>
         </div>
 
