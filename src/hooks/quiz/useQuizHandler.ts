@@ -1,12 +1,10 @@
 import quizResultStore from '@/store/quiz/quizResultStore';
 import quizStore from '@/store/quiz/quizStore';
 import { IChoice, IHandlePick, IQuestionResult } from '@/types/interface';
-import { useNavigate } from 'react-router-dom';
 import { useStore } from 'zustand';
 import useSubmitQuiz from './useSubmitQuiz';
 
 export const useQuizHandler = () => {
-  const navigate = useNavigate();
   const { setMyChoice, setIsCorrect, setIndex, index, setRemainQuestion } = useStore(quizStore);
   const { setResults, results } = useStore(quizResultStore);
   const submitQuiz = useSubmitQuiz();
@@ -35,7 +33,7 @@ export const useQuizHandler = () => {
     const isLastQuestion = index === 4;
     if (isLastQuestion) {
       submitQuiz(results);
-      return navigate('/quiz-loading');
+      // return navigate('/quiz-loading');
     } else {
       setIsCorrect(null);
       setMyChoice(null);

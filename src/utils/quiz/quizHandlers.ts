@@ -11,25 +11,18 @@ import iconCREd from '@/assets/p2/icon_c_red.png';
 import iconDGreen from '@/assets/p2/icon_d_green.png';
 import iconDGrey from '@/assets/p2/icon_d_grey.png';
 import iconDREd from '@/assets/p2/icon_d_red.png';
+import quizResult100 from '@/assets/p2/quiz result=100.png';
+import quizResult50 from '@/assets/p2/quiz result=2080.png';
+import quizResult0 from '@/assets/p2/quiz result=0.png';
 
 export const formatQuestion = (currentQuiz: IQuiz) => {
   if (currentQuiz === undefined || !currentQuiz.question) return;
   const { question, answerNum, choices } = currentQuiz;
-  return question.replace(
+  return question.replaceAll(
     choices[answerNum - 1].term,
     '_'.repeat(choices[answerNum - 1].term.length * 3),
   );
 };
-// 문제 : FOMO는 "Fear of Missing Out"의 약자로, 투자 기회를 놓칠까 봐 불안해하며 성급하게 투자하는 심리를 말해요.
-// 선지 : 포모(FOMO)
-// 같은 건 처리하는데 포함하는 건 처리 못하고 있음
-
-// 문제 : ___________________(MicroStrategy)는 기업 데이터를 시각화하고 분석하는 소프트웨어를 제공하며, 대규모 비트코인 보유로도 주목받고 있는 회사예요.
-// 선지 : 마이크로스트레티지
-//
-
-// 문제 : ___(long)은 자산 가격이 오를 것을 기대하고 매수하는 것을 뜻해요. 싸게 사서 비싸게 팔아 이익을 내는 일반적인 투자 방식이에요.
-// 선지 : 롱
 
 export const matchOptionImgColor = (
   isCorrect: boolean | null,
@@ -69,4 +62,31 @@ export const matchOptionImgColor = (
     }
     return iconDGrey;
   }
+};
+
+export const checkIsRedText = (wrongCnt: number) => (wrongCnt >= 3 ? true : false);
+
+export const createTitle = (accuracyRate: number) => {
+  if (!accuracyRate) return;
+
+  const obj = {
+    mainTitle: '',
+    subTitlt: '',
+    src: '',
+  };
+
+  switch (accuracyRate) {
+    case 100:
+      obj.mainTitle = '전부 다 맞췄어요!';
+      (obj.subTitlt = '외운 단어는 졸업노트에 넣어둘게요!'), (obj.src = quizResult100);
+      break;
+    case 0:
+      obj.mainTitle = '조금 어려웠나봐요!';
+      (obj.subTitlt = '놓친 단어는 오답노트에 넣었어요'), (obj.src = quizResult0);
+      break;
+    default:
+      obj.mainTitle = '퀴즈를 다 풀었어요!';
+      (obj.subTitlt = '놓친 단어는 오답노트에 넣었어요'), (obj.src = quizResult50);
+  }
+  return obj;
 };
