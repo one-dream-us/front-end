@@ -3,17 +3,17 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import QuizResultItem from '@/components/quiz/quizResult/QuizResultItem';
 import correctIcon from '@/assets/p2/icon_check_right.png';
 import wrongIcon from '@/assets/p2/icon_x_wrg.png';
-import { useStore } from 'zustand';
-import quizCompleteStore from '@/store/quiz/quizCompleteStore';
 import RandomquizResultImgMobile from '@/assets/p2/P2 에셋_2차전달/image_quiz_random102.png';
 import RandomquizResultImgWeb from '@/assets/p2/P2 에셋_2차전달/image_quiz_random124(웹용).png';
 import BottomSheetImg from '@/assets/p2/icon_quiz.png';
+import { RANDOM_QUIZ_RESULT_KEY } from '@/constants';
+import { IQuizResult } from '@/types/interface';
 
 export default function RandomQuizResultPage() {
   const navigate = useNavigate();
-  const { result } = useStore(quizCompleteStore);
+  const results: IQuizResult = JSON.parse(localStorage.getItem(RANDOM_QUIZ_RESULT_KEY) as string);
 
-  if (!result) {
+  if (!results) {
     alert('올바르지 않은 접근입니다.');
     return <Navigate to={'/'} />;
   }
@@ -41,14 +41,14 @@ export default function RandomQuizResultPage() {
         id='quiz-result-status'
         className='m-auto mb-[24px] grid h-[60px] max-w-[353px] grid-cols-3 grid-rows-1'
       >
-        <QuizResultItem quantity={result.graduationCnt} status='졸업단어' unit='개' />
-        <QuizResultItem quantity={result.totalWrong} status='오답단어' unit='개' />
-        <QuizResultItem quantity={result.accuracyRate} status='정답률' unit='%' />
+        <QuizResultItem quantity={results.graduationCnt} status='졸업단어' unit='개' />
+        <QuizResultItem quantity={results.totalWrong} status='오답단어' unit='개' />
+        <QuizResultItem quantity={results.accuracyRate} status='정답률' unit='%' />
       </div>
 
       <div className='left-0 h-auto w-full pb-[200px] pt-[24px] desktop:absolute desktop:bg-quiz-bg'>
         <ul className='m-auto h-[352px] max-w-[352px] desktop:grid desktop:h-[216px] desktop:max-w-[812px] desktop:grid-cols-2 desktop:gap-x-[20px] desktop:gap-y-[12px]'>
-          {result.resultDetails.map((item) => (
+          {results.resultDetails.map((item) => (
             <li
               key={item.term}
               className='mb-2 flex h-[64px] w-full items-center justify-start gap-x-3 rounded-[10px] border border-custom-gray-200 bg-white px-4 py-5 desktop:mb-0'
@@ -68,7 +68,7 @@ export default function RandomQuizResultPage() {
         buttonTextColor='text-custom-green-money'
         imgSrc={BottomSheetImg}
         titleText='나만의 퀴즈를 만들어요!'
-        handleButtonClick={() => navigate('/contents')}
+        handleButtonClick={() => navigate('/news-list')}
       />
     </div>
   );
