@@ -1,13 +1,17 @@
 import { create } from 'zustand';
 
 interface TutorialStore {
-  isNewUser: boolean | null;
-  setIsNewUser: (isNewUser: boolean) => void;
+  newsDeatilTutorial: boolean | null;
+  newsCompleteTutorial: boolean | null;
+  setNewsDeatilTutorial: (newsDeatilTutorial: boolean) => void;
+  setNewsCompleteTutorial: (newsCompleteTutorial: boolean) => void;
 }
 
 const tutorialStore = create<TutorialStore>((set) => ({
-  isNewUser: null,
-  setIsNewUser: (isNewUser: boolean) => set({ isNewUser }),
+  newsDeatilTutorial: null,
+  setNewsDeatilTutorial: (newsDeatilTutorial: boolean) => set({ newsDeatilTutorial }),
+  newsCompleteTutorial: null,
+  setNewsCompleteTutorial: (newsCompleteTutorial: boolean) => set({ newsCompleteTutorial }),
 }));
 
 export default tutorialStore;

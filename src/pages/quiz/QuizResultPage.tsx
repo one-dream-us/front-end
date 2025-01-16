@@ -46,7 +46,7 @@ export default function QuizResultPage() {
   // };
   return (
     <div className='m-auto'>
-      <div className='mb-[16px] mt-[40px] text-center md:mt-[60px]'>
+      <div className='mb-[16px] mt-[40px] text-center'>
         <div className='m-auto mb-1 h-[33px] min-w-[156px]'>
           <h1 className='mb-1 text-[22px] font-bold leading-[160%]'>전부 다 맞췄어요!</h1>
         </div>
@@ -76,7 +76,7 @@ export default function QuizResultPage() {
             // 단어 카드
             <li
               key={item.id}
-              className='mb-2 flex h-[124px] w-full items-start justify-between gap-x-3 rounded-[10px] bg-white px-[16px] py-[20px] transition-all duration-300 hover:scale-105 desktop:h-[120px] desktop:w-[396px]'
+              className='mb-2 flex h-[124px] w-full items-start justify-between gap-x-3 rounded-[10px] bg-white px-[16px] py-[20px] desktop:h-[120px] desktop:w-[396px]'
             >
               <img
                 src={item.status.includes('오답') ? wrongIcon : correctIcon}

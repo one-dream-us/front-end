@@ -9,23 +9,18 @@ import Accordion from '@/components/quiz/Accordion';
 import BottomSheet from '@/components/quiz/common/BottomSheet';
 import correctIcon from '@/assets/p2/icon_check_right.png';
 import wrongIcon from '@/assets/p2/icon_x_wrg.png';
-import { useQuery } from '@tanstack/react-query';
-import { quizApi } from '@/services/quizApi';
 import { useStore } from 'zustand';
 import quizStore from '@/store/quiz/quizStore';
 import { IQuiz } from '@/types/interface';
 import { formatQuestion } from '@/utils/quiz/quizHandlers';
 import { useQuizHandler } from '@/hooks/quiz/useQuizHandler';
+import useChoiceQuizType from '@/hooks/quiz/useChioceQuizType';
 
 export default function QuizPage() {
-  const { index, isCorrect, setQuizType } = useStore(quizStore);
-  const { data, isLoading } = useQuery<IQuiz[]>({
-    queryKey: ['random-quiz'],
-    queryFn: () => {
-      setQuizType('random');
-      return quizApi.getRandomQuizzes();
-    },
-  });
+  const { index, isCorrect } = useStore(quizStore);
+  const { data, isLoading } = useChoiceQuizType();
+
+  console.log(data);
   const { handlePick, handleBottomSheetClick } = useQuizHandler();
 
   const currentQuiz = useMemo(() => {
@@ -42,7 +37,7 @@ export default function QuizPage() {
           className={`m-auto min-h-[478px] w-[343px] rounded-[10px] bg-white p-4 md:w-[353px] md:p-5 desktop:w-[812px] desktop:p-[40px] ${isCorrect !== null && 'mb-[200px]'}`}
         >
           {/* 문제 */}
-          <div className='mb-[40px] h-[158px] w-full text-custom-black desktop:mb-[30px]'>
+          <div className='mb-[40px] min-h-[158px] w-full text-custom-black desktop:mb-[30px]'>
             <div className='mb-[20px] h-[42px] w-full border-b border-custom-gray-200'>
               <h1 className='text-[14px] leading-[160%]'>
                 <span className='mr-[12px] text-[20px] font-bold leading-normal'>
@@ -52,7 +47,7 @@ export default function QuizPage() {
               </h1>
             </div>
 
-            <div className='h-[96px] w-full'>
+            <div className='min-h-[96px] w-full'>
               {currentQuiz && (
                 <h2 className='text-[16px] font-medium'>{formatQuestion(currentQuiz)}</h2>
               )}

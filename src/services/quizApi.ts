@@ -9,4 +9,14 @@ export const quizApi = {
     const res = (await client.post('/quiz', payload)).data as IQuizResult;
     return res;
   },
+  checkIsFirstQuiz: async () => {
+    return (
+      await client.get<{
+        isFirstQuizAttempt: boolean;
+      }>('/users/quiz/first-attempt')
+    ).data;
+  },
+  getNormalQuiz: async () => {
+    return (await client.get('/quiz')).data;
+  },
 };

@@ -13,7 +13,7 @@ import iconDGrey from '@/assets/p2/icon_d_grey.png';
 import iconDREd from '@/assets/p2/icon_d_red.png';
 
 export const formatQuestion = (currentQuiz: IQuiz) => {
-  if (currentQuiz === undefined) return;
+  if (currentQuiz === undefined || !currentQuiz.question) return;
   const { question, answerNum, choices } = currentQuiz;
   return question.replace(
     choices[answerNum - 1].term,

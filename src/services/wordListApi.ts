@@ -1,3 +1,4 @@
+import { IScrapList } from '@/types/interface';
 import client from '@/utils/client';
 
 const wordListAPi = {
@@ -14,7 +15,7 @@ const wordListAPi = {
     return response;
   },
   getScrap: async () => {
-    const { data: response } = await client.get('/scraps/news/dictionaries');
+    const { data: response } = await client.get<IScrapList>('/scraps/news/dictionaries');
     return response;
   },
   getLearningStatus: async () => {
