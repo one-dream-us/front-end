@@ -33,7 +33,7 @@ export default function NotificationModal({
           onClose={() => setModalOpen(false)}
           onProceed={() => {
             if (isKeynote) navigate('/my-word-list?tab="bookmark"');
-            else navigate('/news');
+            else navigate('/news-list');
           }}
           buttonText={{ close: '닫기', proceed: proceedText }}
         />

@@ -8,7 +8,7 @@ import useCheckFirstQuiz from '../dashboard/useCheckFirstQuiz';
 import { useState } from 'react';
 
 export default function useNewsListLogic() {
-  const { newsList } = useNewsList();
+  const { newsList } = useNewsList(null, 10);
   const { latestNews } = useLatestNews();
   const { isLogin } = useLoginStore();
   const navigate = useNavigate();

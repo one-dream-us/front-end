@@ -13,11 +13,11 @@ export default function Keywords({
   return (
     <div className='flex items-center gap-x-1.5'>
       <img src={bookmarkIcon} alt='북마크' className='h-[22px] w-[22px]' />
-      <div className='flex h-6 w-full gap-x-1 text-[10px] font-medium leading-120'>
+      <div className='flex h-6 w-full gap-x-1 text-[10px] font-medium'>
         {tags.map((tag, index) => (
           <div
             key={index}
-            className='relative flex items-center justify-center rounded border border-custom-gray-400 p-1.5 text-custom-gray-700 drop-shadow-md'
+            className='relative flex items-center justify-center rounded border border-custom-gray-400 p-1.5 leading-6 text-custom-gray-700 drop-shadow-md'
           >
             <span className='whitespace-nowrap'>#{tag}</span>
             {withTooltip && showTooltip && index === 0 && (
