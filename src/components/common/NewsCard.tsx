@@ -13,8 +13,7 @@ export default function NewsCard({
   isToday?: boolean;
   isDesktop?: boolean;
 }) {
-  const { title, viewCount, createdAt, thumbnailUrl, newsId } = news;
-  const tags2 = ['달러 환산 코스피', '저가 매수세 유입', '코스피 지수'];
+  const { title, viewCount, createdAt, thumbnailUrl, newsId, tags } = news;
 
   return (
     <Link
@@ -33,7 +32,7 @@ export default function NewsCard({
           <span>{formatDate(createdAt)}</span>
         </div>
         <p className='mb-2 font-bold text-custom-gray-dark'>{title}</p>
-        <Keywords tags={tags2} withTooltip={isToday} />
+        <Keywords tags={tags} withTooltip={isToday} />
       </div>
     </Link>
   );
