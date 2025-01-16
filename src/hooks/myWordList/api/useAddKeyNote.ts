@@ -19,8 +19,8 @@ export default function useAddKeyNote(dictionaryId: number, activeMenu: MyWordLi
     },
     onSuccess: () => {
       showToast('핵심노트로 이동하였습니다.', 'addTerm');
-      refetch();
-      refetchBoard();
+      setTimeout(() => refetch(), 300);
+      setTimeout(() => refetchBoard(), 300);
     },
   });
 
