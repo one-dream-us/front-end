@@ -8,16 +8,16 @@ import { useStore } from 'zustand';
 // const IS_FIRST_QUIZ_KEY = 'isFirstQuiz';
 
 const useChoiceQuizType = () => {
-  const [isFirst, setIsFirst] = useState<boolean | null>(true); //JSON.parse(localStorage.getItem(IS_FIRST_QUIZ_KEY) ?? 'null'),
+  const [isFirst, setIsFirst] = useState<boolean | null>(null); //JSON.parse(localStorage.getItem(IS_FIRST_QUIZ_KEY) ?? 'null'),
   const { setQuizType } = useStore(quizStore);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const { isFirstQuizAttempt } = await quizApi.checkIsFirstQuiz();
-  //     if(isFirstQuizAttempt===false)
-  //     setIsFirst(isFirstQuizAttempt);
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      const { isFirstQuizAttempt } = await quizApi.checkIsFirstQuiz();
+      // if (isFirstQuizAttempt === false)
+      setIsFirst(isFirstQuizAttempt);
+    })();
+  }, []);
 
   const { data, isLoading } = useQuery<IQuiz[]>({
     queryKey: isFirst ? ['random-quiz'] : ['normal-quiz'],
