@@ -21,7 +21,7 @@ export default function NewsCard({
       className={`flex flex-col ${(isToday || isDesktop) && 'desktop:flex-row desktop:gap-x-5'}`}
     >
       <img
-        className={`mb-3 h-40 w-full rounded bg-gray-200 md:h-[164px] ${(isToday || isDesktop) && 'desktop:w-[396px]'}`}
+        className={`mb-3 h-40 w-full rounded bg-gray-200 md:h-[164px] ${(isToday || isDesktop) && 'desktop:w-[396px]'} ${newsId === 7 ? 'object-cover object-top' : ''}`}
         src={thumbnailUrl}
         alt={title + '썸네일 이미지'}
       />
