@@ -22,7 +22,7 @@ export default function Keywords({
             <span className='whitespace-nowrap'>#{tag}</span>
 
             <p
-              className={`absolute -left-7 -top-2.5 z-[999] -translate-y-full whitespace-nowrap rounded bg-custom-gray-dark px-2.5 py-2 text-xs text-custom-cream-light drop-shadow-xl after:absolute after:left-8 after:top-full after:border-x-[6px] after:border-t-[8px] after:border-transparent after:border-t-custom-gray-dark after:content-[''] ${withTooltip && showTooltip && index === 0 ? 'block' : 'hidden'}`}
+              className={`absolute -left-7 -top-2.5 z-[999] -translate-y-full whitespace-nowrap rounded bg-custom-gray-dark px-2.5 py-2 text-xs text-custom-cream-light drop-shadow-md after:absolute after:left-8 after:top-full after:border-x-[6px] after:border-t-[8px] after:border-transparent after:border-t-custom-gray-dark after:content-[''] ${withTooltip && showTooltip && index === 0 ? 'block' : 'hidden'}`}
             >
               해당 머니뉴스를 통해 공부할 수 있는 단어에요.
             </p>
