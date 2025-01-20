@@ -7,6 +7,7 @@ import { IQuizResult } from '@/types/interface';
 import { useNavigate } from 'react-router-dom';
 import { createTitle } from '@/utils/quiz/quizHandlers';
 import NormalQuizResultCard from '@/components/quiz/quizResult/NormalQuizResultCard';
+import { useUserInfoQuery } from '@/hooks/auth/useUserInfoQuery';
 
 export default function QuizResultPage() {
   const { accuracyRate, graduationCnt, resultDetails, totalWrong }: IQuizResult = JSON.parse(
@@ -16,7 +17,13 @@ export default function QuizResultPage() {
 
   const navigate = useNavigate();
 
-  const title = createTitle(accuracyRate);
+  /**결과에 졸업 단어가 하나라도 있는지 확인 */
+  const isGraduate = resultDetails
+    .map((item) => item.status)
+    .some((item) => item === 'GRADUATION_NOTE');
+
+  const { data } = useUserInfoQuery(!isGraduate);
+  const title = createTitle(accuracyRate, isGraduate, !isGraduate ? data?.name : undefined);
 
   const handleBottomSheetClick = () =>
     accuracyRate === 100

@@ -66,7 +66,7 @@ export const matchOptionImgColor = (
 
 export const checkIsRedText = (wrongCnt: number) => (wrongCnt >= 3 ? true : false);
 
-export const createTitle = (accuracyRate: number) => {
+export const createTitle = (accuracyRate: number, isGraduate: boolean, name?: string) => {
   if (isNaN(accuracyRate)) return;
 
   const obj = {
@@ -78,7 +78,10 @@ export const createTitle = (accuracyRate: number) => {
   switch (accuracyRate) {
     case 100:
       obj.mainTitle = '전부 다 맞췄어요!';
-      (obj.subTitlt = '외운 단어는 졸업노트에 넣어둘게요!'), (obj.src = quizResult100);
+      (obj.subTitlt = isGraduate
+        ? '외운 단어는 졸업노트에 넣어둘게요!'
+        : `${name || 'user'}님, 경제 단어가 쉬워지고 있어요!`),
+        (obj.src = quizResult100);
       break;
     case 0:
       obj.mainTitle = '조금 어려웠나봐요!';
