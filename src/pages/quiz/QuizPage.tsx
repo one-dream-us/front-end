@@ -1,6 +1,6 @@
 import { useBlocker } from 'react-router-dom';
 import ProgressBar from '@/components/quiz/ProgressBar';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import ModalOverlay from '@/components/common/modal/ModalOverlay';
 import ModalButton from '@/components/common/modal/ModalButton';
@@ -17,16 +17,19 @@ import { useQuizHandler } from '@/hooks/quiz/useQuizHandler';
 import useChoiceQuizType from '@/hooks/quiz/useChioceQuizType';
 
 export default function QuizPage() {
-  const { index, isCorrect } = useStore(quizStore);
+  const { index, isCorrect, setIndex } = useStore(quizStore);
   const { data, isLoading } = useChoiceQuizType();
 
-  console.log(data);
   const { handlePick, handleBottomSheetClick } = useQuizHandler();
 
   const currentQuiz = useMemo(() => {
     if (isLoading || !data) return;
     return data[index];
   }, [isLoading, index]) as IQuiz;
+
+  useEffect(() => {
+    setIndex(0);
+  }, []);
   return (
     <div className=''>
       <ProgressBar index={index + 1} />
@@ -59,14 +62,15 @@ export default function QuizPage() {
             {currentQuiz?.choices?.map((item, index, choices) => (
               <li key={item.dictionaryId}>
                 <Accordion
-                  handlePick={() =>
-                    handlePick({
-                      answer: choices[currentQuiz.answerNum - 1].term,
-                      dictionaryId: item.dictionaryId,
-                      status: item.status,
+                  handlePick={() => {
+                    const answer = choices[currentQuiz.answerNum - 1];
+                    return handlePick({
+                      answer: answer.term,
+                      dictionaryId: answer.dictionaryId,
+                      status: answer.status,
                       item,
-                    })
-                  }
+                    });
+                  }}
                   optionIndex={index}
                   answer={choices[currentQuiz.answerNum - 1].term}
                   {...item}

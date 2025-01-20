@@ -67,7 +67,7 @@ export const matchOptionImgColor = (
 export const checkIsRedText = (wrongCnt: number) => (wrongCnt >= 3 ? true : false);
 
 export const createTitle = (accuracyRate: number) => {
-  if (!accuracyRate) return;
+  if (isNaN(accuracyRate)) return;
 
   const obj = {
     mainTitle: '',
@@ -89,4 +89,24 @@ export const createTitle = (accuracyRate: number) => {
       (obj.subTitlt = '놓친 단어는 오답노트에 넣었어요'), (obj.src = quizResult50);
   }
   return obj;
+};
+
+export const showStatus = ({
+  correctCnt,
+  wrongCnt,
+  isCorrect,
+}: {
+  correctCnt: number;
+  wrongCnt: number;
+  isCorrect: boolean;
+}) => {
+  if (!correctCnt && !wrongCnt) {
+    return '스크랩함에 추가됨';
+  }
+
+  return isCorrect && correctCnt >= 3
+    ? '3회 정답! 졸업했어요'
+    : isCorrect
+      ? `${correctCnt}회 복습`
+      : `${wrongCnt}회 오답`;
 };
