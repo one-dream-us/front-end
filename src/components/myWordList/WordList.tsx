@@ -18,12 +18,12 @@ export default function WordList({
   showModal,
   showTutorial,
 }: WordListProps) {
-  const { title, wordList, wordNum, navigate, listRef, handleScroll } = useWordList(
+  const { title, wordList, wordNum, navigate, handleScroll } = useWordList(
     activeMenu,
     setShowTooltip,
     showTutorial,
   );
-
+  console.log(wordList);
   return (
     <div className='relative'>
       <p
@@ -39,7 +39,6 @@ export default function WordList({
       ) : null}
       {wordList.length > 0 ? (
         <div
-          ref={listRef}
           className={`md:gap-y-4.5 mb-12 flex h-96 flex-col gap-y-3 overflow-y-auto pr-2 desktop:h-[340px] desktop:gap-y-4`}
           onScroll={handleScroll}
         >
