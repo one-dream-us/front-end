@@ -18,10 +18,11 @@ import quizResult0 from '@/assets/p2/quiz result=0.png';
 export const formatQuestion = (currentQuiz: IQuiz) => {
   if (currentQuiz === undefined || !currentQuiz.question) return;
   const { question, answerNum, choices } = currentQuiz;
-  return question.replaceAll(
-    choices[answerNum - 1].term,
-    '_'.repeat(choices[answerNum - 1].term.length * 3),
-  );
+  // return question.replaceAll(
+  //   choices[answerNum - 1].term,
+  //   '_'.repeat(choices[answerNum - 1].term.length * 3),
+  // );
+  return question.replaceAll(choices[answerNum - 1].term, '__________');
 };
 
 export const matchOptionImgColor = (
