@@ -15,10 +15,13 @@ import { IQuiz } from '@/types/interface';
 import { formatQuestion } from '@/utils/quiz/quizHandlers';
 import { useQuizHandler } from '@/hooks/quiz/useQuizHandler';
 import useChoiceQuizType from '@/hooks/quiz/useChioceQuizType';
+import quizResultStore from '@/store/quiz/quizResultStore';
 
 export default function QuizPage() {
-  const { index, isCorrect, setIndex } = useStore(quizStore);
+  const { index, isCorrect, resetQuizStore } = useStore(quizStore);
+  const { resetResults } = useStore(quizResultStore);
   const { data, isLoading } = useChoiceQuizType();
+  // console.log(data);
 
   const { handlePick, handleBottomSheetClick } = useQuizHandler();
 
@@ -28,7 +31,8 @@ export default function QuizPage() {
   }, [isLoading, index]) as IQuiz;
 
   useEffect(() => {
-    setIndex(0);
+    resetQuizStore();
+    resetResults();
   }, []);
   return (
     <div className=''>

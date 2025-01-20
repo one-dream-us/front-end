@@ -4,6 +4,7 @@ import { create } from 'zustand';
 interface QuizResultStore {
   results: IQuestionResult[];
   setResults: (payload: IQuestionResult) => void;
+  resetResults: () => void;
 }
 
 const quizResultStore = create<QuizResultStore>((set) => ({
@@ -12,6 +13,7 @@ const quizResultStore = create<QuizResultStore>((set) => ({
     set((prev) => ({
       results: [...prev.results, payload],
     })),
+  resetResults: () => set({ results: [] }),
 }));
 
 export default quizResultStore;
