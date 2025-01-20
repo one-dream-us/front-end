@@ -5,6 +5,7 @@ import TutorialModalBody from './TutorialModalBody';
 import TutorialModalBtn from './TutorialModalBtn';
 import TutorialNav from './TutorialNav';
 import { MyWordListMenuType } from '@/types/types';
+import useDisableScroll from '@/hooks/common/useDisableScroll';
 
 export default function TutorialModal({
   showTutorial,
@@ -16,6 +17,7 @@ export default function TutorialModal({
   setShowTooltip: Dispatch<SetStateAction<boolean>>;
 }) {
   const [menu, setMenu] = useState<MyWordListMenuType>('스크랩');
+  useDisableScroll(showTutorial);
 
   return (
     <ModalOverlay isOpen={showTutorial}>

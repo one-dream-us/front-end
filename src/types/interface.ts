@@ -280,3 +280,14 @@ export interface IScrapWord {
   definition: string;
   description: string;
 }
+
+export interface WordListContentProps {
+  activeMenu: MyWordListMenuType;
+  wordList: ScrapDictionary[] | KeyNoteDictionary[] | WordInterface[];
+  wordNum: number;
+  showTutorial: boolean;
+  showTooltip: boolean;
+  setShowTooltip: Dispatch<SetStateAction<boolean>>;
+  showModal: boolean;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
+}

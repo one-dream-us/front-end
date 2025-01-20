@@ -3,12 +3,15 @@ import { onboardingSteps } from '@/constants';
 import useImagePreloader from '../common/useImagePreloader';
 // import useCheckFirstVisit from './useCheckFirstVisit';
 import useKeywordTooltip from '@/store/useKeywordTooltip';
+import useDisableScroll from '../common/useDisableScroll';
 
 export default function useOnboarding({
   onboardingStepsLen,
+  showOnboarding,
   setShowOnboarding,
 }: {
   onboardingStepsLen: number;
+  showOnboarding: boolean;
   setShowOnboarding: (onBoardingStatus: boolean) => void;
 }) {
   const [currentStep, setCurrentStep] = useState(0);
@@ -31,10 +34,9 @@ export default function useOnboarding({
   const imageSrcs = onboardingSteps.map((step) => (isTablet ? step.tabletImage : step.mobileImage));
 
   useImagePreloader(imageSrcs);
-  useImagePreloader(imageSrcs);
 
   const { setShowTooltip } = useKeywordTooltip();
-
+  useDisableScroll(showOnboarding);
   const handleNext = () => {
     if (currentStep < onboardingStepsLen - 1) {
       setCurrentStep((prev) => prev + 1);
