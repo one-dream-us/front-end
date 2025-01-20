@@ -11,6 +11,7 @@ interface QuizStore {
   setIsCorrect: (isCorrect: boolean | null) => void;
   setQuizType: (quizType: 'random' | 'normal') => void;
   setRemainQuestion: () => void;
+  resetQuizStore: () => void;
 }
 
 const quizStore = create<QuizStore>((set) => ({
@@ -25,6 +26,14 @@ const quizStore = create<QuizStore>((set) => ({
   setQuizType: (quizType: 'random' | 'normal') => set({ quizType }),
   setRemainQuestion: () =>
     set((prev) => ({ remainQuestion: prev.remainQuestion === 0 ? 0 : prev.remainQuestion - 1 })),
+  resetQuizStore: () =>
+    set({
+      index: 0,
+      isCorrect: null,
+      myChoice: null,
+      quizType: null,
+      remainQuestion: 5,
+    }),
 }));
 
 export default quizStore;
