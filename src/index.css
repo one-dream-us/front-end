@@ -9,13 +9,12 @@ input {
   -webkit-border-radius: 0;
   -webkit-appearance: none;
 }
-
+body {
+  overflow-y: scroll;
+}
 body {
   @apply leading-normal tracking-[-0.32px];
-  overflow-y: scroll;
-  -webkit-transform: translateZ(0);
 }
-
 #profile-container {
   grid-template-areas:
     'img user-info'
