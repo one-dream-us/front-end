@@ -1,12 +1,11 @@
 import { useLoginStore } from '@/store/useIsLoginStore';
 import wordListAPi from '@/services/wordListApi';
-import { useNavigate } from 'react-router-dom';
+
 import { useQuery } from '@tanstack/react-query';
 import { MyWordListMenuType } from '@/types/types';
-import { useEffect } from 'react';
+import { useMemo } from 'react';
 
 export default function useGetWordListData(activeMenu: MyWordListMenuType) {
-  const navigate = useNavigate();
   const { isLogin } = useLoginStore((state) => state);
 
   const apiFunctions: Record<MyWordListMenuType, () => Promise<any>> = {
@@ -16,36 +15,28 @@ export default function useGetWordListData(activeMenu: MyWordListMenuType) {
     졸업노트: wordListAPi.getGraduationNote,
   };
 
-  const { data, error, refetch, isLoading } = useQuery({
+  const { data, refetch, isLoading } = useQuery({
     queryKey: [activeMenu],
     queryFn: apiFunctions[activeMenu],
     enabled: isLogin,
+    staleTime: 1000,
+    refetchOnWindowFocus: false,
   });
-  if (error) {
-    const apiError = error as unknown as ApiError;
-    if (apiError?.errorCode === 'NEED_LOGIN') {
-      navigate('/login');
-    }
-  }
 
-  useEffect(() => {
-    if (isLogin) {
-      refetch();
-    }
-  }, [activeMenu]);
+  const wordList = useMemo(() => {
+    if (!data) return [];
+    const listMapping: Record<MyWordListMenuType, any[]> = {
+      스크랩: data.dictionaryScraps,
+      핵심노트: data.keyNoteList,
+      오답노트: data.wrongAnswerNotes,
+      졸업노트: data.graduationNotes,
+    };
+    return listMapping[activeMenu] || [];
+  }, [data, activeMenu]);
 
-  const wordList = data
-    ? activeMenu === '스크랩'
-      ? data.dictionaryScraps
-      : activeMenu === '핵심노트'
-        ? data.keyNoteList
-        : activeMenu === '오답노트'
-          ? data.wrongAnswerNotes
-          : activeMenu === '졸업노트'
-            ? data.graduationNotes
-            : []
-    : [];
-  const keyNoteListLen = activeMenu === '핵심노트' ? data?.keyNoteCount : 0;
+  const keyNoteListLen = useMemo(() => {
+    return activeMenu === '핵심노트' ? data?.keyNoteCount || 0 : 0;
+  }, [data, activeMenu]);
 
   return {
     wordList: isLogin ? wordList : [],

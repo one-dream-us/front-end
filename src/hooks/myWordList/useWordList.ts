@@ -1,6 +1,6 @@
 import useGetWordList from './useGetWordList';
 import { useNavigate } from 'react-router-dom';
-import { useRef, useEffect } from 'react';
+import { useEffect } from 'react';
 import { MyWordListMenuType } from '@/types/types';
 import { Dispatch, SetStateAction } from 'react';
 
@@ -12,8 +12,6 @@ export default function useWordList<T extends MyWordListMenuType>(
   const { title, wordList, isLoading } = useGetWordList(activeMenu);
   const wordNum = wordList.length;
   const navigate = useNavigate();
-
-  const listRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (activeMenu === '스크랩' && !showTutorial) {
@@ -35,7 +33,6 @@ export default function useWordList<T extends MyWordListMenuType>(
     wordList: wordList,
     wordNum,
     navigate,
-    listRef,
     handleScroll,
     isLoading,
   };
