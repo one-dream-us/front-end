@@ -2,15 +2,17 @@ import { ResultDetail } from '@/types/interface';
 import iconGrad from '@/assets/p2/icon_grad.png';
 import correctIcon from '@/assets/p2/icon_check_right.png';
 import wrongIcon from '@/assets/p2/icon_x_wrg.png';
-import { checkIsRedText } from '@/utils/quiz/quizHandlers';
+import { checkIsRedText, showStatus } from '@/utils/quiz/quizHandlers';
+import { useNavigate } from 'react-router-dom';
 
 export default function NormalQuizResultCard({
   correctCnt,
   isCorrect,
   term,
   wrongCnt,
+  status,
 }: ResultDetail) {
-  const handleNavigateWordList = () => {};
+  const navigate = useNavigate();
   return (
     <li
       key={term}
@@ -28,18 +30,17 @@ export default function NormalQuizResultCard({
             <img src={iconGrad} className='size-4' alt='graduation icon' />
           )}
           <span>
-            {isCorrect && correctCnt >= 3
-              ? '3회 정답! 졸업했어요'
-              : isCorrect
-                ? `${correctCnt}회 복습`
-                : `${wrongCnt}회 오답`}
+            {showStatus({ correctCnt, isCorrect, wrongCnt })}
             {/* {status} */}
           </span>
           {/* n회 정답/오답 */}
         </div>
         <div className='h-[24px] w-full text-[14px] leading-170 text-custom-gray-500'>
           <button
-            onClick={handleNavigateWordList}
+            onClick={() => {
+              console.log(status);
+              navigate(`/my-word-list?tab=${status}`);
+            }}
             className='ml-auto flex items-center justify-center'
           >
             <span>단어장 보기</span>
