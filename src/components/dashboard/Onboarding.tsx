@@ -12,6 +12,7 @@ export default function OnBoarding({
   const onboardingStepsLen = onboardingSteps.length;
   const { currentStep, handleNext, setShowTooltip } = useOnboarding({
     onboardingStepsLen,
+    showOnboarding,
     setShowOnboarding,
   });
 
@@ -24,7 +25,7 @@ export default function OnBoarding({
   return (
     <>
       <section className='fixed inset-0 z-[9990] flex justify-center bg-black bg-opacity-60'>
-        <div className='relative mx-auto w-[217px] md:w-[512px] desktop:w-auto'>
+        <div className='relative mx-auto w-[323px] md:w-[520px]'>
           <button
             type='button'
             className='absolute right-0 top-[43px] h-5 w-5'
@@ -42,7 +43,7 @@ export default function OnBoarding({
             <img
               src={mobileImage}
               alt={`온보딩 스텝 ${currentStep + 1}`}
-              className='mt-[74px] h-[57%] w-full rounded-2xl md:h-[94%]'
+              className='mt-[74px] w-full rounded-2xl'
             />
           </picture>
         </div>
