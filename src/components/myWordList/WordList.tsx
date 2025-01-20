@@ -23,7 +23,7 @@ export default function WordList({
     setShowTooltip,
     showTutorial,
   );
-  console.log(wordList);
+
   return (
     <div className='relative'>
       <p
