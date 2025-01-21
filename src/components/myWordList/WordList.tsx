@@ -12,7 +12,9 @@ export default function WordList({
   showModal,
   showTutorial,
 }: WordListProps) {
-  const { title, wordList, wordNum } = useWordList(activeMenu);
+  const { title, wordList, wordNum, isLoading } = useWordList(activeMenu);
+
+  if (isLoading) return <div />;
 
   return (
     <div className='relative'>

@@ -4,7 +4,7 @@ import ProfileSection from '@/components/myWordList/ProfileSection';
 import ScoreBoard from '@/components/myWordList/ScoreBoard';
 import MyWordListNavBar from '@/components/myWordList/MyWordListNavBar';
 import WordList from '@/components/myWordList/WordList';
-import useScoreBoardLogic from '@/hooks/myWordList/useScoreBoardLogic';
+import useLearningStatus from '@/hooks/myWordList/api/useLearningStatus';
 
 export default function MyWordList() {
   const {
@@ -17,8 +17,10 @@ export default function MyWordList() {
     showModal,
     setShowModal,
   } = useMyWordList();
-  const { username, totalScrap, totalGraduation, totalKeyNote, accuracyRate } =
-    useScoreBoardLogic();
+  const { username, totalScrap, totalGraduation, totalKeyNote, accuracyRate, isLoading } =
+    useLearningStatus();
+
+  if (isLoading) return <div />;
 
   return (
     <section className='px-4 pt-10'>
