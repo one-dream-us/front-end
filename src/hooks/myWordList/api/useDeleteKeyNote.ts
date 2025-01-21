@@ -3,13 +3,13 @@ import { useMutation } from '@tanstack/react-query';
 import wordListAPi from '@/services/wordListApi';
 import useGetWordListData from './useGetWordListData';
 import { MyWordListMenuType } from '@/types/types';
-import useScoreBoardLogic from '../useScoreBoardLogic';
+import useLearningStatus from './useLearningStatus';
 import useToastStore from '@/store/useToastStore';
 
 export default function useDeleteKeyNote(dictionaryId: number, activeMenu: MyWordListMenuType) {
   const { isLogin } = useLoginStore();
   const { refetch } = useGetWordListData(activeMenu);
-  const { refetch: refetchBoard } = useScoreBoardLogic();
+  const { refetch: refetchBoard } = useLearningStatus();
   const { showToast } = useToastStore();
   const mutation = useMutation({
     mutationFn: async () => {
