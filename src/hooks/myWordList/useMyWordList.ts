@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { MyWordListMenuType } from '@/types/types';
-// import useFirstLogin from './useFirstLogin';
+import useFirstLogin from './useFirstLogin';
 
 export default function useMyWordList() {
-  const [showTutorial, setShowTutorial] = useState(true);
+  const [showTutorial, setShowTutorial] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  //useFirstLogin
+  useFirstLogin;
 
   const parameters: Record<string, MyWordListMenuType> = {
     SCRAP: '스크랩',
