@@ -13,7 +13,9 @@ const useSubmitQuiz = () => {
   const { mutate: submitQuiz } = useMutation({
     mutationFn: async (results: IQuestionResult[]) => await quizApi.postQuizResults(results),
     onSuccess: (data) => {
-      // useStore -> 새로운 상태 저장, 결과 페이지에서 렌더링
+      if (!quizType) {
+        return alert('다시 시도해주세요.');
+      }
       if (quizType === 'normal') {
         localStorage.setItem(NORMAL_QUIZ_RESULT_KEY, JSON.stringify(data));
       } else if (quizType === 'random') {
