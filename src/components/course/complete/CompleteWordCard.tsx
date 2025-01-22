@@ -1,4 +1,4 @@
-import { SHOW_NEWS_COMPLETE_PAGE_TURORIAL } from '@/constants';
+import { SHOW_NEWS_COMPLETE_PAGE_TURORIAL } from '@/constants/constants';
 import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
 import useRemoveScrapWord from '@/hooks/newDetail/useRemoveScrapWord';
 import useScrapList from '@/hooks/newDetail/useScrapList';

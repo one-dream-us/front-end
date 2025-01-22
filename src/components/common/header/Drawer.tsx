@@ -1,4 +1,4 @@
-import { HeaderMenuList } from '@/constants';
+import { HeaderMenuList } from '@/constants/constants';
 import { useUserInfoQuery } from '@/hooks/auth/useUserInfoQuery';
 import authApi from '@/services/authApi';
 import { formatUserName } from '@/utils/formatUserName';

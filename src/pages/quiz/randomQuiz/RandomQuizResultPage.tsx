@@ -6,7 +6,7 @@ import wrongIcon from '@/assets/p2/icon_x_wrg.png';
 import RandomquizResultImgMobile from '@/assets/p2/P2 에셋_2차전달/image_quiz_random102.png';
 import RandomquizResultImgWeb from '@/assets/p2/P2 에셋_2차전달/image_quiz_random124(웹용).png';
 import BottomSheetImg from '@/assets/p2/icon_quiz.png';
-import { RANDOM_QUIZ_RESULT_KEY } from '@/constants';
+import { RANDOM_QUIZ_RESULT_KEY } from '@/constants/constants';
 import { IQuizResult } from '@/types/interface';
 
 export default function RandomQuizResultPage() {

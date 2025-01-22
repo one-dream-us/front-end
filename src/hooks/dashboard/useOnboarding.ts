@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { onboardingSteps } from '@/constants';
+import { onboardingSteps } from '@/constants/constants';
 import useImagePreloader from '../common/useImagePreloader';
 // import useCheckFirstVisit from './useCheckFirstVisit';
 import useKeywordTooltip from '@/store/useKeywordTooltip';

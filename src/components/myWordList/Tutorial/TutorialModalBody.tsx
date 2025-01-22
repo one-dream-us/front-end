@@ -1,4 +1,4 @@
-import { myWordListInfo } from '@/constants';
+import { myWordListInfo } from '@/constants/constants';
 import { MyWordListMenuType } from '@/types/types';
 
 export default function TutorialModalBody({ menu }: { menu: MyWordListMenuType }) {

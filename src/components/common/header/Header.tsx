@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { HeaderMenuList } from '@/constants';
+import { HeaderMenuList } from '@/constants/constants';
 import { useState } from 'react';
 import Drawer from './Drawer';
 import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';

@@ -11,7 +11,7 @@ import NextButton from './NextButton';
 import tutorialStore from '@/store/course/tutorialStore';
 import swipeImg from '@/assets/p2/P2 에셋_2차전달/swipe_image.png';
 import useNewsDetail from '@/hooks/newDetail/useNewsDetail';
-import { SHOW_NEWS_DETAIL_PAGE_TURORIAL } from '@/constants';
+import { SHOW_NEWS_DETAIL_PAGE_TURORIAL } from '@/constants/constants';
 import SliderSKeleton from './SliderSKeleton';
 
 export default function Slider() {

@@ -1,4 +1,4 @@
-import { adminTableHeader } from '@/constants';
+import { adminTableHeader } from '@/constants/constants';
 import DetailButton from './DetailButton';
 import { Dispatch, SetStateAction } from 'react';
 

@@ -1,6 +1,6 @@
 import { myScrapMenu } from '@/types/types';
 import useMyScrapStore from '@/store/useMyScrapStore';
-import { MenuItems } from '@/constants';
+import { MenuItems } from '@/constants/constants';
 
 export default function MenuWithUnderbar({
   activeMenu,

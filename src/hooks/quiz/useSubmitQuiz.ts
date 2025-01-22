@@ -1,4 +1,4 @@
-import { NORMAL_QUIZ_RESULT_KEY, RANDOM_QUIZ_RESULT_KEY } from '@/constants';
+import { NORMAL_QUIZ_RESULT_KEY, RANDOM_QUIZ_RESULT_KEY } from '@/constants/constants';
 import { quizApi } from '@/services/quizApi';
 import quizStore from '@/store/quiz/quizStore';
 import { IQuestionResult } from '@/types/interface';

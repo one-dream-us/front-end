@@ -1,5 +1,5 @@
 import Slider from 'react-slick';
-import { Banners } from '@/constants';
+import { Banners } from '@/constants/constants';
 import useBanner from '@/hooks/dashboard/useBanner';
 import NotificationModal from './NotificationModal';
 import { handleBannerClick } from '@/utils/dashboardUtils';

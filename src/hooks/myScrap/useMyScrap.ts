@@ -1,6 +1,6 @@
 import { myScrapMenu } from '@/types/types';
 import { useState } from 'react';
-import { MenuItems } from '@/constants';
+import { MenuItems } from '@/constants/constants';
 import useScrapedContents from '../scrap/useScrapedContents';
 import useScrapedTerms from './useScrapedTerms';
 

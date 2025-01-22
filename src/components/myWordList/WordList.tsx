@@ -3,7 +3,7 @@ import useWordList from '@/hooks/myWordList/useWordList';
 import KeyNote from './Words/KeyNote';
 import emptyScrapIcon from '@/assets/p2/P2 에셋_2차전달/word_empty.png';
 import Button from '../myScrap/Button';
-import { myWordListInfo } from '@/constants';
+import { myWordListInfo } from '@/constants/constants';
 import Toast from '../common/Toast';
 import { KeyNoteDictionary, ScrapDictionary, WordInterface } from '@/types/interface';
 import ScrapWord from './Words/ScapWord';

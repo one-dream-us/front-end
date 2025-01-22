@@ -2,7 +2,7 @@ import QuizResultItem from '@/components/quiz/quizResult/QuizResultItem';
 import BottomSheet from '@/components/quiz/common/BottomSheet';
 import BottomSheetImg from '@/assets/p2/icon_quiz.png';
 import iconGrad from '@/assets/p2/icon_grad.png';
-import { NORMAL_QUIZ_RESULT_KEY } from '@/constants';
+import { NORMAL_QUIZ_RESULT_KEY } from '@/constants/constants';
 import { IQuizResult } from '@/types/interface';
 import { useNavigate } from 'react-router-dom';
 import { createTitle } from '@/utils/quiz/quizHandlers';
