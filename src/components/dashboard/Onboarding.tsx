@@ -1,6 +1,6 @@
 import closeIcon from '@/assets/p2/close.svg';
 import useOnboarding from '@/hooks/dashboard/useOnboarding';
-import { onboardingSteps } from '@/constants';
+import { onboardingSteps } from '@/constants/constants';
 
 export default function OnBoarding({
   showOnboarding,

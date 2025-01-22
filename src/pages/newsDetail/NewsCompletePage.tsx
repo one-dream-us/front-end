@@ -9,7 +9,7 @@ import useNewsDetail from '@/hooks/newDetail/useNewsDetail';
 import {
   SHOW_NEWS_COMPLETE_PAGE_TURORIAL,
   SHOW_NEWS_COMPLETE_PAGE_TURORIAL_KEY,
-} from '@/constants';
+} from '@/constants/constants';
 import CompleteWordCard from '@/components/course/complete/CompleteWordCard';
 
 export default function NewsCompletePage() {

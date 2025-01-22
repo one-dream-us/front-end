@@ -1,5 +1,6 @@
 import logoWithName from '@/assets/imgs/logo_with_name.svg';
-import { FooterMenuList } from '@/constants';
+import { FooterMenuList } from '@/constants/constants';
+
 import { Link } from 'react-router-dom';
 
 export default function Footer() {

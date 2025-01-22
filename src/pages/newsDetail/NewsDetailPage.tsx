@@ -4,7 +4,10 @@ import Title from '@/components/course/common/Title';
 import CompleteButton from '@/components/course/main/CompleteButton';
 import Slider from '@/components/course/main/slider/Slider';
 import WordDescription from '@/components/course/main/WordDescription';
-import { SHOW_NEWS_DETAIL_PAGE_TURORIAL, SHOW_NEWS_DETAIL_PAGE_TURORIAL_KEY } from '@/constants';
+import {
+  SHOW_NEWS_DETAIL_PAGE_TURORIAL,
+  SHOW_NEWS_DETAIL_PAGE_TURORIAL_KEY,
+} from '@/constants/constants';
 import tutorialStore from '@/store/course/tutorialStore';
 import { useBlocker, useParams } from 'react-router-dom';
 import { useStore } from 'zustand';

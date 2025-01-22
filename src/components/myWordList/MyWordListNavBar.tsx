@@ -1,5 +1,5 @@
 import { MyWordListMenuType } from '@/types/types';
-import { myWordListMenu } from '@/constants';
+import { myWordListMenu } from '@/constants/constants';
 import { Dispatch, SetStateAction } from 'react';
 
 export default function MyWordListNavBar({

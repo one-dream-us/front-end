@@ -1,5 +1,5 @@
 import logo from '@/assets/imgs_v2/Logo_Icon+text_32_hor.png';
-import { adminMenuList } from '@/constants';
+import { adminMenuList } from '@/constants/constants';
 import { Link, useLocation } from 'react-router-dom';
 
 export default function AdminHeader() {

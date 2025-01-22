@@ -4,7 +4,7 @@ import { highlightedDesc } from '@/utils/contentDetail/highlightedDesc';
 import ModalOverlay from '@/components/common/modal/ModalOverlay';
 import tutorialStore from '@/store/course/tutorialStore';
 import useNewsDetail from '@/hooks/newDetail/useNewsDetail';
-import { SHOW_NEWS_DETAIL_PAGE_TURORIAL } from '@/constants';
+import { SHOW_NEWS_DETAIL_PAGE_TURORIAL } from '@/constants/constants';
 import WordDescriptionSkeleton from './slider/WordDescriptionSkeleton';
 
 export default function WordDescription() {

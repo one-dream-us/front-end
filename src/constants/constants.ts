@@ -1,5 +1,3 @@
-import { myScrapMenu } from './types/types';
-import { MyWordListMenuType } from './types/types';
 import scrapIcon from '@/assets/p2/icon_bookmark_grey.png';
 import bookMarkIcon from '@/assets/p2/icon_bookmark_dark.png';
 import reviewNoteIcon from '@/assets/p2/icon_X_dark.png';
@@ -21,6 +19,7 @@ import tabBanner3 from '@/assets/p2/P2 에셋_2차전달/태블릿 배너 (1).pn
 import webBanner1 from '@/assets/p2/P2 에셋_2차전달/웹배너 (2).png';
 import webBanner2 from '@/assets/p2/P2 에셋_2차전달/웹배너 (3).png';
 import webBanner3 from '@/assets/p2/P2 에셋_2차전달/웹배너 (1).png';
+import { myScrapMenu, MyWordListMenuType } from '@/types/types';
 
 export const HeaderMenuList = [
   { id: 1, title: '홈', to: '/' },

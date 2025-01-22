@@ -1,7 +1,7 @@
 import { MyWordListMenuType } from '@/types/types';
 import emptyScrapIcon from '@/assets/p2/P2 에셋_2차전달/word_empty.png';
 import Button from '@/components/myScrap/Button';
-import { myWordListInfo } from '@/constants';
+import { myWordListInfo } from '@/constants/constants';
 import { useNavigate } from 'react-router-dom';
 
 export default function EmptyWordState({ activeMenu }: { activeMenu: MyWordListMenuType }) {
