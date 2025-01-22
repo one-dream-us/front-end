@@ -292,3 +292,48 @@ export interface WordListContentProps {
   showModal: boolean;
   setShowModal: Dispatch<SetStateAction<boolean>>;
 }
+
+export interface IWholeNote {
+  scrap: IScrapList | undefined;
+  keynote: Keynote | undefined;
+  inCorrect: InCorrect | undefined;
+  graduation: Graduation | undefined;
+}
+
+export interface Keynote {
+  keyNoteCount: number;
+  keyNoteList: {
+    keyNoteId: number;
+    createdAt: string;
+    dictionary: Dictionary;
+  }[];
+}
+
+export interface InCorrect {
+  wrongAnswerNoteSize: number;
+  wrongAnswerNotes: {
+    wrongAnswerNoteId: number;
+    createdAt: string;
+    dictionary: {
+      id: number;
+      term: string;
+      definition: string;
+      description: string;
+    };
+  }[];
+}
+
+export interface Graduation {
+  graduationNoteSize: number;
+  graduationNotes: {
+    graduationNoteId: number;
+    createdAt: string;
+    dictionary: {
+      id: number;
+      term: string;
+      definition: string;
+      description: string;
+    };
+  }[];
+}
+/////

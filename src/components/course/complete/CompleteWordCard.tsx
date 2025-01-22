@@ -1,7 +1,6 @@
 import { SHOW_NEWS_COMPLETE_PAGE_TURORIAL } from '@/constants/constants';
 import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
 import useRemoveScrapWord from '@/hooks/newDetail/useRemoveScrapWord';
-import useScrapList from '@/hooks/newDetail/useScrapList';
 import useScrapWord from '@/hooks/newDetail/useScrapWord';
 import tutorialStore from '@/store/course/tutorialStore';
 import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
@@ -9,22 +8,23 @@ import { IDescription } from '@/types/interface';
 import { useStore } from 'zustand';
 import scrapActive from '@/assets/p2/P2 에셋_2차전달/icon_scrap.png';
 import scrapDisable from '@/assets/p2/P2 에셋_2차전달/icon_scrap_greyline.png';
+import useIsScrapable from '@/hooks/newDetail/useIsScrapable';
 
 export default function CompleteWordCard({
   dictionaryId,
   term,
   index,
 }: Pick<IDescription, 'term' | 'dictionaryId'> & { index: number }) {
+  // const { scrapList } = useScrapList((data) => data.dictionaryScraps);
+  // const alreadyScrapped = scrapList?.find((item) => item.dictionaryId === dictionaryId);
+  const scrap = useScrapWord();
+  const scrapCancel = useRemoveScrapWord();
   const { data } = useAuthCheckQuery();
   const { setIsOpen, setIsNavigate } = useLoginConfirmModalState();
   const { newsCompleteTutorial } = useStore(tutorialStore);
-  const scrap = useScrapWord();
-  const scrapCancel = useRemoveScrapWord();
-  const { scrapList } = useScrapList((data) => data.dictionaryScraps);
-
-  const alreadyScrapped = scrapList?.find((item) => item.dictionaryId === dictionaryId);
-
   const showTutorial = !newsCompleteTutorial && SHOW_NEWS_COMPLETE_PAGE_TURORIAL && index === 0;
+  const { alreadyGraduation, alreadyInCorrect, alreadyKeynote, alreadyScrapped } =
+    useIsScrapable(dictionaryId);
 
   const handleScrap = () => {
     if (!data) {
@@ -37,6 +37,12 @@ export default function CompleteWordCard({
         // 스크랩 삭제
         scrapCancel(alreadyScrapped.scrapId);
         console.log('스크랩 취소 : ', term);
+      } else if (alreadyGraduation) {
+        return alert('이미 졸업노트에 등록 된 단어입니다.');
+      } else if (alreadyInCorrect) {
+        return alert('이미 오답노트에 등록 된 단어입니다.');
+      } else if (alreadyKeynote) {
+        return alert('이미 핵심노트에 등록 된 단어입니다.');
       } else {
         // 스크랩 추가
         console.log('스크랩', term);
