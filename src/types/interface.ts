@@ -258,6 +258,7 @@ export interface INewsDetail {
   newsAgency: string;
   fullSentence: string;
   descriptions: IDescription[];
+  link: string;
 }
 
 export interface IDescription {
