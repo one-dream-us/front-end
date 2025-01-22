@@ -1,39 +1,15 @@
-import useGetWordList from './useGetWordList';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import { MyWordListMenuType } from '@/types/types';
-import { Dispatch, SetStateAction } from 'react';
+import useGetWordListData from './api/useGetWordListData';
 
-export default function useWordList<T extends MyWordListMenuType>(
-  activeMenu: T,
-  setShowTooltip: Dispatch<SetStateAction<boolean>>,
-  showTutorial: boolean,
-) {
-  const { title, wordList, isLoading } = useGetWordList(activeMenu);
+export default function useWordList(activeMenu: MyWordListMenuType) {
+  const title = activeMenu === '스크랩' ? '스크랩 수' : '단어 수';
+  const { wordList, isLoading } = useGetWordListData(activeMenu);
   const wordNum = wordList.length;
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (activeMenu === '스크랩' && !showTutorial) {
-      setShowTooltip(true);
-
-      const timer = setTimeout(() => {
-        setShowTooltip(false);
-      }, 3000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [activeMenu]);
-
-  const handleScroll = () => {
-    setShowTooltip(false);
-  };
   return {
     title,
     wordList: wordList,
     wordNum,
-    navigate,
-    handleScroll,
     isLoading,
   };
 }
