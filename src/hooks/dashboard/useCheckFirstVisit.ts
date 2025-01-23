@@ -1,6 +1,6 @@
-import { useEffect, Dispatch, SetStateAction } from 'react';
+import { useEffect } from 'react';
 
-export default function useCheckFirstVisit(setShowOnboarding: Dispatch<SetStateAction<boolean>>) {
+export default function useCheckFirstVisit(setShowOnboarding: (onBoardingStatus: boolean) => void) {
   useEffect(() => {
     const isFirstVisit = localStorage.getItem('hasSeenOnboarding');
 
