@@ -2,9 +2,12 @@ import courseIndexState from '@/store/course/courseStore';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useStore } from 'zustand';
 import NewsLink from './NewsLink';
+import learingDurationStore from '@/store/course/learningDurationStore';
+import { useEffect } from 'react';
 
 export default function CompleteButton() {
   const { index } = useStore(courseIndexState);
+  const { setTimeStamp } = useStore(learingDurationStore);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -13,11 +16,16 @@ export default function CompleteButton() {
   const handleButtonClick = () => {
     if (lastIndex) {
       navigate(`/newsComplete/${id}`);
+      setTimeStamp('end');
     } else {
       // 홈에서 컨텐츠 카드 누를 때 해당 페이지 주소 스토리지에 저장 후 이동.
       navigate('/');
     }
   };
+
+  useEffect(() => {
+    setTimeStamp('start');
+  }, []);
   return (
     <div className='mb-[40px] flex flex-col items-center justify-start gap-y-[60px] md:gap-y-[141px] desktop:flex-col-reverse desktop:gap-y-[12px]'>
       {' '}
