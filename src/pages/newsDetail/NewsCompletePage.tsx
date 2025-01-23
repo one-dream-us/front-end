@@ -1,6 +1,5 @@
 import ModalOverlay from '@/components/common/modal/ModalOverlay';
 import CompleteButton from '@/components/course/complete/CompleteButton';
-import QuizResultItem from '@/components/quiz/quizResult/QuizResultItem';
 import tutorialStore from '@/store/course/tutorialStore';
 import { useStore } from 'zustand';
 import quizResult100 from '@/assets/p2/quiz result=100.png';
@@ -10,6 +9,7 @@ import {
   SHOW_NEWS_COMPLETE_PAGE_TURORIAL_KEY,
 } from '@/constants/constants';
 import CardContainer from '@/components/course/complete/CardContainer';
+import GridContainer from '@/components/course/complete/GridContainer';
 
 export default function NewsCompletePage() {
   const { newsCompleteTutorial, setNewsCompleteTutorial } = useStore(tutorialStore);
@@ -23,14 +23,7 @@ export default function NewsCompletePage() {
         <img className='h-[124px] w-full' src={quizResult100} alt='img' />
       </div>
 
-      <div
-        id='quiz-result-status'
-        className='m-auto mb-[24px] grid h-[60px] w-[343px] grid-cols-3 grid-rows-1'
-      >
-        <QuizResultItem quantity={3} status='배운 단어' unit='개' />
-        <QuizResultItem quantity={2} status='학습 시간' unit='분' />
-        <QuizResultItem quantity={1} status='학습 일수' unit='일차' />
-      </div>
+      <GridContainer />
 
       <div className='absolute left-0 w-full bg-quiz-bg pt-[36px]'>
         <div className='m-auto h-[276px] w-[293px] desktop:w-[440px]'>

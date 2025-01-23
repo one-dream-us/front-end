@@ -150,3 +150,5 @@ export const SHOW_NEWS_COMPLETE_PAGE_TURORIAL =
 
 export const NORMAL_QUIZ_RESULT_KEY = 'normalQuizResult';
 export const RANDOM_QUIZ_RESULT_KEY = 'randomQuizResult';
+
+export const LEARNING_DURATION_SECONDS_KEY = 'learningDuration';
