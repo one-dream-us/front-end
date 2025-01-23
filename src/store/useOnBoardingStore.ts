@@ -6,6 +6,6 @@ interface onboardingState {
 }
 
 export const useOnboardingStore = create<onboardingState>((set) => ({
-  showOnboarding: true,
+  showOnboarding: false,
   setShowOnboarding: (onboardingStatus) => set({ showOnboarding: onboardingStatus }),
 }));
