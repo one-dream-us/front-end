@@ -3,28 +3,31 @@ import { useUserInfoQuery } from '@/hooks/auth/useUserInfoQuery';
 import authApi from '@/services/authApi';
 import { formatUserName } from '@/utils/formatUserName';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useMyViewCount } from '@/hooks/homeContent/useMyViewCount';
 import { useLoginStore } from '@/store/useIsLoginStore';
 import profileActvie from '@/assets/imgs_v2/icon_profile_active.png';
 import login_chat_bubble from '@/assets/imgs_v2/login_bubble_.svg';
+import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
 
 export default function Drawer({
   showSidebar,
   handleShowSlider,
-  pathname,
   logged,
-  isLoading,
+  // isLoading,
 }: {
   showSidebar: boolean;
   handleShowSlider: () => void;
-  pathname: string;
   logged: boolean;
-  isLoading: boolean;
+  // isLoading: boolean;
 }) {
   const { refetch, data: info } = useUserInfoQuery(false);
+  const { isLoading } = useAuthCheckQuery();
   const { data: viewCount, isLoading: viewCountLoading } = useMyViewCount();
   const { setIsLogin } = useLoginStore();
+  const { pathname } = useLocation();
+
+  console.log('drawer rerendrer');
 
   useEffect(() => {
     if (logged && !isLoading && !viewCountLoading) {
@@ -75,16 +78,6 @@ export default function Drawer({
               </button>
 
               <img src={login_chat_bubble} alt='' />
-
-              {/* <div className='w-3 overflow-hidden'>
-                <div className='h-4 origin-bottom-right rotate-45 transform rounded-sm bg-custom-gray-dark'></div>
-              </div>
-              <button
-                onClick={() => setIsLoginModalOpen(true)}
-                className='flex-1 rounded-lg bg-custom-gray-dark p-4 text-xs text-white'
-              >
-                로그인 하고 <span className='font-medium text-custom-green-money'>스크랩</span>하기!
-              </button> */}
             </Link>
           )}
         </div>
