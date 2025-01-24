@@ -1,22 +1,14 @@
-import { Link, useLocation } from 'react-router-dom';
-import { HeaderMenuList } from '@/constants/constants';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import Drawer from './Drawer';
 import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
-import profile_main from '@/assets/this_is_money_imgs/img_png/Icon_profile_main.png';
-import profile_active from '@/assets/this_is_money_imgs/img_png/icon_profile_active.png';
-import { useImgHover } from '@/hooks/ui/useImgHover';
 import logo from '@/assets/p2/P2 에셋_2차전달/Logo_Icon+text_24H.png';
+import MenuTab from './MenuTab';
+import ProfileLink from './ProfileLink';
 
 export default function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
-  const profileHover = useImgHover();
-  const logoHover = useImgHover();
-
   const { isLoading, data } = useAuthCheckQuery();
-
-  const { pathname } = useLocation();
-
   const handleShowSlider = () => setShowSidebar((prev) => !prev);
 
   return (
@@ -27,43 +19,14 @@ export default function Header() {
           <Link
             className='flex items-center justify-center gap-x-1 text-xl font-extrabold md:mr-[84px] desktop:mr-[68px]'
             to={'/'}
-            onMouseEnter={logoHover.handleMouseEnter}
-            onMouseLeave={logoHover.handleMouseLeave}
           >
             <img className='h-[24px] desktop:h-[28px]' src={logo} alt='logo' />
           </Link>
 
-          <ul className='hidden items-center justify-center font-bold text-custom-gray md:flex md:gap-8 desktop:gap-x-16'>
-            {HeaderMenuList.map((item, index) => (
-              <li key={item.id}>
-                <Link
-                  className={`${item.to === pathname || pathname.includes(item.sub || 'sub') ? 'text-custom-gray-dark' : 'hover:text-custom-gray-400'}`}
-                  to={item.to}
-                  id={`${index === 1 && 'content-list'}`}
-                >
-                  {item.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <MenuTab />
         </div>
         {data ? (
-          <Link to={'/profile'} aria-label='프로필 버튼으로 이동'>
-            {/* desktop */}
-            <img
-              onMouseEnter={profileHover.handleMouseEnter}
-              onMouseLeave={profileHover.handleMouseLeave}
-              className={`hidden h-9 w-9 rounded-full md:block`}
-              src={
-                pathname === '/profile'
-                  ? profile_active
-                  : profileHover.isHover
-                    ? profile_active
-                    : profile_main
-              }
-              alt='profile-img'
-            />
-          </Link>
+          <ProfileLink />
         ) : (
           <Link
             to={'/login'}
@@ -99,13 +62,7 @@ export default function Header() {
             />
           </svg>
         </button>
-        <Drawer
-          isLoading={isLoading}
-          logged={data}
-          pathname={pathname}
-          showSidebar={showSidebar}
-          handleShowSlider={handleShowSlider}
-        />
+        <Drawer logged={data} showSidebar={showSidebar} handleShowSlider={handleShowSlider} />
       </div>
     </header>
   );

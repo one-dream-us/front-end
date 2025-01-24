@@ -10,5 +10,6 @@ const newsApi = {
   postRemoveScrapWord: async (wordId: number) => {
     return await client.delete(`/scraps/dictionaries/${wordId}`);
   },
+  getLearningDays: async () => (await client.get('/users/study-days/count')).data.studyDaysCnt,
 };
 export default newsApi;
