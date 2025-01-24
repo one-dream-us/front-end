@@ -252,6 +252,12 @@ export interface News {
   viewCount: string;
   tags: string[];
 }
+export interface INewsList {
+  contents: News[];
+  hasNext: boolean;
+  totalElements: number;
+  nextCursor: number;
+}
 
 export interface INewsDetail {
   title: string;

@@ -20,6 +20,7 @@ export default function NewsList() {
     isFirstQuizAttempt,
     modalOpen,
     setModalOpen,
+    totalElements,
   } = useNewsListLogic();
   useImagePreloader([quizBannerM, quizBannerT, quizBannerW]);
 
@@ -29,7 +30,7 @@ export default function NewsList() {
         <div className='mb-[18px] flex justify-between'>
           <h1 className='text-[22px] font-bold text-custom-black'>머니 뉴스</h1>
           <span className='text-xs font-medium leading-170 text-custom-gray-700'>
-            콘텐츠 수<span className='ml-2 font-bold'>{newsList?.length}</span>
+            콘텐츠 수<span className='ml-2 font-bold'>{totalElements}</span>
           </span>
         </div>
         <h2 className='mb-3 text-lg font-bold text-custom-gray-dark'>오늘의 머니뉴스</h2>
