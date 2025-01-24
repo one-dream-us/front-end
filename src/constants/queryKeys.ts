@@ -5,5 +5,6 @@ const QUERY_KEYS = {
   newsDetail: (newsId: string) => ['news-detail', newsId] as const,
   // getScrapList: ['myScrapList'] as const,
   getScrapList: ['스크랩'] as const,
+  learngingDays: ['learngingDays'],
 };
 export default QUERY_KEYS;
