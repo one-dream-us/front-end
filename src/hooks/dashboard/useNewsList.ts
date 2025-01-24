@@ -6,8 +6,9 @@ export default function useNewsList(cursor: number | null = null, size: number =
     queryKey: ['getNewsList', { cursor, size }],
     queryFn: () => DashboardApi.getNewsList(cursor, size),
   });
-
-  const newsList = data ? data.contents : null;
-
-  return { newsList };
+  const contents = data ? data.contents : null;
+  const hasNext = data ? data.hasNext : false;
+  const totalElements = data ? data.totalElements : 0;
+  const nextCursor = data ? data.nextCursor : 0;
+  return { contents, hasNext, totalElements, nextCursor };
 }

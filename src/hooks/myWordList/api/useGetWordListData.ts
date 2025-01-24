@@ -14,6 +14,9 @@ export default function useGetWordListData(activeMenu: MyWordListMenuType) {
     오답노트: wordListAPi.getIncorrectNote,
     졸업노트: wordListAPi.getGraduationNote,
   };
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: activeMenu });
+  }, [activeMenu]);
 
   const { data, refetch, isLoading } = useQuery({
     queryKey: [activeMenu],
@@ -22,10 +25,6 @@ export default function useGetWordListData(activeMenu: MyWordListMenuType) {
     staleTime: 1000,
     refetchOnWindowFocus: false,
   });
-
-  useEffect(() => {
-    queryClient.invalidateQueries({ queryKey: activeMenu });
-  }, [activeMenu, queryClient]);
 
   const wordList = useMemo(() => {
     if (!data) return [];
