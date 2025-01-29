@@ -13,7 +13,9 @@ function ProfileInfo({ createdAt, email }: Pick<UserInfoData, 'email' | 'created
     >
       {info.map((item) => (
         <div key={item.title} className='h-[42px] w-[169px] text-[12px] desktop:text-[14px]'>
-          <h2 className='mb-[8px] border-none font-medium no-underline'>{item.title}</h2>
+          <h2 className='mb-[8px] select-none border-none font-medium no-underline'>
+            {item.title}
+          </h2>
           <span className='text-custom-gray'>{item.data}</span>
         </div>
       ))}
