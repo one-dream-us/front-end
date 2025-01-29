@@ -1,7 +1,6 @@
 import { useUserInfoQuery } from '@/hooks/auth/useUserInfoQuery';
 import ProfileSkeleton from './ProfileSkeleton';
 import { formatUserName } from '@/utils/formatUserName';
-import { formatDate } from '@/utils/myScrapUtils';
 import authApi from '@/services/authApi';
 import MyScrapViewCount from './MyScrapViewCount';
 import MyProfileNickname from './MyProfileNickname';
