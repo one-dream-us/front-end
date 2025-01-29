@@ -27,8 +27,6 @@ export default function Drawer({
   const { setIsLogin } = useLoginStore();
   const { pathname } = useLocation();
 
-  console.log('drawer rerendrer');
-
   useEffect(() => {
     if (logged && !isLoading && !viewCountLoading) {
       refetch();
