@@ -1,11 +1,9 @@
 import { UserInfoData } from '@/types/interface';
-import { formatDate } from '@/utils/myScrapUtils';
-import { memo } from 'react';
 
 function ProfileInfo({ createdAt, email }: Pick<UserInfoData, 'email' | 'createdAt'>) {
   const info = [
     { title: '이메일', data: email },
-    { title: '가입일자', data: formatDate(createdAt) ?? '??' },
+    { title: '가입일자', data: createdAt },
     { title: '가입경로', data: '카카오 소셜 회원가입' },
   ];
   return (
@@ -22,4 +20,4 @@ function ProfileInfo({ createdAt, email }: Pick<UserInfoData, 'email' | 'created
     </div>
   );
 }
-export default memo(ProfileInfo);
+export default ProfileInfo;
