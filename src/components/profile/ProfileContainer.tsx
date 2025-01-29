@@ -1,7 +1,6 @@
 import { useUserInfoQuery } from '@/hooks/auth/useUserInfoQuery';
 import ProfileSkeleton from './ProfileSkeleton';
 import { formatUserName } from '@/utils/formatUserName';
-import { formatDate } from '@/utils/myScrapUtils';
 import authApi from '@/services/authApi';
 import MyScrapViewCount from './MyScrapViewCount';
 import MyProfileNickname from './MyProfileNickname';
@@ -9,6 +8,8 @@ import ProfileInfo from './ProfileInfo';
 
 export default function ProfileContainer() {
   const { data: info, isLoading } = useUserInfoQuery(true);
+
+  console.log(info);
 
   if (isLoading) return <ProfileSkeleton />;
   return (
@@ -18,7 +19,10 @@ export default function ProfileContainer() {
     >
       <MyProfileNickname name={formatUserName(info?.email || '')} />
       <MyScrapViewCount />
-      <ProfileInfo createdAt={formatDate(info?.createdAt ?? '')} email={info?.email ?? ''} />
+      <ProfileInfo
+        createdAt={info?.createdAt.split('T')[0].replaceAll('-', '.') as string}
+        email={info?.email ?? ''}
+      />
 
       <div
         style={{ gridArea: 'logout' }}
