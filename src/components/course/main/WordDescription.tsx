@@ -8,8 +8,8 @@ import { SHOW_NEWS_DETAIL_PAGE_TURORIAL } from '@/constants/constants';
 import WordDescriptionSkeleton from './slider/WordDescriptionSkeleton';
 
 export default function WordDescription() {
-  const { news, isLoading } = useNewsDetail((data) => data.descriptions);
   const { index: contentIndex } = useStore(courseIndexState);
+  const { news, isLoading } = useNewsDetail((data) => data.descriptions[contentIndex]);
   const { newsDeatilTutorial } = useStore(tutorialStore);
 
   if (isLoading || !news) return <WordDescriptionSkeleton />;
@@ -31,15 +31,11 @@ export default function WordDescription() {
       <p
         className='mb-[10px] font-bold'
         dangerouslySetInnerHTML={{
-          __html: highlightedDesc(
-            news[contentIndex].definition,
-            news[contentIndex].term,
-            'highlight_underline',
-          ),
+          __html: highlightedDesc(news.definition, news.term, 'highlight_underline'),
         }}
       />
 
-      {news[contentIndex].description.split('\n').map((item, index) => (
+      {news.description.split('\n').map((item, index) => (
         <p key={index} className={`${index === 1 ? '' : 'mb-[10px]'}`}>
           {item}
         </p>
