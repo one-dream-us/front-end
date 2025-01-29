@@ -5,10 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
 import useGetWordListData from '../myWordList/api/useGetWordListData';
 import useCheckFirstQuiz from '../dashboard/useCheckFirstQuiz';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { News } from '@/types/interface';
 
 export default function useNewsListLogic() {
-  const { newsList } = useNewsList(null, 10);
+  const [lastId, setLastId] = useState(null);
+  const [newsList, setNewsList] = useState<News[]>([]);
+  const { contents, hasNext, totalElements, nextCursor } = useNewsList(lastId, 10);
   const { latestNews } = useLatestNews();
   const { isLogin } = useLoginStore();
   const navigate = useNavigate();
@@ -18,6 +21,29 @@ export default function useNewsListLogic() {
   const isKeynote = keyNoteListLen < 3 && wordList.length >= 3;
   const { isFirstQuizAttempt } = useCheckFirstQuiz();
   const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (contents) {
+      setNewsList((prevNewsList) => [...prevNewsList, ...contents]);
+    }
+  }, [contents]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const nearBottom =
+        window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight - 200;
+
+      if (nearBottom && hasNext) {
+        setLastId(nextCursor);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [newsList, hasNext, nextCursor]);
 
   return {
     newsList,
@@ -30,5 +56,6 @@ export default function useNewsListLogic() {
     isFirstQuizAttempt,
     modalOpen,
     setModalOpen,
+    totalElements,
   };
 }
