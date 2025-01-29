@@ -8,6 +8,5 @@ export const useUserInfoQuery = (enabled: boolean = false) => {
     queryFn: authApi.getInfo,
     queryKey: QUERY_KEYS.userInfo,
     enabled,
-    staleTime: Infinity,
   });
 };
