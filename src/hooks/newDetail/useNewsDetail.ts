@@ -10,6 +10,8 @@ const useNewsDetail = <T>(selectFn?: ((data: INewsDetail) => T) | undefined) => 
     queryKey: QUERY_KEYS.newsDetail(newsId as string),
     queryFn: async () => await newsApi.fetchNewsDetail(newsId!),
     select: selectFn,
+    staleTime: Infinity,
+    gcTime: 1000 * 60 * 60, // 1시간
   });
 
   return { news, isLoading, newsId };
