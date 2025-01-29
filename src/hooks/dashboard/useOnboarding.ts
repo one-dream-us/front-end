@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import useCheckFirstVisit from './useCheckFirstVisit';
+import useCheckFirstVisit from './useCheckFirstVisit';
 import useKeywordTooltip from '@/store/useKeywordTooltip';
 import useDisableScroll from '../common/useDisableScroll';
 
@@ -13,7 +13,7 @@ export default function useOnboarding({
   setShowOnboarding: (onBoardingStatus: boolean) => void;
 }) {
   const [currentStep, setCurrentStep] = useState(0);
-  // useCheckFirstVisit(setShowOnboarding);
+  useCheckFirstVisit(setShowOnboarding);
 
   const { setShowTooltip } = useKeywordTooltip();
   useDisableScroll(showOnboarding);
