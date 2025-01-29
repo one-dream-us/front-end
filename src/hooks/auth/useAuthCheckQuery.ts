@@ -7,5 +7,6 @@ export const useAuthCheckQuery = () => {
     queryKey: QUERY_KEYS.authCheck,
     queryFn: authApi.authCheck,
     refetchInterval: 10 * 60 * 1000,
+    staleTime: Infinity,
   });
 };

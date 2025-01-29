@@ -65,7 +65,13 @@ export const matchOptionImgColor = (
   }
 };
 
-export const checkIsRedText = (wrongCnt: number) => (wrongCnt >= 3 ? true : false);
+export const checkIsRedText = ({
+  isCorrect,
+  wrongCnt,
+}: {
+  wrongCnt: number;
+  isCorrect: boolean;
+}) => (!isCorrect && wrongCnt >= 3 ? true : false);
 
 export const createTitle = (accuracyRate: number, isGraduate: boolean, name?: string) => {
   if (isNaN(accuracyRate)) return;

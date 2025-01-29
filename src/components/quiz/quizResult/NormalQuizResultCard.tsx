@@ -24,7 +24,7 @@ export default function NormalQuizResultCard({
           <h1>{term}</h1>
         </div>
         <div
-          className={`mb-1 flex h-[24px] w-full items-center justify-start gap-x-1 text-[14px] leading-170 ${checkIsRedText(wrongCnt) ? 'text-[#FB8888]' : 'text-custom-gray-700'}`}
+          className={`mb-1 flex h-[24px] w-full items-center justify-start gap-x-1 text-[14px] leading-170 ${checkIsRedText({ isCorrect, wrongCnt }) ? 'text-[#FB8888]' : 'text-custom-gray-700'}`}
         >
           {isCorrect && correctCnt >= 3 && (
             <img src={iconGrad} className='size-4' alt='graduation icon' />
