@@ -11,7 +11,7 @@ export default function ProfileContainer() {
 
   console.log(info);
 
-  if (isLoading) return <ProfileSkeleton />;
+  if (isLoading || !info) return <ProfileSkeleton />;
   return (
     <div
       id='profile-container'
