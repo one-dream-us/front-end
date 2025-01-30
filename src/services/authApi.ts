@@ -43,7 +43,7 @@ const authApi = {
       location.href = prevPage;
       localStorage.removeItem('prevPage');
     } catch (e) {
-      console.log(e);
+      alert('중복된 이메일입니다.');
     }
   },
   unlinkSocial: async (prevPage: string) => {

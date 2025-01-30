@@ -11,6 +11,8 @@ export default function LoginButton({ provider }: { provider: 'kakao' | 'google'
   const isNewUser = searchParams.get('isNewUser');
   const { setIsLoginModalOpen } = useLoginModalStore();
 
+  const isKakao = provider === 'kakao';
+
   useEffect(() => {
     if (isNewUser) {
       setIsLoginModalOpen(true);
@@ -18,20 +20,16 @@ export default function LoginButton({ provider }: { provider: 'kakao' | 'google'
   }, [isNewUser]);
   return (
     <Link
-      onClick={() => provider === 'google' && alert('하는 중')} // 연동 후 삭제
-      to={provider === 'kakao' ? createLoginUrl(provider) : location.href} // 연동 후 삭제
-      // to={createLoginUrl(provider)} // 연동 완료 후 해제
-      className={`relative flex h-[45px] w-full items-center justify-center rounded-[6px] transition-all duration-200 hover:bg-opacity-50 ${provider === 'kakao' ? 'bg-custom-kakao-yellow' : 'bg-slate-100'}`}
+      to={createLoginUrl(provider)}
+      className={`relative flex h-[45px] w-full items-center justify-center rounded-[6px] transition-all duration-200 hover:bg-opacity-50 ${isKakao ? 'bg-custom-kakao-yellow' : 'bg-slate-100'}`}
     >
       <img
         className='absolute left-[35px] size-[18px] md:left-[48px] desktop:left-[108px]'
-        src={provider === 'kakao' ? KAKAO_LOGO : GOOGLE_LOGO}
+        src={isKakao ? KAKAO_LOGO : GOOGLE_LOGO}
         alt='social login image'
       />
 
-      <span className='text-[15px] font-semibold'>
-        {provider === 'kakao' ? '카카오' : '구글'} 로그인
-      </span>
+      <span className='text-[15px] font-semibold'>{isKakao ? '카카오' : '구글'} 로그인</span>
     </Link>
   );
 }
