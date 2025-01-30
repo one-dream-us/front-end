@@ -22,6 +22,7 @@ export default function ProfileContainer() {
       <ProfileInfo
         createdAt={info?.createdAt.split('T')[0].replaceAll('-', '.') as string}
         email={info?.email ?? ''}
+        provider={info?.provider}
       />
 
       <div
