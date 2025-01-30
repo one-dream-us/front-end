@@ -1,10 +1,14 @@
 import { UserInfoData } from '@/types/interface';
 
-function ProfileInfo({ createdAt, email }: Pick<UserInfoData, 'email' | 'createdAt'>) {
+function ProfileInfo({
+  createdAt,
+  email,
+  provider,
+}: Pick<UserInfoData, 'email' | 'createdAt' | 'provider'>) {
   const info = [
     { title: '이메일', data: email },
     { title: '가입일자', data: createdAt },
-    { title: '가입경로', data: '카카오 소셜 회원가입' },
+    { title: '가입경로', data: `${provider === 'kakao' ? '카카오' : '구글'} 소셜 회원가입` },
   ];
   return (
     <div
