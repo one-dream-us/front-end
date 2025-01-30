@@ -10,6 +10,7 @@ export default function NextButton({
       <button
         onClick={onClick}
         disabled={disable}
+        aria-label='next button'
         className={`absolute -right-[61px] bottom-0 top-0 my-auto hidden h-[38px] w-[38px] items-center justify-center rounded-full border-2 border-custom-gray-400 text-custom-gray-400 transition-all duration-200 hover:border-custom-gray-600 hover:text-custom-gray-600 md:flex ${disable && 'opacity-0'}`}
       >
         <svg
