@@ -28,7 +28,7 @@ export default function GridContainer() {
         <>
           <QuizResultItem quantity={3} status='배운 단어' unit='개' />
           <QuizResultItem quantity={duration} status='학습 시간' unit='분' duration />
-          <QuizResultItem quantity={data} status='학습 일수' unit='일차' />
+          <QuizResultItem quantity={data ?? 0} status='학습 일수' unit='일차' />
         </>
       )}
     </div>
