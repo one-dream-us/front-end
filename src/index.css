@@ -121,3 +121,15 @@ body {
     padding: 0 2px;
   }
 }
+
+#tutorial_bullet_container {
+  @apply absolute bottom-[20px] flex items-center justify-center;
+}
+
+#tutorial_bullet_container .swiper-pagination-bullet {
+  @apply size-[6px] bg-inactive;
+}
+
+#tutorial_bullet_container .swiper-pagination-bullet-active {
+  @apply bg-active-green;
+}

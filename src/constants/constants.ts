@@ -152,3 +152,9 @@ export const NORMAL_QUIZ_RESULT_KEY = 'normalQuizResult';
 export const RANDOM_QUIZ_RESULT_KEY = 'randomQuizResult';
 
 export const LEARNING_DURATION_SECONDS_KEY = 'learningDuration';
+
+export const tutorialTitleList = [
+  { id: 1, top: '첫 문단에서는 단어의', bottom: '사전적인 뜻을 학습해요!' },
+  { id: 2, top: '다음 문단에서는 단어의 특징과', bottom: '경제에 미치는 영향을 학습해요!' },
+  { id: 3, top: '학습이 끝나면 원문 뉴스로', bottom: '심화 학습에 도전해요!' },
+];

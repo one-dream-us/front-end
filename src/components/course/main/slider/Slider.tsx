@@ -8,17 +8,17 @@ import { Swiper as SwiperType } from 'swiper/types';
 import { useEffect, useState } from 'react';
 import PrevButton from './PrevButton';
 import NextButton from './NextButton';
-import tutorialStore from '@/store/course/tutorialStore';
-import swipeImg from '@/assets/p2/P2 에셋_2차전달/swipe_image.png';
+// import tutorialStore from '@/store/course/tutorialStore';
+// import swipeImg from '@/assets/p2/P2 에셋_2차전달/swipe_image.png';
 import useNewsDetail from '@/hooks/newDetail/useNewsDetail';
-import { SHOW_NEWS_DETAIL_PAGE_TURORIAL } from '@/constants/constants';
+// import { SHOW_NEWS_DETAIL_PAGE_TURORIAL } from '@/constants/constants';
 import SliderSKeleton from './SliderSKeleton';
 
 export default function Slider() {
   const { news, isLoading } = useNewsDetail((data) => data.descriptions);
   const [swiper, setSwiper] = useState<SwiperClass>();
   const { setIndex, index } = useStore(courseIndexState);
-  const { newsDeatilTutorial } = useStore(tutorialStore);
+  // const { newsDeatilTutorial } = useStore(tutorialStore);
 
   const handleSlide = (swiper: SwiperType) => {
     setIndex(swiper.activeIndex);
@@ -61,7 +61,7 @@ export default function Slider() {
       </Swiper>
 
       {/* tutorial */}
-      {SHOW_NEWS_DETAIL_PAGE_TURORIAL && !newsDeatilTutorial && (
+      {/* {SHOW_NEWS_DETAIL_PAGE_TURORIAL && !newsDeatilTutorial && (
         <>
           <div className='absolute -top-[60px] right-0 z-[10000] md:-right-[65px] md:-top-[10px]'>
             <div className='chat-bubble chat-bubble-rb h-[37px] w-[255px]'>
@@ -75,7 +75,7 @@ export default function Slider() {
             alt='tutorial swipe img'
           />
         </>
-      )}
+      )} */}
 
       <NextButton disable={index === 2} onClick={handleNext} />
     </div>
