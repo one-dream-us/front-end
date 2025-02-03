@@ -12,7 +12,7 @@ export default function NewsDetailLayout() {
       <div className='flex min-h-screen w-full flex-col justify-between'>
         <Header />
         <main
-          className={`min-h-screen w-full px-[16px] pt-[52px] desktop:pt-[80px] ${pathname.includes('/newsComplete') ? 'bg-white' : 'bg-quiz-bg'}`}
+          className={`min-h-screen w-full px-[16px] pt-[52px] md:px-6 desktop:px-[129px] desktop:pt-[80px] ${pathname.includes('/newsComplete') ? 'bg-white' : 'bg-quiz-bg'}`}
         >
           <Outlet />
         </main>

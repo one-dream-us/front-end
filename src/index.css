@@ -121,3 +121,15 @@ body {
     padding: 0 2px;
   }
 }
+
+#news_tutorial .swiper-pagination {
+  @apply absolute bottom-[20px] flex items-center justify-center;
+}
+
+#news_tutorial .swiper-pagination .swiper-pagination-bullet {
+  @apply size-[6px] bg-inactive;
+}
+
+#news_tutorial .swiper-pagination .swiper-pagination-bullet-active {
+  @apply bg-active-green;
+}

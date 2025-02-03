@@ -4,18 +4,21 @@ import Title from '@/components/course/common/Title';
 import CompleteButton from '@/components/course/main/CompleteButton';
 import Slider from '@/components/course/main/slider/Slider';
 import WordDescription from '@/components/course/main/WordDescription';
-import {
-  SHOW_NEWS_DETAIL_PAGE_TURORIAL,
-  SHOW_NEWS_DETAIL_PAGE_TURORIAL_KEY,
-} from '@/constants/constants';
+import NewsTutorial from '@/components/course/tutorial/NewsTutorial';
+import { SHOW_NEWS_DETAIL_PAGE_TURORIAL } from '@/constants/constants';
+// import {
+//   SHOW_NEWS_DETAIL_PAGE_TURORIAL,
+//   SHOW_NEWS_DETAIL_PAGE_TURORIAL_KEY,
+// } from '@/constants/constants';
 import tutorialStore from '@/store/course/tutorialStore';
 import { useBlocker, useParams } from 'react-router-dom';
 import { useStore } from 'zustand';
 
 export default function NewsDetailPage() {
-  const { newsDeatilTutorial, setNewsDeatilTutorial } = useStore(tutorialStore);
+  const { newsDeatilTutorial } = useStore(tutorialStore);
   return (
-    <div className='m-auto mt-[40px] w-[341px] desktop:w-[440px]'>
+    // w-[343px] desktop:w-[440px]
+    <div className='m-auto mt-[40px] w-[343px] desktop:w-[440px]'>
       <div className='m-auto mb-[24px] h-[51px] min-w-[196px] text-center'>
         <Title main='한 문장씩 읽어보세요!' sub='오늘의 뉴스 문장' />
       </div>
@@ -26,11 +29,10 @@ export default function NewsDetailPage() {
       <WordDescription />
 
       <CompleteButton />
-      {/* {!SHOW_NEWS_DETAIL_PAGE_TURORIAL && !isNewUser && <CompleteButton />} */}
 
       <NavigateBlocker />
 
-      {SHOW_NEWS_DETAIL_PAGE_TURORIAL && !newsDeatilTutorial && (
+      {/* {SHOW_NEWS_DETAIL_PAGE_TURORIAL && !newsDeatilTutorial && (
         <button
           onClick={() => {
             localStorage.setItem(SHOW_NEWS_DETAIL_PAGE_TURORIAL_KEY, 'false');
@@ -49,7 +51,9 @@ export default function NewsDetailPage() {
             <path strokeLinecap='round' strokeLinejoin='round' d='M6 18 18 6M6 6l12 12' />
           </svg>
         </button>
-      )}
+      )} */}
+
+      {SHOW_NEWS_DETAIL_PAGE_TURORIAL && !newsDeatilTutorial && <NewsTutorial />}
     </div>
   );
 }
