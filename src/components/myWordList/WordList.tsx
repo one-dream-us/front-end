@@ -1,7 +1,6 @@
 import { WordListProps } from '@/types/interface';
 import useWordList from '@/hooks/myWordList/useWordList';
 import EmptyWordState from './Words/EmptyWordState';
-import Toast from '../common/Toast';
 import WordListContent from './Words/WordListContent';
 
 export default function WordList({
@@ -43,7 +42,6 @@ export default function WordList({
       ) : (
         <EmptyWordState activeMenu={activeMenu} />
       )}
-      <Toast />
     </div>
   );
 }

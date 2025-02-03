@@ -9,6 +9,7 @@ import KeyNote from './KeyNote';
 import WordNote from './WordNote';
 import useWordListContentLogic from '@/hooks/myWordList/useWordListContentLogic';
 import ExplanationModal from '../ExplanationModal';
+import Toast from '@/components/common/Toast';
 
 export default function WordListContent({
   activeMenu,
@@ -67,6 +68,7 @@ export default function WordListContent({
         </div>
       )}
       {showModal && <ExplanationModal showModal={showModal} setShowModal={setShowModal} />}
+      <Toast />
     </div>
   );
 }
