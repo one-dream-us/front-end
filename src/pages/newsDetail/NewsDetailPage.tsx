@@ -17,7 +17,8 @@ import { useStore } from 'zustand';
 export default function NewsDetailPage() {
   const { newsDeatilTutorial } = useStore(tutorialStore);
   return (
-    <div className='m-auto mt-[40px] w-[341px] desktop:w-[440px]'>
+    // w-[343px] desktop:w-[440px]
+    <div className='m-auto mt-[40px] w-[343px] desktop:w-[440px]'>
       <div className='m-auto mb-[24px] h-[51px] min-w-[196px] text-center'>
         <Title main='한 문장씩 읽어보세요!' sub='오늘의 뉴스 문장' />
       </div>
