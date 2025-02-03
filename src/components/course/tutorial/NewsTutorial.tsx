@@ -1,24 +1,18 @@
 import { SHOW_NEWS_DETAIL_PAGE_TURORIAL_KEY, tutorialTitleList } from '@/constants/constants';
 import tutorialStore from '@/store/course/tutorialStore';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default function NewsTutorial() {
   const [activeIndex, setActiveIndex] = useState(0);
   const { setNewsDeatilTutorial } = tutorialStore();
-
   const isLast = activeIndex === 2;
-  useEffect(() => {
-    const $target = document.querySelector(`.swiper-pagination`);
-    if (!$target) return;
-
-    $target.setAttribute('id', 'tutorial_bullet_container');
-  }, []);
   return (
     <div className='fixed left-0 top-0 z-[1000] flex h-screen w-full items-center justify-center bg-black bg-opacity-50'>
       <div className='relative'>
         <Swiper
+          id='news_tutorial'
           pagination={true}
           modules={[Pagination]}
           slidesPerView={1}
