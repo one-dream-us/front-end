@@ -3,7 +3,7 @@ import { formatReadCount } from '@/utils/commonUtils';
 import { formatDate } from '@/utils/myScrapUtils';
 import Keywords from './Keywords';
 import { Link } from 'react-router-dom';
-import WaterMark from '@/assets/imgs/워터마크.png';
+import WaterMark from '@/assets/imgs/watermark.png';
 
 export default function NewsCard({
   news,
@@ -21,7 +21,7 @@ export default function NewsCard({
       to={`/newsPending/${newsId}`}
       className={`relative flex flex-col ${(isToday || isDesktop) && 'desktop:flex-row desktop:gap-x-5'}`}
     >
-      <img src={WaterMark} className='absolute left-0 top-0 h-11 w-11' />
+      <img src={WaterMark} className='absolute left-2 top-2 h-11 w-11 object-cover' />
       <img
         className='mb-3 h-[172px] w-full rounded bg-gray-200 md:h-[177px] md:w-[353px] desktop:h-[198px] desktop:w-[396px]'
         src={thumbnailUrl}
