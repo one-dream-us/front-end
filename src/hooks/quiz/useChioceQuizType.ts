@@ -21,10 +21,15 @@ const useChoiceQuizType = () => {
         setIsloading(false);
       } else {
         // console.log('normal fetch');
-        setQuizType('normal');
-        const res = await quizApi.getNormalQuiz();
-        setData(res);
-        setIsloading(false);
+
+        // 퀴즈 해결 되면 해제
+        // setQuizType('normal');
+        // const res = await quizApi.getNormalQuiz();
+        // setData(res);
+        // setIsloading(false);
+
+        alert('수정 중'); // 수정 후 삭제
+        location.pathname = '/'; // 수정 후 삭제
       }
     })();
   }, []);
