@@ -11,7 +11,7 @@ import NextButton from './NextButton';
 // import tutorialStore from '@/store/course/tutorialStore';
 // import swipeImg from '@/assets/p2/P2 에셋_2차전달/swipe_image.png';
 import useNewsDetail from '@/hooks/newDetail/useNewsDetail';
-// import { SHOW_NEWS_DETAIL_PAGE_TURORIAL } from '@/constants/constants';
+// import { SHOW_NEWS_DETAIL_ONBOARDING } from '@/constants/constants';
 import SliderSKeleton from './SliderSKeleton';
 
 export default function Slider() {
@@ -61,7 +61,7 @@ export default function Slider() {
       </Swiper>
 
       {/* tutorial */}
-      {/* {SHOW_NEWS_DETAIL_PAGE_TURORIAL && !newsDeatilTutorial && (
+      {/* {SHOW_NEWS_DETAIL_ONBOARDING && !newsDeatilTutorial && (
         <>
           <div className='absolute -top-[60px] right-0 z-[10000] md:-right-[65px] md:-top-[10px]'>
             <div className='chat-bubble chat-bubble-rb h-[37px] w-[255px]'>

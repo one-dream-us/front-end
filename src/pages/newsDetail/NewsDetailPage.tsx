@@ -4,18 +4,11 @@ import Title from '@/components/course/common/Title';
 import CompleteButton from '@/components/course/main/CompleteButton';
 import Slider from '@/components/course/main/slider/Slider';
 import WordDescription from '@/components/course/main/WordDescription';
-import NewsTutorial from '@/components/course/tutorial/NewsTutorial';
-import { SHOW_NEWS_DETAIL_PAGE_TURORIAL } from '@/constants/constants';
-// import {
-//   SHOW_NEWS_DETAIL_PAGE_TURORIAL,
-//   SHOW_NEWS_DETAIL_PAGE_TURORIAL_KEY,
-// } from '@/constants/constants';
-import tutorialStore from '@/store/course/tutorialStore';
+import NewsDetailOnboarding from '@/components/course/onboarding/NewsDetailOnboarding';
+import { SHOW_NEWS_DETAIL_ONBOARDING } from '@/constants/constants';
 import { useBlocker, useParams } from 'react-router-dom';
-import { useStore } from 'zustand';
 
 export default function NewsDetailPage() {
-  const { newsDeatilTutorial } = useStore(tutorialStore);
   return (
     // w-[343px] desktop:w-[440px]
     <div className='m-auto mt-[40px] w-[343px] desktop:w-[440px]'>
@@ -32,10 +25,10 @@ export default function NewsDetailPage() {
 
       <NavigateBlocker />
 
-      {/* {SHOW_NEWS_DETAIL_PAGE_TURORIAL && !newsDeatilTutorial && (
+      {/* {SHOW_NEWS_DETAIL_ONBOARDING && !newsDeatilTutorial && (
         <button
           onClick={() => {
-            localStorage.setItem(SHOW_NEWS_DETAIL_PAGE_TURORIAL_KEY, 'false');
+            localStorage.setItem(SHOW_NEWS_DETAIL_ONBOARDING_KEY, 'false');
             setNewsDeatilTutorial(true);
           }}
           className='fixed bottom-[45px] left-0 right-0 z-[10000] m-auto flex h-[38px] w-[38px] items-center justify-center rounded-full border text-custom-gray-light'
@@ -53,7 +46,7 @@ export default function NewsDetailPage() {
         </button>
       )} */}
 
-      {SHOW_NEWS_DETAIL_PAGE_TURORIAL && !newsDeatilTutorial && <NewsTutorial />}
+      {SHOW_NEWS_DETAIL_ONBOARDING && <NewsDetailOnboarding />}
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { highlightedDesc } from '@/utils/contentDetail/highlightedDesc';
 // import ModalOverlay from '@/components/common/modal/ModalOverlay';
 // import tutorialStore from '@/store/course/tutorialStore';
 import useNewsDetail from '@/hooks/newDetail/useNewsDetail';
-// import { SHOW_NEWS_DETAIL_PAGE_TURORIAL } from '@/constants/constants';
+// import { SHOW_NEWS_DETAIL_ONBOARDING } from '@/constants/constants';
 import WordDescriptionSkeleton from './slider/WordDescriptionSkeleton';
 
 export default function WordDescription() {
@@ -22,7 +22,7 @@ export default function WordDescription() {
       </div>
 
       {/* tutorial */}
-      {/* {SHOW_NEWS_DETAIL_PAGE_TURORIAL && !newsDeatilTutorial && (
+      {/* {SHOW_NEWS_DETAIL_ONBOARDING && !newsDeatilTutorial && (
         <div className='absolute top-[5px] z-[10000]'>
           <div className='chat-bubble-lb chat-bubble'>단어의 뜻을 바로 확인해요!</div>
         </div>
@@ -42,7 +42,7 @@ export default function WordDescription() {
       ))}
 
       {/* tutorial
-      {SHOW_NEWS_DETAIL_PAGE_TURORIAL && !newsDeatilTutorial && (
+      {SHOW_NEWS_DETAIL_ONBOARDING && !newsDeatilTutorial && (
         <>
           <div className='absolute z-[10000]'>
             <div className='chat-bubble-lt chat-bubble mt-[10px] h-[37px] w-[271px]'>
