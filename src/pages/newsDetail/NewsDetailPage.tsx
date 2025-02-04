@@ -5,7 +5,7 @@ import CompleteButton from '@/components/course/main/CompleteButton';
 import Slider from '@/components/course/main/slider/Slider';
 import WordDescription from '@/components/course/main/WordDescription';
 import NewsTutorial from '@/components/course/tutorial/NewsTutorial';
-import { SHOW_NEWS_DETAIL_PAGE_TURORIAL_KEY } from '@/constants/constants';
+import { SHOW_NEWS_DETAIL_ONBOARDING } from '@/constants/constants';
 import { useBlocker, useParams } from 'react-router-dom';
 
 export default function NewsDetailPage() {
@@ -25,10 +25,10 @@ export default function NewsDetailPage() {
 
       <NavigateBlocker />
 
-      {/* {SHOW_NEWS_DETAIL_PAGE_TURORIAL && !newsDeatilTutorial && (
+      {/* {SHOW_NEWS_DETAIL_ONBOARDING && !newsDeatilTutorial && (
         <button
           onClick={() => {
-            localStorage.setItem(SHOW_NEWS_DETAIL_PAGE_TURORIAL_KEY, 'false');
+            localStorage.setItem(SHOW_NEWS_DETAIL_ONBOARDING_KEY, 'false');
             setNewsDeatilTutorial(true);
           }}
           className='fixed bottom-[45px] left-0 right-0 z-[10000] m-auto flex h-[38px] w-[38px] items-center justify-center rounded-full border text-custom-gray-light'
@@ -46,9 +46,7 @@ export default function NewsDetailPage() {
         </button>
       )} */}
 
-      {JSON.parse(localStorage.getItem(SHOW_NEWS_DETAIL_PAGE_TURORIAL_KEY) ?? 'true') && (
-        <NewsTutorial />
-      )}
+      {SHOW_NEWS_DETAIL_ONBOARDING && <NewsTutorial />}
     </div>
   );
 }
