@@ -4,7 +4,7 @@ import Title from '@/components/course/common/Title';
 import CompleteButton from '@/components/course/main/CompleteButton';
 import Slider from '@/components/course/main/slider/Slider';
 import WordDescription from '@/components/course/main/WordDescription';
-import NewsTutorial from '@/components/course/tutorial/NewsTutorial';
+import NewsDetailOnboarding from '@/components/course/onboarding/NewsDetailOnboarding';
 import { SHOW_NEWS_DETAIL_ONBOARDING } from '@/constants/constants';
 import { useBlocker, useParams } from 'react-router-dom';
 
@@ -46,7 +46,7 @@ export default function NewsDetailPage() {
         </button>
       )} */}
 
-      {SHOW_NEWS_DETAIL_ONBOARDING && <NewsTutorial />}
+      {SHOW_NEWS_DETAIL_ONBOARDING && <NewsDetailOnboarding />}
     </div>
   );
 }
