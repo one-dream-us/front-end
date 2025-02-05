@@ -5,7 +5,9 @@ export default function useLearningStatus() {
   const { data, refetch, isLoading } = useQuery({
     queryKey: ['learningStatus'],
     queryFn: wordListAPi.getLearningStatus,
+    staleTime: 1,
   });
+
   const username = data?.username ?? '';
   const totalScrap = data?.totalScrap ?? 0;
   const totalGraduation = data?.totalGraduation ?? 0;
