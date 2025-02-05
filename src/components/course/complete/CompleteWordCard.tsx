@@ -54,7 +54,7 @@ export default function CompleteWordCard({
     <div
       className={`box-border flex h-[56px] w-full items-center justify-between rounded-[4px] bg-white px-6 py-4 ${alreadyScrapped ? 'todays-word-card-shadow border-[2px] border-[#5BBF6A]' : 'border-[2px] border-quiz-bg'} ${showTutorial ? 'z-[10000]' : ''}`}
     >
-      <h1 className='text-[16px] font-medium text-custom-gray-dark'>{term}</h1>
+      <h1 className='line-clamp-1 text-[16px] font-medium text-custom-gray-dark'>{term}</h1>
 
       <button onClick={handleScrap} disabled={showTutorial ?? true}>
         <img

@@ -14,22 +14,17 @@ const useChoiceQuizType = () => {
       // console.log(isFirstQuizAttempt);
 
       if (isFirstQuizAttempt) {
-        // console.log('random fetch');
+        console.log('random fetch');
         setQuizType('random');
         const res = await quizApi.getRandomQuizzes();
         setData(res);
         setIsloading(false);
       } else {
-        // console.log('normal fetch');
-
-        // 퀴즈 해결 되면 해제
-        // setQuizType('normal');
-        // const res = await quizApi.getNormalQuiz();
-        // setData(res);
-        // setIsloading(false);
-
-        alert('수정 중'); // 수정 후 삭제
-        location.pathname = '/'; // 수정 후 삭제
+        console.log('normal fetch');
+        setQuizType('normal');
+        const res = await quizApi.getNormalQuiz();
+        setData(res);
+        setIsloading(false);
       }
     })();
   }, []);

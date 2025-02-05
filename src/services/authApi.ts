@@ -24,8 +24,12 @@ const authApi = {
     }
   },
   authCheck: async () => {
-    const { loggedIn } = (await client.get('/auth/check')).data;
-    return loggedIn;
+    try {
+      const { loggedIn } = (await client.get('/auth/check')).data;
+      return loggedIn;
+    } catch (e) {
+      console.log(e);
+    }
   },
   joinSocial: async (prevPage: string) => {
     try {
