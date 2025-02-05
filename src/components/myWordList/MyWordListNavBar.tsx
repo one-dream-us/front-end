@@ -11,7 +11,7 @@ export default function MyWordListNavBar({
   isTutorial: boolean;
 }) {
   return (
-    <div className='my-4 w-[343px] md:mt-6 md:w-[353px] desktop:w-full'>
+    <div className='my-6 w-[343px] md:w-[353px] desktop:w-full'>
       <ul className='grid h-10 w-full grid-cols-4 text-sm font-bold text-custom-gray-500'>
         {myWordListMenu.map((item: MyWordListMenuType) => (
           <li

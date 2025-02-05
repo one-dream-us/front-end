@@ -38,7 +38,7 @@ export default function MyWordList() {
             accuracyRate={accuracyRate}
           />
         </div>
-        <div className='absolute -left-4 h-[10px] w-full bg-custom-gray-lighter' />
+        <div className='h-2.5 w-full bg-custom-gray-lighter' />
         <MyWordListNavBar
           activeMenu={activeMenu}
           setActiveMenu={setActiveMenu}
