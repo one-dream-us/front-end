@@ -2,9 +2,11 @@ import QUERY_KEYS from '@/constants/queryKeys';
 import newsApi from '@/services/newsApi';
 import { IScrapList } from '@/types/interface';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import useLearningStatus from '../myWordList/api/useLearningStatus';
 
 const useScrapWord = () => {
   const queryClient = useQueryClient();
+  const { refetch } = useLearningStatus();
   const { mutate } = useMutation({
     mutationFn: async (wordId: number) => await newsApi.postScrapWord(wordId),
     onMutate: async (data) => {
@@ -24,6 +26,7 @@ const useScrapWord = () => {
       queryClient.setQueryData(QUERY_KEYS.getScrapList, context?.prevData),
     onSettled: async () =>
       await queryClient.invalidateQueries({ queryKey: QUERY_KEYS.getScrapList }),
+    onSuccess: () => refetch(),
   });
   return mutate;
 };
