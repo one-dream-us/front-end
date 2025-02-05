@@ -41,10 +41,15 @@ export default function useGetWordListData(activeMenu: MyWordListMenuType) {
     return activeMenu === '핵심노트' ? data?.keyNoteCount || 0 : 0;
   }, [data, activeMenu]);
 
+  const wrongNoteListLen = useMemo(() => {
+    return activeMenu === '오답노트' ? data?.wrongAnswerNoteSize || 0 : 0;
+  }, [data, activeMenu]);
+
   return {
     wordList: isLogin ? wordList : [],
     refetch: isLogin ? refetch : async () => Promise.resolve(),
     isLoading: isLogin && isLoading,
     keyNoteListLen: isLogin ? keyNoteListLen : 0,
+    wrongNoteListLen: isLogin ? wrongNoteListLen : 0,
   };
 }

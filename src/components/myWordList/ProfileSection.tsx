@@ -11,7 +11,8 @@ export default function ProfileSection({
   username: string;
   totalKeyNote: number;
 }) {
-  const { text, progressBarWidth, navigate } = useProfileSectionLogic(totalKeyNote);
+  const { text, progressBarWidth, navigate, wrongNoteListLen } =
+    useProfileSectionLogic(totalKeyNote);
 
   return (
     <div className='flex h-[126px] w-full flex-col items-end'>
@@ -32,7 +33,7 @@ export default function ProfileSection({
       ) : (
         ''
       )}
-      {totalKeyNote < 3 ? (
+      {wrongNoteListLen + totalKeyNote < 3 ? (
         <div className='mt-1 h-8 whitespace-nowrap rounded-full border border-custom-gray-200 px-2.5 py-1 text-sm font-medium leading-170 text-gray-070'>
           핵심노트 {totalKeyNote} <span className='text-custom-gray-500'>/ 3</span>
         </div>
