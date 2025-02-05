@@ -24,6 +24,8 @@ const useScrapWord = () => {
       queryClient.setQueryData(QUERY_KEYS.getScrapList, context?.prevData),
     onSettled: async () =>
       await queryClient.invalidateQueries({ queryKey: QUERY_KEYS.getScrapList }),
+    onSuccess: async () =>
+      await queryClient.invalidateQueries({ queryKey: QUERY_KEYS.learningStatus }),
   });
   return mutate;
 };

@@ -6,6 +6,7 @@ export default function useLearningStatus() {
     queryKey: ['learningStatus'],
     queryFn: wordListAPi.getLearningStatus,
   });
+
   const username = data?.username ?? '';
   const totalScrap = data?.totalScrap ?? 0;
   const totalGraduation = data?.totalGraduation ?? 0;

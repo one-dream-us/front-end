@@ -24,6 +24,8 @@ const useRemoveScrapWord = () => {
     },
     onSettled: async () =>
       await queryClient.invalidateQueries({ queryKey: QUERY_KEYS.getScrapList }),
+    onSuccess: async () =>
+      await queryClient.invalidateQueries({ queryKey: QUERY_KEYS.learningStatus }),
   });
 
   return mutate;
