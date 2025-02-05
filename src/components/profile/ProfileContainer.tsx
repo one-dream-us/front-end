@@ -17,7 +17,7 @@ export default function ProfileContainer() {
       id='profile-container'
       className='m-auto mb-[130px] h-[423px] w-[201px] desktop:m-0 desktop:ml-auto desktop:grid desktop:h-[241px] desktop:w-[1097px]'
     >
-      <MyProfileNickname name={formatUserName(info?.email || '')} />
+      <MyProfileNickname name={formatUserName(info?.name || '')} />
       <MyScrapViewCount />
       <ProfileInfo
         createdAt={info?.createdAt.split('T')[0].replaceAll('-', '.') as string}
