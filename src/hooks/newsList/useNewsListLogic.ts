@@ -15,7 +15,7 @@ export default function useNewsListLogic() {
   const { latestNews } = useLatestNews();
   const { isLogin } = useLoginStore();
   const navigate = useNavigate();
-  const { setIsOpen } = useLoginConfirmModalState();
+  const { setIsOpen, setIsNavigate } = useLoginConfirmModalState();
   const { keyNoteListLen } = useGetWordListData('핵심노트');
   const { wordList } = useGetWordListData('스크랩');
   const isKeynote = keyNoteListLen < 3 && wordList.length >= 3;
@@ -57,5 +57,6 @@ export default function useNewsListLogic() {
     modalOpen,
     setModalOpen,
     totalElements,
+    setIsNavigate,
   };
 }
