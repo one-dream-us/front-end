@@ -15,6 +15,7 @@ export default function Banner({ latestNewsId }: { latestNewsId: number }) {
     modalOpen,
     setModalOpen,
     keyNoteListLen,
+    setIsNavigate,
   } = useBanner();
 
   return (
@@ -35,6 +36,7 @@ export default function Banner({ latestNewsId }: { latestNewsId: number }) {
                     setIsOpen,
                     setModalOpen,
                     latestNewsId,
+                    setIsNavigate,
                   })
                 }
               >

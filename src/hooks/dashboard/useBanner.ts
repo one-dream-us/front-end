@@ -7,7 +7,8 @@ import { useState } from 'react';
 
 export default function useBanner() {
   const { isLogin } = useLoginStore();
-  const { setIsOpen } = useLoginConfirmModalState();
+  const { setIsOpen, setIsNavigate } = useLoginConfirmModalState();
+
   const settings = {
     infinite: true,
     autoplay: true,
@@ -52,5 +53,6 @@ export default function useBanner() {
     modalOpen,
     setModalOpen,
     keyNoteListLen,
+    setIsNavigate,
   };
 }
