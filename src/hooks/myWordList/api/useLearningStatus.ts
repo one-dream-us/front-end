@@ -1,14 +1,10 @@
 import wordListAPi from '@/services/wordListApi';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect } from 'react';
 
 export default function useLearningStatus() {
   const { data, refetch, isLoading } = useQuery({
     queryKey: ['learningStatus'],
     queryFn: wordListAPi.getLearningStatus,
-  });
-  useEffect(() => {
-    refetch();
   });
   const username = data?.username ?? '';
   const totalScrap = data?.totalScrap ?? 0;
