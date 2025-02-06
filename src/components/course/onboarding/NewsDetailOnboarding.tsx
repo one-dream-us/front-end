@@ -1,6 +1,6 @@
 import { SHOW_NEWS_DETAIL_ONBOARDING_KEY, tutorialTitleList } from '@/constants/constants';
 import useCheckShowOnboarding from '@/hooks/newDetail/useCheckShowOnboarding';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 
@@ -10,6 +10,19 @@ export default function NewsDetailOnboarding() {
   );
   const [activeIndex, setActiveIndex] = useState(0);
   const isLast = activeIndex === 2;
+
+  useEffect(() => {
+    const setScreensize = () => {
+      //먼저 뷰포트의 실제 높이를 100등분하여, 새로 정의할 1 vh의 값을 얻습니다.
+      let vh = window.innerHeight * 0.01;
+      //--vh를 키워드로 삼아서 활용합니다.
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    window.addEventListener('resize', setScreensize);
+
+    return () => window.removeEventListener('resize', setScreensize);
+  }, []);
 
   return (
     <>
@@ -75,8 +88,8 @@ const OnboardingModal = ({
   const handleModal = () => (isLast ? handleHiddenOnboarding() : swiper?.slideNext());
   return (
     <div
-      style={{ transform: 'translate(-50%, -50%)' }}
-      className='absolute left-1/2 top-1/2 w-[280px] drop-shadow-[0_6px_12px_rgba(0,0,0,0.3)] md:w-[320px]'
+      id='detail_onboarding_modal'
+      className='absolute left-0 right-0 m-auto w-[280px] -translate-y-1/2 drop-shadow-[0_6px_12px_rgba(0,0,0,0.3)] md:w-[320px]'
     >
       <Swiper
         id='news_tutorial'
