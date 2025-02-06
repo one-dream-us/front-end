@@ -1,7 +1,7 @@
-import onboardingImg_cony_mobile from '@/assets/학습완료 튜토리얼 모달 이미지/[Mobile] 학습 완료 튜토리얼-코니 이미지.png';
-import onboardingImg_cony_tab from '@/assets/학습완료 튜토리얼 모달 이미지/Tab] 학습 완료 튜토리얼-코니 이미지.png';
-import onboardingImg_scrap_mobile from '@/assets/학습완료 튜토리얼 모달 이미지/[Mobile] 학습 완료 튜토리얼-단어 스크랩 이미지.png';
-import onboardingImg_scrap_tab from '@/assets/학습완료 튜토리얼 모달 이미지/tab] 학습 완료 튜토리얼-단어 스크랩 이미지.png';
+import onboardingImg_cony_mobile from '@/assets/completepage_tutorial/cony_mobile.png';
+import onboardingImg_cony_tab from '@/assets/completepage_tutorial/cony_tab.png';
+import onboardingImg_scrap_mobile from '@/assets/completepage_tutorial/scrap_mobile.png';
+import onboardingImg_scrap_tab from '@/assets/completepage_tutorial/scrap_tab.png';
 import useCheckShowOnboarding from '@/hooks/newDetail/useCheckShowOnboarding';
 import { SHOW_NEWS_COMPLETE_ONBOARDING_KEY } from '@/constants/constants';
 
