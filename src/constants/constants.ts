@@ -151,9 +151,14 @@ export const SHOW_NEWS_DETAIL_ONBOARDING = JSON.parse(
   localStorage.getItem(SHOW_NEWS_DETAIL_ONBOARDING_KEY) ?? 'true',
 );
 
-export const SHOW_NEWS_COMPLETE_PAGE_TURORIAL_KEY = 'shownewsCompleteTurotial';
+export const SHOW_NEWS_COMPLETE_ONBOARDING_KEY = 'showCompletePageOnboarding';
+export const SHOW_NEWS_COMPLETE_ONBOARDING = JSON.parse(
+  localStorage.getItem(SHOW_NEWS_COMPLETE_ONBOARDING_KEY) ?? 'true',
+);
+
+export const SHOW_NEWS_COMPLETE_PAGE_TURORIAL_KEY = 'shownewsCompleteTurotial'; // 삭제 예정
 export const SHOW_NEWS_COMPLETE_PAGE_TURORIAL =
-  localStorage.getItem('shownewsCompleteTurotial') === null;
+  localStorage.getItem('shownewsCompleteTurotial') === null; // 삭제 예정
 
 export const NORMAL_QUIZ_RESULT_KEY = 'normalQuizResult';
 export const RANDOM_QUIZ_RESULT_KEY = 'randomQuizResult';
