@@ -20,12 +20,12 @@ import webBanner1 from '@/assets/p2/P2 에셋_2차전달/웹배너 (2).png';
 import webBanner2 from '@/assets/p2/P2 에셋_2차전달/웹배너 (3).png';
 import webBanner3 from '@/assets/p2/P2 에셋_2차전달/웹배너 (1).png';
 import { myScrapMenu, MyWordListMenuType } from '@/types/types';
-import detailOnboardingImg1_mobile from '@/assets/튜토리얼 모달 이미지/[mobile] 튜토리얼 모달 이미지-01.png';
-import detailOnboardingImg2_mobile from '@/assets/튜토리얼 모달 이미지/[mobile] 튜토리얼 모달 이미지-02.png';
-import detailOnboardingImg3_mobile from '@/assets/튜토리얼 모달 이미지/[mobile] 튜토리얼 모달 이미지-03.png';
-import detailOnboardingImg1_tab from '@/assets/튜토리얼 모달 이미지/tab] 튜토리얼 모달 이미지-01.png';
-import detailOnboardingImg2_tab from '@/assets/튜토리얼 모달 이미지/tab] 튜토리얼 모달 이미지-02.png';
-import detailOnboardingImg3_tab from '@/assets/튜토리얼 모달 이미지/tab] 튜토리얼 모달 이미지-03.png';
+import detailOnboardingImg1_mobile from '@/assets/detailpage_tutorial/modalImg2_mobile.png';
+import detailOnboardingImg2_mobile from '@/assets/detailpage_tutorial/modalImg2_mobile.png';
+import detailOnboardingImg3_mobile from '@/assets/detailpage_tutorial/modalImg2_mobile.png';
+import detailOnboardingImg1_tab from '@/assets/detailpage_tutorial/modalImg1_tab.png';
+import detailOnboardingImg2_tab from '@/assets/detailpage_tutorial/modalImg2_tab.png';
+import detailOnboardingImg3_tab from '@/assets/detailpage_tutorial/modalImg3_tab.png';
 
 export const HeaderMenuList = [
   { id: 1, title: '홈', to: '/' },
