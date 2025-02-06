@@ -5,10 +5,9 @@ import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 
 export default function NewsDetailOnboarding() {
-  const { setShowOnboarding, showOnboarding } = useCheckShowOnboarding(
+  const { setShowOnboarding, showOnboarding, closeModal, visible } = useCheckShowOnboarding(
     SHOW_NEWS_DETAIL_ONBOARDING_KEY,
   );
-  const [visible, setVisible] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const isLast = activeIndex === 2;
 
@@ -20,7 +19,7 @@ export default function NewsDetailOnboarding() {
           <OnboardingModal
             isLast={isLast}
             setActiveIndex={setActiveIndex}
-            handleHiddenOnboarding={() => setVisible(false)}
+            handleHiddenOnboarding={closeModal}
           />
         </div>
       )}
