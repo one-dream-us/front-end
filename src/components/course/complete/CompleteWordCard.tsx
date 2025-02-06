@@ -10,16 +10,11 @@ import useIsScrapable from '@/hooks/newDetail/useIsScrapable';
 export default function CompleteWordCard({
   dictionaryId,
   term,
-  index,
-}: Pick<IDescription, 'term' | 'dictionaryId'> & { index: number }) {
-  // const { scrapList } = useScrapList((data) => data.dictionaryScraps);
-  // const alreadyScrapped = scrapList?.find((item) => item.dictionaryId === dictionaryId);
+}: Pick<IDescription, 'term' | 'dictionaryId'>) {
   const scrap = useScrapWord();
   const scrapCancel = useRemoveScrapWord();
   const { data } = useAuthCheckQuery();
   const { setIsOpen, setIsNavigate } = useLoginConfirmModalState();
-  // const { newsCompleteTutorial } = useStore(tutorialStore);
-  // const showTutorial = !newsCompleteTutorial && SHOW_NEWS_COMPLETE_PAGE_TURORIAL && index === 0;
   const { alreadyGraduation, alreadyInCorrect, alreadyKeynote, alreadyScrapped } =
     useIsScrapable(dictionaryId);
 

@@ -16,11 +16,7 @@ export default function CardContainer() {
           ))}
         </>
       ) : (
-        <>
-          {news?.map((item, index) => (
-            <CompleteWordCard key={item.dictionaryId} {...item} index={index} />
-          ))}
-        </>
+        <>{news?.map((item) => <CompleteWordCard key={item.dictionaryId} {...item} />)}</>
       )}
     </>
   );
