@@ -20,6 +20,12 @@ import webBanner1 from '@/assets/p2/P2 에셋_2차전달/웹배너 (2).png';
 import webBanner2 from '@/assets/p2/P2 에셋_2차전달/웹배너 (3).png';
 import webBanner3 from '@/assets/p2/P2 에셋_2차전달/웹배너 (1).png';
 import { myScrapMenu, MyWordListMenuType } from '@/types/types';
+import detailOnboardingImg1_mobile from '@/assets/튜토리얼 모달 이미지/[mobile] 튜토리얼 모달 이미지-01.png';
+import detailOnboardingImg2_mobile from '@/assets/튜토리얼 모달 이미지/[mobile] 튜토리얼 모달 이미지-02.png';
+import detailOnboardingImg3_mobile from '@/assets/튜토리얼 모달 이미지/[mobile] 튜토리얼 모달 이미지-03.png';
+import detailOnboardingImg1_tab from '@/assets/튜토리얼 모달 이미지/tab] 튜토리얼 모달 이미지-01.png';
+import detailOnboardingImg2_tab from '@/assets/튜토리얼 모달 이미지/tab] 튜토리얼 모달 이미지-02.png';
+import detailOnboardingImg3_tab from '@/assets/튜토리얼 모달 이미지/tab] 튜토리얼 모달 이미지-03.png';
 
 export const HeaderMenuList = [
   { id: 1, title: '홈', to: '/' },
@@ -155,7 +161,31 @@ export const RANDOM_QUIZ_RESULT_KEY = 'randomQuizResult';
 export const LEARNING_DURATION_SECONDS_KEY = 'learningDuration';
 
 export const tutorialTitleList = [
-  { id: 1, top: '첫 문단에서는 단어의', bottom: '사전적인 뜻을 학습해요!' },
-  { id: 2, top: '다음 문단에서는 단어의 특징과', bottom: '경제에 미치는 영향을 학습해요!' },
-  { id: 3, top: '학습이 끝나면 원문 뉴스로', bottom: '심화 학습에 도전해요!' },
+  {
+    id: 1,
+    src: {
+      mobile: detailOnboardingImg1_mobile,
+      tab: detailOnboardingImg1_tab,
+    },
+    top: '첫 문단에서는 단어의',
+    bottom: '사전적인 뜻을 학습해요!',
+  },
+  {
+    id: 2,
+    src: {
+      mobile: detailOnboardingImg2_mobile,
+      tab: detailOnboardingImg2_tab,
+    },
+    top: '다음 문단에서는 단어의 특징과',
+    bottom: '경제에 미치는 영향을 학습해요!',
+  },
+  {
+    id: 3,
+    src: {
+      mobile: detailOnboardingImg3_mobile,
+      tab: detailOnboardingImg3_tab,
+    },
+    top: '학습이 끝나면 원문 뉴스로',
+    bottom: '심화 학습에 도전해요!',
+  },
 ];

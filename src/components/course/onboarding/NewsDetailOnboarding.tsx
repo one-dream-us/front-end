@@ -2,7 +2,7 @@ import { SHOW_NEWS_DETAIL_ONBOARDING_KEY, tutorialTitleList } from '@/constants/
 import useCheckShowOnboarding from '@/hooks/newDetail/useCheckShowOnboarding';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Pagination } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 
 export default function NewsDetailOnboarding() {
   const { setShowOnboarding, showOnboarding } = useCheckShowOnboarding(
@@ -17,13 +17,11 @@ export default function NewsDetailOnboarding() {
       {visible && (
         <div className='fixed left-0 top-0 z-[1000] flex h-screen w-full items-center justify-center bg-black bg-opacity-50'>
           <CheckBox setShowOnboarding={setShowOnboarding} showOnboarding={showOnboarding} />
-          <div className='relative'>
-            <OnboardingModal isLast={isLast} setActiveIndex={setActiveIndex} />
-            <HiddenOnboardingButton
-              isLast={isLast}
-              handleHiddenOnboarding={() => setVisible(false)}
-            />
-          </div>
+          <OnboardingModal
+            isLast={isLast}
+            setActiveIndex={setActiveIndex}
+            handleHiddenOnboarding={() => setVisible(false)}
+          />
         </div>
       )}
     </>
@@ -64,55 +62,54 @@ const CheckBox = ({
   );
 };
 
-const HiddenOnboardingButton = ({
-  handleHiddenOnboarding,
-  isLast,
-}: {
-  handleHiddenOnboarding: () => void;
-  isLast: boolean;
-}) => {
-  return (
-    <>
-      {isLast && (
-        <button
-          onClick={handleHiddenOnboarding}
-          className='absolute -bottom-[48px] z-[100] h-[48px] w-[343px] rounded-bl-[10px] rounded-br-[10px] bg-custom-gray-dark text-[14px] font-bold text-primary transition-all duration-200 hover:bg-hover-80 md:w-[376px]'
-        >
-          학습 시작하기
-        </button>
-      )}
-    </>
-  );
-};
-
 const OnboardingModal = ({
   isLast,
   setActiveIndex,
+  handleHiddenOnboarding,
 }: {
   isLast: boolean;
   setActiveIndex: Dispatch<SetStateAction<number>>;
+  handleHiddenOnboarding: () => void;
 }) => {
+  const [swiper, setSwiper] = useState<SwiperClass>();
+
+  const handleModal = () => (isLast ? handleHiddenOnboarding() : swiper?.slideNext());
   return (
-    <Swiper
-      id='news_tutorial'
-      pagination={true}
-      modules={[Pagination]}
-      slidesPerView={1}
-      spaceBetween={50}
-      onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-      className={`h-[279px] w-[343px] rounded-[10px] bg-custom-gray-lighter px-[32px] pt-[41px] md:w-[376px] ${isLast ? 'rounded-b-none' : ''}`}
-    >
-      {tutorialTitleList.map((item) => (
-        <SwiperSlide key={item.id}>
-          <div className='mb-[16px] h-[48px] w-full text-[16px] font-bold text-custom-gray-dark'>
-            <h1 className='text-center'>
-              {item.top} <br />
-              {item.bottom}
-            </h1>
-          </div>
-          <img className='h-[137px] w-full border' src='' alt={`img ${item.id}`} />
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <div className='w-[280px] drop-shadow-[0_6px_12px_rgba(0,0,0,0.3)] md:w-[320px]'>
+      <Swiper
+        id='news_tutorial'
+        pagination={true}
+        modules={[Pagination]}
+        slidesPerView={1}
+        spaceBetween={50}
+        onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+        onSwiper={(e) => setSwiper(e)}
+        className={`h-[222px] w-full rounded-t-[10px] bg-custom-gray-lighter pt-[28px] md:h-[240px]`}
+      >
+        {tutorialTitleList.map((item) => (
+          <SwiperSlide key={item.id}>
+            <div className='mb-[16px] h-[48px] w-full text-[16px] font-bold text-custom-gray-dark md:text-[18px]'>
+              <h1 className='text-center'>
+                {item.top} <br />
+                {item.bottom}
+              </h1>
+            </div>
+            <img
+              className='m-auto w-[224px] md:w-[260px]'
+              srcSet={`${item.src.mobile} 768w, ${item.src.tab} 769w`}
+              sizes='(max-width: 768px) 224px, 260px'
+              src={item.src.mobile}
+              alt={`img ${item.id}`}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      <button
+        onClick={handleModal}
+        className={`z-[100] h-[48px] w-full rounded-bl-[10px] rounded-br-[10px] bg-custom-gray-dark text-[14px] font-bold transition-all duration-200 hover:bg-hover-80 ${isLast ? 'text-primary' : 'text-white'}`}
+      >
+        {isLast ? '학습 시작하기' : '다음'}
+      </button>
+    </div>
   );
 };
