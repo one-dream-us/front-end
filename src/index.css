@@ -134,6 +134,4 @@ body {
   @apply bg-active-green;
 }
 
-#detail_onboarding_modal {
-  top: calc(var(--vh, 1vh) * 50);
-}
+

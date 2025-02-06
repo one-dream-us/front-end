@@ -1,6 +1,6 @@
 import { SHOW_NEWS_DETAIL_ONBOARDING_KEY, tutorialTitleList } from '@/constants/constants';
 import useCheckShowOnboarding from '@/hooks/newDetail/useCheckShowOnboarding';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 
@@ -11,23 +11,27 @@ export default function NewsDetailOnboarding() {
   const [activeIndex, setActiveIndex] = useState(0);
   const isLast = activeIndex === 2;
 
-  useEffect(() => {
-    const setScreensize = () => {
-      //먼저 뷰포트의 실제 높이를 100등분하여, 새로 정의할 1 vh의 값을 얻습니다.
-      let vh = window.innerHeight * 0.01;
-      //--vh를 키워드로 삼아서 활용합니다.
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-    };
+  // useEffect(() => {
+  //   const setScreensize = () => {
+  //     //먼저 뷰포트의 실제 높이를 100등분하여, 새로 정의할 1 vh의 값을 얻습니다.
+  //     let vh = window.innerHeight * 0.01;
+  //     //--vh를 키워드로 삼아서 활용합니다.
+  //     document.documentElement.style.setProperty('--vh', `${vh}px`);
+  //     console.log(vh);
+  //   };
 
-    window.addEventListener('resize', setScreensize);
+  //   window.addEventListener('resize', setScreensize);
 
-    return () => window.removeEventListener('resize', setScreensize);
-  }, []);
+  //   return () => window.removeEventListener('resize', setScreensize);
+  // }, []);
 
   return (
     <>
       {visible && (
-        <div className='fixed left-0 top-0 z-[1000] h-screen w-full items-center justify-center bg-black bg-opacity-50'>
+        <div
+          style={{ height: '100dvh' }}
+          className='fixed left-0 top-0 z-[1000] w-full items-center justify-center bg-black bg-opacity-50'
+        >
           <CheckBox setShowOnboarding={setShowOnboarding} showOnboarding={showOnboarding} />
           <OnboardingModal
             isLast={isLast}
@@ -48,7 +52,7 @@ const CheckBox = ({
   setShowOnboarding: Dispatch<SetStateAction<string>>;
 }) => {
   return (
-    <div className='absolute bottom-[100px] right-[100px]'>
+    <div className='absolute left-0 right-0 m-auto'>
       <div className='flex items-center'>
         <input
           id='link-checkbox'
@@ -88,8 +92,8 @@ const OnboardingModal = ({
   const handleModal = () => (isLast ? handleHiddenOnboarding() : swiper?.slideNext());
   return (
     <div
-      id='detail_onboarding_modal'
-      className='absolute left-0 right-0 m-auto w-[280px] -translate-y-1/2 drop-shadow-[0_6px_12px_rgba(0,0,0,0.3)] md:w-[320px]'
+      style={{ transform: 'translate(-50%, -50%)' }}
+      className='absolute left-1/2 top-1/2 w-[280px] -translate-y-1/2 drop-shadow-[0_6px_12px_rgba(0,0,0,0.3)] md:w-[320px]'
     >
       <Swiper
         id='news_tutorial'
