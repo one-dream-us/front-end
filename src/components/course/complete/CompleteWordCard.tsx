@@ -1,11 +1,8 @@
-import { SHOW_NEWS_COMPLETE_PAGE_TURORIAL } from '@/constants/constants';
 import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
 import useRemoveScrapWord from '@/hooks/newDetail/useRemoveScrapWord';
 import useScrapWord from '@/hooks/newDetail/useScrapWord';
-import tutorialStore from '@/store/course/tutorialStore';
 import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
 import { IDescription } from '@/types/interface';
-import { useStore } from 'zustand';
 import scrapActive from '@/assets/p2/P2 에셋_2차전달/icon_scrap.png';
 import scrapDisable from '@/assets/p2/P2 에셋_2차전달/icon_scrap_greyline.png';
 import useIsScrapable from '@/hooks/newDetail/useIsScrapable';
@@ -21,8 +18,8 @@ export default function CompleteWordCard({
   const scrapCancel = useRemoveScrapWord();
   const { data } = useAuthCheckQuery();
   const { setIsOpen, setIsNavigate } = useLoginConfirmModalState();
-  const { newsCompleteTutorial } = useStore(tutorialStore);
-  const showTutorial = !newsCompleteTutorial && SHOW_NEWS_COMPLETE_PAGE_TURORIAL && index === 0;
+  // const { newsCompleteTutorial } = useStore(tutorialStore);
+  // const showTutorial = !newsCompleteTutorial && SHOW_NEWS_COMPLETE_PAGE_TURORIAL && index === 0;
   const { alreadyGraduation, alreadyInCorrect, alreadyKeynote, alreadyScrapped } =
     useIsScrapable(dictionaryId);
 
@@ -52,14 +49,14 @@ export default function CompleteWordCard({
   };
   return (
     <div
-      className={`box-border flex h-[56px] w-full items-center justify-between rounded-[4px] bg-white px-6 py-4 ${alreadyScrapped ? 'todays-word-card-shadow border-[2px] border-[#5BBF6A]' : 'border-[2px] border-quiz-bg'} ${showTutorial ? 'z-[10000]' : ''}`}
+      className={`box-border flex h-[56px] w-full items-center justify-between rounded-[4px] bg-white px-6 py-4 ${alreadyScrapped ? 'todays-word-card-shadow border-[2px] border-[#5BBF6A]' : 'border-[2px] border-quiz-bg'}`}
     >
       <h1 className='line-clamp-1 text-[16px] font-medium text-custom-gray-dark'>{term}</h1>
 
-      <button onClick={handleScrap} disabled={showTutorial ?? true}>
+      <button onClick={handleScrap}>
         <img
           className={`h-[19px] w-[18px]`}
-          src={showTutorial || alreadyScrapped ? scrapActive : scrapDisable}
+          src={alreadyScrapped ? scrapActive : scrapDisable}
           alt='scrap img'
         />
       </button>
