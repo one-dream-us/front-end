@@ -14,7 +14,7 @@ export default function NewsDetailOnboarding() {
   return (
     <>
       {visible && (
-        <div className='fixed left-0 top-0 z-[1000] flex h-screen w-full items-center justify-center bg-black bg-opacity-50'>
+        <div className='fixed left-0 top-0 z-[1000] h-screen w-full items-center justify-center bg-black bg-opacity-50'>
           <CheckBox setShowOnboarding={setShowOnboarding} showOnboarding={showOnboarding} />
           <OnboardingModal
             isLast={isLast}
@@ -74,7 +74,10 @@ const OnboardingModal = ({
 
   const handleModal = () => (isLast ? handleHiddenOnboarding() : swiper?.slideNext());
   return (
-    <div className='w-[280px] drop-shadow-[0_6px_12px_rgba(0,0,0,0.3)] md:w-[320px]'>
+    <div
+      style={{ transform: 'translate(-50%, -50%)' }}
+      className='absolute left-1/2 top-1/2 w-[280px] drop-shadow-[0_6px_12px_rgba(0,0,0,0.3)] md:w-[320px]'
+    >
       <Swiper
         id='news_tutorial'
         pagination={true}
