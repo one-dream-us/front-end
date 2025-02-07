@@ -20,6 +20,7 @@ export default function Dashboard() {
             <Link
               to='/news-list'
               className='flex items-center text-xs font-medium text-custom-gray-500'
+              id='go_news_list'
             >
               전체보기 <img src={arrowRightIcon} alt='전체 보기' className='h-4 w-4' />
             </Link>

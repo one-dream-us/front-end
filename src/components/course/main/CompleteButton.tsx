@@ -31,6 +31,7 @@ export default function CompleteButton() {
       {' '}
       <NewsLink />
       <button
+        id={`${lastIndex ? 'done_learning_cta' : 'done_learning_crey'}`}
         onClick={handleButtonClick}
         className={`h-[48px] w-full rounded-[10px] text-[14px] font-bold transition-all duration-200 ${lastIndex ? 'bg-custom-gray-dark text-custom-green-money hover:bg-hover-80 hover:text-green-hover' : 'bg-custom-gray-400 text-custom-gray-200 hover:bg-hover-30'}`}
       >

@@ -41,7 +41,7 @@ export default function NormalQuizResultCard({
               console.log(status);
               navigate(`/my-word-list?tab=${status}`);
             }}
-            className='ml-auto flex items-center justify-center'
+            className='go_wordcard ml-auto flex items-center justify-center'
           >
             <span>단어장 보기</span>
             <svg

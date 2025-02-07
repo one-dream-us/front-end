@@ -10,6 +10,14 @@ export default function MyWordListNavBar({
   setActiveMenu: Dispatch<SetStateAction<MyWordListMenuType>>;
   isTutorial: boolean;
 }) {
+  const id =
+    activeMenu === '스크랩'
+      ? 'tap_scrap'
+      : activeMenu === '핵심노트'
+        ? 'tap_keynote'
+        : activeMenu === '오답노트'
+          ? 'tap_wrong_answer_note'
+          : 'tap_graduation_note';
   return (
     <div className='my-6 w-[343px] md:w-[353px] desktop:w-full'>
       <ul className='grid h-10 w-full grid-cols-4 text-sm font-bold text-custom-gray-500'>
@@ -18,7 +26,7 @@ export default function MyWordListNavBar({
             key={item}
             className={`relative flex h-full items-center justify-center ${activeMenu === item ? 'text-custom-gray-dark after:absolute after:-bottom-[1px] after:h-0.5 after:w-full after:bg-custom-gray-dark' : ''} `}
           >
-            <button type='button' onClick={() => setActiveMenu(item)}>
+            <button id={id} type='button' onClick={() => setActiveMenu(item)}>
               {item}
             </button>
           </li>

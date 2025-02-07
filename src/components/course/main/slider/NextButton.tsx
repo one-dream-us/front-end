@@ -8,6 +8,7 @@ export default function NextButton({
   return (
     <>
       <button
+        id='move_news_card'
         onClick={onClick}
         disabled={disable}
         aria-label='next button'

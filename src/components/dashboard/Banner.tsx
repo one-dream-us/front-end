@@ -25,6 +25,7 @@ export default function Banner({ latestNewsId }: { latestNewsId: number }) {
           return (
             <div key={index} className='slick-slide'>
               <button
+                id={`${index === 0 ? 'banner_news' : index === 1 ? 'banner_wordlist' : 'banner_quiz'}`}
                 rel='noopener noreferrer'
                 onClick={() =>
                   handleBannerClick({

@@ -30,7 +30,7 @@ export default function WordNote({
       <p className='text-sm leading-160 text-custom-gray-dark'>{word.dictionary.definition}</p>
       <button
         type='button'
-        className='flex items-center self-end'
+        className='view_commentary flex items-center self-end'
         onClick={() => {
           setDefinition(word.dictionary.definition);
           setDescription(word.dictionary.description);

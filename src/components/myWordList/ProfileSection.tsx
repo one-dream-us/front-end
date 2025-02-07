@@ -41,7 +41,12 @@ export default function ProfileSection({
         <div
           className={`h-8 rounded-full border border-custom-gray-200 py-1 pl-2 pr-1 text-sm font-medium text-custom-gray-dark ${totalKeyNote > 3 ? 'mt-7' : 'mt-1'}`}
         >
-          <button type='button' className='flex items-center' onClick={() => navigate('/quiz')}>
+          <button
+            type='button'
+            className='flex items-center'
+            onClick={() => navigate('/quiz')}
+            id='go_quiz'
+          >
             <img src={logoIcon} alt='로고' className='mr-1.5 h-5 w-5' />
             <span className='leading-6'>퀴즈 바로가기</span>
             <img src={arrowRightIcon} alt='오른쪽 화살표' className='h-3 w-4' />

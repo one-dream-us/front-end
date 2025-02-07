@@ -62,7 +62,7 @@ export default function Accordion({
             viewBox='0 0 24 24'
             strokeWidth={1.5}
             stroke='currentColor'
-            className='ml-auto size-6 text-custom-gray-600'
+            className={`${!isOpen && 'drop_commentary'} ml-auto size-6 text-custom-gray-600`}
             animate={{ rotateZ: isOpen ? 180 : 0 }}
           >
             <path strokeLinecap='round' strokeLinejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5' />

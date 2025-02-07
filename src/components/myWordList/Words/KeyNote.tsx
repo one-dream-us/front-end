@@ -26,13 +26,13 @@ export default function KeyNote({
           onClick={() => {
             deleteKeyNote();
           }}
-          className='h-[22px] w-[22px] bg-keynote bg-contain bg-no-repeat hover:bg-scrap'
+          className='keynote_to_scrap h-[22px] w-[22px] bg-keynote bg-contain bg-no-repeat hover:bg-scrap'
         />
       </div>
       <p className='text-sm leading-160 text-custom-gray-dark'>{word.dictionary.definition}</p>
       <button
         type='button'
-        className='flex items-center self-end'
+        className='view_commentary flex items-center self-end'
         onClick={() => {
           setDefinition(word.dictionary.definition);
           setDescription(word.dictionary.description);

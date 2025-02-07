@@ -12,7 +12,7 @@ export default function Keywords({
 
   return (
     <div className='flex items-center gap-x-1.5'>
-      <img src={bookmarkIcon} alt='북마크' className='h-[22px] w-[22px]' />
+      <img src={bookmarkIcon} alt='북마크' className='icon_scrap h-[22px] w-[22px]' />
       <div className='flex h-6 w-full gap-x-1 text-[10px] font-medium'>
         {tags.map((tag, index) => (
           <div
