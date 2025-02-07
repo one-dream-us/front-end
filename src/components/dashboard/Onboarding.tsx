@@ -10,15 +10,12 @@ export default function OnBoarding({
   setShowOnboarding: (onBoardingStatus: boolean) => void;
 }) {
   const onboardingStepsLen = onboardingSteps.length;
-  const { currentStep, handleNext, setShowTooltip } = useOnboarding({
+  const { currentStep, handleNext, setShowTooltip, handleCheck } = useOnboarding({
     onboardingStepsLen,
     showOnboarding,
     setShowOnboarding,
   });
-
-  if (!showOnboarding) {
-    return null;
-  }
+  if (localStorage.getItem('hasSeenOnboarding') || !showOnboarding) return null;
 
   const { mobileImage, tabletImage, title, description } = onboardingSteps[currentStep];
 
@@ -26,6 +23,10 @@ export default function OnBoarding({
     <>
       <section className='fixed inset-0 z-[9990] flex justify-center bg-black bg-opacity-60'>
         <div className='relative mx-auto w-[323px] md:w-[520px]'>
+          <div className='absolute left-0 top-[50px] flex items-center gap-x-1'>
+            <input type='checkbox' className='checkbox h-4 w-4' onChange={handleCheck} />
+            <span className='text-sm text-custom-gray-300'>그만 보기</span>
+          </div>
           <button
             type='button'
             className='absolute right-0 top-[43px] h-5 w-5'

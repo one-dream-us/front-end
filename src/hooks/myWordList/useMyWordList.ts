@@ -7,7 +7,7 @@ export default function useMyWordList() {
   const [showTutorial, setShowTutorial] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  useFirstLogin;
+  useFirstLogin(setShowTutorial);
 
   const parameters: Record<string, MyWordListMenuType> = {
     SCRAP: '스크랩',
