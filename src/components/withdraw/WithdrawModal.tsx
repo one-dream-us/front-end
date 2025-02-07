@@ -3,7 +3,7 @@ import authApi from '@/services/authApi';
 
 export default function WithdrawModal({ closeModal }: { closeModal: () => void }) {
   return (
-    <div className='fixed left-0 top-0 z-[1000] flex h-screen w-full items-center justify-center bg-black bg-opacity-60 px-4'>
+    <div className='fixed left-0 top-0 z-[1000] flex h-dvh w-full items-center justify-center bg-black bg-opacity-60 px-4'>
       <div className='relative flex h-[287px] w-[343px] flex-col items-center justify-start rounded-lg bg-white px-5 py-4 md:h-[347px] md:w-[372px]'>
         <img
           className='mb-5 h-[120px] min-w-[164px] md:h-[180px] md:max-w-[332px]'
