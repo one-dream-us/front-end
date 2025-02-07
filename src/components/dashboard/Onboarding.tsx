@@ -15,7 +15,7 @@ export default function OnBoarding({
     showOnboarding,
     setShowOnboarding,
   });
-  if (localStorage.getItem('hasSeenOnboarding') || !showOnboarding) return null;
+  if (localStorage.getItem('hasCheckedOnboarding') || !showOnboarding) return null;
 
   const { mobileImage, tabletImage, title, description } = onboardingSteps[currentStep];
 
