@@ -17,7 +17,7 @@ export default function NewsCompleteOnboarding() {
   return (
     <>
       {visible && (
-        <div className='fixed left-0 top-0 z-[1000] flex h-screen w-full items-center justify-center bg-black bg-opacity-50'>
+        <div className='fixed left-0 top-0 z-[1000] flex h-dvh w-full items-center justify-center bg-black bg-opacity-50'>
           <div className='w-[280px] drop-shadow-[0_6px_12px_rgba(0,0,0,0.3)] md:w-[320px]'>
             <div
               className={`h-[245px] w-full rounded-t-[10px] bg-custom-gray-lighter py-[20px] pt-[28px] md:h-[272px]`}
