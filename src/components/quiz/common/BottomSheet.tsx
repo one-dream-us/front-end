@@ -30,6 +30,7 @@ export default function BottomSheet({
         </div>
 
         <button
+          id='go_wordlist_quiz'
           onClick={handleButtonClick}
           className={`h-[54px] w-full rounded-[10px] bg-custom-gray-dark text-[16px] font-bold leading-170 transition-all duration-200 hover:bg-custom-gray-medium ${buttonTextColor}`}
         >
