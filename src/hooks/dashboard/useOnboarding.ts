@@ -25,8 +25,8 @@ export default function useOnboarding({
     }
   };
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) localStorage.setItem('hasSeenOnboarding', 'true');
-    else localStorage.setItem('hasSeenOnboarding', 'false');
+    if (e.target.checked) localStorage.setItem('hasCheckedOnboarding', 'true');
+    else localStorage.setItem('hasCheckedOnboarding', 'false');
   };
 
   return { currentStep, handleNext, setShowTooltip, handleCheck };
