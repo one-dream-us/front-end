@@ -4,7 +4,7 @@ import Title from '@/components/course/common/Title';
 import CompleteButton from '@/components/course/main/CompleteButton';
 import Slider from '@/components/course/main/slider/Slider';
 import WordDescription from '@/components/course/main/WordDescription';
-import NewsDetailOnboarding from '@/components/course/onboarding/NewsDetailOnboarding';
+import NewsDetailOnboarding from '@/components/course/onboarding/detailPage/NewsDetailOnboarding';
 import { SHOW_NEWS_DETAIL_ONBOARDING } from '@/constants/constants';
 import { useBlocker, useParams } from 'react-router-dom';
 
