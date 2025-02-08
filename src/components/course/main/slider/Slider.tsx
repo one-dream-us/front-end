@@ -1,6 +1,6 @@
 import { highlightedDesc } from '@/utils/contentDetail/highlightedDesc';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 import { useStore } from 'zustand';
 import courseIndexState from '@/store/course/courseStore';
@@ -25,24 +25,23 @@ export default function Slider() {
   return (
     <div className='relative flex'>
       <Swiper
-        pagination={true}
         navigation={true}
-        modules={[Pagination, Navigation]}
+        modules={[Navigation]}
         slidesPerView={1}
         spaceBetween={50}
         onSlideChange={handleSlide}
         onSwiper={(e) => {
           setSwiper(e);
         }}
-        className='mySwiper flex h-auto w-full flex-col-reverse rounded-[10px] bg-custom-gray-dark p-[24px]'
+        className='mySwiper flex w-full flex-col-reverse rounded-[10px] bg-custom-gray-dark p-[24px] drop-shadow-[0_4px_8px_rgba(0,0,0,0.2)]'
       >
         {news?.map((item) => (
-          <SwiperSlide key={item.dictionaryId} className='mt-auto'>
+          <SwiperSlide key={item.dictionaryId} className='flex items-center justify-center'>
             <div
               dangerouslySetInnerHTML={{
                 __html: highlightedDesc(item.sentence, item.term, 'highlight_text'),
               }}
-              className='h-auto text-[16px] tracking-[-0.16px] text-custom-gray-200'
+              className='text-[16px] tracking-[-0.16px] text-custom-gray-200'
             />
           </SwiperSlide>
         ))}

@@ -26,12 +26,12 @@ export default function CompleteButton() {
     setTimeStamp('start');
   }, []);
   return (
-    <div className='mb-[40px] flex flex-col items-center justify-start desktop:flex-col-reverse desktop:gap-y-[12px]'>
+    <div className='mb-[40px] flex flex-col items-center justify-start'>
       {' '}
       <div className={lastIndex ? 'block' : 'hidden'}>
         <NewsLink />
       </div>
-      <div className='mt-[24px] flex h-[44px] w-full items-center justify-center gap-x-2 border'>
+      <div className='mt-[24px] flex h-[44px] w-full items-center justify-center gap-x-2'>
         <button
           onClick={() => swiper?.slidePrev()}
           className='flex h-full w-full items-center justify-center rounded-[4px] bg-custom-gray-300 text-[14px] font-bold text-custom-gray-dark transition-all duration-200 hover:bg-hover-30'

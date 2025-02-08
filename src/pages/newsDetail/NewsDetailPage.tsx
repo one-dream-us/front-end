@@ -2,6 +2,7 @@ import ModalButton from '@/components/common/modal/ModalButton';
 import ModalOverlay from '@/components/common/modal/ModalOverlay';
 import Title from '@/components/course/common/Title';
 import CompleteButton from '@/components/course/main/CompleteButton';
+import PaginationBullets from '@/components/course/main/PaginationBullets';
 import Slider from '@/components/course/main/slider/Slider';
 import WordDescription from '@/components/course/main/WordDescription';
 import NewsDetailOnboarding from '@/components/course/onboarding/detailPage/NewsDetailOnboarding';
@@ -11,7 +12,8 @@ import { useBlocker, useParams } from 'react-router-dom';
 export default function NewsDetailPage() {
   return (
     // w-[343px] desktop:w-[440px]
-    <div className='m-auto mt-[40px] w-[343px] desktop:w-[440px]'>
+    <div className='m-auto mt-[40px] w-[91.47%] max-w-[1182px]'>
+      <PaginationBullets />
       <div className='m-auto mb-[24px] h-[51px] min-w-[196px] text-center'>
         <Title main='한 문장씩 읽어보세요!' sub='오늘의 뉴스 문장' />
       </div>
