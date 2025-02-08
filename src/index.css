@@ -37,7 +37,7 @@ body {
   @apply font-bold text-custom-green-money;
 }
 
-.swiper-pagination-horizontal {
+/* .swiper-pagination-horizontal {
   position: relative;
 }
 
@@ -47,7 +47,7 @@ body {
 
 .swiper-pagination-bullet-active {
   @apply bg-custom-gray-lighter;
-}
+} */
 
 .swiper-button-next,
 .swiper-button-prev,
@@ -133,5 +133,3 @@ body {
 #news_tutorial .swiper-pagination .swiper-pagination-bullet-active {
   @apply bg-active-green;
 }
-
-

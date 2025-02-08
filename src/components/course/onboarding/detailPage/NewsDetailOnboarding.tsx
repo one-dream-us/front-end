@@ -3,6 +3,7 @@ import useCheckShowOnboarding from '@/hooks/newDetail/useCheckShowOnboarding';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
+import OnboardingCheckBox from '../common/OnboardingCheckBox';
 
 export default function NewsDetailOnboarding() {
   const { setShowOnboarding, showOnboarding, closeModal, visible } = useCheckShowOnboarding(
@@ -11,72 +12,33 @@ export default function NewsDetailOnboarding() {
   const [activeIndex, setActiveIndex] = useState(0);
   const isLast = activeIndex === 2;
 
-  // useEffect(() => {
-  //   const setScreensize = () => {
-  //     //먼저 뷰포트의 실제 높이를 100등분하여, 새로 정의할 1 vh의 값을 얻습니다.
-  //     let vh = window.innerHeight * 0.01;
-  //     //--vh를 키워드로 삼아서 활용합니다.
-  //     document.documentElement.style.setProperty('--vh', `${vh}px`);
-  //     console.log(vh);
-  //   };
-
-  //   window.addEventListener('resize', setScreensize);
-
-  //   return () => window.removeEventListener('resize', setScreensize);
-  // }, []);
-
   return (
     <>
       {visible && (
         <div
           style={{ height: '100dvh' }}
-          className='fixed left-0 top-0 z-[1000] w-full items-center justify-center bg-black bg-opacity-50'
+          className='fixed left-0 top-0 z-[1000] flex w-full items-center justify-center bg-black bg-opacity-50'
         >
-          <CheckBox setShowOnboarding={setShowOnboarding} showOnboarding={showOnboarding} />
-          <OnboardingModal
-            isLast={isLast}
-            setActiveIndex={setActiveIndex}
-            handleHiddenOnboarding={closeModal}
-          />
+          <div className='relative'>
+            <OnboardingModal
+              isLast={isLast}
+              setActiveIndex={setActiveIndex}
+              handleHiddenOnboarding={closeModal}
+            />
+            <div
+              className={`absolute -bottom-8 right-0 ${isLast ? 'visible opacity-100' : 'invisible opacity-0'}`}
+            >
+              <OnboardingCheckBox
+                setShowOnboarding={setShowOnboarding}
+                showOnboarding={showOnboarding}
+              />
+            </div>
+          </div>
         </div>
       )}
     </>
   );
 }
-
-const CheckBox = ({
-  showOnboarding,
-  setShowOnboarding,
-}: {
-  showOnboarding: string;
-  setShowOnboarding: Dispatch<SetStateAction<string>>;
-}) => {
-  return (
-    <div className='absolute left-0 right-0 m-auto'>
-      <div className='flex items-center'>
-        <input
-          id='link-checkbox'
-          type='checkbox'
-          className={`focus:ring-main-lime disabled:border-steel-400 disabled:bg-steel-400 h-4 w-4 rounded-sm border-gray-300 bg-gray-100 bg-center bg-no-repeat text-blue-600 checked:bg-[url('@/assets/icons/check.svg')] focus:outline-none focus:ring-1 focus:ring-offset-0`}
-          onChange={(e) => {
-            if (e.target.checked) {
-              setShowOnboarding('false');
-            } else {
-              setShowOnboarding('true');
-            }
-          }}
-          checked={showOnboarding === 'false'}
-        />
-        <label
-          htmlFor='link-checkbox'
-          className='ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-        >
-          그만보기
-        </label>
-      </div>
-    </div>
-  );
-};
 
 const OnboardingModal = ({
   isLast,
@@ -91,10 +53,7 @@ const OnboardingModal = ({
 
   const handleModal = () => (isLast ? handleHiddenOnboarding() : swiper?.slideNext());
   return (
-    <div
-      style={{ transform: 'translate(-50%, -50%)' }}
-      className='absolute left-1/2 top-1/2 w-[280px] -translate-y-1/2 drop-shadow-[0_6px_12px_rgba(0,0,0,0.3)] md:w-[320px]'
-    >
+    <div className='w-[280px] drop-shadow-[0_6px_12px_rgba(0,0,0,0.3)] md:w-[320px]'>
       <Swiper
         id='news_tutorial'
         pagination={true}

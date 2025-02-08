@@ -2,8 +2,8 @@ import CompleteButton from '@/components/course/complete/CompleteButton';
 import quizResult100 from '@/assets/p2/quiz result=100.png';
 import CardContainer from '@/components/course/complete/CardContainer';
 import GridContainer from '@/components/course/complete/GridContainer';
-import NewsCompleteOnboarding from '@/components/course/complete/onboarding/NewsCompleteOnboarding';
 import { SHOW_NEWS_COMPLETE_ONBOARDING } from '@/constants/constants';
+import NewsCompleteOnboarding from '@/components/course/onboarding/completePage/NewsCompleteOnboarding';
 
 export default function NewsCompletePage() {
   return (
