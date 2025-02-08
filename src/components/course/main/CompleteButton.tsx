@@ -27,12 +27,14 @@ export default function CompleteButton() {
     setTimeStamp('start');
   }, []);
   return (
-    <div className='mb-[40px] flex flex-col items-center justify-start gap-y-[60px] md:gap-y-[141px] desktop:flex-col-reverse desktop:gap-y-[12px]'>
+    <div className='mb-[40px] flex flex-col items-center justify-start desktop:flex-col-reverse desktop:gap-y-[12px]'>
       {' '}
-      <NewsLink />
+      <div className={lastIndex ? 'block' : 'hidden'}>
+        <NewsLink />
+      </div>
       <button
         onClick={handleButtonClick}
-        className={`h-[48px] w-full rounded-[10px] text-[14px] font-bold transition-all duration-200 ${lastIndex ? 'bg-custom-gray-dark text-custom-green-money hover:bg-hover-80 hover:text-green-hover' : 'bg-custom-gray-400 text-custom-gray-200 hover:bg-hover-30'}`}
+        className={`mt-[24px] h-[48px] w-full rounded-[10px] text-[14px] font-bold transition-all duration-200 ${lastIndex ? 'bg-custom-gray-dark text-custom-green-money hover:bg-hover-80 hover:text-green-hover' : 'bg-custom-gray-400 text-custom-gray-200 hover:bg-hover-30'}`}
       >
         학습 완료하기
       </button>
