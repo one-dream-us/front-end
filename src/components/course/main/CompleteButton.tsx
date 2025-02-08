@@ -39,6 +39,7 @@ export default function CompleteButton() {
           이전
         </button>
         <button
+          id={`${lastIndex ? 'done_learning_cta' : 'done_learning_crey'}`}
           onClick={handleNextButtonClick}
           className={`flex h-full w-full items-center justify-center rounded-[4px] bg-custom-gray-dark text-[14px] font-bold transition-all duration-200 hover:bg-hover-80 ${lastIndex ? 'text-custom-green-money hover:text-green-hover' : 'text-white'}`}
         >
