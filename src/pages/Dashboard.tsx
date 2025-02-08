@@ -17,7 +17,11 @@ export default function Dashboard() {
         <section>
           <div className='mb-3 flex items-center justify-between'>
             <p className='text-lg font-bold text-custom-gray-dark'>오늘 업로드 된 머니뉴스</p>
-            <Link to={'/'} className='flex items-center text-xs font-medium text-custom-gray-500'>
+            <Link
+              to='/news-list'
+              className='flex items-center text-xs font-medium text-custom-gray-500'
+              id='go_news_list'
+            >
               전체보기 <img src={arrowRightIcon} alt='전체 보기' className='h-4 w-4' />
             </Link>
           </div>

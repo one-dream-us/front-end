@@ -47,12 +47,7 @@ export const FooterMenuList = [
   {
     id: 3,
     title: '오류 접수',
-    to: 'https://docs.google.com/forms/d/1S3zvVSBDCl1KLhwG1BnoTslwrsYx9ix_wR-COsu2Eac/viewform?edit_requested=true',
-  },
-  {
-    id: 4,
-    title: 'FAQ',
-    to: 'https://myinsightbox.notion.site/bb74ba586e68401ebcc2b97e093bbc1d#157c62d9c5ed81ec885bed86e46de407',
+    to: 'https://docs.google.com/forms/d/e/1FAIpQLSdhMeraw_O3ecKd3ujPOGoRBCtHoZ83tv7Fex1tKD5nmILtug/viewform',
   },
 ];
 

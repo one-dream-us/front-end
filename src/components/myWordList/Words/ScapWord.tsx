@@ -25,13 +25,13 @@ export default function ScrapWord({
           onClick={() => {
             addKeyNote();
           }}
-          className='h-[22px] w-[22px] bg-scrap bg-contain bg-no-repeat hover:bg-keynote'
+          className='scrap_to_keynote h-[22px] w-[22px] bg-scrap bg-contain bg-no-repeat hover:bg-keynote'
         />
       </div>
       <p className='text-sm leading-160 text-custom-gray-dark'>{word.definition}</p>
       <button
         type='button'
-        className='flex items-center self-end'
+        className='view_commentary flex items-center self-end'
         onClick={() => {
           setDefinition(word.definition);
           setDescription(word.description);

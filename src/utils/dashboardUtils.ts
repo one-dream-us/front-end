@@ -9,6 +9,7 @@ export function handleBannerClick({
   setIsOpen,
   setModalOpen,
   latestNewsId,
+  setIsNavigate,
 }: HandleBannerClickProps) {
   if (index === 0) {
     navigate(`/news/${latestNewsId}`);
@@ -20,6 +21,7 @@ export function handleBannerClick({
       isFirstQuizAttempt,
       navigate,
       setModalOpen,
+      setIsNavigate,
     });
   } else {
     if (isLogin) navigate('/my-word-list?tab="scrap"');
@@ -34,12 +36,13 @@ export function handleQuizBannerClick({
   isFirstQuizAttempt,
   navigate,
   setModalOpen,
+  setIsNavigate,
 }: HandleQBannerClickProps) {
   if (!isLogin) {
+    setIsNavigate(false);
     setIsOpen(true);
   } else if (isLogin && keyNoteListLen < 3) {
-    if (isFirstQuizAttempt)
-      navigate('/quiz'); //랜덤
+    if (isFirstQuizAttempt) navigate('/quiz');
     else setModalOpen(true);
-  } else if (isLogin && keyNoteListLen >= 3) navigate('/quiz'); // 스크랩 기반
+  } else if (isLogin && keyNoteListLen >= 3) navigate('/quiz');
 }

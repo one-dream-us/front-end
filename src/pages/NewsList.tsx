@@ -21,6 +21,7 @@ export default function NewsList() {
     modalOpen,
     setModalOpen,
     totalElements,
+    setIsNavigate,
   } = useNewsListLogic();
   useImagePreloader([quizBannerM, quizBannerT, quizBannerW]);
 
@@ -46,6 +47,7 @@ export default function NewsList() {
               isFirstQuizAttempt,
               navigate,
               setModalOpen,
+              setIsNavigate,
             })
           }
         >

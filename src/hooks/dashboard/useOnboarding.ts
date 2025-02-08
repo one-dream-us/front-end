@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import useCheckFirstVisit from './useCheckFirstVisit';
+import React, { useState } from 'react';
 import useKeywordTooltip from '@/store/useKeywordTooltip';
 import useDisableScroll from '../common/useDisableScroll';
 
@@ -13,10 +12,9 @@ export default function useOnboarding({
   setShowOnboarding: (onBoardingStatus: boolean) => void;
 }) {
   const [currentStep, setCurrentStep] = useState(0);
-  useCheckFirstVisit(setShowOnboarding);
-
   const { setShowTooltip } = useKeywordTooltip();
   useDisableScroll(showOnboarding);
+
   const handleNext = () => {
     if (currentStep < onboardingStepsLen - 1) {
       setCurrentStep((prev) => prev + 1);
@@ -26,5 +24,10 @@ export default function useOnboarding({
       setTimeout(() => setShowTooltip(false), 3000);
     }
   };
-  return { currentStep, handleNext, setShowTooltip };
+  const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) localStorage.setItem('hasCheckedOnboarding', 'true');
+    else localStorage.setItem('hasCheckedOnboarding', 'false');
+  };
+
+  return { currentStep, handleNext, setShowTooltip, handleCheck };
 }

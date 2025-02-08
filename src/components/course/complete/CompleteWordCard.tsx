@@ -48,7 +48,7 @@ export default function CompleteWordCard({
     >
       <h1 className='line-clamp-1 text-[16px] font-medium text-custom-gray-dark'>{term}</h1>
 
-      <button onClick={handleScrap}>
+      <button onClick={handleScrap} className={`${!alreadyScrapped && 'word_scrap'}`}>
         <img
           className={`h-[19px] w-[18px]`}
           src={alreadyScrapped ? scrapActive : scrapDisable}

@@ -33,7 +33,10 @@ export default function NewsPendingPage() {
           />
         </div>
         <Link to={`/news/${newsId}`}>
-          <button className='mb-[40px] h-[44px] w-full rounded-[10px] bg-custom-gray-dark text-[14px] font-bold text-custom-green-money transition-all duration-200 hover:bg-hover-80 md:mb-0'>
+          <button
+            id='start_learning'
+            className='mb-[40px] h-[44px] w-full rounded-[10px] bg-custom-gray-dark text-[14px] font-bold text-custom-green-money transition-all duration-200 hover:bg-hover-80 md:mb-0'
+          >
             학습 시작하기
           </button>
         </Link>

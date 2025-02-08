@@ -23,38 +23,42 @@ export default function WordListContent({
 }: WordListContentProps) {
   const handleScroll = useWordListContentLogic({ activeMenu, showTutorial, setShowTooltip });
   const renderContent = () => {
-    switch (activeMenu) {
-      case '스크랩':
-        return wordList.map((word) => (
-          <ScrapWord
-            activeMenu={activeMenu}
-            word={word as ScrapDictionary}
-            key={(word as ScrapDictionary).dictionaryId}
-            setShowModal={setShowModal}
-          />
-        ));
-      case '핵심노트':
-        return wordList.map((word) => (
-          <KeyNote
-            activeMenu={activeMenu}
-            word={word as KeyNoteDictionary}
-            key={(word as KeyNoteDictionary).keyNoteId}
-            setShowModal={setShowModal}
-          />
-        ));
-      case '졸업노트':
-      case '오답노트':
-        return wordList.map((word) => (
-          <WordNote
-            activeMenu={activeMenu}
-            word={word as WordInterface}
-            key={(word as WordInterface).dictionary.id}
-            setShowModal={setShowModal}
-          />
-        ));
-      default:
-        return null;
-    }
+    return wordList.map((word, index) => {
+      const key = `${activeMenu}-${index}`;
+
+      switch (activeMenu) {
+        case '스크랩':
+          return (
+            <ScrapWord
+              activeMenu={activeMenu}
+              word={word as ScrapDictionary}
+              key={key}
+              setShowModal={setShowModal}
+            />
+          );
+        case '핵심노트':
+          return (
+            <KeyNote
+              activeMenu={activeMenu}
+              word={word as KeyNoteDictionary}
+              key={key}
+              setShowModal={setShowModal}
+            />
+          );
+        case '졸업노트':
+        case '오답노트':
+          return (
+            <WordNote
+              activeMenu={activeMenu}
+              word={word as WordInterface}
+              key={key}
+              setShowModal={setShowModal}
+            />
+          );
+        default:
+          return null;
+      }
+    });
   };
   return (
     <div

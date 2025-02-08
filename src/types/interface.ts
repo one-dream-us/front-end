@@ -242,6 +242,7 @@ export interface HandleQBannerClickProps {
   navigate: NavigateFunction;
   setIsOpen: (open: boolean) => void;
   setModalOpen: (open: boolean) => void;
+  setIsNavigate: (isNavigate: boolean) => void;
 }
 
 export interface News {
