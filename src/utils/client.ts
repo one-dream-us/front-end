@@ -1,4 +1,3 @@
-import authApi from '@/services/authApi';
 import axios, { AxiosError } from 'axios';
 
 const client = axios.create({
@@ -13,12 +12,8 @@ client.interceptors.response.use(
     if (e instanceof AxiosError) {
       if (e.response?.data.errorCode === 'TOKEN_EXPIRED') {
         console.log('TOKEN_EXPIRED');
-        alert('로그인 시간이 만료되었습니다. 다시 로그인 해주세요.');
-        authApi.logout();
-      }
-      if (e.response?.data.errorCode === 'REFRESH_TOKEN_DIFFERENT') {
-        console.log(e);
-        console.log('REFRESH_TOKEN_DIFFERENT');
+        location.pathname = '/login';
+        return alert('로그인 시간이 만료되었습니다. 다시 로그인 해주세요.');
       }
     }
 
