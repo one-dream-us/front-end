@@ -24,6 +24,7 @@ import NewsDetailLayout from './components/common/layout/NewsDetailLayout';
 import NewsPendingPage from './pages/newsDetail/NewsPendingPage';
 import NewsCompletePage from './pages/newsDetail/NewsCompletePage';
 import NewsDetailPage from './pages/newsDetail/NewsDetailPage';
+import Write from './pages/admin/write/Write';
 
 export const router = createBrowserRouter(
   [
@@ -82,6 +83,7 @@ export const router = createBrowserRouter(
       children: [
         { path: '/admin/home', element: <AdminHome /> },
         { path: '/admin/link-upload', element: <LinkUpload /> },
+        { path: '/admin/write', element: <Write /> },
       ],
     },
   ],
