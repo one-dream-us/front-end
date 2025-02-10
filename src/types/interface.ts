@@ -355,3 +355,21 @@ export interface UploadFormState {
 }
 
 export type UploadFormChangeType = keyof UploadFormState['uploadForm'];
+
+export interface UploadFormReqestBody {
+  title: string;
+  thumbnailUrl: string;
+  originalLink: string;
+  newsAgency: string;
+  dictionarySentenceList: DictionarySentenceList[];
+}
+
+export interface DictionarySentenceList {
+  dictionaryId: number;
+  dictionaryTerm: string;
+  dictionaryDefinition: string;
+  dictionaryDescription: string;
+  sentenceValue: string;
+  startIdx: number;
+  endIdx: number;
+}
