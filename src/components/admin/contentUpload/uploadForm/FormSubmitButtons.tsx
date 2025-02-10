@@ -1,10 +1,8 @@
-export default function FormSubmitButtons({
-  showSchedule,
-  handleShowSchedule,
-}: {
-  showSchedule: boolean;
-  handleShowSchedule: () => void;
-}) {
+import adminState from '@/store/admin/adminState';
+import { useStore } from 'zustand';
+
+export default function FormSubmitButtons() {
+  const { setShowSchedule, showSchedule } = useStore(adminState);
   return (
     <div className='flex gap-4'>
       <button
@@ -29,8 +27,8 @@ export default function FormSubmitButtons({
       </button>
       <button
         type='button'
-        onClick={handleShowSchedule}
-        className={`flex flex-1 items-center justify-center gap-2 rounded-md px-4 py-3 transition-colors ${showSchedule ? 'bg-green-600 text-white hover:bg-green-700' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+        onClick={() => setShowSchedule()}
+        className={`flex flex-1 items-center justify-center gap-2 rounded-md px-4 py-3 transition-colors ${showSchedule ? 'bg-gray-600 text-white hover:bg-gray-700' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -46,7 +44,7 @@ export default function FormSubmitButtons({
             d='M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'
           />
         </svg>
-        예약 업로드
+        예약 업로드 {showSchedule ? '닫기' : '열기'}
       </button>
     </div>
   );
