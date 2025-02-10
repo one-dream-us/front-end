@@ -343,4 +343,15 @@ export interface Graduation {
     };
   }[];
 }
-/////
+
+export interface UploadFormState {
+  uploadForm: {
+    title: string;
+    newsCompany: string;
+    newsLink: string;
+    imgLink: string;
+  };
+  onChange: (newValue: string, type: keyof UploadFormState['uploadForm']) => void;
+}
+
+export type UploadFormChangeType = keyof UploadFormState['uploadForm'];

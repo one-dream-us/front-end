@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 export default function AdminHeader() {
   const { pathname } = useLocation();
   return (
-    <header className='fixed left-0 right-0 z-[999] m-auto flex h-[80px] max-w-[1182px] items-center bg-white'>
+    <header className='fixed left-0 right-0 z-[999] m-auto flex h-[80px] max-w-[1182px] items-center bg-white px-[24px]'>
       <Link to={'/'}>
         {' '}
         <img src={logo} className='mr-[40px] h-[28px] w-[117px]' alt='logo' />

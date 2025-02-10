@@ -12,12 +12,12 @@ export default function AdminHome() {
   return (
     <div className='mt-[40px]'>
       {' '}
-      <div className='m-auto max-w-[1182px]'>
+      <div className='m-auto max-w-[1182px] px-[24px]'>
         <div className='mb-[20px] flex items-center justify-between'>
           <h1 className='text-[20px] font-bold leading-normal tracking-[-2%] text-custom-black-light'>
             콘텐츠 홈
           </h1>
-          <Link to={'/admin/link-upload'}>
+          <Link to={'/admin/write'}>
             <button className='flex h-[28px] w-[150px] items-center justify-center rounded-[1000px] border border-custom-gray-200 px-[10px] py-[4px] text-[12px] font-medium leading-normal tracking-[-2%] text-custom-gray-500 hover:border-custom-gray-300 hover:text-custom-gray-700'>
               <span className='mr-[6px]'>신규 콘텐츠 등록하기</span>
               <svg
@@ -49,7 +49,9 @@ export default function AdminHome() {
           </button>
         </div>
 
-        <ContentTable detail={detail} data={data} handleButtonClick={setDetail} />
+        <div className='overflow-x-auto'>
+          <ContentTable detail={detail} data={data} handleButtonClick={setDetail} />
+        </div>
 
         <PaginationButton />
       </div>
