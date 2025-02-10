@@ -12,7 +12,7 @@ export default function ContentTable({
   detail: number | null;
 }) {
   return (
-    <table className='mb-[20px] h-[210px] w-full text-[12px] text-custom-gray-dark'>
+    <table className='mb-[20px] h-[210px] w-[1182px] text-[12px] text-custom-gray-dark'>
       <tr>
         {/* table header */}
         {adminTableHeader.map((item) => (

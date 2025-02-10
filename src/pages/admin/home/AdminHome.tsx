@@ -49,7 +49,9 @@ export default function AdminHome() {
           </button>
         </div>
 
-        <ContentTable detail={detail} data={data} handleButtonClick={setDetail} />
+        <div className='overflow-x-auto'>
+          <ContentTable detail={detail} data={data} handleButtonClick={setDetail} />
+        </div>
 
         <PaginationButton />
       </div>
