@@ -9,6 +9,8 @@ const adminApi = {
   uploadImmediately: async (payload: UploadFormReqestBody) => {
     return (await client.post('/contents/news', payload)).data;
   },
-  getScheduledUploadList: () => async () => (await client.get('/contents/news/scheduled')).data,
+  getScheduledUploadList: async (page: number, size: number = 10) => {
+    return (await client.get(`/contents/news/scheduled?page=${page}&size=${size}`)).data;
+  },
 };
 export default adminApi;
