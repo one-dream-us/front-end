@@ -2,8 +2,9 @@ import { FormEvent } from 'react';
 import FormSubmitButtons from './FormSubmitButtons';
 import { useUploadFormStore } from '@/store/admin/uploadFormState';
 import LabelInput from './LabelInput';
-import NewsContentForm from './NewsContentForm';
 import SelectDateForm from './SelectDateForm';
+import NewsContentFormContainer from './NewsContentFormContainer';
+import newsContentState from '@/store/admin/newsContentState';
 
 const UploadForm = () => {
   console.log('rerender');
@@ -11,9 +12,12 @@ const UploadForm = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const uploadForm = useUploadFormStore.getState().uploadForm;
+    const newsContents = newsContentState.getState().newsContents;
 
     console.log(uploadForm);
     console.log('바로 업로드');
+
+    console.log(newsContents);
 
     alert('업로드 완료');
   };
@@ -30,11 +34,7 @@ const UploadForm = () => {
         />
         <LabelInput id='imgLink' label='이미지 링크' placeholder='이미지 링크를 입력하세요' />
 
-        <div className='space-y-4'>
-          {[0, 1, 2].map((item) => (
-            <NewsContentForm key={item} id={item} />
-          ))}
-        </div>
+        <NewsContentFormContainer />
 
         <SelectDateForm />
       </div>
