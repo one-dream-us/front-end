@@ -1,28 +1,31 @@
+import useDebounce from '@/hooks/admin/useDebounce';
 import useInput from '@/hooks/admin/useInput';
 import adminApi from '@/services/adminApi';
 import newsContentState from '@/store/admin/newsContentState';
 import { DictionarySentenceList, SearchWordResult } from '@/types/interface';
-import { useRef, useState } from 'react';
-import { useShallow } from 'zustand/shallow';
+import { KeyboardEvent, useEffect, useRef, useState } from 'react';
 
 export default function NewsContentForm({ index }: { index: number }) {
   const [isDone, setIsDone] = useState(false);
   const [searchResults, setSearchResults] = useState<SearchWordResult[]>([]);
+  const [searchResultIndex, setSearchResultIndex] = useState(-1);
   const sentence = useInput();
   const word = useInput();
   const wordSearch = useInput();
   const definition = useInput();
   const desc = useInput();
   const wordIdRef = useRef<HTMLInputElement>(null);
-  const { newsContents, setNewsContents } = newsContentState(
-    useShallow((s) => ({ newsContents: s.newsContents, setNewsContents: s.setNewsContents })),
-  );
+  const { setNewsContents } = newsContentState();
 
-  const handleSearchClick = async () => {
-    const res = await adminApi.lookUpKeyword(wordSearch.value);
+  const updateSearchResult = async (value: string) => {
+    const res = await adminApi.lookUpKeyword(value);
     setSearchResults(res);
   };
 
+  // 조회 버튼 클릭
+  const handleSearchClick = () => updateSearchResult(wordSearch.value);
+
+  // 조회 결과 클릭
   const handleSearchResultClick = (item: SearchWordResult) => {
     if (!wordIdRef.current) return;
 
@@ -39,7 +42,7 @@ export default function NewsContentForm({ index }: { index: number }) {
   };
 
   // 수정 or 완료 버튼 핸들러
-  const handleFinishButton = () => {
+  const handleSaveButtonClick = () => {
     if (!wordIdRef.current) return;
 
     setIsDone((prev) => !prev);
@@ -58,7 +61,31 @@ export default function NewsContentForm({ index }: { index: number }) {
     setNewsContents(payload, index);
   };
 
-  console.log(newsContents);
+  // 방향키로 검색 결과 이동
+  const handleNavigateSearchResult = (e: KeyboardEvent<HTMLInputElement>) => {
+    const { key } = e;
+
+    if (key === 'ArrowDown') {
+      setSearchResultIndex((prev) => (prev === searchResults.length - 1 ? 0 : prev + 1));
+    } else if (key === 'ArrowUp') {
+      setSearchResultIndex((prev) =>
+        prev === -1 || prev === 0 ? searchResults.length - 1 : prev - 1,
+      );
+    } else if (key === 'Enter') {
+      e.preventDefault();
+      handleSearchResultClick(searchResults[searchResultIndex]);
+    }
+  };
+
+  // 단어 검색 타이핑 할 때마다 서버에 요청
+  const debouncedSearchTerm = useDebounce(wordSearch.value, 500);
+  useEffect(() => {
+    (async () => {
+      if (debouncedSearchTerm !== '') {
+        updateSearchResult(debouncedSearchTerm);
+      }
+    })();
+  }, [debouncedSearchTerm]);
   return (
     <div className='rounded-md border bg-gray-50 p-4'>
       <h3 className='mb-3 flex items-center gap-2 font-medium'>
@@ -106,16 +133,12 @@ export default function NewsContentForm({ index }: { index: number }) {
                   type='text'
                   className='flex-1 rounded-md border p-2'
                   placeholder='용어를 검색하세요'
-                  onKeyDown={async () => {
-                    const { value } = wordSearch;
-                    if (!value) return;
-                    const res = await adminApi.lookUpKeyword(value);
-                    console.log(res);
-                  }}
+                  onKeyDown={(e) => handleNavigateSearchResult(e)}
                 />
                 <button
+                  disabled={isDone}
                   type='button'
-                  className='flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700'
+                  className='flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700 disabled:bg-gray-400'
                   onClick={handleSearchClick}
                 >
                   조회
@@ -123,11 +146,11 @@ export default function NewsContentForm({ index }: { index: number }) {
               </div>
               {searchResults.length > 0 && wordSearch.value && (
                 <div className='absolute mt-1 w-full rounded-md border bg-white py-1 shadow-lg'>
-                  {searchResults.map((item) => (
+                  {searchResults.map((item, index) => (
                     <button
                       key={item.id}
                       type='button'
-                      className='w-full px-4 py-2 text-left transition-colors hover:bg-gray-100'
+                      className={`w-full px-4 py-2 text-left transition-colors hover:bg-gray-100 ${index === searchResultIndex && 'bg-gray-100'}`}
                       onClick={() => handleSearchResultClick(item)}
                     >
                       {item.term}
@@ -165,9 +188,9 @@ export default function NewsContentForm({ index }: { index: number }) {
         </div>
 
         <button
-          onClick={handleFinishButton}
+          onClick={handleSaveButtonClick}
           type='button'
-          className='flex w-full items-center justify-center gap-2 rounded-md bg-custom-gray-dark px-4 py-3 text-white transition-colors hover:bg-hover-80'
+          className={`flex w-full items-center justify-center gap-2 rounded-md px-4 py-3 transition-colors ${isDone ? 'bg-custom-gray-dark text-white hover:bg-hover-80' : 'bg-green-600 text-white hover:bg-green-700'}`}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -188,7 +211,7 @@ export default function NewsContentForm({ index }: { index: number }) {
             />
           </svg>
 
-          {isDone ? '수정' : '완료'}
+          {isDone ? '수정' : '저장'}
         </button>
       </div>
     </div>
