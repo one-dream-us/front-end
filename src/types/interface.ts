@@ -365,7 +365,7 @@ export interface UploadFormReqestBody {
 }
 
 export interface DictionarySentenceList {
-  dictionaryId: number;
+  dictionaryId: number | null;
   dictionaryTerm: string;
   dictionaryDefinition: string;
   dictionaryDescription: string;
@@ -373,3 +373,20 @@ export interface DictionarySentenceList {
   startIdx: number;
   endIdx: number;
 }
+
+export interface NewsContent {
+  id: number;
+  sentence: string;
+  word: string;
+  wordSearch: string;
+  definition: string;
+  desc: string;
+}
+
+export interface SearchWordResult {
+  id: number;
+  term: string;
+  definition: string;
+  description: string;
+}
+//{ id: 0, sentenes: '', word: '', wordSearch: '', definition: '', desc: '' },

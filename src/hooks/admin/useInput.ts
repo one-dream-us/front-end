@@ -6,7 +6,7 @@ const useInput = (initialValue: string = '') => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setValue(e.target.value);
 
-  return { value, handleInputChange };
+  return { value, handleInputChange, setValue };
 };
 
 export default useInput;
