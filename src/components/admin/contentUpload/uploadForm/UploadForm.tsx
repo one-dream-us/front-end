@@ -5,21 +5,31 @@ import LabelInput from './LabelInput';
 import SelectDateForm from './SelectDateForm';
 import NewsContentFormContainer from './NewsContentFormContainer';
 import newsContentState from '@/store/admin/newsContentState';
+import { UploadFormReqestBody } from '@/types/interface';
+import adminApi from '@/services/adminApi';
 
 const UploadForm = () => {
-  console.log('rerender');
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const uploadForm = useUploadFormStore.getState().uploadForm;
+    const { imgLink, newsCompany, newsLink, title } = useUploadFormStore.getState().uploadForm;
     const newsContents = newsContentState.getState().newsContents;
-
-    console.log(uploadForm);
     console.log('바로 업로드');
 
-    console.log(newsContents);
+    const payload: UploadFormReqestBody = {
+      title,
+      newsAgency: newsCompany,
+      originalLink: newsLink,
+      thumbnailUrl: imgLink,
+      dictionarySentenceList: newsContents,
+    };
 
-    alert('업로드 완료');
+    try {
+      await adminApi.uploadImmediately(payload);
+      location.pathname = '/admin/home';
+      alert('업로드 완료');
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
