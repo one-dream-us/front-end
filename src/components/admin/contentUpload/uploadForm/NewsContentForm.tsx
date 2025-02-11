@@ -98,6 +98,7 @@ export default function NewsContentForm({ index }: { index: number }) {
         <div>
           <label className='mb-1 block text-sm font-medium text-gray-700'>문장</label>
           <input
+            required
             name='sentence'
             value={sentence.value}
             onChange={sentence.handleInputChange}
@@ -113,6 +114,7 @@ export default function NewsContentForm({ index }: { index: number }) {
           <div className='flex flex-col gap-2 md:flex-row'>
             <div className='flex-1'>
               <input
+                required
                 name='word'
                 value={word.value}
                 onChange={word.handleInputChange}
@@ -165,6 +167,7 @@ export default function NewsContentForm({ index }: { index: number }) {
         <div>
           <label className='mb-1 block text-sm font-medium text-gray-700'>정의</label>
           <input
+            required
             name='definition'
             value={definition.value}
             onChange={definition.handleInputChange}

@@ -11,6 +11,7 @@ import adminApi from '@/services/adminApi';
 const UploadForm = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const { imgLink, newsCompany, newsLink, title } = useUploadFormStore.getState().uploadForm;
     const newsContents = newsContentState.getState().newsContents;
     console.log('바로 업로드');
@@ -24,6 +25,7 @@ const UploadForm = () => {
     };
 
     try {
+      if (!confirm('문장을 모두 저장 해야 업로드 가능해요! 모두 저장하셨나요??')) return;
       await adminApi.uploadImmediately(payload);
       location.pathname = '/admin/home';
       alert('업로드 완료');
