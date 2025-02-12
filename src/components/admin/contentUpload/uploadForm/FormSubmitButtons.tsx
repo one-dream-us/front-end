@@ -2,11 +2,12 @@ import adminState from '@/store/admin/adminState';
 import { useStore } from 'zustand';
 
 export default function FormSubmitButtons() {
-  const { setShowSchedule, showSchedule } = useStore(adminState);
+  const { setShowSchedule, showSchedule, setScheduled } = useStore(adminState);
   return (
     <div className='flex gap-4'>
       <button
         type='submit'
+        onClick={() => setScheduled(false)}
         className='flex flex-1 items-center justify-center gap-2 rounded-md bg-blue-600 px-4 py-3 text-white transition-colors hover:bg-blue-700'
       >
         <svg

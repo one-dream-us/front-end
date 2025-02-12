@@ -25,6 +25,7 @@ export default function LabelInput({
         {label}
       </label>
       <input
+        required
         value={value}
         onChange={(e) => onChange(e.target.value, id)}
         type={type}

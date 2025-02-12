@@ -1,23 +1,12 @@
 import adminState from '@/store/admin/adminState';
-import { useUploadFormStore } from '@/store/admin/uploadFormState';
-import { MouseEvent, useState } from 'react';
 import { useStore } from 'zustand';
 
 export default function SelectDateForm() {
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
+  // const [date, setDate] = useState('');
+  // const [time, setTime] = useState('');
   const { showSchedule } = useStore(adminState);
+  const { date, setDate, setScheduled } = useStore(adminState);
 
-  const handleScheduledSubmit = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    console.log(date);
-    console.log(time);
-
-    const uploadForm = useUploadFormStore.getState().uploadForm;
-    console.log(uploadForm);
-
-    alert(`${date} 06:00AM 예약 완료`);
-  };
   return (
     <>
       {showSchedule && (
@@ -34,18 +23,15 @@ export default function SelectDateForm() {
             </div>
             <div className='flex-1'>
               <label className='mb-1 block text-sm font-medium text-gray-700'>예약 시간</label>
-              <input
-                disabled
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
-                type='time'
-                className='w-full rounded-md border p-2'
-              />
+              <input disabled type='time' className='w-full rounded-md border p-2' />
             </div>
           </div>
           <button
             disabled={!date}
-            onClick={handleScheduledSubmit}
+            type='submit'
+            onClick={() => {
+              setScheduled(true);
+            }}
             className={`mt-2 flex w-full items-center justify-center gap-2 rounded-md border bg-blue-400 px-4 py-3 transition-colors ${date ? 'bg-green-600 text-white hover:bg-green-700' : 'hover:bg-gray-300 disabled:bg-gray-200 disabled:text-gray-700'}`}
           >
             <svg

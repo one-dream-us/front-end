@@ -189,3 +189,5 @@ export const tutorialTitleList = [
     bottom: '심화 학습에 도전해요!',
   },
 ];
+
+export const ADMIN_UPLOAD_LIST_PAGE_SIZE = 10;

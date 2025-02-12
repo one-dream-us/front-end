@@ -365,7 +365,92 @@ export interface UploadFormReqestBody {
 }
 
 export interface DictionarySentenceList {
-  dictionaryId: number;
+  dictionaryId: number | null;
+  dictionaryTerm: string;
+  dictionaryDefinition: string;
+  dictionaryDescription: string;
+  sentenceValue: string;
+  startIdx: number;
+  endIdx: number;
+}
+
+export interface NewsContent {
+  id: number;
+  sentence: string;
+  word: string;
+  wordSearch: string;
+  definition: string;
+  desc: string;
+}
+
+export interface SearchWordResult {
+  id: number;
+  term: string;
+  definition: string;
+  description: string;
+}
+
+export type CurrentTabType = 'uploaded' | 'scheduled';
+export interface AdminUploadListResult<T> {
+  content: T[];
+  pageable: Pageable;
+  totalPages: number;
+  totalElements: number;
+  last: boolean;
+  size: number;
+  number: number;
+  sort: Sort2;
+  numberOfElements: number;
+  first: boolean;
+  empty: boolean;
+}
+
+export interface Pageable {
+  pageNumber: number;
+  pageSize: number;
+  sort: Sort;
+  offset: number;
+  paged: boolean;
+  unpaged: boolean;
+}
+
+export interface Sort {
+  empty: boolean;
+  sorted: boolean;
+  unsorted: boolean;
+}
+
+export interface Sort2 {
+  empty: boolean;
+  sorted: boolean;
+  unsorted: boolean;
+}
+
+export interface UploadedListContent {
+  id: number;
+  title: string;
+  thumbnailUrl: string;
+  createdAt: string;
+  newsAgency: string;
+  link: string;
+}
+
+export interface ScheduledListContent {
+  id: number;
+  newsRequest: NewsRequest;
+  scheduledAt: string;
+}
+
+export interface NewsRequest {
+  title: string;
+  thumbnailUrl: string;
+  originalLink: string;
+  newsAgency: string;
+  dictionarySentenceList: DictionarySentenceList[];
+}
+
+export interface DictionarySentenceList {
+  dictionaryId: number | null;
   dictionaryTerm: string;
   dictionaryDefinition: string;
   dictionaryDescription: string;
