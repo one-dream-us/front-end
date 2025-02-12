@@ -3,7 +3,7 @@ import client from '@/utils/client';
 
 const adminApi = {
   lookUpKeyword: async (keyword: string) => (await client.get(`/dictionary/${keyword}`)).data,
-  uploadScheduled: async (date: string, payload: UploadFormReqestBody) => {
+  uploadScheduled: async (payload: UploadFormReqestBody, date: string) => {
     return (await client.post(`/contents/news/scheduled/${date}`, payload)).data;
   },
   uploadImmediately: async (payload: UploadFormReqestBody) => {
