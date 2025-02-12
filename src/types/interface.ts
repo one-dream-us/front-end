@@ -389,4 +389,72 @@ export interface SearchWordResult {
   definition: string;
   description: string;
 }
-//{ id: 0, sentenes: '', word: '', wordSearch: '', definition: '', desc: '' },
+
+export type CurrentTabType = 'uploaded' | 'scheduled';
+export interface AdminUploadListResult<T> {
+  content: T[];
+  pageable: Pageable;
+  totalPages: number;
+  totalElements: number;
+  last: boolean;
+  size: number;
+  number: number;
+  sort: Sort2;
+  numberOfElements: number;
+  first: boolean;
+  empty: boolean;
+}
+
+export interface Pageable {
+  pageNumber: number;
+  pageSize: number;
+  sort: Sort;
+  offset: number;
+  paged: boolean;
+  unpaged: boolean;
+}
+
+export interface Sort {
+  empty: boolean;
+  sorted: boolean;
+  unsorted: boolean;
+}
+
+export interface Sort2 {
+  empty: boolean;
+  sorted: boolean;
+  unsorted: boolean;
+}
+
+export interface UploadedListContent {
+  id: number;
+  title: string;
+  thumbnailUrl: string;
+  createdAt: string;
+  newsAgency: string;
+  link: string;
+}
+
+export interface ScheduledListContent {
+  id: number;
+  newsRequest: NewsRequest;
+  scheduledAt: string;
+}
+
+export interface NewsRequest {
+  title: string;
+  thumbnailUrl: string;
+  originalLink: string;
+  newsAgency: string;
+  dictionarySentenceList: DictionarySentenceList[];
+}
+
+export interface DictionarySentenceList {
+  dictionaryId: number | null;
+  dictionaryTerm: string;
+  dictionaryDefinition: string;
+  dictionaryDescription: string;
+  sentenceValue: string;
+  startIdx: number;
+  endIdx: number;
+}
