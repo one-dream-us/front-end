@@ -73,7 +73,9 @@ export default function NewsContentForm({ index }: { index: number }) {
       );
     } else if (key === 'Enter') {
       e.preventDefault();
+      if (!wordSearch.value) return;
       handleSearchResultClick(searchResults[searchResultIndex]);
+      setSearchResultIndex(-1);
     }
   };
 
