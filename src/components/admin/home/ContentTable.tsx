@@ -45,7 +45,7 @@ export default function ContentTable() {
               <tr
                 onClick={() =>
                   navigate(`/admin/content/
-              ${content.id}?status=uploaded`)
+                  ${content.id}?status=uploaded`)
                 }
                 key={content.id}
                 className='cursor-pointer hover:bg-gray-50'
@@ -83,7 +83,7 @@ export default function ContentTable() {
                   {content.newsAgency}
                 </td>
                 <td className='whitespace-nowrap px-6 py-4 text-sm text-blue-700 hover:text-red-700'>
-                  <a target='_blank' href={content.link}>
+                  <a onClick={(e) => e.stopPropagation()} target='_blank' href={content.link}>
                     Click
                   </a>
                 </td>

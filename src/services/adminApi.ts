@@ -15,5 +15,7 @@ const adminApi = {
   },
   getUploadedList: async (page: number, size: number = 10) =>
     (await client.get(`/back-office/contents/news?page=${page}&size=${size}`)).data,
+  getDetailInfo: async (newsId: number) =>
+    (await client.get(`/back-office/contents/news/${newsId}`)).data,
 };
 export default adminApi;

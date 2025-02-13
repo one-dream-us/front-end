@@ -458,3 +458,19 @@ export interface DictionarySentenceList {
   startIdx: number;
   endIdx: number;
 }
+
+export interface AdminContentDetailType {
+  title: string;
+  newsAgency: string;
+  fullSentence: string;
+  link: string;
+  descriptions: Description[];
+}
+
+export interface Description {
+  sentence: string;
+  description: string;
+  definition: string;
+  dictionaryId: number;
+  term: string;
+}
