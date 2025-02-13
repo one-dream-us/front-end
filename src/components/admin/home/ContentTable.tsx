@@ -3,12 +3,14 @@ import useUploadList from '@/hooks/admin/useUploadList';
 import currentTabState from '@/store/admin/adminHome/currentTabState';
 import pageState from '@/store/admin/adminHome/pageState';
 import { ScheduledListContent, UploadedListContent } from '@/types/interface';
+import { useNavigate } from 'react-router-dom';
 import { useStore } from 'zustand';
 
 export default function ContentTable() {
   const { page } = useStore(pageState);
   const { currentTab } = useStore(currentTabState);
   const { isLoading, data } = useUploadList(page, ADMIN_UPLOAD_LIST_PAGE_SIZE);
+  const navigate = useNavigate();
 
   if (isLoading || !data) return <h1>loading...</h1>;
   const renderTable = () => {
@@ -31,13 +33,23 @@ export default function ContentTable() {
                 뉴스사
               </th>
               <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'>
+                원본 링크
+              </th>
+              <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'>
                 업로드 날짜
               </th>
             </tr>
           </thead>
           <tbody className='divide-y divide-gray-200 bg-white'>
             {res?.map((content) => (
-              <tr key={content.id} className='cursor-pointer hover:bg-gray-50'>
+              <tr
+                onClick={() =>
+                  navigate(`/admin/content/
+              ${content.id}?status=uploaded`)
+                }
+                key={content.id}
+                className='cursor-pointer hover:bg-gray-50'
+              >
                 <td className='whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900'>
                   {content?.thumbnailUrl ? (
                     <img
@@ -70,6 +82,11 @@ export default function ContentTable() {
                 <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-500'>
                   {content.newsAgency}
                 </td>
+                <td className='whitespace-nowrap px-6 py-4 text-sm text-blue-700 hover:text-red-700'>
+                  <a target='_blank' href={content.link}>
+                    Click
+                  </a>
+                </td>
                 <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-500'>
                   {content.createdAt.split('T')[0]}
                 </td>
@@ -98,13 +115,23 @@ export default function ContentTable() {
                 뉴스사
               </th>
               <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'>
+                원본 링크
+              </th>
+              <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'>
                 업로드 날짜
               </th>
             </tr>
           </thead>
           <tbody className='divide-y divide-gray-200 bg-white'>
             {res?.map((content) => (
-              <tr key={content.id} className='cursor-pointer hover:bg-gray-50'>
+              <tr
+                onClick={() =>
+                  navigate(`/admin/content/
+                ${content?.id}?status=scheduled`)
+                }
+                key={content.id}
+                className='cursor-pointer hover:bg-gray-50'
+              >
                 <td className='whitespace-nowrap px-6 py-4'>
                   {content?.newsRequest?.thumbnailUrl ? (
                     <img
@@ -136,6 +163,11 @@ export default function ContentTable() {
                 </td>
                 <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-500'>
                   {content?.newsRequest?.newsAgency || ''}
+                </td>
+                <td className='whitespace-nowrap px-6 py-4 text-sm text-blue-700 hover:text-red-700'>
+                  <a target='_blank' href={content?.newsRequest?.originalLink}>
+                    Click
+                  </a>
                 </td>
                 <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-500'>
                   {content?.scheduledAt?.split('T')[0] || ''}
