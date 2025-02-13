@@ -3,12 +3,16 @@ import useInput from '@/hooks/admin/useInput';
 import adminApi from '@/services/adminApi';
 import newsContentState from '@/store/admin/newsContentState';
 import { DictionarySentenceList, SearchWordResult } from '@/types/interface';
-import { KeyboardEvent, useEffect, useRef, useState } from 'react';
+import { KeyboardEvent, SyntheticEvent, useEffect, useRef, useState } from 'react';
 
 export default function NewsContentForm({ index }: { index: number }) {
   const [isDone, setIsDone] = useState(false);
   const [searchResults, setSearchResults] = useState<SearchWordResult[]>([]);
   const [searchResultIndex, setSearchResultIndex] = useState(-1);
+  const [wordIndex, setWordIndex] = useState<{ start: number | null; end: number | null }>({
+    start: 0,
+    end: 0,
+  });
   const sentence = useInput();
   const word = useInput();
   const wordSearch = useInput();
@@ -21,6 +25,21 @@ export default function NewsContentForm({ index }: { index: number }) {
     const res = await adminApi.lookUpKeyword(value);
     setSearchResults(res);
   };
+
+  // 문장 내 용어 드래그 후 인덱스 값 추출
+  const handleSelect = (e: SyntheticEvent<HTMLInputElement>) => {
+    const start = e.currentTarget.selectionStart;
+    const end = e.currentTarget.selectionEnd;
+    setWordIndex({ start, end });
+  };
+  const draggedWord = sentence.value
+    .split('')
+    .filter((item, index) => {
+      if (index >= Number(wordIndex.start) && index <= Number(wordIndex.end) - 1) {
+        return item;
+      }
+    })
+    .join('');
 
   // 조회 버튼 클릭
   const handleSearchClick = () => updateSearchResult(wordSearch.value);
@@ -53,8 +72,10 @@ export default function NewsContentForm({ index }: { index: number }) {
       dictionaryId: +wordIdRef.current.id === 0 ? null : +wordIdRef.current.id,
       dictionaryTerm: word.value,
       sentenceValue: sentence.value,
-      startIdx: sentence.value.indexOf(word.value),
-      endIdx: sentence.value.indexOf(word.value) + word.value.length - 1,
+      // startIdx: sentence.value.indexOf(word.value),
+      // endIdx: sentence.value.indexOf(word.value) + word.value.length - 1,
+      startIdx: wordIndex.start as number,
+      endIdx: wordIndex.end as number,
     };
 
     // 현재 입력 값들을 zustand에 set
@@ -104,10 +125,25 @@ export default function NewsContentForm({ index }: { index: number }) {
             name='sentence'
             value={sentence.value}
             onChange={sentence.handleInputChange}
+            onSelect={handleSelect}
             disabled={isDone}
             type='text'
             className='w-full rounded-md border p-2'
             placeholder={`문장 ${index + 1}을 입력하세요`}
+          />
+        </div>
+
+        <div>
+          <label className='mb-1 block text-sm font-medium text-gray-700'>하이라이팅 용어</label>
+          <input
+            required
+            name='sentence'
+            value={draggedWord}
+            readOnly
+            disabled={isDone}
+            type='text'
+            className='w-full rounded-md border p-2'
+            placeholder={`문장 ${index + 1}에서 하이라이팅 할 용어를 드래그해주세요. (입력 X)`}
           />
         </div>
 
