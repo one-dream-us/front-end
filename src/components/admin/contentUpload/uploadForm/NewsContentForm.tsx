@@ -75,8 +75,9 @@ export default function NewsContentForm({ index }: { index: number }) {
       // startIdx: sentence.value.indexOf(word.value),
       // endIdx: sentence.value.indexOf(word.value) + word.value.length - 1,
       startIdx: wordIndex.start as number,
-      endIdx: wordIndex.end as number,
+      endIdx: (wordIndex.end as number) - 1,
     };
+    console.log(payload);
 
     // 현재 입력 값들을 zustand에 set
     setNewsContents(payload, index);
