@@ -25,6 +25,7 @@ import NewsPendingPage from './pages/newsDetail/NewsPendingPage';
 import NewsCompletePage from './pages/newsDetail/NewsCompletePage';
 import NewsDetailPage from './pages/newsDetail/NewsDetailPage';
 import Write from './pages/admin/write/Write';
+import AdminContentDetail from './pages/admin/contentDetail/AdminContentDetail';
 
 export const router = createBrowserRouter(
   [
@@ -84,6 +85,7 @@ export const router = createBrowserRouter(
         { path: '/admin/home', element: <AdminHome /> },
         { path: '/admin/link-upload', element: <LinkUpload /> },
         { path: '/admin/write', element: <Write /> },
+        { path: 'admin/content/:id', element: <AdminContentDetail /> },
       ],
     },
   ],
