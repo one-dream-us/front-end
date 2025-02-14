@@ -16,4 +16,6 @@ export const useUploadFormStore = create<UploadFormState>((set) => ({
       };
       return { uploadForm: newUploadForm };
     }),
+  setNewsCompanyValue: (newValue: string) =>
+    set((prev) => ({ uploadForm: { ...prev.uploadForm, newsCompany: newValue } })),
 }));

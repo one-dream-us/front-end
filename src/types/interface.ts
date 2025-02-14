@@ -352,6 +352,7 @@ export interface UploadFormState {
     imgLink: string;
   };
   onChange: (newValue: string, type: keyof UploadFormState['uploadForm']) => void;
+  setNewsCompanyValue: (newValue: string) => void;
 }
 
 export type UploadFormChangeType = keyof UploadFormState['uploadForm'];
