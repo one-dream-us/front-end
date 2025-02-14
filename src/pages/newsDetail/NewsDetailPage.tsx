@@ -12,7 +12,7 @@ import { useBlocker, useParams } from 'react-router-dom';
 export default function NewsDetailPage() {
   return (
     // w-[343px] desktop:w-[440px]
-    <div className='m-auto mt-[40px] w-[91.47%] max-w-[1182px]'>
+    <div className='m-auto mt-[40px] w-[91.47%] md:w-[353px] desktop:w-[440px]'>
       <PaginationBullets />
       <div className='m-auto mb-[24px] h-[51px] min-w-[196px] text-center'>
         <Title main='한 문장씩 읽어보세요!' sub='오늘의 뉴스 문장' />
