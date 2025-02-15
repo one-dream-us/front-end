@@ -1,5 +1,5 @@
 import adminApi from '@/services/adminApi';
-import { SearchWordResult, UploadFormChangeType } from '@/types/interface';
+import { UploadFormChangeType } from '@/types/interface';
 import { KeyboardEvent, useEffect, useRef, useState } from 'react';
 import useDebounce from './useDebounce';
 
@@ -9,7 +9,7 @@ const useAutoComplete = (
   setNewsCompany: (newValue: string) => void,
 ) => {
   const [searchIndex, setSearchIndex] = useState(-1);
-  const [searchResults, setSearchResults] = useState<SearchWordResult[]>([]);
+  const [searchResults, setSearchResults] = useState<{ id: number; name: string }[]>([]);
   const enterPressed = useRef(false);
 
   const handleNavigateSearchResult = async (e: KeyboardEvent<HTMLInputElement>) => {
@@ -25,7 +25,7 @@ const useAutoComplete = (
       e.preventDefault();
       if (!newsComapny || searchIndex === -1) return;
 
-      setNewsCompany(searchResults[searchIndex].term);
+      setNewsCompany(searchResults[searchIndex].name);
       setSearchIndex(-1);
       setSearchResults([]);
       enterPressed.current = true;
@@ -38,7 +38,7 @@ const useAutoComplete = (
   useEffect(() => {
     if (!newsComapny || enterPressed.current) return;
     (async () => {
-      const res = await adminApi.lookUpKeyword(debouncedSearchTerm);
+      const res = await adminApi.lookupNewsAgency(debouncedSearchTerm);
       setSearchResults(res);
     })();
   }, [debouncedSearchTerm, enterPressed.current]);
