@@ -175,6 +175,7 @@ export default function NewsContentForm({ index }: { index: number }) {
                   className='flex-1 rounded-md border p-2'
                   placeholder='용어를 검색하세요'
                   onKeyDown={(e) => handleNavigateSearchResult(e)}
+                  autoComplete='off'
                 />
                 <button
                   disabled={isDone}

@@ -84,7 +84,7 @@ export const createTitle = (accuracyRate: number, isGraduate: boolean, name?: st
 
   switch (accuracyRate) {
     case 100:
-      obj.mainTitle = '전부 다 맞췄어요!';
+      obj.mainTitle = '전부 다 맞았어요!';
       (obj.subTitlt = isGraduate
         ? '외운 단어는 졸업노트에 넣어둘게요!'
         : `${name || 'user'}님, 경제 단어가 쉬워지고 있어요!`),
