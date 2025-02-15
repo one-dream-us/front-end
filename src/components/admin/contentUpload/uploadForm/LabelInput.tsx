@@ -53,9 +53,9 @@ export default function LabelInput({
               key={item.id}
               type='button'
               className={`w-full px-4 py-2 text-left transition-colors hover:bg-gray-100 ${index === searchIndex && 'bg-gray-100'}`}
-              onClick={() => setNewsCompanyValue(item.term)}
+              onClick={() => setNewsCompanyValue(item.name)}
             >
-              {item.term}
+              {item.name}
             </button>
           ))}
         </div>
