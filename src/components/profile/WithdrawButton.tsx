@@ -5,12 +5,11 @@ export default function WithdrawButton() {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
-      {' '}
       <button
         onClick={() => setShowModal(true)}
-        className='m-auto flex text-[12px] text-custom-gray-600 underline underline-offset-2 desktop:m-0 desktop:ml-auto desktop:mt-[100px]'
+        className='m-auto flex w-fit items-center justify-center text-[12px] text-custom-gray-medium underline underline-offset-4'
       >
-        회원탈퇴
+        회원 탈퇴
       </button>
       {showModal && <WithdrawModal closeModal={() => setShowModal(false)} />}
     </>
