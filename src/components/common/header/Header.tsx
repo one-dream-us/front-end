@@ -12,7 +12,7 @@ export default function Header() {
   const handleShowSlider = () => setShowSidebar((prev) => !prev);
 
   return (
-    <header className='fixed left-0 top-0 z-[999] h-[52px] w-full bg-white text-sm desktop:right-0 desktop:h-20'>
+    <header className='fixed left-0 top-0 z-[999] h-[52px] w-full bg-white text-sm drop-shadow-[0_1px_1px_rgba(0,0,0,0.05)] desktop:right-0 desktop:h-20'>
       <div className='flex h-full items-center justify-between bg-white px-4 md:px-6 md:py-[11px] desktop:m-auto desktop:max-w-[1440px] desktop:px-[129px]'>
         {' '}
         <div className='flex items-center justify-start'>
