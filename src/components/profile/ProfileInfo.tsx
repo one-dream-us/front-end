@@ -1,27 +1,33 @@
-import { UserInfoData } from '@/types/interface';
+import authApi from '@/services/authApi';
 
-function ProfileInfo({
-  createdAt,
-  email,
-  provider,
-}: Pick<UserInfoData, 'email' | 'createdAt' | 'provider'>) {
-  const info = [
-    { title: '이메일', data: email },
-    { title: '가입일자', data: createdAt },
-    { title: '가입경로', data: `${provider === 'kakao' ? '카카오' : '구글'} 소셜 회원가입` },
-  ];
+export default function ProfileInfo({
+  myInfo,
+}: {
+  myInfo: {
+    title: string;
+    data: string;
+  }[];
+}) {
   return (
-    <div
-      style={{ gridArea: 'user-info' }}
-      className='mb-[8px] flex h-[198px] w-full flex-col justify-between gap-y-[20px] rounded-[10px] border border-custom-gray-200 p-4 desktop:row-span-3 desktop:mb-0 desktop:h-[241px] desktop:w-[811px] desktop:p-[32px]'
-    >
-      {info.map((item) => (
-        <div key={item.title} className='h-[42px] w-[169px] text-[12px] desktop:text-[14px]'>
-          <h2 className='mb-[8px] font-medium'>{item.title}</h2>
-          <span className='select-none border-none text-custom-gray no-underline'>{item.data}</span>
-        </div>
-      ))}
+    <div className='mb-[80px] h-[268px] w-full'>
+      {/* 회원 정보 */}
+      <div className='mb-[12px] flex h-[208px] w-full flex-col items-start justify-start gap-y-5 rounded-[10px] border-[1px] border-[#F3F3F3] bg-white p-[22px]'>
+        <h2 className='text-[18px] font-bold text-custom-black'>회원정보</h2>
+
+        {myInfo?.map((item) => (
+          <div key={item.title} className='flex h-[24px] w-full items-center justify-start gap-x-2'>
+            <div className='h-full w-[60px] text-[14px] font-medium leading-170'>{item.title}</div>
+            <span className='text-[14px] leading-120 text-custom-gray-600'>{item.data}</span>
+          </div>
+        ))}
+      </div>
+
+      <button
+        className='h-[48px] w-full rounded-[10px] border border-[#F3F3F3] bg-custom-gray-600 text-white transition-all duration-200 hover:bg-[#B5B5B5]'
+        onClick={authApi.logout}
+      >
+        로그아웃
+      </button>
     </div>
   );
 }
-export default ProfileInfo;
