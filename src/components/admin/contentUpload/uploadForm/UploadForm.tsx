@@ -25,28 +25,24 @@ const UploadForm = () => {
 
     const formData = new FormData();
 
-    formData.append('title', title);
-    formData.append('thumbnailImage', img!);
-    formData.append('originalLink', newsLink);
-    formData.append('newsAgency', newsCompany);
+    const newsRequestData = {
+      title,
+      originalLink: newsLink,
+      newsAgency: newsCompany,
+    };
+    const newsRequestBlob = new Blob([JSON.stringify(newsRequestData)], {
+      type: 'application/json',
+    });
+    const dictionarySentenceListBlob = new Blob([JSON.stringify(newsContents)], {
+      type: 'application/json',
+    });
 
-    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    formData.append('newsRequest', newsRequestBlob);
 
-    // 1. dictionarySentenceList을 파일 형식으로 바꿔서 요청
-    // 참고 : https://velog.io/@liankim/formData%EC%97%90-%ED%8C%8C%EC%9D%BC-%EA%B0%9D%EC%B2%B4-%ED%95%A8%EA%BB%98-%EB%84%A3%EA%B8%B0
-    formData.append(
-      'dictionarySentenceList',
-      new Blob([JSON.stringify(newsContents)], { type: 'application/json' }),
-    );
-
-    // 2. dictionarySentenceList을 json 형태 그대로 문자열로 바꿔서 요청
-    // formData.append('dictionarySentenceList', JSON.stringify(newsContents));
-
-    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    formData.append('dictionarySentenceList', dictionarySentenceListBlob);
+    if (img) {
+      formData.append('thumbnailImage', img);
+    }
     try {
       if (!confirm('문장을 모두 저장 해야 업로드 가능해요! 모두 저장하셨나요??')) return;
 
