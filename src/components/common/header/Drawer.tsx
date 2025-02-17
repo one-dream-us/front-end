@@ -37,7 +37,7 @@ export default function Drawer({
   return (
     <div
       onClick={handleShowSlider}
-      className={`fixed right-0 top-0 z-40 flex h-full w-full items-center justify-center bg-white text-black duration-300 ease-in-out md:hidden ${
+      className={`fixed right-0 top-0 z-40 flex h-screen w-full items-center justify-center bg-white text-black duration-300 ease-in-out md:hidden ${
         showSidebar ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
