@@ -1,5 +1,5 @@
 export const formatLabel = (label: string) => {
-  if (!label) return;
+  if (!label) return '';
 
   let [year, month] = label.split('년 ');
   month = month.replace('월', '').padStart(2, '0');

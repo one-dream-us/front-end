@@ -3,6 +3,7 @@ import MyProfileNickname from './MyProfileNickname';
 import Calendar from '../attendance/Calendar';
 import WithdrawButton from './WithdrawButton';
 import ProfileInfo from './ProfileInfo';
+import ProfileSkeleton from './ProfileSkeleton';
 
 export default function ProfileContainer() {
   const { data: info, isLoading } = useUserInfoQuery(true);
@@ -10,7 +11,7 @@ export default function ProfileContainer() {
   const myInfo = (() => {
     return [
       { title: '이메일', data: info?.email || '' },
-      { title: '가입일자', data: info?.createdAt.split('T')[0].replaceAll('-', '.') as string },
+      { title: '가입일자', data: info?.createdAt.split('T')[0]?.replaceAll('-', '.') as string },
       {
         title: '가입경로',
         data: `${info?.provider === 'kakao' ? '카카오' : '구글'} 소셜 회원가입`,
@@ -18,11 +19,11 @@ export default function ProfileContainer() {
     ];
   })();
 
-  if (isLoading || !info) return;
+  if (isLoading || !info) return <ProfileSkeleton />;
   return (
     <div className='m-auto w-[343px] md:w-[353px]'>
       {/* 프사,이름 */}
-      <MyProfileNickname name={info.name} />
+      <MyProfileNickname name={info?.name || ''} />
 
       {/* 달력 */}
       <div className='m-auto mb-[20px] w-full'>
