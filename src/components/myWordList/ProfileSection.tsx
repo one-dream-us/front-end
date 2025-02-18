@@ -37,7 +37,7 @@ export default function ProfileSection({
             />
           </div>
         </div>
-        {totalKeyNote < 3 ? (
+        {wrongNoteListLen + totalKeyNote < 3 ? (
           <p className='whitespace-nowrap text-sm font-medium leading-170 text-gray-070'>
             핵심노트 {totalKeyNote} <span className='text-custom-gray-500'>/ 3</span>
           </p>
