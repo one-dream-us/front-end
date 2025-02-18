@@ -26,7 +26,7 @@ export default function ScrapWord({
           onClick={() => {
             addKeyNote();
           }}
-          className='scrap_to_keynote h-[22px] w-[22px] bg-scrap bg-contain bg-no-repeat hover:bg-keynote'
+          className='scrap_to_keynote h-5 w-5 bg-scrap bg-contain bg-no-repeat hover:bg-keynote'
         />
       </div>
       <p className='text-sm leading-160 text-custom-gray-dark'>{cleanedText}</p>

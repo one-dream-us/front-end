@@ -19,7 +19,7 @@ export default function MyWordListNavBar({
           ? 'tap_wrong_answer_note'
           : 'tap_graduation_note';
   return (
-    <div className='my-6 w-[343px] md:w-[353px] desktop:w-full'>
+    <div className='my-6 box-content w-[343px] px-4 md:w-[353px] md:px-0 desktop:w-[812px]'>
       <ul className='grid h-10 w-full grid-cols-4 text-sm font-bold text-custom-gray-500'>
         {myWordListMenu.map((item: MyWordListMenuType) => (
           <li

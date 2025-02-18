@@ -1,5 +1,5 @@
-import reviewNoteIcon from '@/assets/p2/icon_X_dark.png';
-import graduationIcon from '@/assets/p2/icon_grad.png';
+import reviewNoteIcon from '@/assets/P2_5d에셋/icon_check_thin.svg';
+import graduationIcon from '@/assets/P2_5d에셋/icon_crown.svg';
 import { MyWordListMenuType } from '@/types/types';
 import { WordInterface } from '@/types/interface';
 import arrowRightIcon from '@/assets/p2/arrow_right.png';
@@ -24,7 +24,7 @@ export default function WordNote({
   return (
     <div className='flex flex-col justify-center gap-y-2 rounded-[10px] border border-custom-gray-200 p-4'>
       <div className='flex gap-x-2'>
-        <img src={info[activeMenu]} alt={activeMenu} className='h-[22px] w-[22px]' />
+        <img src={info[activeMenu]} alt={activeMenu} className='h-5 w-5' />
         <p className='font-bold text-custom-black'>{word.dictionary.term}</p>
       </div>
       <p className='text-sm leading-160 text-custom-gray-dark'>{cleanedText}</p>
