@@ -37,7 +37,7 @@ export default function Calendar() {
           setActiveDate(activeStartDate ?? new Date())
         }
       />
-      <div className='absolute right-[20px] top-[24px] text-[12px]'>
+      <div className='absolute right-[30px] top-[24px] text-[12px]'>
         <span className='mr-2 font-medium text-[#797979]'>이번 달 미션 완료</span>
         <span className='font-medium text-[#454545]'>
           <span className='font-bold'>5</span>

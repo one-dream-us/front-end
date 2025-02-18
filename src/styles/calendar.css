@@ -58,6 +58,7 @@
   color: #999999;
   text-decoration: none;
   margin-bottom: 10px;
+  /* justify-content: spance-between; */
 }
 .react-calendar__month-view__weekdays__weekday {
   padding: 0;
@@ -126,8 +127,11 @@
 }
 .progress-full abbr {
   color: white;
-  background-color: #06ea82;
   font-weight: bold;
+  background-image: url('../assets/P2_5d에셋/icon_star_none.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 .progress-full abbr::after {
   background-color: white;

@@ -4,6 +4,9 @@ import Calendar from '../attendance/Calendar';
 import WithdrawButton from './WithdrawButton';
 import ProfileInfo from './ProfileInfo';
 import ProfileSkeleton from './ProfileSkeleton';
+import iconStarLess from '@/assets/P2_5d에셋/icon_star_none_lesscone.png';
+import flame from '@/assets/P2_5d에셋/icon_flame.png';
+import { getProfileBannerText } from '@/utils/profile/profileUtis';
 
 export default function ProfileContainer() {
   const { data: info, isLoading } = useUserInfoQuery(true);
@@ -19,6 +22,9 @@ export default function ProfileContainer() {
     ];
   })();
 
+  const CONTINUOUS_DAY = 0;
+  const { bottom, top } = getProfileBannerText(CONTINUOUS_DAY);
+
   if (isLoading || !info) return <ProfileSkeleton />;
   return (
     <div className='m-auto w-[343px] md:w-[353px]'>
@@ -27,7 +33,15 @@ export default function ProfileContainer() {
 
       {/* 달력 */}
       <div className='m-auto mb-[20px] w-full'>
-        <div className='h-[70px] w-full rounded-[8px] bg-black p-1 text-white'>img</div>
+        <div id={CONTINUOUS_DAY > 0 ? 'banner-continuous' : 'banner-not-continuous'}>
+          <div className='absolute left-[20px] top-[13px]'>
+            <span className='text-[16px] font-medium'>{top}</span>
+            <div className='flex items-center justify-center gap-x-[6px]'>
+              <h2 className='text-[18px] font-bold'>{bottom}</h2>
+              <img src={flame} alt='' className='h-[17px] w-[13px]' />
+            </div>
+          </div>
+        </div>
         <Calendar />
         <div className='flex h-[40px] w-full items-center justify-center gap-x-[28px] rounded-[10px] border-[0.5px] border-[#F3F3F3] bg-white'>
           <div className='flex h-[16px] w-[124px] items-center justify-between text-[12px] text-[#797979]'>
@@ -36,7 +50,7 @@ export default function ProfileContainer() {
           </div>
 
           <div className='flex h-[16px] w-[124px] items-center justify-between text-[12px] text-[#797979]'>
-            <div className='size-4 rounded-full bg-[#06EA82]'></div>
+            <img src={iconStarLess} alt='mission clear icon' className='size-4' />
             <span>오늘의 미션 2/2 성공</span>
           </div>
         </div>
