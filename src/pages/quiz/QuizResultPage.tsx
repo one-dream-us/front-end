@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { createTitle } from '@/utils/quiz/quizHandlers';
 import NormalQuizResultCard from '@/components/quiz/quizResult/NormalQuizResultCard';
 import { useUserInfoQuery } from '@/hooks/auth/useUserInfoQuery';
+import { useEffect } from 'react';
+import useGetWordListData from '@/hooks/myWordList/api/useGetWordListData';
 
 export default function QuizResultPage() {
   const { accuracyRate, graduationCnt, resultDetails, totalWrong }: IQuizResult = JSON.parse(
@@ -25,10 +27,23 @@ export default function QuizResultPage() {
   const { data } = useUserInfoQuery(!isGraduate);
   const title = createTitle(accuracyRate, isGraduate, !isGraduate ? data?.name : undefined);
 
-  const handleBottomSheetClick = () =>
-    accuracyRate === 100
-      ? navigate('/my-word-list?tab=스크랩')
-      : navigate('/my-word-list?tab=오답노트');
+  const { refetch: refetchScrap } = useGetWordListData('스크랩');
+  const { refetch: refetchWrongNote } = useGetWordListData('오답노트');
+  const { refetch: refetchGradNote } = useGetWordListData('졸업노트');
+
+  useEffect(() => {
+    refetchScrap();
+    refetchWrongNote();
+    refetchGradNote();
+  }, []);
+
+  const handleBottomSheetClick = () => {
+    if (accuracyRate === 100) {
+      navigate('/my-word-list?tab=스크랩');
+    } else {
+      navigate('/my-word-list?tab=오답노트');
+    }
+  };
 
   return (
     <div className='m-auto'>
