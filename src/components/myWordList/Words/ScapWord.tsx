@@ -16,6 +16,7 @@ export default function ScrapWord({
 }) {
   const { addKeyNote } = useAddKeyNote(word.dictionaryId, activeMenu);
   const { setDefinition, setDescription } = useWordStore();
+  const cleanedText = word.definition.replace(/<\/?mark>/g, '');
   return (
     <div className='flex flex-col justify-center gap-y-2 rounded-[10px] border border-custom-gray-200 p-4'>
       <div className='flex justify-between'>
@@ -28,12 +29,12 @@ export default function ScrapWord({
           className='scrap_to_keynote h-[22px] w-[22px] bg-scrap bg-contain bg-no-repeat hover:bg-keynote'
         />
       </div>
-      <p className='text-sm leading-160 text-custom-gray-dark'>{word.definition}</p>
+      <p className='text-sm leading-160 text-custom-gray-dark'>{cleanedText}</p>
       <button
         type='button'
         className='view_commentary flex items-center self-end'
         onClick={() => {
-          setDefinition(word.definition);
+          setDefinition(cleanedText);
           setDescription(word.description);
           setShowModal(true);
         }}
