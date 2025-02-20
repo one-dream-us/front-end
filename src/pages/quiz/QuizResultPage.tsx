@@ -8,8 +8,10 @@ import { useUserInfoQuery } from '@/hooks/auth/useUserInfoQuery';
 import MissionCheckComponent from '@/components/common/MissionCheckComponent';
 import { useEffect } from 'react';
 import useGetWordListData from '@/hooks/myWordList/api/useGetWordListData';
+import { useNavigate } from 'react-router-dom';
 
 export default function QuizResultPage() {
+  const navigate = useNavigate();
   const { accuracyRate, graduationCnt, resultDetails, totalWrong }: IQuizResult = JSON.parse(
     localStorage.getItem(NORMAL_QUIZ_RESULT_KEY) as string,
   );
@@ -32,14 +34,6 @@ export default function QuizResultPage() {
     refetchWrongNote();
     refetchGradNote();
   }, []);
-
-  const handleBottomSheetClick = () => {
-    if (accuracyRate === 100) {
-      navigate('/my-word-list?tab=스크랩');
-    } else {
-      navigate('/my-word-list?tab=오답노트');
-    }
-  };
   return (
     <div className='m-auto'>
       <div className='mb-[16px] mt-[40px] text-center'>
@@ -64,11 +58,18 @@ export default function QuizResultPage() {
 
       <div className='left-0 h-auto w-full desktop:absolute desktop:bg-quiz-bg desktop:pt-[24px]'>
         {/* questions */}
-        <ul className='m-auto max-w-[353px] pb-[350px] desktop:grid desktop:max-w-[812px] desktop:grid-cols-2 desktop:gap-x-[20px] desktop:gap-y-[12px]'>
+        <ul className='m-auto max-w-[353px] pb-[350px] desktop:grid desktop:max-w-[812px] desktop:grid-cols-2 desktop:gap-x-[20px] desktop:gap-y-[12px] desktop:pb-0'>
           {resultDetails.map((item, index) => (
             <NormalQuizResultCard key={`${item.term}_${index}`} {...item} />
           ))}
         </ul>
+
+        <button
+          onClick={() => navigate('/my-word-list')}
+          className='m-auto my-[36px] hidden h-[54px] w-[812px] items-center justify-center rounded-[10px] border bg-custom-gray-dark text-[16px] font-bold leading-170 text-custom-green-money transition-all duration-200 hover:bg-hover-80 hover:text-green-hover desktop:flex'
+        >
+          외운 단어 확인하기
+        </button>
       </div>
 
       <MissionCheckComponent clear={true} />
