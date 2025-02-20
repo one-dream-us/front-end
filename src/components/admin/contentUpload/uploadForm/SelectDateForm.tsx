@@ -21,10 +21,10 @@ export default function SelectDateForm() {
                 className='w-full rounded-md border p-2'
               />
             </div>
-            <div className='flex-1'>
+            {/* <div className='flex-1'>
               <label className='mb-1 block text-sm font-medium text-gray-700'>예약 시간</label>
               <input disabled type='time' className='w-full rounded-md border p-2' />
-            </div>
+            </div> */}
           </div>
           <button
             disabled={!date}

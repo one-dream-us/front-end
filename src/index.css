@@ -80,3 +80,69 @@ mark {
 #news_tutorial .swiper-pagination .swiper-pagination-bullet-active {
   @apply bg-active-green;
 }
+
+.mission-check-list {
+  width: 341px;
+  height: 104px;
+  border-radius: 10px;
+  position: relative;
+  margin: auto;
+  border: 1px solid #e3e3e3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 20px;
+}
+
+.mission-check-list::after {
+  content: '';
+  width: calc(100% - 40px);
+  height: 1px;
+  background-color: #e3e3e3;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+}
+
+#banner-continuous {
+  width: 100%;
+  height: 70px;
+  background-image: url('../src/assets/P2_5d에셋/banner_Continuous Learning_343.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: white;
+  position: relative;
+}
+#banner-not-continuous{
+  width: 100%;
+  height: 70px;
+  background-image: url('../src/assets/P2_5d에셋/banner_Not\ Continuous\ Learning_343.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: white;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .mission-check-list {
+    width: 342px;
+  }
+  #banner-continuous{
+    background-image: url('../src/assets/P2_5d에셋/banner_Continuous\ Learning_353.png');
+  }
+  #banner-not-continuous{
+    background-image: url('../src/assets/P2_5d에셋/banner_Not\ Continuous\ Learning_353.png');
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .mission-check-list {
+    width: 280px;
+  }
+}

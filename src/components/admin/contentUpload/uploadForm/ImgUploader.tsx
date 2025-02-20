@@ -1,18 +1,24 @@
 import imgState from '@/store/admin/imageState';
 import React, { useState } from 'react';
 
+const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2mb, (1024*1024 === 1mb)
+
 export default function ImgUploader() {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const setImg = imgState((s) => s.setImg);
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-      setImg(file);
+      if (file.size > MAX_FILE_SIZE) {
+        return alert('2mb 이하만 가능해용');
+      } else {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setImagePreview(reader.result as string);
+        };
+        reader.readAsDataURL(file);
+        setImg(file);
+      }
     }
   };
 
@@ -27,7 +33,11 @@ export default function ImgUploader() {
       />
       <label htmlFor='image' className='flex cursor-pointer flex-col items-center justify-center'>
         {imagePreview ? (
-          <img src={imagePreview} alt='Preview' className='mb-2 max-h-48 object-contain' />
+          <img
+            src={imagePreview}
+            alt='Preview'
+            className='mb-2 max-h-48 rounded-md object-contain'
+          />
         ) : (
           <>
             <svg

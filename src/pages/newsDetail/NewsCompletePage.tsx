@@ -4,8 +4,10 @@ import CardContainer from '@/components/course/complete/CardContainer';
 import GridContainer from '@/components/course/complete/GridContainer';
 import { SHOW_NEWS_COMPLETE_ONBOARDING } from '@/constants/constants';
 import NewsCompleteOnboarding from '@/components/course/onboarding/completePage/NewsCompleteOnboarding';
+import MissionCheckComponent from '@/components/common/MissionCheckComponent';
 
 export default function NewsCompletePage() {
+  const clear = true;
   return (
     <div className='m-auto w-[343px]'>
       <div className='mb-[20px] mt-[40px] h-[165px] w-full'>
@@ -17,7 +19,7 @@ export default function NewsCompletePage() {
 
       <GridContainer />
 
-      <div className='absolute left-0 w-full bg-quiz-bg pt-[36px]'>
+      <div className='sm: absolute left-0 h-auto w-full bg-quiz-bg pb-[350px] pt-[36px] desktop:pb-[54px]'>
         <div className='m-auto h-[276px] w-[293px] desktop:w-[440px]'>
           <div className='m-auto mb-[24px] h-[72px] min-w-[210px] text-center'>
             <span className='mb-1 text-[12px] leading-[120%] text-custom-gray-700'>
@@ -33,6 +35,7 @@ export default function NewsCompletePage() {
           </div>
         </div>
 
+        <MissionCheckComponent clear={clear} />
         <CompleteButton />
       </div>
 
