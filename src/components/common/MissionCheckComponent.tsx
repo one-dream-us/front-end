@@ -130,7 +130,7 @@ const MissionCheckModal = ({
     <div className='fixed left-0 top-0 z-[1000] flex h-dvh w-full items-center justify-center bg-black bg-opacity-50'>
       <div className='flex flex-col'>
         <div className='h-[205px] w-[373px] rounded-t-[10px] bg-white px-[46px] py-[28px]'>
-          <div className='mb-[25px] flex items-center justify-center gap-x-2'>
+          <div className='mb-[24px] flex items-center justify-center gap-x-2'>
             <img src={flameImg} alt='title logo' className='h-[21px] w-[16px]' />
             <div className='text-[20px] font-bold text-custom-gray-dark'>{`오늘의 미션 ${clear ? '완료' : ''}`}</div>
           </div>
