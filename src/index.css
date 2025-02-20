@@ -111,7 +111,7 @@ mark {
 #banner-continuous {
   width: 100%;
   height: 70px;
-  background-image: url('../src/assets/P2_5d/banner_Continuous Learning_343.png');
+  background-image: url('@/assets/P2_5d/banner_Continuous Learning_343.png');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -121,7 +121,7 @@ mark {
 #banner-not-continuous {
   width: 100%;
   height: 70px;
-  background-image: url('../src/assets/P2_5d/banner_Not\ Continuous\ Learning_343.png');
+  background-image: url('@/assets/P2_5d/banner_Not\ Continuous\ Learning_343.png');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -134,10 +134,10 @@ mark {
     width: 342px;
   }
   #banner-continuous {
-    background-image: url('../src/assets/P2_5d/banner_Continuous\ Learning_353.png');
+    background-image: url('@/assets/P2_5d/banner_Continuous\ Learning_353.png');
   }
   #banner-not-continuous {
-    background-image: url('../src/assets/P2_5d/banner_Not\ Continuous\ Learning_353.png');
+    background-image: url('@/assets/P2_5d/banner_Not\ Continuous\ Learning_353.png');
   }
 }
 
