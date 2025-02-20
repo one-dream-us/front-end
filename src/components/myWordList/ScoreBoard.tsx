@@ -1,44 +1,50 @@
-import graduationIcon from '@/assets/p2/icon_grad.png';
+import graduationIcon from '@/assets/P2_5d에셋/userinfo_icon_crown.svg';
+import scrapIcon from '@/assets/P2_5d에셋/userinfo_icon_scap.svg';
+import learningDayIcon from '@/assets/P2_5d에셋/userinfo_icon_flame.svg';
 
 export default function ScoreBoard({
   totalScrap,
   totalGraduation,
-  accuracyRate,
+  learningDays,
 }: {
   totalScrap: number;
   totalGraduation: number;
-  accuracyRate: number;
+  learningDays: number;
 }) {
   return (
-    <div className='mt-[23px] flex h-[60px] text-xs leading-120 text-gray-070'>
+    <div className='mt-5 flex h-[60px] text-xs leading-120 text-gray-070'>
       <div className='flex w-[114px] flex-col items-center justify-center gap-y-2 border-r border-custom-gray-300'>
         <div className='flex items-center gap-x-1'>
-          <img src={graduationIcon} alt='졸업단어' className='h-4 w-4' />
+          <img src={scrapIcon} alt='전체 단어' />
+          <span>전체단어</span>
+        </div>
+        <p className='leading-120 text-custom-gray-600'>
+          <span className='text-base font-bold leading-none text-custom-gray-dark'>
+            {totalScrap}
+          </span>
+        </p>
+      </div>
+      <div className='flex w-[114px] flex-col items-center justify-center gap-y-2 border-r border-custom-gray-300'>
+        <div className='flex items-center gap-x-1'>
+          <img src={graduationIcon} alt='졸업 단어' />
           <span>졸업단어</span>
         </div>
         <p className='leading-120 text-custom-gray-600'>
           <span className='text-base font-bold leading-none text-custom-gray-dark'>
             {totalGraduation}
-          </span>{' '}
-          개
+          </span>
         </p>
       </div>
-      <div className='flex w-[114px] flex-col items-center justify-center gap-y-2 border-r border-custom-gray-300'>
-        <span>총 스크랩 단어</span>
-        <p className='leading-120 text-custom-gray-600'>
-          <span className='text-base font-bold leading-none text-custom-gray-dark'>
-            {totalScrap}
-          </span>{' '}
-          개
-        </p>
-      </div>
+
       <div className='flex w-[114px] flex-col items-center justify-center gap-y-2'>
-        <span>정답률</span>
+        <div className='flex items-center gap-x-1'>
+          <img src={learningDayIcon} alt='연속 학습' />
+          <span>연속학습</span>
+        </div>
         <p className='leading-120 text-custom-gray-600'>
           <span className='text-base font-bold leading-none text-custom-gray-dark'>
-            {accuracyRate}
-          </span>{' '}
-          %
+            {learningDays}
+          </span>
         </p>
       </div>
     </div>

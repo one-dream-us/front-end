@@ -16,7 +16,7 @@ export default function WordList({
   if (isLoading) return <div />;
 
   return (
-    <div className='relative'>
+    <div className='relative box-content w-[343px] px-4 md:w-[353px] md:px-0 desktop:w-[812px]'>
       <p
         className={`${activeMenu === '핵심노트' && wordNum < 3 ? '' : 'mb-[23px]'} text-xs font-medium text-custom-gray-700`}
       >

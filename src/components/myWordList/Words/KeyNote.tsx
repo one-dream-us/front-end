@@ -16,7 +16,7 @@ export default function KeyNote({
 }) {
   const { deleteKeyNote } = useDeleteKeyNote(word.keyNoteId, activeMenu);
   const { setDefinition, setDescription } = useWordStore();
-
+  const cleanedText = word.dictionary.definition.replace(/<\/?mark>/g, '');
   return (
     <div className='flex flex-col justify-center gap-y-2 rounded-[10px] border border-custom-gray-200 p-4'>
       <div className='flex justify-between'>
@@ -26,15 +26,15 @@ export default function KeyNote({
           onClick={() => {
             deleteKeyNote();
           }}
-          className='keynote_to_scrap h-[22px] w-[22px] bg-keynote bg-contain bg-no-repeat hover:bg-scrap'
+          className='keynote_to_scrap h-5 w-5 bg-keynote bg-contain bg-no-repeat hover:bg-scrap'
         />
       </div>
-      <p className='text-sm leading-160 text-custom-gray-dark'>{word.dictionary.definition}</p>
+      <p className='text-sm leading-160 text-custom-gray-dark'>{cleanedText}</p>
       <button
         type='button'
         className='view_commentary flex items-center self-end'
         onClick={() => {
-          setDefinition(word.dictionary.definition);
+          setDefinition(cleanedText);
           setDescription(word.dictionary.description);
           setShowModal(true);
         }}

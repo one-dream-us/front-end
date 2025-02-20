@@ -62,8 +62,8 @@ export default {
         play: "url('@/assets/icons/video_btn_style=main.svg')",
         'play-hover': "url('@/assets/icons/video_btn_style=hover.svg')",
         'play-disabled': "url('@/assets/icons/video_btn_style=disabled.svg')",
-        keynote: "url('@/assets/p2/icon_bookmark_dark.png')",
-        scrap: "url('@/assets/p2/icon_bookmark_grey.png')",
+        keynote: "url('@/assets/P2_5d에셋/icon_Keynote.svg')",
+        scrap: "url('@/assets/P2_5d에셋/icon_scrap.svg')",
       },
       lineHeight: {
         170: '1.7',
