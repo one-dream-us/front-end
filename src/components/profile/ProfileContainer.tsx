@@ -4,8 +4,8 @@ import Calendar from '../attendance/Calendar';
 import WithdrawButton from './WithdrawButton';
 import ProfileInfo from './ProfileInfo';
 import ProfileSkeleton from './ProfileSkeleton';
-import iconStarLess from '@/assets/P2_5d에셋/icon_star_none_lesscone.png';
-import flame from '@/assets/P2_5d에셋/icon_flame.png';
+import iconStarLess from '@/assets/P2_5d/icon_star_none_lesscone.png';
+import flame from '@/assets/P2_5d/icon_flame.png';
 import { getProfileBannerText } from '@/utils/profile/profileUtis';
 
 export default function ProfileContainer() {

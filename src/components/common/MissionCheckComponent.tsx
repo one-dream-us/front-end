@@ -1,8 +1,8 @@
 import useLatestNews from '@/hooks/dashboard/useLatestNews';
 import { motion } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
-import flameImg from '@/assets/P2_5d에셋/userinfo_icon_flame.png';
-import checkStarImg from '@/assets/P2_5d에셋/icon_check_star.png';
+import flameImg from '@/assets/P2_5d/userinfo_icon_flame.png';
+import checkStarImg from '@/assets/P2_5d/icon_check_star.png';
 import { missionCheckList } from '@/constants/constants';
 import { useState } from 'react';
 
