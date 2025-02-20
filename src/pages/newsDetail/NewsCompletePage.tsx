@@ -7,8 +7,7 @@ import NewsCompleteOnboarding from '@/components/course/onboarding/completePage/
 import MissionCheckComponent from '@/components/common/MissionCheckComponent';
 
 export default function NewsCompletePage() {
-  const visible = true;
-  const clear = false;
+  const clear = true;
   return (
     <div className='m-auto w-[343px]'>
       <div className='mb-[20px] mt-[40px] h-[165px] w-full'>
@@ -36,7 +35,7 @@ export default function NewsCompletePage() {
           </div>
         </div>
 
-        {visible && <MissionCheckComponent clear={clear} />}
+        <MissionCheckComponent clear={clear} />
         <CompleteButton />
       </div>
 

@@ -4,11 +4,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import flameImg from '@/assets/P2_5d에셋/userinfo_icon_flame.png';
 import checkStarImg from '@/assets/P2_5d에셋/icon_check_star.png';
 import { missionCheckList } from '@/constants/constants';
+import { useState } from 'react';
 
 export default function MissionCheckComponent({ clear }: { clear: boolean }) {
   const { latestNews } = useLatestNews();
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const [visible, setVisible] = useState(true);
 
   const handleNavigateMission = () => {
     if (pathname.includes('newsComplete')) {
@@ -23,9 +25,15 @@ export default function MissionCheckComponent({ clear }: { clear: boolean }) {
 
   return (
     <div>
-      <div className='hidden desktop:block'>
-        <MissionCheckModal clear={clear} handleNavigateMission={handleNavigateMission} />
-      </div>
+      {visible && (
+        <div className='hidden desktop:block'>
+          <MissionCheckModal
+            clear={clear}
+            handleNavigateMission={handleNavigateMission}
+            handleCloseModal={() => setVisible(false)}
+          />
+        </div>
+      )}
       <div className='block desktop:hidden'>
         <MissionCheckBottomSheet clear={clear} handleNavigateMission={handleNavigateMission} />
       </div>
@@ -111,9 +119,11 @@ const MissionCheckBottomSheet = ({
 const MissionCheckModal = ({
   clear,
   handleNavigateMission,
+  handleCloseModal,
 }: {
   clear: boolean;
   handleNavigateMission: () => void;
+  handleCloseModal: () => void;
 }) => {
   const navigate = useNavigate();
   return (
@@ -149,6 +159,7 @@ const MissionCheckModal = ({
             {clear ? (
               <>
                 <button
+                  onClick={handleCloseModal}
                   className={`flex h-full w-1/2 items-center justify-center whitespace-nowrap rounded-bl-[10px] bg-[#DEDEDE] py-3 transition-all duration-200 hover:bg-hover-30`}
                 >
                   <span className='text-[14px] font-bold leading-120 text-[#626262]'>닫기</span>
