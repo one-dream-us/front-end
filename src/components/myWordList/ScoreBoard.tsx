@@ -1,6 +1,6 @@
-import graduationIcon from '@/assets/P2_5d에셋/userinfo_icon_crown.svg';
-import scrapIcon from '@/assets/P2_5d에셋/userinfo_icon_scap.svg';
-import learningDayIcon from '@/assets/P2_5d에셋/userinfo_icon_flame.svg';
+import graduationIcon from '@/assets/P2_5d/userinfo_icon_crown.svg';
+import scrapIcon from '@/assets/P2_5d/userinfo_icon_scap.svg';
+import learningDayIcon from '@/assets/P2_5d/userinfo_icon_flame.svg';
 
 export default function ScoreBoard({
   totalScrap,

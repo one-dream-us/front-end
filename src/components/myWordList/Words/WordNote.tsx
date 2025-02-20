@@ -1,5 +1,5 @@
-import reviewNoteIcon from '@/assets/P2_5d에셋/icon_check_thin.svg';
-import graduationIcon from '@/assets/P2_5d에셋/icon_crown.svg';
+import reviewNoteIcon from '@/assets/P2_5d/icon_check_thin.svg';
+import graduationIcon from '@/assets/P2_5d/icon_crown.svg';
 import { MyWordListMenuType } from '@/types/types';
 import { WordInterface } from '@/types/interface';
 import arrowRightIcon from '@/assets/p2/arrow_right.png';

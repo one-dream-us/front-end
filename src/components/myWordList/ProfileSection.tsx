@@ -1,5 +1,5 @@
 import useProfileSectionLogic from '@/hooks/myWordList/useProfileSectionLogic';
-import profileImg from '@/assets/P2_5d에셋/wordlist_icon_profile_56.png';
+import profileImg from '@/assets/P2_5d/wordlist_icon_profile_56.png';
 import arrowRightIcon from '@/assets/p2/arrow_right_black.svg';
 import quizIcon from '@/assets/p2/icon_quiz.png';
 
