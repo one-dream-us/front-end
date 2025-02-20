@@ -191,8 +191,3 @@ export const tutorialTitleList = [
 ];
 
 export const ADMIN_UPLOAD_LIST_PAGE_SIZE = 10;
-
-export const missionCheckList = [
-  { id: 1, checkItem: '머니뉴스 학습하기' },
-  { id: 2, checkItem: '오늘의 퀴즈 풀기' },
-];

@@ -1,13 +1,12 @@
-import BottomSheet from '@/components/quiz/common/BottomSheet';
 import { Navigate, useNavigate } from 'react-router-dom';
 import QuizResultItem from '@/components/quiz/quizResult/QuizResultItem';
 import correctIcon from '@/assets/p2/icon_check_right.png';
 import wrongIcon from '@/assets/p2/icon_x_wrg.png';
 import RandomquizResultImgMobile from '@/assets/p2/P2 에셋_2차전달/image_quiz_random102.png';
 import RandomquizResultImgWeb from '@/assets/p2/P2 에셋_2차전달/image_quiz_random124(웹용).png';
-import BottomSheetImg from '@/assets/p2/icon_quiz.png';
 import { RANDOM_QUIZ_RESULT_KEY } from '@/constants/constants';
 import { IQuizResult } from '@/types/interface';
+import MissionCheckComponent from '@/components/common/MissionCheckComponent';
 
 export default function RandomQuizResultPage() {
   const navigate = useNavigate();
@@ -46,7 +45,7 @@ export default function RandomQuizResultPage() {
         <QuizResultItem quantity={results.accuracyRate} status='정답률' unit='%' />
       </div>
 
-      <div className='left-0 h-auto w-full pb-[200px] pt-[24px] desktop:absolute desktop:bg-quiz-bg'>
+      <div className='left-0 h-auto w-full pb-[350px] pt-[24px] desktop:absolute desktop:bg-quiz-bg desktop:pb-0'>
         <ul className='m-auto h-[352px] max-w-[352px] desktop:grid desktop:h-[216px] desktop:max-w-[812px] desktop:grid-cols-2 desktop:gap-x-[20px] desktop:gap-y-[12px]'>
           {results.resultDetails.map((item) => (
             <li
@@ -62,14 +61,21 @@ export default function RandomQuizResultPage() {
             </li>
           ))}
         </ul>
+        <button
+          onClick={() => navigate('/my-word-list')}
+          className='m-auto my-[36px] hidden h-[54px] w-[812px] items-center justify-center rounded-[10px] border bg-custom-gray-dark text-[16px] font-bold leading-170 text-custom-green-money transition-all duration-200 hover:bg-hover-80 hover:text-green-hover desktop:flex'
+        >
+          외운 단어 확인하기
+        </button>
       </div>
-      <BottomSheet
+      {/* <BottomSheet
         buttonText='단어 모으러 가기'
         buttonTextColor='text-custom-green-money'
         imgSrc={BottomSheetImg}
         titleText='나만의 퀴즈를 만들어요!'
         handleButtonClick={() => navigate('/news-list')}
-      />
+      /> */}
+      <MissionCheckComponent clear={true} />
     </div>
   );
 }

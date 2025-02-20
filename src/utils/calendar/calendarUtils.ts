@@ -1,9 +1,8 @@
 export const formatLabel = (label: string) => {
   if (!label) return '';
 
-  let [year, month] = label.split('년 ');
-  month = month.replace('월', '').padStart(2, '0');
-  return `${year}.${month}`;
+  const res = label.match(/\d+/g) as string[];
+  return `${res[0]}.${res[1].padStart(2, '0')}`;
 };
 
 export const compareDate = (date: Date) => {

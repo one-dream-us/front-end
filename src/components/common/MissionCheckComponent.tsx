@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
 import flameImg from '@/assets/P2_5d/userinfo_icon_flame.png';
 import checkStarImg from '@/assets/P2_5d/icon_check_star.png';
-import { missionCheckList } from '@/constants/constants';
 import { useState } from 'react';
 
 export default function MissionCheckComponent({ clear }: { clear: boolean }) {
@@ -63,21 +62,7 @@ const MissionCheckBottomSheet = ({
           </div>
         </div>
 
-        <div className='mission-check-list'>
-          {missionCheckList.map((item) => (
-            <div key={item.id} className='flex w-full items-center justify-between py-[10px]'>
-              <span className='text-[16px] font-bold text-custom-gray-dark'>{item.checkItem}</span>
-              <div className='h-[30px] w-[30px] rounded-full border border-[#E3E3E3]'>
-                <motion.img
-                  animate={{ scale: [0, 1.5, 1.1], transition: { duration: 0.8, delay: 0.3 } }}
-                  src={checkStarImg}
-                  alt='mission complete image'
-                  className='h-full w-full'
-                />
-              </div>
-            </div>
-          ))}
-        </div>
+        <MissionCheckList />
 
         <div className='mt-[16px] flex w-full flex-col gap-y-2'>
           {clear ? (
@@ -135,23 +120,7 @@ const MissionCheckModal = ({
             <div className='text-[20px] font-bold text-custom-gray-dark'>{`오늘의 미션 ${clear ? '완료' : ''}`}</div>
           </div>
 
-          <div className='mission-check-list'>
-            {missionCheckList.map((item) => (
-              <div key={item.id} className='flex w-full items-center justify-between py-[10px]'>
-                <span className='text-[16px] font-bold text-custom-gray-dark'>
-                  {item.checkItem}
-                </span>
-                <div className='h-[30px] w-[30px] rounded-full border border-[#E3E3E3]'>
-                  <motion.img
-                    animate={{ scale: [0, 1.5, 1.1], transition: { duration: 0.8, delay: 0.3 } }}
-                    src={checkStarImg}
-                    alt='mission complete image'
-                    className='h-full w-full'
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
+          <MissionCheckList />
         </div>
 
         <div className='flex h-[48px] w-[373px] items-center justify-center'>
@@ -176,7 +145,7 @@ const MissionCheckModal = ({
             ) : (
               <button
                 onClick={handleNavigateMission}
-                className={`flex h-full w-full items-center justify-center whitespace-nowrap rounded-b-[10px] bg-custom-gray-dark py-3 text-custom-green-money transition-all duration-200 hover:bg-hover-80 hover:text-green-hover`}
+                className={`h- fullw-full flex items-center justify-center whitespace-nowrap rounded-b-[10px] bg-custom-gray-dark py-3 text-custom-green-money transition-all duration-200 hover:bg-hover-80 hover:text-green-hover`}
               >
                 <span className='text-[14px] font-bold leading-120 text-custom-green-money'>
                   다른 미션 하러가기
@@ -184,6 +153,44 @@ const MissionCheckModal = ({
               </button>
             )}
           </>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const MissionCheckList = () => {
+  const res = { news: false, quiz: false };
+  const { pathname } = useLocation();
+  const isNewsPage = pathname.includes('newsComplete');
+  const isQuizPage = pathname.includes('quiz-result');
+
+  return (
+    <div className='mission-check-list'>
+      <div className='flex w-full items-center justify-between py-[10px]'>
+        <span className='text-[16px] font-bold text-custom-gray-dark'>머니뉴스 학습하기</span>
+        <div className='h-[30px] w-[30px] rounded-full border border-[#E3E3E3]'>
+          {(isNewsPage || res.news) && (
+            <motion.img
+              animate={{ scale: [0, 1.5, 1.1], transition: { duration: 0.8, delay: 0.3 } }}
+              src={checkStarImg}
+              alt='mission complete image'
+              className='h-full w-full'
+            />
+          )}
+        </div>
+      </div>
+      <div className='flex w-full items-center justify-between py-[10px]'>
+        <span className='text-[16px] font-bold text-custom-gray-dark'>오늘의 퀴즈 풀기</span>
+        <div className='h-[30px] w-[30px] rounded-full border border-[#E3E3E3]'>
+          {(res.quiz || isQuizPage) && (
+            <motion.img
+              animate={{ scale: [0, 1.5, 1.1], transition: { duration: 0.8, delay: 0.3 } }}
+              src={checkStarImg}
+              alt='mission complete image'
+              className='h-full w-full'
+            />
+          )}
         </div>
       </div>
     </div>

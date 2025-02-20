@@ -12,7 +12,7 @@ export default function NewsPendingPage() {
 
   if (isLoading) return <NewsPendingSkeleton />;
   return (
-    <div className='left-0 top-0 w-full items-center justify-center md:absolute md:flex md:h-screen'>
+    <div className='left-0 top-0 w-full items-center justify-center md:absolute md:flex md:min-h-screen desktop:pt-[80px]'>
       <div className='m-auto w-[341px] desktop:w-[440px]'>
         {/* mt-[138px] */}
         <div className='m-auto mb-[24px] mt-[40px] h-[51px] min-w-[176px] text-center md:mt-0'>
