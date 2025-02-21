@@ -27,6 +27,7 @@ export default function Calendar() {
         prevLabel={<PrevIcon />}
         nextLabel={<NextIcon />}
         navigationLabel={({ label }) => formatLabel(label)}
+        locale='ko-KO'
         formatShortWeekday={(_locale, date) => date.toString().split(' ')[0]}
         showNeighboringMonth={false}
         formatDay={(_locale, date) => `${date.getDate()}`}
