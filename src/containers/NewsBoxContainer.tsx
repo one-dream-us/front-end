@@ -1,4 +1,5 @@
 import NewsBox from '@/components/newAdmin/NewsBox';
+import useDebounce from '@/hooks/admin/useDebounce';
 import adminApi from '@/services/adminApi';
 import { useNewsListStore } from '@/store/newAdmin/useFormStore';
 import { SearchWordResult } from '@/types/interface';
@@ -35,13 +36,14 @@ export default function NewsBoxContainer({ index }: { index: number }) {
     setDictList({ key: 'wordSearch', index, value: '' });
     setDictList({ key: 'wordId', index, value: id });
   };
+  const debouncedValue = useDebounce(dict?.wordSearch, 300);
   useEffect(() => {
     (async () => {
-      if (!dict?.wordSearch) return;
-      const res = await adminApi.lookUpKeyword(dict?.wordSearch);
+      if (!debouncedValue) return;
+      const res = await adminApi.lookUpKeyword(debouncedValue);
       setSearchRes(res);
     })();
-  }, [dict?.wordSearch]);
+  }, [debouncedValue]);
 
   return (
     <NewsBox
