@@ -1,5 +1,5 @@
 import ReactPlayer from 'react-player';
-import { RefObject } from 'react';
+import { ChangeEvent, RefObject } from 'react';
 import { MyWordListMenuType } from './types';
 import { Dispatch, SetStateAction } from 'react';
 import { NavigateFunction } from 'react-router-dom';
@@ -475,3 +475,23 @@ export interface Description {
   dictionaryId: number;
   term: string;
 }
+
+export interface AdminInputProps {
+  id: string;
+  label: string;
+  value: string;
+  type?: string;
+  placeholder: string;
+  onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+}
+
+export interface AdminImgUploadeerProps {
+  imagePreview: string | null;
+  handleImageChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export type InputState = {
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+  value: string;
+};
