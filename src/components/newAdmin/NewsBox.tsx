@@ -54,10 +54,13 @@ export default function NewsBox({
         </div>
 
         <div>
-          <label className='mb-1 block text-sm font-medium text-gray-700'>용어</label>
+          <label htmlFor={`word${index}`} className='mb-1 block text-sm font-medium text-gray-700'>
+            용어
+          </label>
           <div className='flex flex-col gap-2 md:flex-row'>
             <div className='flex-1'>
               <input
+                id={`word${index}`}
                 required
                 value={dictList?.word}
                 onChange={(e) => setDictList({ key: 'word', value: e.target.value, index })}
@@ -106,8 +109,11 @@ export default function NewsBox({
           placeholder={`정의 ${index + 1}을 입력하세요`}
         />
         <div>
-          <label className='mb-1 block text-sm font-medium text-gray-700'>해설</label>
+          <label htmlFor={`desc ${index}`} className='mb-1 block text-sm font-medium text-gray-700'>
+            해설
+          </label>
           <textarea
+            id={`desc ${index}`}
             value={dictList?.desc}
             onChange={(e) => setDictList({ key: 'desc', value: e.target.value, index })}
             className='w-full resize-none rounded-md border p-2'
