@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 export default function AdminHeader() {
   const { pathname } = useLocation();
   return (
-    <header className='fixed left-0 right-0 z-[999] m-auto h-[80px] w-full items-center bg-white px-[24px] shadow-md'>
+    <header className='fixed left-0 right-0 z-[999] m-auto h-[80px] w-full items-center px-[24px] shadow-md backdrop-blur'>
       <div className='m-auto flex h-full max-w-[1182px] items-center gap-x-[40px]'>
         <Link to={'/'}>
           {' '}
