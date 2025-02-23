@@ -1,5 +1,5 @@
 import { AdminInputProps } from '@/types/interface';
-import { SyntheticEvent } from 'react';
+import { KeyboardEvent, SyntheticEvent } from 'react';
 
 export default function Input({
   id,
@@ -10,9 +10,11 @@ export default function Input({
   placeholder,
   disabled,
   onSelect,
+  onkeydown,
 }: AdminInputProps & {
   onSelect?: (e: SyntheticEvent<HTMLInputElement>) => void;
   disabled?: boolean;
+  onkeydown?: (e: KeyboardEvent<HTMLInputElement>) => void;
 }) {
   return (
     <div className='relative'>
@@ -29,6 +31,7 @@ export default function Input({
         placeholder={placeholder}
         disabled={disabled}
         onSelect={onSelect}
+        onKeyDown={onkeydown}
       />
     </div>
   );

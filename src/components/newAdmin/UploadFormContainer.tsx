@@ -9,6 +9,7 @@ import SubmitButtonContainer from '@/containers/SubmitButtonContainer';
 import ScheduleFormContainer from '@/containers/ScheduleFormContainer';
 import { useShallow } from 'zustand/shallow';
 import adminApi from '@/services/adminApi';
+import AutoSuggestionInputContainer from '@/containers/AutoSuggestionInputContainer';
 
 export default function UploadFormContainer() {
   const title = useInput();
@@ -87,12 +88,20 @@ export default function UploadFormContainer() {
           value={originalLink.value}
           onChange={originalLink.handleInputChange}
         />
-        <InputContainer
+        {/* <InputContainer
           id='newsAgency'
           label='뉴스사'
           placeholder='뉴스사를 입력하세요'
           value={newsAgency.value}
           onChange={newsAgency.handleInputChange}
+        /> */}
+        <AutoSuggestionInputContainer
+          id='newsAgency'
+          label='뉴스사'
+          placeholder='뉴스사를 입력하세요'
+          value={newsAgency.value}
+          onChange={newsAgency.handleInputChange}
+          setValue={newsAgency.setValue}
         />
         <ImgUploaderContainer handleImageChange={handleImageChange} imagePreview={imagePreview} />
       </div>

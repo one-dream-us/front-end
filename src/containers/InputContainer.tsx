@@ -1,5 +1,6 @@
 import Input from '@/components/newAdmin/common/Input';
 import { AdminInputProps } from '@/types/interface';
+import { KeyboardEvent } from 'react';
 
 export default function InputContainer({
   id,
@@ -7,8 +8,16 @@ export default function InputContainer({
   placeholder,
   onChange,
   value,
-}: AdminInputProps) {
+  onkeydown,
+}: AdminInputProps & { onkeydown?: (e: KeyboardEvent<HTMLInputElement>) => void }) {
   return (
-    <Input id={id} label={label} placeholder={placeholder} value={value} onChange={onChange} />
+    <Input
+      id={id}
+      label={label}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      onkeydown={onkeydown}
+    />
   );
 }
