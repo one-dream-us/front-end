@@ -11,7 +11,13 @@ export default function AdminContentDetail() {
 
   const { data, isLoading, isError } = useQuery<AdminContentDetailType>({
     queryKey: ['admin-detail', id, status],
-    queryFn: async () => await adminApi.getDetailInfo(Number(id)),
+    queryFn: async () => {
+      if (status === 'uploaded') {
+        return await adminApi.getUploadedDetailInfo(Number(id));
+      } else {
+        return await adminApi.getScheduledDetailInfo(Number(id));
+      }
+    },
   });
 
   if (isLoading || !data) return <h1>loading...</h1>;

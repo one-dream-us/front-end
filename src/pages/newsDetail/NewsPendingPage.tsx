@@ -3,10 +3,9 @@ import NewsPendingSkeleton from '@/components/course/main/NewsPendingSkeleton';
 import useNewsDetail from '@/hooks/newDetail/useNewsDetail';
 import { INewsDetail } from '@/types/interface';
 import { highlightedDesc } from '@/utils/contentDetail/highlightedDesc';
-import { Link } from 'react-router-dom';
 
-export default function NewsPendingPage() {
-  const { isLoading, news, newsId } = useNewsDetail<INewsDetail>();
+export default function NewsPendingPage({ handleStartCourse }: { handleStartCourse: () => void }) {
+  const { isLoading, news } = useNewsDetail<INewsDetail>();
 
   const terms = news?.descriptions.map((item) => item.term);
 
@@ -32,14 +31,13 @@ export default function NewsPendingPage() {
             }}
           />
         </div>
-        <Link to={`/news/${newsId}`}>
-          <button
-            id='start_learning'
-            className='mb-[40px] h-[44px] w-full rounded-[10px] bg-custom-gray-dark text-[14px] font-bold text-custom-green-money transition-all duration-200 hover:bg-hover-80 md:mb-0'
-          >
-            학습 시작하기
-          </button>
-        </Link>
+        <button
+          onClick={handleStartCourse}
+          id='start_learning'
+          className='mb-[40px] h-[44px] w-full rounded-[10px] bg-custom-gray-dark text-[14px] font-bold text-custom-green-money transition-all duration-200 hover:bg-hover-80 md:mb-0'
+        >
+          학습 시작하기
+        </button>
       </div>
     </div>
   );

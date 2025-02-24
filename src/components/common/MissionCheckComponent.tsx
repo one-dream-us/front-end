@@ -17,7 +17,7 @@ export default function MissionCheckComponent({ clear }: { clear: boolean }) {
       navigate('/quiz');
     } else {
       // 아니면 (===퀴즈 결과 페이지면) 최신 뉴스 컨텐츠로 이동
-      const latestNewsPage = `/newsPending/${latestNews?.newsId}`;
+      const latestNewsPage = `/news/${latestNews?.newsId}`;
       navigate(latestNewsPage);
     }
   };

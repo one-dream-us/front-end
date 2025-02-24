@@ -22,9 +22,11 @@ const adminApi = {
   },
   getUploadedList: async (page: number, size: number = 10) =>
     (await client.get(`/back-office/contents/news?page=${page}&size=${size}`)).data,
-  getDetailInfo: async (newsId: number) =>
+  getUploadedDetailInfo: async (newsId: number) =>
     (await client.get(`/back-office/contents/news/${newsId}`)).data,
   lookupNewsAgency: async (newsAgency: string) =>
     (await client.get(`/back-office/agency/${newsAgency}`)).data,
+  getScheduledDetailInfo: async (newsId: number) =>
+    (await client.get(`/back-office/contents/news/scheduled/${newsId}`)).data,
 };
 export default adminApi;
