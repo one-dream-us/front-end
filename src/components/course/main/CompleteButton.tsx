@@ -4,6 +4,7 @@ import { useStore } from 'zustand';
 import NewsLink from './NewsLink';
 import learingDurationStore from '@/store/course/learningDurationStore';
 import { useEffect } from 'react';
+import { missionApi } from '@/services/missionApi';
 
 export default function CompleteButton() {
   const { index, swiper } = useStore(courseIndexState);
@@ -13,12 +14,17 @@ export default function CompleteButton() {
 
   const lastIndex = index === 2;
 
-  const handleNextButtonClick = () => {
-    if (lastIndex) {
-      navigate(`/newsComplete/${id}`);
-      setTimeStamp('end');
-    } else {
-      swiper?.slideNext();
+  const handleNextButtonClick = async () => {
+    try {
+      if (lastIndex) {
+        await missionApi.postNewsComplete();
+        navigate(`/newsComplete/${id}`);
+        setTimeStamp('end');
+      } else {
+        swiper?.slideNext();
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 

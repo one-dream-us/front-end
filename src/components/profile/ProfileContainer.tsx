@@ -1,4 +1,3 @@
-import { useUserInfoQuery } from '@/hooks/auth/useUserInfoQuery';
 import MyProfileNickname from './MyProfileNickname';
 import Calendar from '../attendance/Calendar';
 import WithdrawButton from './WithdrawButton';
@@ -7,33 +6,37 @@ import ProfileSkeleton from './ProfileSkeleton';
 import iconStarLess from '@/assets/P2_5d/icon_star_none_lesscone.png';
 import flame from '@/assets/P2_5d/icon_flame.png';
 import { getProfileBannerText } from '@/utils/profile/profileUtis';
+import useProfileInfo from '@/hooks/mission/useProfileInfo';
 
 export default function ProfileContainer() {
-  const { data: info, isLoading } = useUserInfoQuery(true);
+  const { data, isLoading } = useProfileInfo();
 
   const myInfo = (() => {
     return [
-      { title: '이메일', data: info?.email || '' },
-      { title: '가입일자', data: info?.createdAt.split('T')[0]?.replaceAll('-', '.') as string },
+      { title: '이메일', data: data.userInfo?.email || '' },
+      {
+        title: '가입일자',
+        data: data.userInfo?.createdAt.split('T')[0]?.replaceAll('-', '.') as string,
+      },
       {
         title: '가입경로',
-        data: `${info?.provider === 'kakao' ? '카카오' : '구글'} 소셜 회원가입`,
+        data: `${data.userInfo?.provider === 'kakao' ? '카카오' : '구글'} 소셜 회원가입`,
       },
     ];
   })();
 
-  const CONTINUOUS_DAY = 0;
-  const { bottom, top } = getProfileBannerText(CONTINUOUS_DAY);
+  // const CONTINUOUS_DAY = 0;
+  const { bottom, top } = getProfileBannerText(data?.continuousDays);
 
-  if (isLoading || !info) return <ProfileSkeleton />;
+  if (isLoading || !data) return <ProfileSkeleton />;
   return (
     <div className='m-auto w-[343px] md:w-[353px]'>
       {/* 프사,이름 */}
-      <MyProfileNickname name={info?.name || ''} />
+      <MyProfileNickname name={data?.userInfo?.name || ''} />
 
       {/* 달력 */}
       <div className='m-auto mb-[20px] w-full'>
-        <div id={CONTINUOUS_DAY > 0 ? 'banner-continuous' : 'banner-not-continuous'}>
+        <div id={data?.continuousDays > 0 ? 'banner-continuous' : 'banner-not-continuous'}>
           <div className='absolute left-[20px] top-[13px]'>
             <span className='text-[16px] font-medium'>{top}</span>
             <div className='flex items-center justify-center gap-x-[6px]'>

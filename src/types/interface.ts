@@ -495,3 +495,11 @@ export type InputState = {
   setValue: React.Dispatch<React.SetStateAction<string>>;
   value: string;
 };
+
+export interface MissionStatus {
+  date: string;
+  missionStatus: {
+    quiz: boolean;
+    news: boolean;
+  };
+}

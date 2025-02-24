@@ -9,5 +9,7 @@ const QUERY_KEYS = {
   getGradList: ['졸업노트'] as const,
   learngingDays: ['learngingDays'],
   learningStatus: ['learningStatus'],
+  continuousDays: ['continuousDays'],
+  todaysMission: ['todaysMission'],
 };
 export default QUERY_KEYS;

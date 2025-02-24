@@ -1,3 +1,4 @@
+import useMissionStatus from '@/hooks/mission/useMissionStatus';
 import { compareDate, formatLabel } from '@/utils/calendar/calendarUtils';
 import { useState } from 'react';
 import { Calendar as ReactCalendar } from 'react-calendar';
@@ -10,12 +11,19 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 export default function Calendar() {
   const [value, onChange] = useState<Value>(new Date());
   const [activeDate, setActiveDate] = useState<Date>(new Date());
+  const { data: status } = useMissionStatus(
+    `${activeDate.getFullYear()}-${String(activeDate.getMonth() + 1).padStart(2, '0')}`,
+  );
 
   const lastDayOfThisMonth = new Date(
     (activeDate as Date).getFullYear(),
-    (activeDate as Date).getMonth() + 1,
+    (activeDate as Date).getUTCMonth() + 1,
     0,
   );
+
+  const missionSuccessCount = status?.reduce((acc, cur) => {
+    return (acc += +Object.values(cur.missionStatus).every((item) => item === true));
+  }, 0);
   return (
     <div className='relative w-[343px] md:w-[353px]'>
       {' '}
@@ -33,7 +41,7 @@ export default function Calendar() {
         formatDay={(_locale, date) => `${date.getDate()}`}
         minDetail='month'
         maxDate={new Date()}
-        tileClassName={({ date }) => compareDate(date)}
+        tileClassName={({ date }) => compareDate(date, status!)}
         onActiveStartDateChange={({ activeStartDate }) =>
           setActiveDate(activeStartDate ?? new Date())
         }
@@ -41,7 +49,7 @@ export default function Calendar() {
       <div className='absolute right-[30px] top-[24px] text-[12px]'>
         <span className='mr-2 font-medium text-[#797979]'>이번 달 미션 완료</span>
         <span className='font-medium text-[#454545]'>
-          <span className='font-bold'>5</span>
+          <span className='font-bold'>{missionSuccessCount || 0}</span>
           <span className='mx-[1px]'>/</span>
           {lastDayOfThisMonth.getDate()}
         </span>
