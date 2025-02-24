@@ -41,7 +41,7 @@ export default function Calendar() {
         formatDay={(_locale, date) => `${date.getDate()}`}
         minDetail='month'
         maxDate={new Date()}
-        tileClassName={({ date }) => compareDate(date)}
+        tileClassName={({ date }) => compareDate(date, status!)}
         onActiveStartDateChange={({ activeStartDate }) =>
           setActiveDate(activeStartDate ?? new Date())
         }
