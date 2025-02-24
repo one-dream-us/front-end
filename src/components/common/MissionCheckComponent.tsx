@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import flameImg from '@/assets/P2_5d/userinfo_icon_flame.png';
 import checkStarImg from '@/assets/P2_5d/icon_check_star.png';
 import { useState } from 'react';
+import useTodaysMissionStatus from '@/hooks/mission/useTodaysMissionStatus';
 
 export default function MissionCheckComponent({ clear }: { clear: boolean }) {
   const { latestNews } = useLatestNews();
@@ -160,7 +161,8 @@ const MissionCheckModal = ({
 };
 
 const MissionCheckList = () => {
-  const res = { news: false, quiz: false };
+  const { data } = useTodaysMissionStatus();
+
   const { pathname } = useLocation();
   const isNewsPage = pathname.includes('newsComplete');
   const isQuizPage = pathname.includes('quiz-result');
@@ -170,7 +172,7 @@ const MissionCheckList = () => {
       <div className='flex w-full items-center justify-between py-[10px]'>
         <span className='text-[16px] font-bold text-custom-gray-dark'>머니뉴스 학습하기</span>
         <div className='h-[30px] w-[30px] rounded-full border border-[#E3E3E3]'>
-          {(isNewsPage || res.news) && (
+          {(isNewsPage || data?.news) && (
             <motion.img
               animate={{ scale: [0, 1.5, 1.1], transition: { duration: 0.8, delay: 0.3 } }}
               src={checkStarImg}
@@ -183,7 +185,7 @@ const MissionCheckList = () => {
       <div className='flex w-full items-center justify-between py-[10px]'>
         <span className='text-[16px] font-bold text-custom-gray-dark'>오늘의 퀴즈 풀기</span>
         <div className='h-[30px] w-[30px] rounded-full border border-[#E3E3E3]'>
-          {(res.quiz || isQuizPage) && (
+          {(data?.quiz || isQuizPage) && (
             <motion.img
               animate={{ scale: [0, 1.5, 1.1], transition: { duration: 0.8, delay: 0.3 } }}
               src={checkStarImg}

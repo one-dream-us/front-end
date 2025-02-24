@@ -1,6 +1,6 @@
 import useMissionStatus from '@/hooks/mission/useMissionStatus';
 import { compareDate, formatLabel } from '@/utils/calendar/calendarUtils';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { Calendar as ReactCalendar } from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
@@ -21,11 +21,9 @@ export default function Calendar() {
     0,
   );
 
-  const missionSuccessCount = useMemo(() => {
-    return status?.reduce((acc, cur) => {
-      return (acc += +Object.values(cur.missionStatus).every((item) => item === true));
-    }, 0);
-  }, [activeDate]);
+  const missionSuccessCount = status?.reduce((acc, cur) => {
+    return (acc += +Object.values(cur.missionStatus).every((item) => item === true));
+  }, 0);
   return (
     <div className='relative w-[343px] md:w-[353px]'>
       {' '}

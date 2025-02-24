@@ -10,5 +10,6 @@ const QUERY_KEYS = {
   learngingDays: ['learngingDays'],
   learningStatus: ['learningStatus'],
   continuousDays: ['continuousDays'],
+  todaysMission: ['todaysMission'],
 };
 export default QUERY_KEYS;
