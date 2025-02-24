@@ -18,7 +18,7 @@ export default function NewsCard({
 
   return (
     <Link
-      to={`/newsPending/${newsId}`}
+      to={`/news/${newsId}`}
       className={`relative flex flex-col ${(isToday || isDesktop) && 'desktop:flex-row desktop:gap-x-5'}`}
     >
       <img src={WaterMark} className='absolute left-2 top-2 h-11 w-11 object-cover' />

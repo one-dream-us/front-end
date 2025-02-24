@@ -10,7 +10,6 @@ import WithDrawSuccess from './pages/WithDrawSuccess';
 import ContentList from './pages/ContentList';
 import NotFound from './pages/NotFound';
 import AdminLayout from './components/admin/common/AdminLayout';
-import LinkUpload from './pages/admin/contentUpload/LinkUpload';
 import AdminHome from './pages/admin/home/AdminHome';
 import QuizPage from './pages/quiz/QuizPage';
 import QuizErrorPage from './components/quiz/QuizErrorPage';
@@ -21,11 +20,10 @@ import MyWordList from './pages/MyWordList';
 import RandomQuizResultPage from './pages/quiz/randomQuiz/RandomQuizResultPage';
 import NewsList from './pages/NewsList';
 import NewsDetailLayout from './components/common/layout/NewsDetailLayout';
-import NewsPendingPage from './pages/newsDetail/NewsPendingPage';
 import NewsCompletePage from './pages/newsDetail/NewsCompletePage';
-import NewsDetailPage from './pages/newsDetail/NewsDetailPage';
 import Write from './pages/admin/write/Write';
 import AdminContentDetail from './pages/admin/contentDetail/AdminContentDetail';
+import NewsDetailContainer from './components/course/main/NewsDetailContainer';
 
 export const router = createBrowserRouter(
   [
@@ -74,8 +72,7 @@ export const router = createBrowserRouter(
     {
       element: <NewsDetailLayout />,
       children: [
-        { path: '/newsPending/:id', element: <NewsPendingPage /> },
-        { path: '/news/:id', element: <NewsDetailPage /> },
+        { path: '/news/:id', element: <NewsDetailContainer /> },
         { path: '/newsComplete/:id', element: <NewsCompletePage /> },
       ],
     },
@@ -83,9 +80,8 @@ export const router = createBrowserRouter(
       element: <AdminLayout />,
       children: [
         { path: '/admin/home', element: <AdminHome /> },
-        { path: '/admin/link-upload', element: <LinkUpload /> },
         { path: '/admin/write', element: <Write /> },
-        { path: 'admin/content/:id', element: <AdminContentDetail /> },
+        { path: '/admin/content/:id', element: <AdminContentDetail /> },
       ],
     },
   ],

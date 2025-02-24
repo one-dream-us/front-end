@@ -29,7 +29,7 @@ import detailOnboardingImg3_tab from '@/assets/detailpage_tutorial/modalImg3_tab
 
 export const HeaderMenuList = [
   { id: 1, title: '홈', to: '/' },
-  { id: 2, title: '머니뉴스', to: '/news-list', sub: '/newsPending/' },
+  { id: 2, title: '머니뉴스', to: '/news-list', sub: '/news/' },
   { id: 3, title: '나의 단어장', to: '/my-word-list' },
 ];
 
