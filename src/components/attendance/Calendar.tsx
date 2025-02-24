@@ -1,6 +1,7 @@
-import useMissionStatus from '@/hooks/mission/useMissionStatus';
+import { missionApi } from '@/services/missionApi';
+import { MissionStatus } from '@/types/interface';
 import { compareDate, formatLabel } from '@/utils/calendar/calendarUtils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Calendar as ReactCalendar } from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
@@ -11,19 +12,30 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 export default function Calendar() {
   const [value, onChange] = useState<Value>(new Date());
   const [activeDate, setActiveDate] = useState<Date>(new Date());
-  const { data: status } = useMissionStatus(
-    `${activeDate.getFullYear()}-${String(activeDate.getMonth() + 1).padStart(2, '0')}`,
-  );
+  const [status, setStatus] = useState<MissionStatus[]>([]);
 
   const lastDayOfThisMonth = new Date(
-    (activeDate as Date).getFullYear(),
-    (activeDate as Date).getUTCMonth() + 1,
+    activeDate.getFullYear(),
+    activeDate.getMonth() + 1,
     0,
-  );
+  ).getDate();
 
-  const missionSuccessCount = status?.reduce((acc, cur) => {
-    return (acc += +Object.values(cur.missionStatus).every((item) => item === true));
-  }, 0);
+  const MissionCleatCount = status.filter((item) =>
+    Object.values(item.missionStatus).every((i) => i === true),
+  ).length;
+
+  useEffect(() => {
+    (async () => {
+      const res = await missionApi
+        .getMissionStatus(
+          'month',
+          `${activeDate.getFullYear()}-${String(activeDate.getMonth() + 1).padStart(2, '0')}`,
+        )
+        .then((res) => res.data.dailyMissionDetails);
+      setStatus(res);
+    })();
+  }, [activeDate]);
+
   return (
     <div className='relative w-[343px] md:w-[353px]'>
       {' '}
@@ -49,9 +61,9 @@ export default function Calendar() {
       <div className='absolute right-[30px] top-[24px] text-[12px]'>
         <span className='mr-2 font-medium text-[#797979]'>이번 달 미션 완료</span>
         <span className='font-medium text-[#454545]'>
-          <span className='font-bold'>{missionSuccessCount || 0}</span>
+          <span className='font-bold'>{MissionCleatCount}</span>
           <span className='mx-[1px]'>/</span>
-          {lastDayOfThisMonth.getDate()}
+          {lastDayOfThisMonth}
         </span>
       </div>
     </div>
