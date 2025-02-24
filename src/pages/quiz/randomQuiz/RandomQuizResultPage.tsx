@@ -75,7 +75,7 @@ export default function RandomQuizResultPage() {
         titleText='나만의 퀴즈를 만들어요!'
         handleButtonClick={() => navigate('/news-list')}
       /> */}
-      <MissionCheckComponent clear={true} />
+      <MissionCheckComponent />
     </div>
   );
 }

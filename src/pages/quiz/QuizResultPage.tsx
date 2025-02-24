@@ -72,7 +72,7 @@ export default function QuizResultPage() {
         </button>
       </div>
 
-      <MissionCheckComponent clear={true} />
+      <MissionCheckComponent />
     </div>
   );
 }

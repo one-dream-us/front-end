@@ -6,11 +6,17 @@ import checkStarImg from '@/assets/P2_5d/icon_check_star.png';
 import { useState } from 'react';
 import useTodaysMissionStatus from '@/hooks/mission/useTodaysMissionStatus';
 
-export default function MissionCheckComponent({ clear }: { clear: boolean }) {
+export default function MissionCheckComponent() {
   const { latestNews } = useLatestNews();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [visible, setVisible] = useState(true);
+  const { data, isLoading } = useTodaysMissionStatus();
+
+  const clear = (() => {
+    if (isLoading) return;
+    return Object.values(data!).every((item) => item === true);
+  })();
 
   const handleNavigateMission = () => {
     if (pathname.includes('newsComplete')) {
@@ -25,18 +31,22 @@ export default function MissionCheckComponent({ clear }: { clear: boolean }) {
 
   return (
     <div>
-      {visible && (
-        <div className='hidden desktop:block'>
-          <MissionCheckModal
-            clear={clear}
-            handleNavigateMission={handleNavigateMission}
-            handleCloseModal={() => setVisible(false)}
-          />
-        </div>
+      {!isLoading && (
+        <>
+          {visible && (
+            <div className='hidden desktop:block'>
+              <MissionCheckModal
+                clear={clear!}
+                handleNavigateMission={handleNavigateMission}
+                handleCloseModal={() => setVisible(false)}
+              />
+            </div>
+          )}
+          <div className='block desktop:hidden'>
+            <MissionCheckBottomSheet clear={clear!} handleNavigateMission={handleNavigateMission} />
+          </div>
+        </>
       )}
-      <div className='block desktop:hidden'>
-        <MissionCheckBottomSheet clear={clear} handleNavigateMission={handleNavigateMission} />
-      </div>
     </div>
   );
 }
