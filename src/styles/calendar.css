@@ -46,6 +46,7 @@
 .react-calendar__navigation button:enabled:focus {
   background-color: transparent;
 }
+.react-calendar__navigation__prev-button:disabled,
 .react-calendar__navigation__next-button:disabled {
   background-color: white !important;
   color: #999999;
