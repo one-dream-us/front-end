@@ -1,4 +1,5 @@
 // import UploadForm from '@/components/admin/contentUpload/uploadForm/UploadForm';
+import UploadForm from '@/components/admin/contentUpload/uploadForm/UploadForm';
 import UploadFormContainer from '@/components/newAdmin/UploadFormContainer';
 
 export default function Write() {
