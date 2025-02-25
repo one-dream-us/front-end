@@ -11,12 +11,7 @@ export default function MissionCheckComponent() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [visible, setVisible] = useState(true);
-  const { data, isLoading } = useTodaysMissionStatus();
-
-  const clear = (() => {
-    if (isLoading) return;
-    return Object.values(data!).every((item) => item === true);
-  })();
+  const { data: status, isLoading } = useTodaysMissionStatus();
 
   const handleNavigateMission = () => {
     if (pathname.includes('newsComplete')) {
@@ -29,6 +24,11 @@ export default function MissionCheckComponent() {
     }
   };
 
+  const setClear = () => {
+    if (!status) return false;
+    return Object.values(status).every((item) => item === true);
+  };
+
   return (
     <div>
       {!isLoading && (
@@ -36,14 +36,17 @@ export default function MissionCheckComponent() {
           {visible && (
             <div className='hidden desktop:block'>
               <MissionCheckModal
-                clear={clear!}
+                clear={setClear()}
                 handleNavigateMission={handleNavigateMission}
                 handleCloseModal={() => setVisible(false)}
               />
             </div>
           )}
           <div className='block desktop:hidden'>
-            <MissionCheckBottomSheet clear={clear!} handleNavigateMission={handleNavigateMission} />
+            <MissionCheckBottomSheet
+              clear={setClear()}
+              handleNavigateMission={handleNavigateMission}
+            />
           </div>
         </>
       )}
@@ -156,7 +159,7 @@ const MissionCheckModal = ({
             ) : (
               <button
                 onClick={handleNavigateMission}
-                className={`h- fullw-full flex items-center justify-center whitespace-nowrap rounded-b-[10px] bg-custom-gray-dark py-3 text-custom-green-money transition-all duration-200 hover:bg-hover-80 hover:text-green-hover`}
+                className={`flex h-full w-full items-center justify-center whitespace-nowrap rounded-b-[10px] bg-custom-gray-dark py-3 text-custom-green-money transition-all duration-200 hover:bg-hover-80 hover:text-green-hover`}
               >
                 <span className='text-[14px] font-bold leading-120 text-custom-green-money'>
                   다른 미션 하러가기
