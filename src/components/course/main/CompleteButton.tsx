@@ -5,19 +5,25 @@ import NewsLink from './NewsLink';
 import learingDurationStore from '@/store/course/learningDurationStore';
 import { useEffect } from 'react';
 import { missionApi } from '@/services/missionApi';
+// import { missionApi } from '@/services/missionApi';
 
 export default function CompleteButton() {
   const { index, swiper } = useStore(courseIndexState);
   const { setTimeStamp } = useStore(learingDurationStore);
   const navigate = useNavigate();
   const { id } = useParams();
+  // const { data: islogin } = useAuthCheckQuery();
 
   const lastIndex = index === 2;
 
   const handleNextButtonClick = async () => {
     try {
       if (lastIndex) {
-        await missionApi.postNewsComplete();
+        try {
+          await missionApi.postNewsComplete();
+        } catch (e) {
+          console.log(e);
+        }
         navigate(`/newsComplete/${id}`);
         setTimeStamp('end');
       } else {
