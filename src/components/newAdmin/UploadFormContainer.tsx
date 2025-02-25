@@ -1,16 +1,11 @@
 import { FormEvent } from 'react';
 import useInput from '@/hooks/admin/useInput';
-import ImgUploaderContainer from '@/containers/ImgUploaderContainer';
-import InputContainer from '@/containers/InputContainer';
 import useImgUpload from '@/hooks/newAdmin/useImgUpload';
-import NewsBoxContainer from '@/containers/NewsBoxContainer';
 import { useNewsListStore, useScheduleStore } from '@/store/newAdmin/useFormStore';
-import SubmitButtonContainer from '@/containers/SubmitButtonContainer';
-import ScheduleFormContainer from '@/containers/ScheduleFormContainer';
 import { useShallow } from 'zustand/shallow';
 import adminApi from '@/services/adminApi';
-import AutoSuggestionInputContainer from '@/containers/AutoSuggestionInputContainer';
 import { DictionarySentenceList } from '@/types/interface';
+import UploadForm from './UploadForm';
 
 export default function UploadFormContainer() {
   const title = useInput();
@@ -70,52 +65,14 @@ export default function UploadFormContainer() {
     }
   };
   return (
-    <form
-      onSubmit={handleSubmitForm}
-      onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
-      className='mx-auto w-full space-y-6 p-6'
-    >
-      <div className='space-y-4'>
-        <InputContainer
-          id='title'
-          label='제목'
-          placeholder='제목을 입력하세요'
-          value={title.value}
-          onChange={title.handleInputChange}
-        />
-        <InputContainer
-          id='originalLink'
-          label='뉴스 원문 링크'
-          placeholder='뉴스 원문 링크를 입력하세요'
-          value={originalLink.value}
-          onChange={originalLink.handleInputChange}
-        />
-        {/* <InputContainer
-          id='newsAgency'
-          label='뉴스사'
-          placeholder='뉴스사를 입력하세요'
-          value={newsAgency.value}
-          onChange={newsAgency.handleInputChange}
-        /> */}
-        <AutoSuggestionInputContainer
-          id='newsAgency'
-          label='뉴스사'
-          placeholder='뉴스사를 입력하세요'
-          value={newsAgency.value}
-          onChange={newsAgency.handleInputChange}
-          setValue={newsAgency.setValue}
-        />
-        <ImgUploaderContainer handleImageChange={handleImageChange} imagePreview={imagePreview} />
-      </div>
-
-      <div className='space-y-4'>
-        {dictList.map((item) => (
-          <NewsBoxContainer key={item.id} index={item.id} />
-        ))}
-      </div>
-
-      <ScheduleFormContainer />
-      <SubmitButtonContainer />
-    </form>
+    <UploadForm
+      dictList={dictList}
+      handleImageChange={handleImageChange}
+      handleSubmitForm={handleSubmitForm}
+      imagePreview={imagePreview}
+      newsAgency={newsAgency}
+      originalLink={originalLink}
+      title={title}
+    />
   );
 }
