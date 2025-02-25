@@ -4,6 +4,7 @@ export default function ImgUploader({ handleImageChange, imagePreview }: AdminIm
   return (
     <div className='rounded-md border-2 border-dashed p-4 text-center'>
       <input
+        required
         type='file'
         id='image'
         accept='image/*'

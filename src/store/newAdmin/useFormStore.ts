@@ -6,7 +6,7 @@ export type AdminDict = {
   wordSearch: string;
   definition: string;
   desc: string;
-  wordId: null | string;
+  wordId: null | number;
   id: number;
   draggedWord: string;
   startIndex: number | null;
