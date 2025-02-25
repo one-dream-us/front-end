@@ -24,6 +24,7 @@ import NewsCompletePage from './pages/newsDetail/NewsCompletePage';
 import Write from './pages/admin/write/Write';
 import AdminContentDetail from './pages/admin/contentDetail/AdminContentDetail';
 import NewsDetailContainer from './components/course/main/NewsDetailContainer';
+import UpdatePage from './pages/admin/update/UpdatePage';
 
 export const router = createBrowserRouter(
   [
@@ -82,6 +83,7 @@ export const router = createBrowserRouter(
         { path: '/admin/home', element: <AdminHome /> },
         { path: '/admin/write', element: <Write /> },
         { path: '/admin/content/:id', element: <AdminContentDetail /> },
+        { path: '/admin/update/:id', element: <UpdatePage /> },
       ],
     },
   ],
