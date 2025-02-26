@@ -18,12 +18,13 @@ export default function AdminContentDetail() {
         >
           수정
         </Link>
-        <Link
-          to={'/'}
+        <a
+          href='https://www.youtube.com/watch?v=NMjhjrBIrG8'
+          target='_blank'
           className='mb-5 ml-auto flex w-fit rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700'
         >
           삭제
-        </Link>
+        </a>
       </div>
       <ul className='flex flex-col gap-y-5'>
         <li>제목 : {data?.title}</li>
