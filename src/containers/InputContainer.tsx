@@ -9,7 +9,11 @@ export default function InputContainer({
   onChange,
   value,
   onkeydown,
-}: AdminInputProps & { onkeydown?: (e: KeyboardEvent<HTMLInputElement>) => void }) {
+  autoComplete,
+}: AdminInputProps & {
+  onkeydown?: (e: KeyboardEvent<HTMLInputElement>) => void;
+  autoComplete?: 'on' | 'off';
+}) {
   return (
     <Input
       id={id}
@@ -18,6 +22,7 @@ export default function InputContainer({
       value={value}
       onChange={onChange}
       onkeydown={onkeydown}
+      autoComplete={autoComplete}
     />
   );
 }

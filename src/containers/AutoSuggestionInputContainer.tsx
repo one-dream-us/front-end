@@ -49,6 +49,13 @@ export default function AutoSuggestionInputContainer({
       setSuggestions(res);
     })();
   }, [debouncedValue]);
+
+  useEffect(() => {
+    if (suggestions.findIndex((item) => item.name === value) !== -1) {
+      setSuggestions([]);
+      setSuggestionIndex(-1);
+    }
+  }, [suggestions, suggestionIndex, value]);
   return (
     <div className='relative'>
       <InputContainer
@@ -58,6 +65,7 @@ export default function AutoSuggestionInputContainer({
         placeholder={placeholder}
         value={value}
         onkeydown={handleNavigateSearchResult}
+        autoComplete={'off'}
       />
       {suggestions.length > 0 && value && (
         <div className='absolute z-30 mt-1 w-full rounded-md border bg-white py-1 shadow-lg'>
