@@ -15,6 +15,7 @@ export type AdminDict = {
 export interface UseNewsListStore {
   dictList: AdminDict[];
   setDictList: <T>(payload: { key: keyof AdminDict; value: T; index: number }) => void;
+  resetDictList: () => void;
 }
 export const useNewsListStore = create<UseNewsListStore>((set) => ({
   dictList: [
@@ -68,6 +69,47 @@ export const useNewsListStore = create<UseNewsListStore>((set) => ({
         }
       });
       return { dictList: newDictList };
+    }),
+  resetDictList: () =>
+    set({
+      dictList: [
+        {
+          id: 0,
+          sentence: '',
+          word: '',
+          wordSearch: '',
+          definition: '',
+          desc: '',
+          wordId: null,
+          draggedWord: '',
+          startIndex: 0,
+          endIndex: 0,
+        },
+        {
+          id: 1,
+          sentence: '',
+          word: '',
+          wordSearch: '',
+          definition: '',
+          desc: '',
+          wordId: null,
+          draggedWord: '',
+          startIndex: 0,
+          endIndex: 0,
+        },
+        {
+          id: 2,
+          sentence: '',
+          word: '',
+          wordSearch: '',
+          definition: '',
+          desc: '',
+          wordId: null,
+          draggedWord: '',
+          startIndex: 0,
+          endIndex: 0,
+        },
+      ],
     }),
 }));
 

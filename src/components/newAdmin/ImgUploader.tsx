@@ -2,16 +2,20 @@ import { AdminImgUploadeerProps } from '@/types/interface';
 
 export default function ImgUploader({ handleImageChange, imagePreview }: AdminImgUploadeerProps) {
   return (
-    <div className='rounded-md border-2 border-dashed p-4 text-center'>
+    <div className='relative cursor-pointer rounded-md border-2 border-dashed p-4 text-center'>
       <input
         required
         type='file'
         id='image'
         accept='image/*'
-        className='hidden'
+        className='absolute -z-10 cursor-pointer opacity-0'
+        name='img uploader'
         onChange={handleImageChange}
       />
-      <label htmlFor='image' className='flex cursor-pointer flex-col items-center justify-center'>
+      <label
+        htmlFor='image'
+        className='z-10 flex cursor-pointer flex-col items-center justify-center'
+      >
         {imagePreview ? (
           <img
             src={imagePreview}

@@ -11,10 +11,12 @@ export default function Input({
   disabled,
   onSelect,
   onkeydown,
+  autoComplete,
 }: AdminInputProps & {
   onSelect?: (e: SyntheticEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   onkeydown?: (e: KeyboardEvent<HTMLInputElement>) => void;
+  autoComplete?: 'on' | 'off';
 }) {
   return (
     <div className='relative'>
@@ -32,6 +34,7 @@ export default function Input({
         disabled={disabled}
         onSelect={onSelect}
         onKeyDown={onkeydown}
+        autoComplete={autoComplete}
       />
     </div>
   );

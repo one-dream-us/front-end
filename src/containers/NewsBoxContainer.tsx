@@ -7,8 +7,12 @@ import { KeyboardEvent, useEffect, useState } from 'react';
 import { useShallow } from 'zustand/shallow';
 
 export default function NewsBoxContainer({ index }: { index: number }) {
-  const { dict, setDictList } = useNewsListStore(
-    useShallow((s) => ({ dict: s.dictList[index], setDictList: s.setDictList })),
+  const { dict, setDictList, resetDictList } = useNewsListStore(
+    useShallow((s) => ({
+      dict: s.dictList[index],
+      setDictList: s.setDictList,
+      resetDictList: s.resetDictList,
+    })),
   );
   const [searchRes, setSearchRes] = useState<SearchWordResult[]>([]);
   const [suggestionIndex, setSuggestionIndex] = useState(-1);
@@ -37,6 +41,10 @@ export default function NewsBoxContainer({ index }: { index: number }) {
     setDictList({ key: 'wordId', index, value: id });
   };
   const debouncedValue = useDebounce(dict?.wordSearch, 300);
+
+  useEffect(() => {
+    resetDictList();
+  }, []);
   useEffect(() => {
     (async () => {
       if (!debouncedValue) return;

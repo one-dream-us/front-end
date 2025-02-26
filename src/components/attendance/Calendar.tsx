@@ -9,7 +9,7 @@ type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-export default function Calendar() {
+export default function Calendar({ createdAt }: { createdAt: string }) {
   const [value, onChange] = useState<Value>(new Date());
   const [activeDate, setActiveDate] = useState<Date>(new Date());
   const [status, setStatus] = useState<MissionStatus[]>([]);
@@ -53,7 +53,8 @@ export default function Calendar() {
         formatDay={(_locale, date) => `${date.getDate()}`}
         minDetail='month'
         maxDate={new Date()}
-        tileClassName={({ date }) => compareDate(date, status!)}
+        // minDate={new Date(createdAt)}
+        tileClassName={({ date }) => compareDate(date, status!, createdAt)}
         onActiveStartDateChange={({ activeStartDate }) =>
           setActiveDate(activeStartDate ?? new Date())
         }

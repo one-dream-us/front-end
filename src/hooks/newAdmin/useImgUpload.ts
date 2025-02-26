@@ -9,7 +9,10 @@ const useImgUpload = () => {
     const file = e.target.files?.[0];
     if (file) {
       if (file.size > MAX_FILE_SIZE) {
-        return alert('2mb 이하만 가능해용');
+        alert('2mb 이하만 가능해용');
+        setFile(undefined);
+        e.target.value = '';
+        return;
       } else {
         const reader = new FileReader();
         reader.onloadend = () => {

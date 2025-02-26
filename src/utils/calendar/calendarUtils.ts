@@ -7,13 +7,23 @@ export const formatLabel = (label: string) => {
   return `${res[0]}.${res[1].padStart(2, '0')}`;
 };
 
-export const compareDate = (date: Date, status: MissionStatus[]) => {
+export const compareDate = (date: Date, status: MissionStatus[], createdAt: string) => {
   if (!status || status.length === 0) return;
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
+  const cr = createdAt.split('-').join('');
+  const formattedDate = [
+    date.getFullYear(),
+    String(date.getMonth() + 1).padStart(2, '0'),
+    String(date.getDate()).padStart(2, '0'),
+  ].join('');
 
   const classList = [];
+
+  if (formattedDate === cr) {
+    classList.push('created_at');
+  }
 
   status.forEach((item) => {
     if (item.date.split('-')[2] !== String(date.getDate()).padStart(2, '0')) return;
