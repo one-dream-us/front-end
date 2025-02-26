@@ -3,15 +3,16 @@ import { motion } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
 import flameImg from '@/assets/P2_5d/userinfo_icon_flame.png';
 import checkStarImg from '@/assets/P2_5d/icon_check_star.png';
-import { useState } from 'react';
-import useTodaysMissionStatus from '@/hooks/mission/useTodaysMissionStatus';
+import { useEffect, useState } from 'react';
+import { missionApi } from '@/services/missionApi';
 
 export default function MissionCheckComponent() {
   const { latestNews } = useLatestNews();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [visible, setVisible] = useState(true);
-  const { data: status, isLoading } = useTodaysMissionStatus();
+  // const { data: status, isLoading } = useTodaysMissionStatus();
+  const [status, setStatus] = useState<{ quiz: boolean; news: boolean }>();
 
   const handleNavigateMission = () => {
     if (pathname.includes('newsComplete')) {
@@ -24,19 +25,22 @@ export default function MissionCheckComponent() {
     }
   };
 
-  const setClear = () => {
-    if (!status) return false;
-    return Object.values(status).every((item) => item === true);
-  };
-
+  useEffect(() => {
+    (async () => {
+      const today = new Date();
+      const queryString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${today.getDate()}`;
+      const res = await missionApi.getMissionStatus('date', queryString).then((res) => res.data);
+      setStatus(res);
+    })();
+  }, []);
   return (
     <div>
-      {!isLoading && (
+      {status && (
         <>
           {visible && (
             <div className='hidden desktop:block'>
               <MissionCheckModal
-                clear={setClear()}
+                status={status}
                 handleNavigateMission={handleNavigateMission}
                 handleCloseModal={() => setVisible(false)}
               />
@@ -44,7 +48,7 @@ export default function MissionCheckComponent() {
           )}
           <div className='block desktop:hidden'>
             <MissionCheckBottomSheet
-              clear={setClear()}
+              status={status}
               handleNavigateMission={handleNavigateMission}
             />
           </div>
@@ -55,13 +59,14 @@ export default function MissionCheckComponent() {
 }
 
 const MissionCheckBottomSheet = ({
-  clear,
+  status,
   handleNavigateMission,
 }: {
-  clear: boolean;
+  status: { news: boolean; quiz: boolean };
   handleNavigateMission: () => void;
 }) => {
   const navigate = useNavigate();
+  const clear = status.news && status.quiz;
   return (
     <motion.div
       initial={{ y: 150 }}
@@ -76,7 +81,7 @@ const MissionCheckBottomSheet = ({
           </div>
         </div>
 
-        <MissionCheckList />
+        <MissionCheckList status={status} />
 
         <div className='mt-[16px] flex w-full flex-col gap-y-2'>
           {clear ? (
@@ -116,15 +121,16 @@ const MissionCheckBottomSheet = ({
 };
 
 const MissionCheckModal = ({
-  clear,
+  status,
   handleNavigateMission,
   handleCloseModal,
 }: {
-  clear: boolean;
+  status: { news: boolean; quiz: boolean };
   handleNavigateMission: () => void;
   handleCloseModal: () => void;
 }) => {
   const navigate = useNavigate();
+  const clear = status.news && status.quiz;
   return (
     <div className='fixed left-0 top-0 z-[1000] flex h-dvh w-full items-center justify-center bg-black bg-opacity-50'>
       <div className='flex flex-col'>
@@ -134,7 +140,7 @@ const MissionCheckModal = ({
             <div className='text-[20px] font-bold text-custom-gray-dark'>{`오늘의 미션 ${clear ? '완료' : ''}`}</div>
           </div>
 
-          <MissionCheckList />
+          <MissionCheckList status={status} />
         </div>
 
         <div className='flex h-[48px] w-[373px] items-center justify-center'>
@@ -173,41 +179,43 @@ const MissionCheckModal = ({
   );
 };
 
-const MissionCheckList = () => {
-  const { data } = useTodaysMissionStatus();
-
+const MissionCheckList = ({ status }: { status: { quiz: boolean; news: boolean } }) => {
   const { pathname } = useLocation();
   const isNewsPage = pathname.includes('newsComplete');
   const isQuizPage = pathname.includes('quiz-result');
 
   return (
-    <div className='mission-check-list'>
-      <div className='flex w-full items-center justify-between py-[10px]'>
-        <span className='text-[16px] font-bold text-custom-gray-dark'>머니뉴스 학습하기</span>
-        <div className='h-[30px] w-[30px] rounded-full border border-[#E3E3E3]'>
-          {(isNewsPage || data?.news) && (
-            <motion.img
-              animate={{ scale: [0, 1.5, 1.1], transition: { duration: 0.8, delay: 0.3 } }}
-              src={checkStarImg}
-              alt='mission complete image'
-              className='h-full w-full'
-            />
-          )}
+    <>
+      {status && (
+        <div className='mission-check-list'>
+          <div className='flex w-full items-center justify-between py-[10px]'>
+            <span className='text-[16px] font-bold text-custom-gray-dark'>머니뉴스 학습하기</span>
+            <div className='h-[30px] w-[30px] rounded-full border border-[#E3E3E3]'>
+              {(isNewsPage || status?.news) && (
+                <motion.img
+                  animate={{ scale: [0, 1.5, 1.1], transition: { duration: 0.8, delay: 0.3 } }}
+                  src={checkStarImg}
+                  alt='mission complete image'
+                  className='h-full w-full'
+                />
+              )}
+            </div>
+          </div>
+          <div className='flex w-full items-center justify-between py-[10px]'>
+            <span className='text-[16px] font-bold text-custom-gray-dark'>오늘의 퀴즈 풀기</span>
+            <div className='h-[30px] w-[30px] rounded-full border border-[#E3E3E3]'>
+              {(status?.quiz || isQuizPage) && (
+                <motion.img
+                  animate={{ scale: [0, 1.5, 1.1], transition: { duration: 0.8, delay: 0.3 } }}
+                  src={checkStarImg}
+                  alt='mission complete image'
+                  className='h-full w-full'
+                />
+              )}
+            </div>
+          </div>
         </div>
-      </div>
-      <div className='flex w-full items-center justify-between py-[10px]'>
-        <span className='text-[16px] font-bold text-custom-gray-dark'>오늘의 퀴즈 풀기</span>
-        <div className='h-[30px] w-[30px] rounded-full border border-[#E3E3E3]'>
-          {(data?.quiz || isQuizPage) && (
-            <motion.img
-              animate={{ scale: [0, 1.5, 1.1], transition: { duration: 0.8, delay: 0.3 } }}
-              src={checkStarImg}
-              alt='mission complete image'
-              className='h-full w-full'
-            />
-          )}
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
