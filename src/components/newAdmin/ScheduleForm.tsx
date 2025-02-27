@@ -17,7 +17,7 @@ export default function ScheduleForm({
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 type='date'
-                className='w-full rounded-md border p-2'
+                className='min-h-[30px] w-full rounded-md border p-2'
               />
             </div>
             {/* <div className='flex-1'>
@@ -31,7 +31,7 @@ export default function ScheduleForm({
             onClick={() => {
               setIsSchedule(true);
             }}
-            className={`mt-2 flex w-full items-center justify-center gap-2 rounded-md border bg-blue-400 px-4 py-3 transition-colors ${date ? 'bg-green-600 text-white hover:bg-green-700' : 'hover:bg-gray-300 disabled:bg-gray-200 disabled:text-gray-700'}`}
+            className={`mt-2 flex w-full items-center justify-center gap-2 rounded-md border bg-blue-400 px-4 py-3 text-sm transition-colors md:text-base ${date ? 'bg-green-600 text-white hover:bg-green-700' : 'hover:bg-gray-300 disabled:bg-gray-200 disabled:text-gray-700'}`}
           >
             <svg
               xmlns='http://www.w3.org/2000/svg'

@@ -12,7 +12,7 @@ export default function SubmitButton({
       <button
         type='submit'
         onClick={() => setIsSchedule(false)}
-        className='flex flex-1 items-center justify-center gap-2 rounded-md bg-blue-600 px-4 py-3 text-white transition-colors hover:bg-blue-700'
+        className='flex flex-1 items-center justify-center gap-2 rounded-md bg-blue-600 px-4 py-3 text-sm text-white transition-colors hover:bg-blue-700 md:text-base'
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -33,7 +33,7 @@ export default function SubmitButton({
       <button
         type='button'
         onClick={toggleSchedule}
-        className={`flex flex-1 items-center justify-center gap-2 rounded-md px-4 py-3 transition-colors ${isSchedule ? 'bg-gray-600 text-white hover:bg-gray-700' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+        className={`flex flex-1 items-center justify-center gap-2 rounded-md px-4 py-3 text-sm transition-colors md:text-base ${isSchedule ? 'bg-gray-600 text-white hover:bg-gray-700' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'
