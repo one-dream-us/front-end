@@ -4,7 +4,7 @@ import UploadFormContainer from '@/components/newAdmin/UploadFormContainer';
 
 export default function Write() {
   return (
-    <div className='mt-[40px]'>
+    <div className='mt-[40px] overflow-x-hidden'>
       <div className='m-auto max-w-[1182px]'>
         {/* <UploadForm /> */}
         <UploadFormContainer />

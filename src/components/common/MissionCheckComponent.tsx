@@ -29,8 +29,13 @@ export default function MissionCheckComponent() {
     (async () => {
       const today = new Date();
       const queryString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${today.getDate()}`;
-      const res = await missionApi.getMissionStatus('date', queryString).then((res) => res.data);
-      setStatus(res);
+      try {
+        const res = await missionApi.getMissionStatus('date', queryString).then((res) => res.data);
+        setStatus(res);
+      } catch (e) {
+        const res = { news: true, quiz: false };
+        setStatus(res);
+      }
     })();
   }, []);
   return (
