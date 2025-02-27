@@ -391,7 +391,7 @@ export interface SearchWordResult {
   description: string;
 }
 
-export type CurrentTabType = 'uploaded' | 'scheduled';
+export type CurrentTabType = 'uploaded' | 'scheduled' | 'draft';
 export interface AdminUploadListResult<T> {
   content: T[];
   pageable: Pageable;

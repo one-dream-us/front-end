@@ -11,21 +11,23 @@ export default function AdminContentDetail() {
   }
   return (
     <div className='m-auto max-w-6xl p-6'>
-      <div className='ml-auto flex w-fit items-center justify-center gap-x-3'>
-        <Link
-          to={`/admin/update/${id}?status=${status}`}
-          className='mb-5 flex w-fit rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700'
-        >
-          수정
-        </Link>
-        <a
-          href='https://www.youtube.com/watch?v=NMjhjrBIrG8'
-          target='_blank'
-          className='mb-5 ml-auto flex w-fit rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700'
-        >
-          삭제
-        </a>
-      </div>
+      {status !== 'uploaded' && (
+        <div className='ml-auto flex w-fit items-center justify-center gap-x-3'>
+          <Link
+            to={`/admin/update/${id}?status=${status}`}
+            className='mb-5 flex w-fit rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700'
+          >
+            수정
+          </Link>
+          <a
+            href='https://www.youtube.com/watch?v=NMjhjrBIrG8'
+            target='_blank'
+            className='mb-5 ml-auto flex w-fit rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700'
+          >
+            삭제
+          </a>
+        </div>
+      )}
       <ul className='flex flex-col gap-y-5'>
         <li>제목 : {data?.title}</li>
         <li>뉴스사 : {data.newsAgency}</li>

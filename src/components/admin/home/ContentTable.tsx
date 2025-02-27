@@ -45,16 +45,16 @@ export default function ContentTable() {
               <tr
                 onClick={() =>
                   navigate(`/admin/content/
-                  ${content.id}?status=uploaded`)
+                  ${content?.id}?status=uploaded`)
                 }
-                key={content.id}
+                key={content?.id}
                 className='cursor-pointer hover:bg-gray-50'
               >
                 <td className='whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900'>
                   {content?.thumbnailUrl ? (
                     <img
                       className='h-12 min-w-20 rounded object-cover'
-                      src={content.thumbnailUrl}
+                      src={content?.thumbnailUrl}
                       alt='thumbnail'
                     />
                   ) : (
@@ -77,10 +77,10 @@ export default function ContentTable() {
                   )}
                 </td>
                 <td className='whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900'>
-                  {content.title}
+                  {content?.title}
                 </td>
                 <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-500'>
-                  {content.newsAgency}
+                  {content?.newsAgency}
                 </td>
                 <td className='whitespace-nowrap px-6 py-4 text-sm text-blue-700 hover:text-red-700'>
                   <a onClick={(e) => e.stopPropagation()} target='_blank' href={content.link}>
@@ -88,7 +88,7 @@ export default function ContentTable() {
                   </a>
                 </td>
                 <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-500'>
-                  {content.createdAt.split('T')[0]}
+                  {content?.createdAt?.split('T')[0]}
                 </td>
               </tr>
             ))}
