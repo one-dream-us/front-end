@@ -4,9 +4,11 @@ import InputContainer from '@/containers/InputContainer';
 import NewsBoxContainer from '@/containers/NewsBoxContainer';
 import ScheduleFormContainer from '@/containers/ScheduleFormContainer';
 import SubmitButtonContainer from '@/containers/SubmitButtonContainer';
+import UpdateFormButtonsContainer from '@/containers/UpdateFormButtonsContainer';
 import { AdminDict } from '@/store/newAdmin/useFormStore';
 import { InputState } from '@/types/interface';
 import { FormEvent } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 export default function UploadForm({
   handleSubmitForm,
@@ -25,6 +27,8 @@ export default function UploadForm({
   imagePreview: string | null;
   dictList: AdminDict[];
 }) {
+  const [searchParams] = useSearchParams();
+  const status = searchParams.get('status');
   return (
     <form
       onSubmit={handleSubmitForm}
@@ -43,7 +47,7 @@ export default function UploadForm({
           id='originalLink'
           label='뉴스 원문 링크'
           placeholder='뉴스 원문 링크를 입력하세요'
-          value={originalLink.value}
+          value={originalLink.value ?? ''}
           onChange={originalLink.handleInputChange}
         />
         <AutoSuggestionInputContainer
@@ -64,7 +68,8 @@ export default function UploadForm({
       </div>
 
       <ScheduleFormContainer />
-      <SubmitButtonContainer />
+
+      {status !== 'scheduled' ? <SubmitButtonContainer /> : <UpdateFormButtonsContainer />}
     </form>
   );
 }

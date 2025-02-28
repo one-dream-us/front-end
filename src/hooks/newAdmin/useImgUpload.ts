@@ -24,6 +24,6 @@ const useImgUpload = () => {
     }
   };
 
-  return { imagePreview, handleImageChange, file };
+  return { imagePreview, handleImageChange, file, setImagePreview };
 };
 export default useImgUpload;

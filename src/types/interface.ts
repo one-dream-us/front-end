@@ -438,7 +438,7 @@ export interface UploadedListContent {
 
 export interface ScheduledListContent {
   id: number;
-  newsRequest: NewsRequest;
+  newsContent: NewsRequest;
   scheduledAt: string;
 }
 
@@ -466,6 +466,7 @@ export interface AdminContentDetailType {
   fullSentence: string;
   link: string;
   descriptions: Description[];
+  thumbnailUrl: string | null;
 }
 
 export interface Description {
