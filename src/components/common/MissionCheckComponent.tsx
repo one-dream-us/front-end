@@ -11,7 +11,6 @@ export default function MissionCheckComponent() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [visible, setVisible] = useState(true);
-  // const { data: status, isLoading } = useTodaysMissionStatus();
   const [status, setStatus] = useState<{ quiz: boolean; news: boolean }>();
 
   const handleNavigateMission = () => {
@@ -149,35 +148,31 @@ const MissionCheckModal = ({
         </div>
 
         <div className='flex h-[48px] w-[373px] items-center justify-center'>
-          <>
-            {clear ? (
-              <>
-                <button
-                  onClick={handleCloseModal}
-                  className={`flex h-full w-1/2 items-center justify-center whitespace-nowrap rounded-bl-[10px] bg-[#DEDEDE] py-3 transition-all duration-200 hover:bg-hover-30`}
-                >
-                  <span className='text-[14px] font-bold leading-120 text-[#626262]'>닫기</span>
-                </button>
-                <button
-                  onClick={() => navigate('/profile')}
-                  className={`flex h-full w-1/2 items-center justify-center whitespace-nowrap rounded-br-[10px] bg-custom-gray-dark py-3 transition-all duration-200 hover:bg-hover-80 hover:text-green-hover`}
-                >
-                  <span className='text-[14px] font-bold leading-120 text-custom-green-money'>
-                    미션 캘린더 확인하기
-                  </span>
-                </button>
-              </>
-            ) : (
-              <button
-                onClick={handleNavigateMission}
-                className={`flex h-full w-full items-center justify-center whitespace-nowrap rounded-b-[10px] bg-custom-gray-dark py-3 text-custom-green-money transition-all duration-200 hover:bg-hover-80 hover:text-green-hover`}
-              >
-                <span className='text-[14px] font-bold leading-120 text-custom-green-money'>
-                  다른 미션 하러가기
-                </span>
-              </button>
-            )}
-          </>
+          <button
+            onClick={handleCloseModal}
+            className={`flex h-full w-1/2 items-center justify-center whitespace-nowrap rounded-bl-[10px] bg-[#DEDEDE] py-3 transition-all duration-200 hover:bg-hover-30`}
+          >
+            <span className='text-[14px] font-bold leading-120 text-[#626262]'>닫기</span>
+          </button>
+          {clear ? (
+            <button
+              onClick={() => navigate('/profile')}
+              className={`flex h-full w-1/2 items-center justify-center whitespace-nowrap rounded-br-[10px] bg-custom-gray-dark py-3 transition-all duration-200 hover:bg-hover-80 hover:text-green-hover`}
+            >
+              <span className='text-[14px] font-bold leading-120 text-custom-green-money'>
+                미션 캘린더 확인하기
+              </span>
+            </button>
+          ) : (
+            <button
+              onClick={handleNavigateMission}
+              className={`flex h-full w-1/2 items-center justify-center whitespace-nowrap rounded-br-[10px] bg-custom-gray-dark py-3 transition-all duration-200 hover:bg-hover-80 hover:text-green-hover`}
+            >
+              <span className='text-[14px] font-bold leading-120 text-custom-green-money'>
+                다른 미션 하러가기
+              </span>
+            </button>
+          )}
         </div>
       </div>
     </div>
