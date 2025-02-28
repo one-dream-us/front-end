@@ -13,8 +13,10 @@ const useDetailInfo = () => {
     queryFn: async () => {
       if (status === 'uploaded') {
         return await adminApi.getUploadedDetailInfo(Number(id));
-      } else {
+      } else if (status === 'scheduled') {
         return await adminApi.getScheduledDetailInfo(Number(id));
+      } else if (status === 'draft') {
+        return await adminApi.getDraftDetailInfo(Number(id));
       }
     },
   });

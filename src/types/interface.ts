@@ -503,3 +503,10 @@ export interface MissionStatus {
     news: boolean;
   };
 }
+
+export interface DraftListContent {
+  id: number;
+  newsContent: NewsRequest;
+  scheduledAt: string;
+  createdAt: string;
+}

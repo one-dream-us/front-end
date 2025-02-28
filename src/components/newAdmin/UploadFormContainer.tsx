@@ -30,7 +30,7 @@ export default function UploadFormContainer() {
         title: title.value,
         originalLink: originalLink.value,
         newsAgency: newsAgency.value,
-        scheduledAt: '2025-03-01',
+        // scheduledAt: '2025-03-02',
       };
       const dictionarySentenceList: DictionarySentenceList[] = dictList.map(
         ({ definition, desc, endIndex, sentence, startIndex, word, wordId }) => ({
@@ -52,9 +52,7 @@ export default function UploadFormContainer() {
 
       formData.append('draftNewsRequest', draftNewsRequestBlob);
       formData.append('dictionarySentenceList', dictionarySentenceListBlob);
-      if (file) {
-        formData.append('thumbnailImage', file);
-      }
+      formData.append('thumbnailImage', file ?? '');
     } else {
       const newsRequestData = {
         title: title.value,
