@@ -13,6 +13,7 @@ export default function NewsBox({
   handleSearchResultClick,
   suggestionIndex,
   index,
+  required,
 }: {
   dictList: AdminDict;
   setDictList: (payload: { key: keyof AdminDict; value: string; index: number }) => void;
@@ -22,6 +23,7 @@ export default function NewsBox({
   handleSearchResultClick: (item: SearchWordResult) => void;
   suggestionIndex: number;
   index: number;
+  required: boolean;
 }) {
   return (
     <div className='rounded-md border bg-gray-50 p-4'>
@@ -44,7 +46,7 @@ export default function NewsBox({
         <div>
           <label className='mb-1 block text-sm font-medium text-gray-700'>하이라이팅 용어</label>
           <input
-            required
+            required={required}
             value={draggedWord}
             readOnly
             type='text'
@@ -61,7 +63,7 @@ export default function NewsBox({
             <div className='flex-1'>
               <input
                 id={`word${index}`}
-                required
+                required={required}
                 value={dictList?.word}
                 onChange={(e) => setDictList({ key: 'word', value: e.target.value, index })}
                 type='text'
@@ -78,7 +80,6 @@ export default function NewsBox({
                   type='text'
                   className='flex-1 rounded-md border p-2'
                   placeholder='용어를 검색하세요'
-                  //   ref={wordIdRef}
                   onKeyDown={handleNavigateSearchResult}
                   autoComplete='off'
                 />
@@ -119,6 +120,7 @@ export default function NewsBox({
             className='w-full resize-none rounded-md border p-2'
             rows={3}
             placeholder={`해설 ${index + 1}을 입력하세요`}
+            required={required}
           />
         </div>
       </div>

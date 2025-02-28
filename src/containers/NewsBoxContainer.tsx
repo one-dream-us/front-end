@@ -1,7 +1,7 @@
 import NewsBox from '@/components/newAdmin/NewsBox';
 import useDebounce from '@/hooks/admin/useDebounce';
 import adminApi from '@/services/adminApi';
-import { useNewsListStore } from '@/store/newAdmin/useFormStore';
+import { useNewsListStore, useUplodTypeStore } from '@/store/newAdmin/useFormStore';
 import { SearchWordResult } from '@/types/interface';
 import { KeyboardEvent, useEffect, useState } from 'react';
 import { useShallow } from 'zustand/shallow';
@@ -14,6 +14,7 @@ export default function NewsBoxContainer({ index }: { index: number }) {
       resetDictList: s.resetDictList,
     })),
   );
+  const { uploadType } = useUplodTypeStore();
   const [searchRes, setSearchRes] = useState<SearchWordResult[]>([]);
   const [suggestionIndex, setSuggestionIndex] = useState(-1);
 
@@ -63,6 +64,7 @@ export default function NewsBoxContainer({ index }: { index: number }) {
       handleSearchResultClick={handleSearchResultClick}
       suggestionIndex={suggestionIndex}
       index={index}
+      required={uploadType !== 'draft'}
     />
   );
 }

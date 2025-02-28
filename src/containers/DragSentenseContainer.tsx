@@ -1,11 +1,12 @@
 import Input from '@/components/newAdmin/common/Input';
-import { useNewsListStore } from '@/store/newAdmin/useFormStore';
+import { useNewsListStore, useUplodTypeStore } from '@/store/newAdmin/useFormStore';
 import { AdminInputProps } from '@/types/interface';
 import { SyntheticEvent, TouchEvent } from 'react';
 import { useShallow } from 'zustand/shallow';
 
 export default function DragSentenseContainer(props: AdminInputProps & { index: number }) {
   const setDictList = useNewsListStore(useShallow((s) => s.setDictList));
+  const { uploadType } = useUplodTypeStore();
 
   const handleSelect = (e: SyntheticEvent<HTMLInputElement>) => {
     const start = e.currentTarget.selectionStart as number;
@@ -41,5 +42,12 @@ export default function DragSentenseContainer(props: AdminInputProps & { index: 
     setDictList({ key: 'draggedWord', value: draggedWord, index: props.index });
   };
 
-  return <Input {...props} onSelect={handleSelect} onTouchEnd={handleTouchEnd} />;
+  return (
+    <Input
+      {...props}
+      onSelect={handleSelect}
+      onTouchEnd={handleTouchEnd}
+      required={uploadType !== 'draft'}
+    />
+  );
 }
