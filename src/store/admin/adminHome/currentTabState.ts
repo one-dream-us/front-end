@@ -7,7 +7,7 @@ interface CurrentTabStateState {
 }
 
 const currentTabState = create<CurrentTabStateState>((set) => ({
-  currentTab: 'uploaded',
+  currentTab: (new URLSearchParams(location.search).get('status') as CurrentTabType) ?? 'uploaded',
   setCurrentTab: (currentTab: CurrentTabType) => set({ currentTab }),
 }));
 

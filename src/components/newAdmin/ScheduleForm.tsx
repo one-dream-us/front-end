@@ -4,8 +4,8 @@ export default function ScheduleForm({
   date,
   isSchedule,
   setDate,
-  setIsSchedule,
-}: Omit<UseScheduleStore, 'toggleSchedule'>) {
+  setUploadType,
+}: Omit<UseScheduleStore, 'toggleSchedule' | 'setIsSchedule'> & { setUploadType: () => void }) {
   return (
     <>
       {isSchedule && (
@@ -28,9 +28,7 @@ export default function ScheduleForm({
           <button
             disabled={!date}
             type='submit'
-            onClick={() => {
-              setIsSchedule(true);
-            }}
+            onClick={setUploadType}
             className={`mt-2 flex w-full items-center justify-center gap-2 rounded-md border bg-blue-400 px-4 py-3 text-sm transition-colors md:text-base ${date ? 'bg-green-600 text-white hover:bg-green-700' : 'hover:bg-gray-300 disabled:bg-gray-200 disabled:text-gray-700'}`}
           >
             <svg

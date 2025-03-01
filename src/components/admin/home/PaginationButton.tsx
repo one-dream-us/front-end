@@ -28,7 +28,7 @@ export default function PaginationButton() {
           </svg>
         </button>
         <span className='text-sm text-gray-700'>
-          페이지 {page + 1} / {lastPage}
+          페이지 {page + 1} / {lastPage === 0 ? 1 : lastPage}
         </span>
         <button
           onClick={() => handleNextPage(lastPage)}

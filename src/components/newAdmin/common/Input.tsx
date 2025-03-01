@@ -13,12 +13,14 @@ export default function Input({
   onkeydown,
   autoComplete,
   onTouchEnd,
+  required,
 }: AdminInputProps & {
   onSelect?: (e: SyntheticEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   onkeydown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   autoComplete?: 'on' | 'off';
   onTouchEnd?: (e: TouchEvent<HTMLInputElement>) => void;
+  required: boolean;
 }) {
   return (
     <div className='relative'>
@@ -26,7 +28,7 @@ export default function Input({
         {label}
       </label>
       <input
-        required
+        required={required}
         value={value}
         onChange={onChange}
         type={type}

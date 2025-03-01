@@ -1,4 +1,5 @@
 import Input from '@/components/newAdmin/common/Input';
+import { useUplodTypeStore } from '@/store/newAdmin/useFormStore';
 import { AdminInputProps } from '@/types/interface';
 import { KeyboardEvent } from 'react';
 
@@ -14,6 +15,7 @@ export default function InputContainer({
   onkeydown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   autoComplete?: 'on' | 'off';
 }) {
+  const { uploadType } = useUplodTypeStore();
   return (
     <Input
       id={id}
@@ -23,6 +25,7 @@ export default function InputContainer({
       onChange={onChange}
       onkeydown={onkeydown}
       autoComplete={autoComplete}
+      required={uploadType !== 'draft'}
     />
   );
 }

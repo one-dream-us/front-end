@@ -391,7 +391,7 @@ export interface SearchWordResult {
   description: string;
 }
 
-export type CurrentTabType = 'uploaded' | 'scheduled';
+export type CurrentTabType = 'uploaded' | 'scheduled' | 'draft';
 export interface AdminUploadListResult<T> {
   content: T[];
   pageable: Pageable;
@@ -438,7 +438,7 @@ export interface UploadedListContent {
 
 export interface ScheduledListContent {
   id: number;
-  newsRequest: NewsRequest;
+  newsContent: NewsRequest;
   scheduledAt: string;
 }
 
@@ -466,6 +466,8 @@ export interface AdminContentDetailType {
   fullSentence: string;
   link: string;
   descriptions: Description[];
+  thumbnailUrl: string | null;
+  scheduledAt?: string;
 }
 
 export interface Description {
@@ -502,4 +504,11 @@ export interface MissionStatus {
     quiz: boolean;
     news: boolean;
   };
+}
+
+export interface DraftListContent {
+  id: number;
+  newsContent: NewsRequest;
+  scheduledAt: string;
+  createdAt: string;
 }

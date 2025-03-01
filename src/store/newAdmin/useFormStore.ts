@@ -128,3 +128,12 @@ export const useScheduleStore = create<UseScheduleStore>((set) => ({
   date: '',
   setDate: (date) => set({ date }),
 }));
+
+export interface UseUploadTypeStore {
+  uploadType: 'immediately' | 'scheduled' | 'draft' | 'Updatescheduled' | null;
+  setUploadType: (uploadType: UseUploadTypeStore['uploadType']) => void;
+}
+export const useUplodTypeStore = create<UseUploadTypeStore>((set) => ({
+  uploadType: null,
+  setUploadType: (uploadType) => set({ uploadType }),
+}));

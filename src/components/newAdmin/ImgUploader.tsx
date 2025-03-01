@@ -1,10 +1,14 @@
 import { AdminImgUploadeerProps } from '@/types/interface';
 
-export default function ImgUploader({ handleImageChange, imagePreview }: AdminImgUploadeerProps) {
+export default function ImgUploader({
+  handleImageChange,
+  imagePreview,
+  required,
+}: AdminImgUploadeerProps & { required: boolean }) {
   return (
     <div className='relative cursor-pointer rounded-md border-2 border-dashed p-4 text-center'>
       <input
-        required
+        required={required}
         type='file'
         id='image'
         accept='image/*'
