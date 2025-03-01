@@ -36,7 +36,6 @@ export default function UpdateFormContainer() {
         title: title.value,
         originalLink: originalLink.value,
         newsAgency: newsAgency.value,
-        // scheduledAt: '2025-03-02',
         draftNewsId: +id!,
       };
       const dictionarySentenceList: DictionarySentenceList[] = dictList.map(
@@ -108,6 +107,11 @@ export default function UpdateFormContainer() {
           console.log('임시 저장');
           await adminApi.updateDraftContents(formData);
           alert(`임시 저장 완료`);
+          break;
+        case 'Updatescheduled':
+          console.log('예약 수정');
+          await adminApi.updateScheduledContent(+id!, data?.scheduledAt as string);
+          alert(`예약 수정 완료`);
       }
     } catch (e) {
       console.log(e);

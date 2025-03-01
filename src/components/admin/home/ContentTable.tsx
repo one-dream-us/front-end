@@ -133,9 +133,9 @@ export default function ContentTable() {
                 className='cursor-pointer hover:bg-gray-50'
               >
                 <td className='whitespace-nowrap px-6 py-4'>
-                  {content?.newsRequest?.thumbnailUrl ? (
+                  {content?.newsContent?.thumbnailUrl ? (
                     <img
-                      src={content?.newsRequest?.thumbnailUrl}
+                      src={content?.newsContent?.thumbnailUrl}
                       alt={content.id + ''}
                       className='h-12 min-w-20 rounded object-cover'
                     />
@@ -159,13 +159,13 @@ export default function ContentTable() {
                   )}
                 </td>
                 <td className='whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900'>
-                  {content?.newsRequest?.title || ''}
+                  {content?.newsContent?.title || ''}
                 </td>
                 <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-500'>
-                  {content?.newsRequest?.newsAgency || ''}
+                  {content?.newsContent?.newsAgency || ''}
                 </td>
                 <td className='whitespace-nowrap px-6 py-4 text-sm text-blue-700 hover:text-red-700'>
-                  <a target='_blank' href={content?.newsRequest?.originalLink}>
+                  <a target='_blank' href={content?.newsContent?.originalLink}>
                     Click
                   </a>
                 </td>
@@ -208,7 +208,7 @@ export default function ContentTable() {
             {res?.map((content) => (
               <tr
                 onClick={() =>
-                  navigate(`/admin/content/
+                  navigate(`/admin/update/
             ${content?.id}?status=draft`)
                 }
                 key={content?.id}

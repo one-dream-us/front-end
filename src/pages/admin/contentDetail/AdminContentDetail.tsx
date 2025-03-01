@@ -1,5 +1,5 @@
+import DeleteButton from '@/components/newAdmin/common/DeleteButton';
 import useDetailInfo from '@/hooks/newAdmin/useDetailInfo';
-import adminApi from '@/services/adminApi';
 import { highlightedDesc } from '@/utils/contentDetail/highlightedDesc';
 import { Link } from 'react-router-dom';
 
@@ -63,19 +63,9 @@ export default function AdminContentDetail() {
 }
 
 const ContentActionButtons = ({ id, status }: { id: string; status: string }) => {
-  const handleRemoveContents = async () => {
-    if (!confirm('컨텐츠를 삭제합니다.')) return;
-
-    try {
-      await adminApi.deleteDraftContents(+id);
-      location.pathname = '/admin/home';
-    } catch (e) {
-      console.log(e);
-    }
-  };
   return (
     <>
-      {status !== 'uploaded' && (
+      {status === 'scheduled' && (
         <div className='ml-auto flex w-fit items-center justify-center gap-x-3'>
           <Link
             to={`/admin/update/${id}?status=${status}`}
@@ -83,12 +73,7 @@ const ContentActionButtons = ({ id, status }: { id: string; status: string }) =>
           >
             수정
           </Link>
-          <button
-            onClick={handleRemoveContents}
-            className='mb-5 ml-auto flex w-fit rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700'
-          >
-            삭제
-          </button>
+          <DeleteButton id={+id} />
         </div>
       )}
     </>

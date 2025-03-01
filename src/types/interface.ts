@@ -467,6 +467,7 @@ export interface AdminContentDetailType {
   link: string;
   descriptions: Description[];
   thumbnailUrl: string | null;
+  scheduledAt?: string;
 }
 
 export interface Description {

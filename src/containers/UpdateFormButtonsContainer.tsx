@@ -6,7 +6,7 @@ export default function UpdateFormButtonsContainer() {
   const { setUploadType } = useUplodTypeStore();
 
   const handleDraft = () => {
-    setUploadType('draft');
+    setUploadType('Updatescheduled');
     console.log('ok');
   };
 
