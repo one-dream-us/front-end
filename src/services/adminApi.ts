@@ -67,5 +67,7 @@ const adminApi = {
   // 임시 저장 컨텐츠 삭제
   deleteDraftContents: async (draftId: number) =>
     await client.delete(`/back-office/contents/news/drafts/${draftId}`),
+  deleteScheduledContents: async (scheduledId: number) =>
+    (await client.delete(`/back-office/contents/news/scheduled/${scheduledId}`)).data,
 };
 export default adminApi;

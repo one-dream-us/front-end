@@ -27,7 +27,7 @@ export default function MissionCheckComponent() {
   useEffect(() => {
     (async () => {
       const today = new Date();
-      const queryString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${today.getDate()}`;
+      const queryString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
       try {
         const res = await missionApi.getMissionStatus('date', queryString).then((res) => res.data);
         setStatus(res);
