@@ -93,9 +93,9 @@ const Player = () => {
         onEnded={nextSong}
         autoPlay={isPlaying}
       />
-      <div className='flex items-center justify-center gap-x-1'>
+      <div>
         {' '}
-        <div className='controls'>
+        <div className='controls flex items-center justify-between'>
           <button onClick={prevSong}>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -150,11 +150,7 @@ const Player = () => {
               />
             </svg>
           </button>
-        </div>
-        <div className='loop-controls'>
           <button onClick={toggleLoop}>
-            {/* {isLooping ? 'Disable Loop' : 'Enable Loop'} */}
-
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
