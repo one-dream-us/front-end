@@ -7,7 +7,7 @@ import {
   useScheduleStore,
   useUplodTypeStore,
 } from '@/store/newAdmin/useFormStore';
-import { getDraggedWord, getMarkingWord, removeMarkTag } from '@/utils/admin/adminUtils';
+import { getMarkingWord, removeMarkTag } from '@/utils/admin/adminUtils';
 import { FormEvent, useEffect } from 'react';
 import adminApi from '@/services/adminApi';
 import { DictionarySentenceList } from '@/types/interface';
@@ -122,7 +122,7 @@ export default function UpdateFormContainer() {
       console.log(e);
       alert('오류입니다. 다시 시도해주세요');
     } finally {
-      // location.pathname = '/admin/home';
+      location.pathname = '/admin/home';
     }
   };
   useEffect(() => {
@@ -133,33 +133,39 @@ export default function UpdateFormContainer() {
       setImagePreview(data.thumbnailUrl ?? '');
 
       data.descriptions.forEach((item, index) => {
+        const normalizedSentence = removeMarkTag(item.sentence);
         setDictList({ key: 'definition', value: item.definition, index });
         setDictList({ key: 'desc', value: item.description, index });
-        setDictList({ key: 'sentence', value: item.sentence, index });
+        setDictList({ key: 'sentence', value: normalizedSentence, index });
         setDictList({ key: 'wordId', value: item.dictionaryId, index });
         setDictList({ key: 'word', value: item.term, index });
 
         if (item.sentence.includes('<mark>')) {
-          const normalizedSentence = removeMarkTag(item.sentence);
           const markedWord = getMarkingWord(item.sentence);
           const startIndex = normalizedSentence.indexOf(markedWord);
           const endIndex = startIndex + markedWord?.length - 1;
-          const draggedWord = getDraggedWord(normalizedSentence, startIndex, endIndex);
+          // const draggedWord = getDraggedWord(normalizedSentence, startIndex, endIndex);
 
-          setDictList({ key: 'draggedWord', value: draggedWord, index });
+          console.log('normalizedSentence', normalizedSentence);
+          console.log('markedWord', markedWord);
+          console.log('startIndex', startIndex);
+          console.log('endIndex', endIndex);
+
+          setDictList({ key: 'draggedWord', value: markedWord, index });
           setDictList({ key: 'startIndex', value: startIndex, index });
           setDictList({
             key: 'endIndex',
             value: endIndex,
             index,
           });
+        } else {
+          setDictList({ key: 'startIndex', value: 0, index });
+          setDictList({
+            key: 'endIndex',
+            value: 0,
+            index,
+          });
         }
-        setDictList({ key: 'startIndex', value: 0, index });
-        setDictList({
-          key: 'endIndex',
-          value: 0,
-          index,
-        });
       });
     }
   }, [data, isLoading]);
