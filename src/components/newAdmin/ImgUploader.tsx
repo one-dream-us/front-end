@@ -1,10 +1,12 @@
 import { AdminImgUploadeerProps } from '@/types/interface';
+import { RefObject } from 'react';
 
 export default function ImgUploader({
   handleImageChange,
   imagePreview,
   required,
-}: AdminImgUploadeerProps & { required: boolean }) {
+  fileRef,
+}: AdminImgUploadeerProps & { required: boolean; fileRef: RefObject<HTMLInputElement> }) {
   return (
     <div className='relative cursor-pointer rounded-md border-2 border-dashed p-4 text-center'>
       <input
@@ -15,6 +17,7 @@ export default function ImgUploader({
         className='absolute -z-10 cursor-pointer opacity-0'
         name='img uploader'
         onChange={handleImageChange}
+        ref={fileRef}
       />
       <label
         htmlFor='image'

@@ -4,7 +4,8 @@ const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2mb, (1024*1024 === 1mb)
 const useImgUpload = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [file, setFile] = useState<File | undefined>();
-  // const setImg = imgState((s) => s.setImg);
+  const [fileUpdated, setFileUpdated] = useState(false);
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -21,9 +22,10 @@ const useImgUpload = () => {
         reader.readAsDataURL(file);
         setFile(file);
       }
+      setFileUpdated(true);
     }
   };
 
-  return { imagePreview, handleImageChange, file, setImagePreview };
+  return { imagePreview, handleImageChange, file, setImagePreview, setFile, fileUpdated };
 };
 export default useImgUpload;
