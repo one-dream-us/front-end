@@ -29,6 +29,9 @@ export default function AutoSuggestionInputContainer({
       handleSearchResultClick(suggestions[suggestionIndex]);
       setSuggestionIndex(-1);
       enterRef.current = true;
+    } else if (key === 'Escape') {
+      setSuggestionIndex(-1);
+      setSuggestions([]);
     } else {
       enterRef.current = false;
     }
@@ -56,6 +59,7 @@ export default function AutoSuggestionInputContainer({
       setSuggestionIndex(-1);
     }
   }, [suggestions, suggestionIndex, value]);
+
   return (
     <div className='relative'>
       <InputContainer

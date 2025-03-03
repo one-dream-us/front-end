@@ -7,7 +7,7 @@ import {
   useScheduleStore,
   useUplodTypeStore,
 } from '@/store/newAdmin/useFormStore';
-import { getDraggedWord, getMarkingWord, removeMarkTag } from '@/utils/admin/adminUtils';
+import { getMarkingWord, removeMarkTag } from '@/utils/admin/adminUtils';
 import { FormEvent, useEffect } from 'react';
 import adminApi from '@/services/adminApi';
 import { DictionarySentenceList } from '@/types/interface';
@@ -15,14 +15,13 @@ import DeleteButton from '@/components/newAdmin/common/DeleteButton';
 
 export default function UpdateFormContainer() {
   const { data, isLoading, id, status } = useDetailInfo();
-  console.log(data);
 
   const title = useInput();
   const originalLink = useInput();
   const newsAgency = useInput();
 
   const { dictList, setDictList } = useNewsListStore();
-  const { handleImageChange, imagePreview, file, setImagePreview } = useImgUpload(); // 서버에서 썸네일 링크 받아서 useEffect내에서 setImagePreview
+  const { handleImageChange, imagePreview, file, setImagePreview, fileUpdated } = useImgUpload(); // 서버에서 썸네일 링크 받아서 useEffect내에서 setImagePreview
 
   const handleSubmitForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,7 +57,11 @@ export default function UpdateFormContainer() {
 
       formData.append('draftNewsRequest', draftNewsRequestBlob);
       formData.append('dictionarySentenceList', dictionarySentenceListBlob);
-      formData.append('thumbnailImage', file ?? '');
+      if (fileUpdated && file) {
+        formData.append('thumbnailImage', file);
+      } else {
+        formData.append('thumbnailImage', JSON.stringify(null));
+      }
     } else {
       const newsRequestData = {
         title: title.value,
@@ -85,8 +88,10 @@ export default function UpdateFormContainer() {
 
       formData.append('newsRequest', newsRequestBlob);
       formData.append('dictionarySentenceList', dictionarySentenceListBlob);
-      if (file) {
-        formData.append('thumbnailImage', file);
+      if (fileUpdated) {
+        formData.append('thumbnailImage', file!);
+      } else {
+        formData.append('thumbnailImage', JSON.stringify(null));
       }
     }
 
@@ -95,12 +100,12 @@ export default function UpdateFormContainer() {
         case 'scheduled':
           console.log(date);
           console.log('예약');
-          await adminApi.uploadScheduled(formData, date);
+          await adminApi.uploadScheduled(formData, date, id);
           alert(`${date} 예약 완료`);
           break;
         case 'immediately':
           console.log('즉시');
-          await adminApi.uploadImmediately(formData);
+          await adminApi.uploadImmediately(formData, id);
           alert(`업로드 완료`);
           break;
         case 'draft':
@@ -110,7 +115,7 @@ export default function UpdateFormContainer() {
           break;
         case 'Updatescheduled':
           console.log('예약 수정');
-          await adminApi.updateScheduledContent(+id!, data?.scheduledAt as string);
+          await adminApi.updateScheduledContent(+id!, data?.scheduledAt as string, formData);
           alert(`예약 수정 완료`);
       }
     } catch (e) {
@@ -128,33 +133,39 @@ export default function UpdateFormContainer() {
       setImagePreview(data.thumbnailUrl ?? '');
 
       data.descriptions.forEach((item, index) => {
+        const normalizedSentence = removeMarkTag(item.sentence);
         setDictList({ key: 'definition', value: item.definition, index });
         setDictList({ key: 'desc', value: item.description, index });
-        setDictList({ key: 'sentence', value: item.sentence, index });
+        setDictList({ key: 'sentence', value: normalizedSentence, index });
         setDictList({ key: 'wordId', value: item.dictionaryId, index });
         setDictList({ key: 'word', value: item.term, index });
 
         if (item.sentence.includes('<mark>')) {
-          const normalizedSentence = removeMarkTag(item.sentence);
           const markedWord = getMarkingWord(item.sentence);
           const startIndex = normalizedSentence.indexOf(markedWord);
           const endIndex = startIndex + markedWord?.length - 1;
-          const draggedWord = getDraggedWord(normalizedSentence, startIndex, endIndex);
+          // const draggedWord = getDraggedWord(normalizedSentence, startIndex, endIndex);
 
-          setDictList({ key: 'draggedWord', value: draggedWord, index });
+          console.log('normalizedSentence', normalizedSentence);
+          console.log('markedWord', markedWord);
+          console.log('startIndex', startIndex);
+          console.log('endIndex', endIndex);
+
+          setDictList({ key: 'draggedWord', value: markedWord, index });
           setDictList({ key: 'startIndex', value: startIndex, index });
           setDictList({
             key: 'endIndex',
             value: endIndex,
             index,
           });
+        } else {
+          setDictList({ key: 'startIndex', value: 0, index });
+          setDictList({
+            key: 'endIndex',
+            value: 0,
+            index,
+          });
         }
-        setDictList({ key: 'startIndex', value: 0, index });
-        setDictList({
-          key: 'endIndex',
-          value: 0,
-          index,
-        });
       });
     }
   }, [data, isLoading]);
