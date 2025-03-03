@@ -15,14 +15,13 @@ import DeleteButton from '@/components/newAdmin/common/DeleteButton';
 
 export default function UpdateFormContainer() {
   const { data, isLoading, id, status } = useDetailInfo();
-  console.log(data);
 
   const title = useInput();
   const originalLink = useInput();
   const newsAgency = useInput();
 
   const { dictList, setDictList } = useNewsListStore();
-  const { handleImageChange, imagePreview, file, setImagePreview } = useImgUpload(); // 서버에서 썸네일 링크 받아서 useEffect내에서 setImagePreview
+  const { handleImageChange, imagePreview, file, setImagePreview, fileUpdated } = useImgUpload(); // 서버에서 썸네일 링크 받아서 useEffect내에서 setImagePreview
 
   const handleSubmitForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,7 +57,11 @@ export default function UpdateFormContainer() {
 
       formData.append('draftNewsRequest', draftNewsRequestBlob);
       formData.append('dictionarySentenceList', dictionarySentenceListBlob);
-      formData.append('thumbnailImage', file ?? '');
+      if (fileUpdated && file) {
+        formData.append('thumbnailImage', file);
+      } else {
+        formData.append('thumbnailImage', JSON.stringify(null));
+      }
     } else {
       const newsRequestData = {
         title: title.value,
@@ -85,8 +88,10 @@ export default function UpdateFormContainer() {
 
       formData.append('newsRequest', newsRequestBlob);
       formData.append('dictionarySentenceList', dictionarySentenceListBlob);
-      if (file) {
-        formData.append('thumbnailImage', file);
+      if (fileUpdated) {
+        formData.append('thumbnailImage', file!);
+      } else {
+        formData.append('thumbnailImage', JSON.stringify(null));
       }
     }
 
@@ -95,12 +100,12 @@ export default function UpdateFormContainer() {
         case 'scheduled':
           console.log(date);
           console.log('예약');
-          await adminApi.uploadScheduled(formData, date);
+          await adminApi.uploadScheduled(formData, date, id);
           alert(`${date} 예약 완료`);
           break;
         case 'immediately':
           console.log('즉시');
-          await adminApi.uploadImmediately(formData);
+          await adminApi.uploadImmediately(formData, id);
           alert(`업로드 완료`);
           break;
         case 'draft':
@@ -110,14 +115,14 @@ export default function UpdateFormContainer() {
           break;
         case 'Updatescheduled':
           console.log('예약 수정');
-          await adminApi.updateScheduledContent(+id!, data?.scheduledAt as string);
+          await adminApi.updateScheduledContent(+id!, data?.scheduledAt as string, formData);
           alert(`예약 수정 완료`);
       }
     } catch (e) {
       console.log(e);
       alert('오류입니다. 다시 시도해주세요');
     } finally {
-      location.pathname = '/admin/home';
+      // location.pathname = '/admin/home';
     }
   };
   useEffect(() => {

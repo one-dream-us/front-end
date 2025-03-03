@@ -1,6 +1,4 @@
 export default function UpdateFormButtons({
-  toggleSchedule,
-  isSchedule,
   handleDraft,
 }: {
   toggleSchedule: () => void;
@@ -30,7 +28,7 @@ export default function UpdateFormButtons({
         </svg>
         저장
       </button>
-      <button
+      {/* <button
         type='button'
         onClick={toggleSchedule}
         className={`flex flex-1 items-center justify-center gap-2 rounded-md px-4 py-3 text-sm transition-colors md:text-base ${isSchedule ? 'bg-gray-600 text-white hover:bg-gray-700' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
@@ -50,7 +48,7 @@ export default function UpdateFormButtons({
           />
         </svg>
         예약 업로드 {isSchedule ? '닫기' : '열기'}
-      </button>
+      </button> */}
     </div>
   );
 }
