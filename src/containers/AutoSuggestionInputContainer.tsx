@@ -3,6 +3,7 @@ import InputContainer from './InputContainer';
 import { AdminInputProps } from '@/types/interface';
 import useDebounce from '@/hooks/admin/useDebounce';
 import adminApi from '@/services/adminApi';
+import { useMatch } from 'react-router-dom';
 
 export default function AutoSuggestionInputContainer({
   id,
@@ -15,6 +16,7 @@ export default function AutoSuggestionInputContainer({
   const [suggestions, setSuggestions] = useState<{ id: number; name: string }[]>([]);
   const [suggestionIndex, setSuggestionIndex] = useState(-1);
   const enterRef = useRef(false);
+  const updatePage = useMatch('/admin/update/:id');
 
   const handleNavigateSearchResult = async (e: KeyboardEvent<HTMLInputElement>) => {
     const { key } = e;
@@ -29,6 +31,9 @@ export default function AutoSuggestionInputContainer({
       handleSearchResultClick(suggestions[suggestionIndex]);
       setSuggestionIndex(-1);
       enterRef.current = true;
+    } else if (key === 'Escape') {
+      setSuggestionIndex(-1);
+      setSuggestions([]);
     } else {
       enterRef.current = false;
     }
@@ -56,6 +61,13 @@ export default function AutoSuggestionInputContainer({
       setSuggestionIndex(-1);
     }
   }, [suggestions, suggestionIndex, value]);
+
+  useEffect(() => {
+    if (!updatePage) return;
+
+    setSuggestionIndex(-1);
+    setSuggestions([]);
+  }, [updatePage, suggestions]);
   return (
     <div className='relative'>
       <InputContainer
