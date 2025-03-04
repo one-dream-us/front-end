@@ -193,7 +193,7 @@ const MissionCheckList = ({ status }: { status: { quiz: boolean; news: boolean }
             <div className='h-[30px] w-[30px] rounded-full border border-[#E3E3E3]'>
               {(isNewsPage || status?.news) && (
                 <motion.img
-                  animate={{ scale: [0, 1.5, 1.1], transition: { duration: 0.8, delay: 0.3 } }}
+                  animate={{ scale: [0, 1.5, 1.2], transition: { duration: 0.8, delay: 0.3 } }}
                   src={checkStarImg}
                   alt='mission complete image'
                   className='h-full w-full'
@@ -206,7 +206,7 @@ const MissionCheckList = ({ status }: { status: { quiz: boolean; news: boolean }
             <div className='h-[30px] w-[30px] rounded-full border border-[#E3E3E3]'>
               {(status?.quiz || isQuizPage) && (
                 <motion.img
-                  animate={{ scale: [0, 1.5, 1.1], transition: { duration: 0.8, delay: 0.3 } }}
+                  animate={{ scale: [0, 1.5, 1.2], transition: { duration: 0.8, delay: 0.3 } }}
                   src={checkStarImg}
                   alt='mission complete image'
                   className='h-full w-full'
