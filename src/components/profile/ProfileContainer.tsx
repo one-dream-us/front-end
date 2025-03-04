@@ -4,7 +4,7 @@ import WithdrawButton from './WithdrawButton';
 import ProfileInfo from './ProfileInfo';
 import ProfileSkeleton from './ProfileSkeleton';
 import iconStarLess from '@/assets/P2_5d/icon_star_none_lesscone.png';
-import flame from '@/assets/P2_5d/icon_flame.png';
+import flame from '@/assets/P2_5d/userinfo_icon_flame.png';
 import { getProfileBannerText } from '@/utils/profile/profileUtis';
 import useProfileInfo from '@/hooks/mission/useProfileInfo';
 
