@@ -190,4 +190,4 @@ export const tutorialTitleList = [
   },
 ];
 
-export const ADMIN_UPLOAD_LIST_PAGE_SIZE = 10;
+export const ADMIN_UPLOAD_LIST_PAGE_SIZE = 5;
