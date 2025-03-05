@@ -4,7 +4,7 @@ import PaginationButton from '@/components/admin/home/PaginationButton';
 
 export default function AdminHome() {
   return (
-    <div className='min-h-screen w-full bg-gray-50 p-6'>
+    <div style={{ height: 'calc(100vh - 80px)' }} className='w-full bg-gray-50 p-6'>
       <div className='mx-auto max-w-6xl'>
         <h1 className='mb-6 text-2xl font-semibold text-gray-800'>컨텐츠 관리</h1>
 

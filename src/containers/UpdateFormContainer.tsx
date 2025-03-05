@@ -91,7 +91,7 @@ export default function UpdateFormContainer() {
       if (fileUpdated) {
         formData.append('thumbnailImage', file!);
       } else {
-        formData.append('thumbnailImage', JSON.stringify(null));
+        formData.append('thumbnailImage', new Blob([JSON.stringify(data?.thumbnailUrl!)]));
       }
     }
 
@@ -134,7 +134,8 @@ export default function UpdateFormContainer() {
 
       data.descriptions.forEach((item, index) => {
         const normalizedSentence = removeMarkTag(item.sentence);
-        setDictList({ key: 'definition', value: item.definition, index });
+        const normalizedDefinition = removeMarkTag(item.definition);
+        setDictList({ key: 'definition', value: normalizedDefinition, index });
         setDictList({ key: 'desc', value: item.description, index });
         setDictList({ key: 'sentence', value: normalizedSentence, index });
         setDictList({ key: 'wordId', value: item.dictionaryId, index });
