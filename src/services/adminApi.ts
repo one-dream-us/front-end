@@ -41,7 +41,7 @@ const adminApi = {
   uploadScheduled: async (payload: FormData, date: string, draftId?: string) => {
     return (
       await client.post(
-        `/back-office/contents/news/scheduled/${date}${draftId ? `?draftNewsId=${draftId}` : ''}`,
+        `/back-office/contents/news/scheduled/${date}${draftId ? `?draftNewsId=${+draftId}` : ''}`,
         payload,
         {
           headers: { 'Content-Type': 'multipart/form-data' },

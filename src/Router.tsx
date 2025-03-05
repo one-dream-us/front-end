@@ -10,7 +10,6 @@ import WithDrawSuccess from './pages/WithDrawSuccess';
 import ContentList from './pages/ContentList';
 import NotFound from './pages/NotFound';
 import AdminLayout from './components/admin/common/AdminLayout';
-import AdminHome from './pages/admin/home/AdminHome';
 import QuizPage from './pages/quiz/QuizPage';
 import QuizErrorPage from './components/quiz/QuizErrorPage';
 import QuizLoadingPage from './pages/quiz/QuizLoadingPage';
@@ -21,11 +20,19 @@ import RandomQuizResultPage from './pages/quiz/randomQuiz/RandomQuizResultPage';
 import NewsList from './pages/NewsList';
 import NewsDetailLayout from './components/common/layout/NewsDetailLayout';
 import NewsCompletePage from './pages/newsDetail/NewsCompletePage';
-import Write from './pages/admin/write/Write';
-import AdminContentDetail from './pages/admin/contentDetail/AdminContentDetail';
 import NewsDetailContainer from './components/course/main/NewsDetailContainer';
-import UpdatePage from './pages/admin/update/UpdatePage';
+import { lazy, Suspense } from 'react';
 
+const PageLoader = () => (
+  <div className='absolute left-0 top-0 flex h-screen w-full items-center justify-center'>
+    <h1 className='text-xl'>로딩 ..~</h1>
+  </div>
+);
+
+const AdminHome = lazy(() => import('./pages/admin/home/AdminHome'));
+const Write = lazy(() => import('./pages/admin/write/Write'));
+const AdminContentDetail = lazy(() => import('./pages/admin/contentDetail/AdminContentDetail'));
+const UpdatePage = lazy(() => import('./pages/admin/update/UpdatePage'));
 export const router = createBrowserRouter(
   [
     {
@@ -80,10 +87,38 @@ export const router = createBrowserRouter(
     {
       element: <AdminLayout />,
       children: [
-        { path: '/admin/home', element: <AdminHome /> },
-        { path: '/admin/write', element: <Write /> },
-        { path: '/admin/content/:id', element: <AdminContentDetail /> },
-        { path: '/admin/update/:id', element: <UpdatePage /> },
+        {
+          path: '/admin/home',
+          element: (
+            <Suspense fallback={<PageLoader />}>
+              <AdminHome />
+            </Suspense>
+          ),
+        },
+        {
+          path: '/admin/write',
+          element: (
+            <Suspense fallback={<PageLoader />}>
+              <Write />
+            </Suspense>
+          ),
+        },
+        {
+          path: '/admin/content/:id',
+          element: (
+            <Suspense fallback={<PageLoader />}>
+              <AdminContentDetail />
+            </Suspense>
+          ),
+        },
+        {
+          path: '/admin/update/:id',
+          element: (
+            <Suspense fallback={<PageLoader />}>
+              <UpdatePage />
+            </Suspense>
+          ),
+        },
       ],
     },
   ],
