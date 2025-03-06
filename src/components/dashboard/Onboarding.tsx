@@ -63,7 +63,7 @@ export default function OnBoarding({
                 className={`h-1.5 w-1.5 rounded-full ${
                   index === currentStep ? 'bg-active-green' : 'bg-inactive'
                 }`}
-              ></div>
+              />
             ))}
           </div>
           <button

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import useKeywordTooltip from '@/store/useKeywordTooltip';
+import useKeywordTooltip from '@/store/useTooltipState';
 import { useOnboardingStore } from '@/store/useOnBoardingStore';
 
 export default function useKeywords(withTooltip: boolean) {

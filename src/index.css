@@ -128,7 +128,9 @@ mark {
   color: white;
   position: relative;
 }
-
+.tooltip {
+  @apply shadow-md shadow-zinc-400 after:absolute after:bottom-full after:left-12 after:border-x-[6px] after:border-b-[10px] after:border-transparent after:border-b-custom-gray-dark after:content-[''];
+}
 @media screen and (min-width: 768px) {
   .mission-check-list {
     width: 342px;

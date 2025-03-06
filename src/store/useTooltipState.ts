@@ -5,9 +5,9 @@ interface TooltipState {
   setShowTooltip: (tooltipStatus: boolean) => void;
 }
 
-const useKeywordTooltip = create<TooltipState>((set) => ({
+const useTooltipState = create<TooltipState>((set) => ({
   showTooltip: false,
   setShowTooltip: (tooltipStatus) => set({ showTooltip: tooltipStatus }),
 }));
 
-export default useKeywordTooltip;
+export default useTooltipState;
