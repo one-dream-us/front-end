@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useKeywordTooltip from '@/store/useKeywordTooltip';
+import useTooltipState from '@/store/useTooltipState';
 import useDisableScroll from '../common/useDisableScroll';
 
 export default function useOnboarding({
@@ -12,12 +12,16 @@ export default function useOnboarding({
   setShowOnboarding: (onBoardingStatus: boolean) => void;
 }) {
   const [currentStep, setCurrentStep] = useState(0);
-  const { setShowTooltip } = useKeywordTooltip();
+  const { setShowTooltip } = useTooltipState();
   useDisableScroll(showOnboarding);
 
   const handleNext = () => {
     if (currentStep < onboardingStepsLen - 1) {
       setCurrentStep((prev) => prev + 1);
+      if (localStorage.getItem('hasCheckedOnboarding')) {
+        setShowTooltip(true);
+        setTimeout(() => setShowTooltip(false), 3000);
+      }
     } else {
       setShowOnboarding(false);
       setShowTooltip(true);
@@ -26,7 +30,7 @@ export default function useOnboarding({
   };
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) localStorage.setItem('hasCheckedOnboarding', 'true');
-    else localStorage.setItem('hasCheckedOnboarding', 'false');
+    else localStorage.removeItem('hasCheckedOnboarding');
   };
 
   return { currentStep, handleNext, setShowTooltip, handleCheck };

@@ -4,6 +4,7 @@ import { formatDate } from '@/utils/myScrapUtils';
 import Keywords from './Keywords';
 import { Link } from 'react-router-dom';
 import WaterMark from '@/assets/imgs/watermark.png';
+import useKeywords from '@/hooks/dashboard/useKeywords';
 
 export default function NewsCard({
   news,
@@ -15,6 +16,7 @@ export default function NewsCard({
   isDesktop?: boolean;
 }) {
   const { title, viewCount, createdAt, thumbnailUrl, newsId, tags } = news;
+  const showTooltip = useKeywords(isToday);
 
   return (
     <Link
@@ -34,7 +36,12 @@ export default function NewsCard({
           <span>{formatDate(createdAt)}</span>
         </div>
         <p className='mb-2 font-bold text-custom-gray-dark'>{title}</p>
-        <Keywords tags={tags} withTooltip={isToday} />
+        <Keywords tags={tags} />
+        <p
+          className={`tooltip absolute -bottom-[76px] left-0 z-[999] -translate-y-full whitespace-nowrap rounded bg-custom-gray-dark px-2.5 py-2 text-xs text-custom-cream-light ${isToday && showTooltip ? 'block' : 'hidden'}`}
+        >
+          해당 머니뉴스를 통해 공부할 수 있는 단어에요.
+        </p>
       </div>
     </Link>
   );
