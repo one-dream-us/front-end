@@ -4,6 +4,7 @@ import { compareDate, formatLabel } from '@/utils/calendar/calendarUtils';
 import { useEffect, useState } from 'react';
 import { Calendar as ReactCalendar } from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import '@/styles/calendar.css';
 
 type ValuePiece = Date | null;
 

@@ -1,10 +1,12 @@
 import CompleteButton from '@/components/course/complete/CompleteButton';
-import quizResult100 from '@/assets/p2/quiz result=100.png';
+import quizResult100_png from '@/assets/p2/quiz result=100.png';
+import quizResult100_webp from '@/assets/webps/quiz result=100.webp';
 import CardContainer from '@/components/course/complete/CardContainer';
 import GridContainer from '@/components/course/complete/GridContainer';
 import { SHOW_NEWS_COMPLETE_ONBOARDING } from '@/constants/constants';
 import NewsCompleteOnboarding from '@/components/course/onboarding/completePage/NewsCompleteOnboarding';
 import MissionCheckComponent from '@/components/common/MissionCheckComponent';
+import ImgContainer from '@/components/common/ImgContainer';
 
 export default function NewsCompletePage() {
   return (
@@ -13,7 +15,11 @@ export default function NewsCompletePage() {
         <h1 className='mb-[8px] text-center text-[22px] font-bold text-custom-black'>
           학습을 완료했어요!
         </h1>
-        <img className='h-[124px] w-full' src={quizResult100} alt='img' />
+        <ImgContainer
+          className='h-[124px] w-full'
+          imgs={{ png: quizResult100_png, webp: quizResult100_webp }}
+          alt='news complete image'
+        />
       </div>
 
       <GridContainer />
