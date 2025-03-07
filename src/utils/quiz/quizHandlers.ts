@@ -14,6 +14,9 @@ import iconDREd from '@/assets/p2/icon_d_red.png';
 import quizResult100 from '@/assets/p2/quiz result=100.png';
 import quizResult50 from '@/assets/p2/quiz result=2080.png';
 import quizResult0 from '@/assets/p2/quiz result=0.png';
+import quizResult100_webp from '@/assets/webps/quiz result=100.webp';
+import quizResultMiddle from '@/assets/webps/quiz_middle.webp';
+import quizResulLow from '@/assets/webps/quiz_low.webp';
 
 export const formatQuestion = (currentQuiz: IQuiz) => {
   if (currentQuiz === undefined || !currentQuiz.question) return;
@@ -79,7 +82,10 @@ export const createTitle = (accuracyRate: number, isGraduate: boolean, name?: st
   const obj = {
     mainTitle: '',
     subTitlt: '',
-    src: '',
+    src: {
+      png: '',
+      webp: '',
+    },
   };
 
   switch (accuracyRate) {
@@ -88,15 +94,19 @@ export const createTitle = (accuracyRate: number, isGraduate: boolean, name?: st
       (obj.subTitlt = isGraduate
         ? '외운 단어는 졸업노트에 넣어둘게요!'
         : `${name || 'user'}님, 경제 단어가 쉬워지고 있어요!`),
-        (obj.src = quizResult100);
+        (obj.src.png = quizResult100);
+      obj.src.webp = quizResult100_webp;
+
       break;
     case 0:
       obj.mainTitle = '조금 어려웠나봐요!';
-      (obj.subTitlt = '놓친 단어는 오답노트에 넣었어요'), (obj.src = quizResult0);
+      (obj.subTitlt = '놓친 단어는 오답노트에 넣었어요'), (obj.src.png = quizResult0);
+      obj.src.webp = quizResulLow;
       break;
     default:
       obj.mainTitle = '퀴즈를 다 풀었어요!';
-      (obj.subTitlt = '놓친 단어는 오답노트에 넣었어요'), (obj.src = quizResult50);
+      (obj.subTitlt = '놓친 단어는 오답노트에 넣었어요'), (obj.src.png = quizResult50);
+      obj.src.webp = quizResultMiddle;
   }
   return obj;
 };

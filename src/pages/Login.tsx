@@ -1,8 +1,10 @@
 import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
 import { Navigate, useLocation } from 'react-router-dom';
-import logo from '@/assets/imgs_v2/Logo_Icon+text_horx4_for_login.png';
+import logo_png from '@/assets/imgs_v2/Logo_Icon+text_horx4_for_login.png';
+import logo_webp from '@/assets/webps/loginLogo.webp';
 import { useEffect } from 'react';
 import LoginButton from '@/components/socialLogin/LoginButton';
+import ImgContainer from '@/components/common/ImgContainer';
 
 export default function Login() {
   const { data, isLoading } = useAuthCheckQuery();
@@ -21,7 +23,11 @@ export default function Login() {
   return (
     <div className='absolute left-0 top-0 flex h-screen w-full items-center justify-center bg-white'>
       <div className='min-w-[343px] md:w-[368px] desktop:w-[488px]'>
-        <img className='m-auto mb-[236px] h-[47px] w-[195px]' src={logo} alt='logo img' />
+        <ImgContainer
+          className='m-auto mb-[236px] h-[47px] w-[195px]'
+          alt='login page logo'
+          imgs={{ png: logo_png, webp: logo_webp }}
+        />
 
         <div className='flex flex-col gap-y-[12px]'>
           <LoginButton provider='google' />

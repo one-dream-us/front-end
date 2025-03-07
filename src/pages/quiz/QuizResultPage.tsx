@@ -9,13 +9,13 @@ import MissionCheckComponent from '@/components/common/MissionCheckComponent';
 import { useEffect } from 'react';
 import useGetWordListData from '@/hooks/myWordList/api/useGetWordListData';
 import { useNavigate } from 'react-router-dom';
+import ImgContainer from '@/components/common/ImgContainer';
 
 export default function QuizResultPage() {
   const navigate = useNavigate();
   const { accuracyRate, graduationCnt, resultDetails, totalWrong }: IQuizResult = JSON.parse(
     localStorage.getItem(NORMAL_QUIZ_RESULT_KEY) as string,
   );
-  console.log(resultDetails);
 
   /**결과에 졸업 단어가 하나라도 있는지 확인 */
   const isGraduate = resultDetails
@@ -43,8 +43,11 @@ export default function QuizResultPage() {
         <div className='m-auto h-[22px] min-w-[202px]'>
           <span className='text-[14px] text-custom-gray-dark'>{title?.subTitlt}</span>
         </div>
-
-        <img className='m-auto mb-[16px] h-[124px]' src={title?.src} alt='quiz result image' />
+        <ImgContainer
+          className='m-auto mb-[16px] h-[124px]'
+          alt='quiz result image'
+          imgs={{ png: title?.src?.png as string, webp: title?.src?.webp as string }}
+        />
       </div>
       {/* quiz result status */}
       <div
