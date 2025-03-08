@@ -16,6 +16,7 @@ import { formatQuestion } from '@/utils/quiz/quizHandlers';
 import { useQuizHandler } from '@/hooks/quiz/useQuizHandler';
 import useChoiceQuizType from '@/hooks/quiz/useChioceQuizType';
 import quizResultStore from '@/store/quiz/quizResultStore';
+// import QuizIntroPage from './randomQuiz/QuizIntroPage';
 
 export default function QuizPage() {
   const { index, isCorrect, resetQuizStore } = useStore(quizStore);
@@ -36,6 +37,7 @@ export default function QuizPage() {
   }, []);
   return (
     <div className=''>
+      {/* {quizType === 'random' && <QuizIntroPage />} */}
       <ProgressBar index={index + 1} />
       {(isLoading || currentQuiz === undefined) && <QuizSkeleton />}
 
