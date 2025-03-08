@@ -115,6 +115,7 @@
 .future abbr {
   color: #e1e1e1;
 }
+.past:disabled,
 .future:disabled {
   background: none !important;
 }
