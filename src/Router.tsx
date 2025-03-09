@@ -6,13 +6,11 @@ import MyScrap from './pages/MyScrap';
 import ContentDetail from './pages/ContentDetail';
 import Profile from './pages/Profile';
 import ProtectedRoute from './components/common/ProtectedRoute';
-import WithDrawSuccess from './pages/WithDrawSuccess';
 import ContentList from './pages/ContentList';
 import NotFound from './pages/NotFound';
 import AdminLayout from './components/admin/common/AdminLayout';
 import QuizPage from './pages/quiz/QuizPage';
 import QuizErrorPage from './components/quiz/QuizErrorPage';
-import QuizLoadingPage from './pages/quiz/QuizLoadingPage';
 import QuizLayout from './components/common/layout/QuizLayout';
 import QuizResultPage from './pages/quiz/QuizResultPage';
 import MyWordList from './pages/MyWordList';
@@ -22,6 +20,7 @@ import NewsDetailLayout from './components/common/layout/NewsDetailLayout';
 import NewsCompletePage from './pages/newsDetail/NewsCompletePage';
 import NewsDetailContainer from './components/course/main/NewsDetailContainer';
 import { lazy, Suspense } from 'react';
+import Loader from './components/common/Loader';
 
 const PageLoader = () => (
   <div className='absolute left-0 top-0 flex h-screen w-full items-center justify-center'>
@@ -33,6 +32,8 @@ const AdminHome = lazy(() => import('./pages/admin/home/AdminHome'));
 const Write = lazy(() => import('./pages/admin/write/Write'));
 const AdminContentDetail = lazy(() => import('./pages/admin/contentDetail/AdminContentDetail'));
 const UpdatePage = lazy(() => import('./pages/admin/update/UpdatePage'));
+const QuizLoadingPage = lazy(() => import('./pages/quiz/QuizLoadingPage'));
+const WithDrawSuccess = lazy(() => import('./pages/WithDrawSuccess'));
 export const router = createBrowserRouter(
   [
     {
@@ -42,7 +43,14 @@ export const router = createBrowserRouter(
         { path: '/news-list', element: <NewsList /> },
         { path: '/login', element: <Login />, errorElement: <QuizErrorPage /> },
         { path: '/content/:id', element: <ContentDetail /> },
-        { path: '/withdraw-success', element: <WithDrawSuccess /> },
+        {
+          path: '/withdraw-success',
+          element: (
+            <Suspense fallback={<Loader size={5} />}>
+              <WithDrawSuccess />
+            </Suspense>
+          ),
+        },
         { path: '/contents', element: <ContentList /> },
         {
           element: <ProtectedRoute />,
@@ -64,7 +72,11 @@ export const router = createBrowserRouter(
             { path: '/quiz', element: <QuizPage />, errorElement: <QuizErrorPage /> },
             {
               path: '/quiz-loading',
-              element: <QuizLoadingPage />,
+              element: (
+                <Suspense fallback={<Loader size={5} />}>
+                  <QuizLoadingPage />
+                </Suspense>
+              ),
               errorElement: <QuizErrorPage />,
             },
             { path: '/quiz-result', element: <QuizResultPage />, errorElement: <QuizErrorPage /> },

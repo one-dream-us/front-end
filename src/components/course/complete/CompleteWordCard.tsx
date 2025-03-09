@@ -39,6 +39,7 @@ export default function CompleteWordCard({
         // 스크랩 추가
         console.log('스크랩', term);
         scrap(dictionaryId);
+        // return (await axios.post(`/bookmark/dictionaries/${dictionaryId}`)).data;
       }
     }
   };

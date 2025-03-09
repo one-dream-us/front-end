@@ -4,10 +4,18 @@ import quizResult100_webp from '@/assets/webps/quiz result=100.webp';
 import CardContainer from '@/components/course/complete/CardContainer';
 import GridContainer from '@/components/course/complete/GridContainer';
 import { SHOW_NEWS_COMPLETE_ONBOARDING } from '@/constants/constants';
-import NewsCompleteOnboarding from '@/components/course/onboarding/completePage/NewsCompleteOnboarding';
+// import NewsCompleteOnboarding from '@/components/course/onboarding/completePage/NewsCompleteOnboarding';
 import MissionCheckComponent from '@/components/common/MissionCheckComponent';
 import ImgContainer from '@/components/common/ImgContainer';
+import { lazy, Suspense } from 'react';
+import Loader from '@/components/common/Loader';
 
+// const MissionCheckComponent = lazy(
+//   () => import('@/components/course/onboarding/completePage/NewsCompleteOnboarding'),
+// );
+const NewsCompleteOnboarding = lazy(
+  () => import('@/components/course/onboarding/completePage/NewsCompleteOnboarding'),
+);
 export default function NewsCompletePage() {
   return (
     <div className='m-auto w-[343px]'>
@@ -44,7 +52,11 @@ export default function NewsCompletePage() {
         <CompleteButton />
       </div>
 
-      {SHOW_NEWS_COMPLETE_ONBOARDING && <NewsCompleteOnboarding />}
+      {SHOW_NEWS_COMPLETE_ONBOARDING && (
+        <Suspense fallback={<Loader size={5} />}>
+          <NewsCompleteOnboarding />
+        </Suspense>
+      )}
     </div>
   );
 }

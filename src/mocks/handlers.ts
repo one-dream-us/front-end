@@ -14,4 +14,13 @@ export const handlers = [
   http.get('/scrap/term', () => {
     return HttpResponse.json(scrapedTerms);
   }),
+  http.post('/history', async ({ request }) => {
+    const res = await request.json();
+    console.log(res);
+    return HttpResponse.json(res);
+  }),
+  http.post(`/bookmark/dictionaries/:dictionaryId`, async ({ params }) => {
+    console.log(params);
+    return HttpResponse.json(params.dictionaryId);
+  }),
 ];
