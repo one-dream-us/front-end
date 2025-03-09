@@ -145,3 +145,27 @@ mark {
     width: 280px;
   }
 }
+
+.chat-bubble {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 4px;
+  position: relative;
+}
+
+.chat-bubble:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -13px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 25px;
+  height: 25px;
+  background: white;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  -moz-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}

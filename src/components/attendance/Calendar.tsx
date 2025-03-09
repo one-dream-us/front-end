@@ -42,6 +42,8 @@ export default function Calendar({ createdAt }: { createdAt: string }) {
       {' '}
       <ReactCalendar
         onChange={onChange}
+        nextAriaLabel='next month button'
+        prevAriaLabel='previous month button'
         value={value}
         next2Label={null}
         prev2Label={null}
