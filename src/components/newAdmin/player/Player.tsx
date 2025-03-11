@@ -1,17 +1,17 @@
 import { useState, useRef, useEffect, MouseEvent } from 'react';
 import hsh from '@/assets/mp3/G-DRAGON - HOME SWEET HOME (feat. TAEYANG DAESUNG).mp3';
-import bebe from '@/assets/mp3/BIGBANG - BAE BAE.mp3';
-import ifyou from '@/assets/mp3/BIGBANG - IF YOU.mp3';
-import lie from '@/assets/mp3/BIGBANG - Lie (거짓말).mp3';
-import flowerroad from '@/assets/mp3/BIGBANG - 꽃 길 (FLOWER ROAD).mp3';
-import lastfarewell from '@/assets/mp3/BIGBANG - 마지막 인사 (LAST FAREWELL).mp3';
-import sunset from '@/assets/mp3/BIGBANG - 붉은 노을 (Sunset Glow).mp3';
-import zutter from '@/assets/mp3/BIGBANG - 쩔어 (ZUTTER) (GD & T.O.P).mp3';
+import bebe from '@/assets/mp3/baebae.mp3';
+import ifyou from '@/assets/mp3/ifYou.mp3';
+import lie from '@/assets/mp3/lie.mp3';
+import flowerroad from '@/assets/mp3/flowerRoad.mp3';
+import lastfarewell from '@/assets/mp3/lastFarewell.mp3';
+import sunset from '@/assets/mp3/sunset.mp3';
+import zutter from '@/assets/mp3/zutter.mp3';
 import ibeing2you from '@/assets/mp3/G-DRAGON - IBELONGIIU.mp3';
 import power from '@/assets/mp3/G-DRAGON - POWER.mp3';
 import toobad from '@/assets/mp3/G-DRAGON - TOO BAD (feat. Anderson .Paak).mp3';
-import blueSong from '@/assets/mp3/BIGBANG - BLUE.mp3';
-import fourseason from '@/assets/mp3/BIGBANG - 봄여름가을겨울 (Still Life).mp3';
+import blueSong from '@/assets/mp3/blue.mp3';
+import fourseason from '@/assets/mp3/stillLife.mp3';
 
 const Player = () => {
   const songs = [
@@ -96,7 +96,7 @@ const Player = () => {
   }, []);
 
   return (
-    <div className='music-player relative ml-auto hidden items-center gap-x-3 opacity-50 md:flex'>
+    <div className='music-player relative ml-auto hidden items-center gap-x-3 md:flex'>
       <button onClick={() => setShowList((prev) => !prev)}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
