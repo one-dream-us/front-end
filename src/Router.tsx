@@ -68,8 +68,9 @@ export const router = createBrowserRouter(
       children: [
         {
           element: <ProtectedRoute />,
+          errorElement: <NotFound />,
           children: [
-            { path: '/quiz', element: <QuizPage />, errorElement: <QuizErrorPage /> },
+            { path: '/quiz', element: <QuizPage /> },
             {
               path: '/quiz-loading',
               element: (
@@ -77,13 +78,11 @@ export const router = createBrowserRouter(
                   <QuizLoadingPage />
                 </Suspense>
               ),
-              errorElement: <QuizErrorPage />,
             },
-            { path: '/quiz-result', element: <QuizResultPage />, errorElement: <QuizErrorPage /> },
+            { path: '/quiz-result', element: <QuizResultPage /> },
             {
               path: '/random-quiz-result',
               element: <RandomQuizResultPage />,
-              errorElement: <QuizErrorPage />,
             },
           ],
         },
