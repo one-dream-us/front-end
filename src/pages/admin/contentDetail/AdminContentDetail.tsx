@@ -13,6 +13,11 @@ export default function AdminContentDetail() {
   return (
     <div className='m-auto max-w-6xl p-6'>
       <ContentActionButtons id={id!} status={status} />
+      <img
+        src={data.thumbnailUrl as string}
+        alt={`content ${id} thumbnail`}
+        className='scale-90 rounded-lg'
+      />
       <ul className='flex flex-col gap-y-5'>
         <li>제목 : {data?.title}</li>
         <li>뉴스사 : {data.newsAgency}</li>

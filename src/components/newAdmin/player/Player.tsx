@@ -12,18 +12,20 @@ import power from '@/assets/mp3/G-DRAGON - POWER.mp3';
 import toobad from '@/assets/mp3/G-DRAGON - TOO BAD (feat. Anderson .Paak).mp3';
 import blueSong from '@/assets/mp3/blue.mp3';
 import fourseason from '@/assets/mp3/stillLife.mp3';
+import goodboy from '@/assets/mp3/goodboy.mp3';
 
 const Player = () => {
   const songs = [
-    { title: 'BAE BAE(ㄹㅈㄷ1)', file: bebe },
+    { title: 'BAE BAE', file: bebe },
+    { title: 'GOOD BOY', file: goodboy },
     { title: '꽃길', file: flowerroad },
     { title: '마지막 인사', file: lastfarewell },
     { title: '거짓말', file: lie },
-    { title: 'BLUE(ㄹㅈㄷ2)', file: blueSong },
+    { title: 'BLUE', file: blueSong },
     { title: 'POWER', file: power },
     { title: 'IF YOU', file: ifyou },
     { title: 'TOO BAD', file: toobad },
-    { title: '봄여가겨(ㄹㅈㄷ3)', file: fourseason },
+    { title: '봄여가겨', file: fourseason },
     { title: '붉은 노을', file: sunset },
     { title: 'IBELONGIIU', file: ibeing2you },
     { title: '쩔어', file: zutter },
@@ -130,7 +132,9 @@ const Player = () => {
         </ul>
       )}
       <div>
-        <h2>{songs[currentSongIndex].title}</h2>
+        <h2>
+          {songs[currentSongIndex].title} ({currentSongIndex + 1}/{songs.length})
+        </h2>
         <div className='progress-bar' onClick={handleProgressClick}>
           <progress className='h-[5px] cursor-pointer' value={progress} max={100}></progress>
         </div>
