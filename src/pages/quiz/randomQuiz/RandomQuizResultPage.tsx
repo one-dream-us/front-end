@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import QuizResultItem from '@/components/quiz/quizResult/QuizResultItem';
 import correctIcon from '@/assets/p2/icon_check_right.png';
 import wrongIcon from '@/assets/p2/icon_x_wrg.png';
@@ -7,15 +7,18 @@ import RandomquizResultImgWeb from '@/assets/p2/P2 에셋_2차전달/image_quiz_
 import { RANDOM_QUIZ_RESULT_KEY } from '@/constants/constants';
 import { IQuizResult } from '@/types/interface';
 import MissionCheckComponent from '@/components/common/MissionCheckComponent';
+import { useEffect } from 'react';
 
 export default function RandomQuizResultPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const results: IQuizResult = JSON.parse(localStorage.getItem(RANDOM_QUIZ_RESULT_KEY) as string);
 
-  if (!results) {
-    alert('올바르지 않은 접근입니다.');
-    return <Navigate to={'/'} />;
-  }
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem(RANDOM_QUIZ_RESULT_KEY);
+    };
+  }, [location]);
   return (
     <div className='m-auto'>
       <div className='mb-[16px] mt-[40px] text-center'>

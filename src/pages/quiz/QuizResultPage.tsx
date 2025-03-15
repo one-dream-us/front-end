@@ -8,10 +8,11 @@ import { useUserInfoQuery } from '@/hooks/auth/useUserInfoQuery';
 import MissionCheckComponent from '@/components/common/MissionCheckComponent';
 import { useEffect } from 'react';
 import useGetWordListData from '@/hooks/myWordList/api/useGetWordListData';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ImgContainer from '@/components/common/ImgContainer';
 
 export default function QuizResultPage() {
+  const location = useLocation();
   const navigate = useNavigate();
   const { accuracyRate, graduationCnt, resultDetails, totalWrong }: IQuizResult = JSON.parse(
     localStorage.getItem(NORMAL_QUIZ_RESULT_KEY) as string,
@@ -28,6 +29,12 @@ export default function QuizResultPage() {
   const { refetch: refetchScrap } = useGetWordListData('스크랩');
   const { refetch: refetchWrongNote } = useGetWordListData('오답노트');
   const { refetch: refetchGradNote } = useGetWordListData('졸업노트');
+
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem(NORMAL_QUIZ_RESULT_KEY);
+    };
+  }, [location]);
 
   useEffect(() => {
     refetchScrap();
