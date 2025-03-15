@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@builder.io/partytown": "^0.10.3",
+    "@qwik.dev/partytown": "^0.11.0",
     "@tanstack/react-query": "^5.62.0",
     "@tanstack/react-query-devtools": "^5.62.3",
     "@types/node": "^22.10.1",
