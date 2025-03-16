@@ -301,21 +301,43 @@ export interface WordListContentProps {
 }
 
 export interface IWholeNote {
-  scrap: IScrapList | undefined;
-  keynote: Keynote | undefined;
+  history: History | undefined;
+  bookmark: BookMark | undefined;
   inCorrect: InCorrect | undefined;
   graduation: Graduation | undefined;
 }
 
-export interface Keynote {
-  keyNoteCount: number;
-  keyNoteList: {
-    keyNoteId: number;
-    createdAt: string;
-    dictionary: Dictionary;
-  }[];
+export interface BookMark {
+  bookmarkCount: number;
+  bookmarkList: BookmarkList[];
 }
 
+export interface BookmarkList {
+  bookmarkId: number;
+  createdAt: string;
+  dictionary: DictionaryInfo;
+}
+
+export interface DictionaryInfo {
+  id: number;
+  term: string;
+  definition: string;
+  description: string;
+}
+
+export interface History {
+  historyCnt: number;
+  dictionaryHistory: DictionaryHistory[];
+}
+
+export interface DictionaryHistory {
+  historyId: number;
+  dictionaryId: number;
+  term: string;
+  definition: string;
+  description: string;
+  isBookmarked: boolean;
+}
 export interface InCorrect {
   wrongAnswerNoteSize: number;
   wrongAnswerNotes: {
