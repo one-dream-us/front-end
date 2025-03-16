@@ -1,4 +1,5 @@
 import QUERY_KEYS from '@/constants/queryKeys';
+import bookmarkApi from '@/services/bookmarkApi';
 import newsApi from '@/services/newsApi';
 import { IScrapList } from '@/types/interface';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -35,17 +36,17 @@ const useRemoveScrapWord = () => {
 };
 export default useRemoveScrapWord;
 
-export const useRemoveScrapWord_Normal = () => {
+export const useRemoveBookmarkNormal = () => {
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
-    mutationFn: async (scrapId: number) => {
+    mutationFn: async (bookmarkId: number) => {
       const start = performance.now();
-      const res = await newsApi.postRemoveScrapWord(scrapId);
+      const res = await bookmarkApi.removeBookmark(bookmarkId);
       const end = performance.now();
       console.log(`일반 삭제 UI 업데이트 시간 : ${end - start}ms`);
       return res;
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: QUERY_KEYS.getScrapList }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: QUERY_KEYS.getBookmarkList }),
   });
   return mutate;
 };

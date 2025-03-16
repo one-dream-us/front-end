@@ -1,4 +1,5 @@
 import QUERY_KEYS from '@/constants/queryKeys';
+import bookmarkApi from '@/services/bookmarkApi';
 import newsApi from '@/services/newsApi';
 import { IScrapList } from '@/types/interface';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -36,18 +37,18 @@ const useScrapWord = () => {
 };
 export default useScrapWord;
 
-export const useScrapWordNotOptimistic = () => {
+export const useBookmarkWordNormal = () => {
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: async (wordId: number) => {
       const start = performance.now();
-      const res = await newsApi.postScrapWord(wordId);
+      const res = await bookmarkApi.addBookmark(wordId);
       const end = performance.now();
       console.log(`일반 업데이트 스크랩 ui 업데이트에 걸린 시간 : ${(end - start).toFixed(2)}ms`);
       return res;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.getScrapList });
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.getBookmarkList });
     },
   });
   return mutate;

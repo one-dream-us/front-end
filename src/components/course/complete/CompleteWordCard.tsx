@@ -1,25 +1,24 @@
 import { useAuthCheckQuery } from '@/hooks/auth/useAuthCheckQuery';
-import useRemoveScrapWord from '@/hooks/newDetail/useRemoveScrapWord';
-import useScrapWord from '@/hooks/newDetail/useScrapWord';
 import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
 import { IDescription } from '@/types/interface';
 import scrapActive from '@/assets/p2/P2 에셋_2차전달/icon_scrap.png';
 import scrapDisable from '@/assets/p2/P2 에셋_2차전달/icon_scrap_greyline.png';
 import useIsScrapable from '@/hooks/newDetail/useIsScrapable';
-import bookmarkApi from '@/services/bookmarkApi';
+import { useBookmarkWordNormal } from '@/hooks/newDetail/useBookmarkWord';
+import { useRemoveBookmarkNormal } from '@/hooks/newDetail/useRemoveBookmarkWord';
 
 export default function CompleteWordCard({
   dictionaryId,
   term,
 }: Pick<IDescription, 'term' | 'dictionaryId'>) {
-  const scrap = useScrapWord();
-  const scrapCancel = useRemoveScrapWord();
+  // const scrap = useScrapWord();
+  const scrap = useBookmarkWordNormal();
+  const scrapCancel = useRemoveBookmarkNormal();
   const { data } = useAuthCheckQuery();
   const { setIsOpen, setIsNavigate } = useLoginConfirmModalState();
-  const { alreadyGraduation, alreadyInCorrect, alreadyBookmark, alreadyHistory } =
-    useIsScrapable(dictionaryId);
+  const { alreadyGraduation, alreadyInCorrect, alreadyBookmark } = useIsScrapable(dictionaryId);
 
-  const handleScrap = async () => {
+  const handleScrap = () => {
     if (!data) {
       // 비로그인 시 로그인 모달 띄우기
       setIsOpen(true);
@@ -28,8 +27,7 @@ export default function CompleteWordCard({
       // 로그인 시
       if (alreadyBookmark) {
         // 스크랩 삭제
-        // scrapCancel(alreadyBookmark.bookmarkId);
-        await bookmarkApi.removeBookmark(alreadyBookmark.bookmarkId);
+        scrapCancel(alreadyBookmark.bookmarkId);
         console.log('스크랩 취소 : ', term);
       } else if (alreadyGraduation) {
         return alert('이미 졸업노트에 등록 된 단어입니다.');
@@ -38,8 +36,7 @@ export default function CompleteWordCard({
       } else {
         // 스크랩 추가
         console.log('스크랩', term);
-        // scrap(dictionaryId);
-        await bookmarkApi.addBookmark(dictionaryId);
+        scrap(dictionaryId);
       }
     }
   };
