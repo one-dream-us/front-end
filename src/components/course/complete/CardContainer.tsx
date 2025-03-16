@@ -1,28 +1,23 @@
 import useNewsDetail from '@/hooks/newDetail/useNewsDetail';
 import CompleteWordCard from './CompleteWordCard';
-// import { useEffect } from 'react';
-// import { useMutation } from '@tanstack/react-query';
-// import axios from 'axios';
-
-// interface PayloadTypes {
-//   dictionaryIds: {
-//     id: number;
-//   }[];
-// }
+import { useEffect } from 'react';
+import historyApi from '@/services/historyApi';
+import { useMutation } from '@tanstack/react-query';
+import { AddHistoriesPayload } from '@/types/interface';
 
 export default function CardContainer() {
   const { news, isLoading } = useNewsDetail((data) => data.descriptions);
 
-  // const { mutate: addHistory } = useMutation({
-  //   mutationFn: async (payload: PayloadTypes) => (await axios.post('/history', payload)).data,
-  // });
+  const { mutate: addHistories } = useMutation({
+    mutationFn: async (payload: AddHistoriesPayload) => await historyApi.addHistories(payload),
+  });
 
-  // useEffect(() => {
-  //   if (!isLoading) {
-  //     const res = news?.map(({ dictionaryId }) => ({ id: dictionaryId }));
-  //     addHistory({ dictionaryIds: res! });
-  //   }
-  // }, [isLoading]);
+  useEffect(() => {
+    if (!isLoading) {
+      const dictionaryIds = news?.map((item) => item.dictionaryId) as number[];
+      addHistories({ dictionaryIds });
+    }
+  }, [isLoading]);
 
   return (
     <>

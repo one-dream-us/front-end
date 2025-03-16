@@ -512,3 +512,7 @@ export interface DraftListContent {
   scheduledAt: string;
   createdAt: string;
 }
+
+export interface AddHistoriesPayload {
+  dictionaryIds: number[];
+}
