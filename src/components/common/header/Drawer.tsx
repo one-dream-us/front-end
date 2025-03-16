@@ -4,7 +4,7 @@ import authApi from '@/services/authApi';
 import { formatUserName } from '@/utils/formatUserName';
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useMyViewCount } from '@/hooks/homeContent/useMyViewCount';
+// import { useMyViewCount } from '@/hooks/homeContent/useMyViewCount';
 import { useLoginStore } from '@/store/useIsLoginStore';
 import profileActvie from '@/assets/imgs_v2/icon_profile_active.png';
 import login_chat_bubble from '@/assets/imgs_v2/login_bubble_.svg';
@@ -23,16 +23,16 @@ export default function Drawer({
 }) {
   const { refetch, data: info } = useUserInfoQuery(false);
   const { isLoading } = useAuthCheckQuery();
-  const { data: viewCount, isLoading: viewCountLoading } = useMyViewCount();
+  // const { data: viewCount, isLoading: viewCountLoading } = useMyViewCount();
   const { setIsLogin } = useLoginStore();
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (logged && !isLoading && !viewCountLoading) {
+    if (logged && !isLoading) {
       refetch();
       setIsLogin(true);
     }
-  }, [logged, isLoading, viewCountLoading]);
+  }, [logged, isLoading]);
 
   return (
     <div
@@ -58,7 +58,7 @@ export default function Drawer({
                   <div className='flex w-full items-center justify-start gap-x-3'>
                     <span>내가 본 콘텐츠</span>
                     <span>|</span>
-                    <span>{viewCount}</span>
+                    <span>0</span>
                   </div>
                 </div>
               </div>

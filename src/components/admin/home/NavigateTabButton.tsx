@@ -25,6 +25,7 @@ export default function NavigateTabButton() {
     <div className='mb-5 w-full max-w-[200px]'>
       <div className='relative'>
         <select
+          aria-label='업로드 유형 선택'
           value={currentTab}
           onChange={handleTabChange}
           className='ease w-full cursor-pointer appearance-none rounded border border-slate-200 bg-transparent py-2 pl-3 pr-8 text-sm text-slate-700 shadow-sm transition duration-300 placeholder:text-slate-400 hover:border-slate-400 focus:border-slate-400 focus:shadow-md focus:outline-none'
