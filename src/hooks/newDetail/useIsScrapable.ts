@@ -4,13 +4,14 @@ import { IWholeNote } from '@/types/interface';
 import { useMemo } from 'react';
 import historyApi from '@/services/historyApi';
 import bookmarkApi from '@/services/bookmarkApi';
+import QUERY_KEYS from '@/constants/queryKeys';
 const useIsScrapable = (wordId: number) => {
   const { inCorrect, graduation, bookmark, history }: IWholeNote = useQueries({
     queries: [
-      { queryKey: ['히스토리'], queryFn: historyApi.getHistory },
-      { queryKey: ['북마크'], queryFn: bookmarkApi.getBookmark },
-      { queryKey: ['오답노트'], queryFn: wordListAPi.getIncorrectNote },
-      { queryKey: ['졸업노트'], queryFn: wordListAPi.getGraduationNote },
+      { queryKey: QUERY_KEYS.getHistoryList, queryFn: historyApi.getHistory },
+      { queryKey: QUERY_KEYS.getBookmarkList, queryFn: bookmarkApi.getBookmark },
+      { queryKey: QUERY_KEYS.getWrongList, queryFn: wordListAPi.getIncorrectNote },
+      { queryKey: QUERY_KEYS.getGradList, queryFn: wordListAPi.getGraduationNote },
     ],
     combine(result) {
       return {
