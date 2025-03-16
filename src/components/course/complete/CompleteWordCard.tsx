@@ -4,16 +4,15 @@ import { IDescription } from '@/types/interface';
 import scrapActive from '@/assets/p2/P2 에셋_2차전달/icon_scrap.png';
 import scrapDisable from '@/assets/p2/P2 에셋_2차전달/icon_scrap_greyline.png';
 import useIsScrapable from '@/hooks/newDetail/useIsScrapable';
-import { useBookmarkWordNormal } from '@/hooks/newDetail/useBookmarkWord';
-import { useRemoveBookmarkNormal } from '@/hooks/newDetail/useRemoveBookmarkWord';
+import useBookmarkWord from '@/hooks/newDetail/useBookmarkWord';
+import useRemoveBookmark from '@/hooks/newDetail/useRemoveBookmarkWord';
 
 export default function CompleteWordCard({
   dictionaryId,
   term,
 }: Pick<IDescription, 'term' | 'dictionaryId'>) {
-  // const scrap = useScrapWord();
-  const scrap = useBookmarkWordNormal();
-  const scrapCancel = useRemoveBookmarkNormal();
+  const scrap = useBookmarkWord();
+  const scrapCancel = useRemoveBookmark();
   const { data } = useAuthCheckQuery();
   const { setIsOpen, setIsNavigate } = useLoginConfirmModalState();
   const { alreadyGraduation, alreadyInCorrect, alreadyBookmark } = useIsScrapable(dictionaryId);
