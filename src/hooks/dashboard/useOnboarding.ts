@@ -29,8 +29,10 @@ export default function useOnboarding({
     }
   };
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) localStorage.setItem('hasCheckedOnboarding', 'true');
-    else localStorage.removeItem('hasCheckedOnboarding');
+    if (e.target.checked) {
+      localStorage.setItem('hasCheckedOnboarding', 'true');
+      document.body.style.overflow = '';
+    } else localStorage.removeItem('hasCheckedOnboarding');
   };
 
   return { currentStep, handleNext, setShowTooltip, handleCheck };

@@ -25,7 +25,7 @@ export default function OnBoarding({
         <div className='relative mx-auto w-[323px] md:w-[520px]'>
           <div className='absolute left-0 top-[50px] flex items-center gap-x-1'>
             <input type='checkbox' className='checkbox h-4 w-4' onChange={handleCheck} />
-            <span className='text-sm text-custom-gray-300'>그만 보기</span>
+            <span className='text-sm text-custom-gray-300'>다시 보지 않기</span>
           </div>
           <button
             type='button'

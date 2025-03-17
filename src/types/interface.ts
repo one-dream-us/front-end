@@ -155,11 +155,12 @@ export interface VideoPlayerProps {
   scriptParagraphs: ScriptParagraph[];
 }
 
-export interface ScrapDictionary {
+export interface HistoryDictionary {
   dictionaryId: number;
   term: string;
   definition: string;
   description: string;
+  isBookmarked: boolean | null;
 }
 
 export interface WordDictionary {
@@ -169,13 +170,13 @@ export interface WordDictionary {
   description: string;
 }
 
-export interface KeyNoteDictionary {
-  keyNoteId: number;
+export interface BookmarkDictionary {
+  bookmarkId: number;
   dictionary: WordDictionary;
 }
 
 export interface KeyNoteWord {
-  keyNoteList: KeyNoteDictionary[];
+  keyNoteList: BookmarkDictionary[];
 }
 
 export interface WordInterface {
@@ -184,7 +185,6 @@ export interface WordInterface {
 
 export interface WordListProps {
   activeMenu: MyWordListMenuType;
-  showTooltip: boolean;
   setShowTooltip: Dispatch<SetStateAction<boolean>>;
   setShowModal: Dispatch<SetStateAction<boolean>>;
   showModal: boolean;
@@ -291,10 +291,8 @@ export interface IScrapWord {
 
 export interface WordListContentProps {
   activeMenu: MyWordListMenuType;
-  wordList: ScrapDictionary[] | KeyNoteDictionary[] | WordInterface[];
-  wordNum: number;
+  wordList: HistoryDictionary[] | BookmarkDictionary[] | WordInterface[];
   showTutorial: boolean;
-  showTooltip: boolean;
   setShowTooltip: Dispatch<SetStateAction<boolean>>;
   showModal: boolean;
   setShowModal: Dispatch<SetStateAction<boolean>>;

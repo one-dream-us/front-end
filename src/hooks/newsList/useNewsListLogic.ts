@@ -16,8 +16,8 @@ export default function useNewsListLogic() {
   const { isLogin } = useLoginStore();
   const navigate = useNavigate();
   const { setIsOpen, setIsNavigate } = useLoginConfirmModalState();
-  const { keyNoteListLen } = useGetWordListData('핵심노트');
-  const { wordList } = useGetWordListData('스크랩');
+  const { keyNoteListLen } = useGetWordListData('북마크');
+  const { wordList } = useGetWordListData('히스토리');
   const isKeynote = keyNoteListLen < 3 && wordList.length >= 3;
   const { isFirstQuizAttempt } = useCheckFirstQuiz();
   const [modalOpen, setModalOpen] = useState(false);

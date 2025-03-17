@@ -11,10 +11,10 @@ export default function MyWordListNavBar({
   isTutorial: boolean;
 }) {
   const id =
-    activeMenu === '스크랩'
-      ? 'tap_scrap'
-      : activeMenu === '핵심노트'
-        ? 'tap_keynote'
+    activeMenu === '히스토리'
+      ? 'tap_history'
+      : activeMenu === '북마크'
+        ? 'tap_bookmark'
         : activeMenu === '오답노트'
           ? 'tap_wrong_answer_note'
           : 'tap_graduation_note';

@@ -1,32 +1,35 @@
 import { MyWordListMenuType } from '@/types/types';
-import useAddKeyNote from '@/hooks/myWordList/api/useAddKeyNote';
-import { ScrapDictionary } from '@/types/interface';
+import { BookmarkDictionary } from '@/types/interface';
+import useCancelBookmark from '@/hooks/myWordList/api/useCancelBookmark';
 import arrowRightIcon from '@/assets/p2/arrow_right.png';
 import { Dispatch, SetStateAction } from 'react';
 import useWordStore from '@/store/useWordStore';
 
-export default function ScrapWord({
+export default function Bookmark({
   activeMenu,
   word,
   setShowModal,
 }: {
   activeMenu: MyWordListMenuType;
-  word: ScrapDictionary;
+  word: BookmarkDictionary;
   setShowModal: Dispatch<SetStateAction<boolean>>;
 }) {
-  const { addKeyNote } = useAddKeyNote(word.dictionaryId, activeMenu);
+  const { definition, term, description } = word.dictionary;
+  const { cancelBookmark } = useCancelBookmark(word.bookmarkId, activeMenu);
   const { setDefinition, setDescription } = useWordStore();
-  const cleanedText = word.definition.replace(/<\/?mark>/g, '');
+  const cleanedText = definition.replace(/<\/?mark>/g, '');
+
   return (
     <div className='flex flex-col justify-center gap-y-2 rounded-[10px] border border-custom-gray-200 p-4'>
       <div className='flex justify-between'>
-        <p className='font-bold text-custom-black'>{word.term}</p>
+        <p className='font-bold text-custom-black'>{term}</p>
         <button
           type='button'
+          aria-label='북마크 취소'
           onClick={() => {
-            addKeyNote();
+            cancelBookmark();
           }}
-          className='scrap_to_keynote h-5 w-5 bg-scrap bg-contain bg-no-repeat hover:bg-keynote'
+          className='keynote_to_scrap h-5 w-5 bg-keynote bg-contain bg-no-repeat transition-all hover:bg-scrap'
         />
       </div>
       <p className='text-sm leading-160 text-custom-gray-dark'>{cleanedText}</p>
@@ -35,7 +38,7 @@ export default function ScrapWord({
         className='view_commentary flex items-center self-end'
         onClick={() => {
           setDefinition(cleanedText);
-          setDescription(word.description);
+          setDescription(description);
           setShowModal(true);
         }}
       >

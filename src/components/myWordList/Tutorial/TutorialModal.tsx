@@ -16,7 +16,7 @@ export default function TutorialModal({
   setShowTutorial: Dispatch<SetStateAction<boolean>>;
   setShowTooltip: Dispatch<SetStateAction<boolean>>;
 }) {
-  const [menu, setMenu] = useState<MyWordListMenuType>('스크랩');
+  const [menu, setMenu] = useState<MyWordListMenuType>('히스토리');
   useDisableScroll(showTutorial);
 
   return (

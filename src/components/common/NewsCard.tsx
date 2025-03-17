@@ -21,7 +21,7 @@ export default function NewsCard({
   return (
     <Link
       to={`/news/${newsId}`}
-      className={`relative flex flex-col ${(isToday || isDesktop) && 'desktop:flex-row desktop:gap-x-5'}`}
+      className={`flex flex-col ${(isToday || isDesktop) && 'desktop:flex-row desktop:gap-x-5'}`}
     >
       <img src={WaterMark} className='absolute left-2 top-2 h-11 w-11 object-cover' />
       <img
@@ -29,7 +29,7 @@ export default function NewsCard({
         src={thumbnailUrl}
         alt={title + ' 썸네일'}
       />
-      <div>
+      <div className='relative'>
         <div className='mb-1 flex items-center text-[10px] leading-120 text-custom-gray-500'>
           <span>조회수 {formatReadCount(viewCount)}</span>
           <div className='mx-2 h-2.5 w-[1px] bg-custom-gray-400' />
@@ -38,7 +38,7 @@ export default function NewsCard({
         <p className='mb-2 font-bold text-custom-gray-dark'>{title}</p>
         <Keywords tags={tags} />
         <p
-          className={`tooltip absolute -bottom-[76px] left-0 z-[999] -translate-y-full whitespace-nowrap rounded bg-custom-gray-dark px-2.5 py-2 text-xs text-custom-cream-light ${isToday && showTooltip ? 'block' : 'hidden'}`}
+          className={`tooltip absolute -bottom-11 left-0 z-20 h-8 shrink-0 whitespace-nowrap rounded bg-custom-gray-dark px-2.5 py-2 text-xs text-custom-cream-light after:left-12 desktop:!top-[108px] ${isToday && showTooltip ? 'block' : 'hidden'}`}
         >
           해당 머니뉴스를 통해 공부할 수 있는 단어에요.
         </p>

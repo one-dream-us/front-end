@@ -1,33 +1,28 @@
 import { MyWordListMenuType } from '@/types/types';
-import { KeyNoteDictionary } from '@/types/interface';
-import useDeleteKeyNote from '@/hooks/myWordList/api/useDeleteKeyNote';
+import { HistoryDictionary } from '@/types/interface';
 import arrowRightIcon from '@/assets/p2/arrow_right.png';
 import { Dispatch, SetStateAction } from 'react';
 import useWordStore from '@/store/useWordStore';
+import bookmarkIcon from '@/assets/P2_5d/icon_Keynote.svg';
+import historyIcon from '@/assets/P2_5d/icon_scrap.svg';
 
-export default function KeyNote({
-  activeMenu,
+export default function History({
   word,
   setShowModal,
 }: {
   activeMenu: MyWordListMenuType;
-  word: KeyNoteDictionary;
+  word: HistoryDictionary;
   setShowModal: Dispatch<SetStateAction<boolean>>;
 }) {
-  const { deleteKeyNote } = useDeleteKeyNote(word.keyNoteId, activeMenu);
+  const { term, description, isBookmarked } = word;
   const { setDefinition, setDescription } = useWordStore();
-  const cleanedText = word.dictionary.definition.replace(/<\/?mark>/g, '');
+  const cleanedText = word.definition.replace(/<\/?mark>/g, '');
+
   return (
     <div className='flex flex-col justify-center gap-y-2 rounded-[10px] border border-custom-gray-200 p-4'>
       <div className='flex justify-between'>
-        <p className='font-bold text-custom-black'>{word.dictionary.term}</p>
-        <button
-          type='button'
-          onClick={() => {
-            deleteKeyNote();
-          }}
-          className='keynote_to_scrap h-5 w-5 bg-keynote bg-contain bg-no-repeat hover:bg-scrap'
-        />
+        <p className='font-bold text-custom-black'>{term}</p>
+        <img className='scrap_to_keynote h-5 w-5' src={isBookmarked ? bookmarkIcon : historyIcon} />
       </div>
       <p className='text-sm leading-160 text-custom-gray-dark'>{cleanedText}</p>
       <button
@@ -35,7 +30,7 @@ export default function KeyNote({
         className='view_commentary flex items-center self-end'
         onClick={() => {
           setDefinition(cleanedText);
-          setDescription(word.dictionary.description);
+          setDescription(description);
           setShowModal(true);
         }}
       >

@@ -13,7 +13,7 @@ export default function useWordListContentLogic({
   setShowTooltip: Dispatch<SetStateAction<boolean>>;
 }) {
   useEffect(() => {
-    if (activeMenu === '스크랩' && !showTutorial) {
+    if (activeMenu === '히스토리' && !showTutorial) {
       setShowTooltip(true);
 
       const timer = setTimeout(() => {

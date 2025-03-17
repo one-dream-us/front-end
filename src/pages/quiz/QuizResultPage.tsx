@@ -26,7 +26,7 @@ export default function QuizResultPage() {
   const { data } = useUserInfoQuery(!isGraduate);
   const title = createTitle(accuracyRate, isGraduate, !isGraduate ? data?.name : undefined);
 
-  const { refetch: refetchScrap } = useGetWordListData('스크랩');
+  const { refetch: refetchScrap } = useGetWordListData('히스토리');
   const { refetch: refetchWrongNote } = useGetWordListData('오답노트');
   const { refetch: refetchGradNote } = useGetWordListData('졸업노트');
 

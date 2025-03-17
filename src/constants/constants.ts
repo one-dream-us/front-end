@@ -1,5 +1,5 @@
-import scrapIcon from '@/assets/p2/icon_bookmark_grey.png';
-import bookMarkIcon from '@/assets/p2/icon_bookmark_dark.png';
+import scrapIcon from '@/assets/P2_5d/icon_scrap.png';
+import bookMarkIcon from '@/assets/P2_5d/icon_Keynote.png';
 import reviewNoteIcon from '@/assets/p2/icon_X_dark.png';
 import graduationIcon from '@/assets/p2/icon_grad.png';
 import mobileImage1 from '@/assets/p2/P2 에셋_2차전달/onboarding_1_m.jpg';
@@ -70,18 +70,18 @@ export const adminTableHeader = [
   { id: 7, title: '상세보기', width: '160px' },
 ];
 
-export const myWordListMenu: MyWordListMenuType[] = ['스크랩', '핵심노트', '오답노트', '졸업노트'];
+export const myWordListMenu: MyWordListMenuType[] = ['히스토리', '북마크', '오답노트', '졸업노트'];
 
 export const myWordListInfo = {
-  스크랩: {
+  히스토리: {
     icon: scrapIcon,
-    title: '머니뉴스에서 가져온 스크랩',
-    description: '머니뉴스에서 스크랩한<br/>단어들이 모여있어요.',
+    title: '내가 본 단어는 히스토리',
+    description: '머니뉴스를 보고 학습한 단어는<br/> 히스토리에 자동 저장돼요.',
   },
-  핵심노트: {
+  북마크: {
     icon: bookMarkIcon,
-    title: '중요한 단어는 핵심노트',
-    description: '중요한 단어는 핵심노트에서 관리하고,',
+    title: '중요한 단어는 북마크',
+    description: '어려운 단어는 북마크하면,',
   },
   오답노트: {
     icon: reviewNoteIcon,
