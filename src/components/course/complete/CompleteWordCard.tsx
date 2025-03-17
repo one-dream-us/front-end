@@ -3,7 +3,7 @@ import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
 import { IDescription } from '@/types/interface';
 import scrapActive from '@/assets/p2/P2 에셋_2차전달/icon_scrap.png';
 import scrapDisable from '@/assets/p2/P2 에셋_2차전달/icon_scrap_greyline.png';
-import useIsScrapable from '@/hooks/newDetail/useIsScrapable';
+import useIsBookmarkable from '@/hooks/newDetail/useIsBookmarkable';
 import useBookmarkWord from '@/hooks/newDetail/useBookmarkWord';
 import useRemoveBookmark from '@/hooks/newDetail/useRemoveBookmarkWord';
 
@@ -11,11 +11,11 @@ export default function CompleteWordCard({
   dictionaryId,
   term,
 }: Pick<IDescription, 'term' | 'dictionaryId'>) {
-  const scrap = useBookmarkWord();
-  const scrapCancel = useRemoveBookmark();
+  const bookmark = useBookmarkWord();
+  const bookmarkCancel = useRemoveBookmark();
   const { data } = useAuthCheckQuery();
   const { setIsOpen, setIsNavigate } = useLoginConfirmModalState();
-  const { alreadyGraduation, alreadyInCorrect, alreadyBookmark } = useIsScrapable(dictionaryId);
+  const { alreadyGraduation, alreadyInCorrect, alreadyBookmark } = useIsBookmarkable(dictionaryId);
 
   const handleScrap = () => {
     if (!data) {
@@ -26,16 +26,16 @@ export default function CompleteWordCard({
       // 로그인 시
       if (alreadyBookmark) {
         // 스크랩 삭제
-        scrapCancel(alreadyBookmark.bookmarkId);
-        console.log('스크랩 취소 : ', term);
+        bookmarkCancel(alreadyBookmark.bookmarkId);
+        console.log('북마크 취소 : ', term);
       } else if (alreadyGraduation) {
         return alert('이미 졸업노트에 등록 된 단어입니다.');
       } else if (alreadyInCorrect) {
         return alert('이미 오답노트에 등록 된 단어입니다.');
       } else {
         // 스크랩 추가
-        console.log('스크랩', term);
-        scrap(dictionaryId);
+        console.log('북마크', term);
+        bookmark(dictionaryId);
       }
     }
   };
