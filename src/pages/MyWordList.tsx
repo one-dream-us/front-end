@@ -25,15 +25,10 @@ export default function MyWordList() {
     queryFn: newsApi.getLearningDays,
   });
 
-  const {
-    username,
-    totalScrap,
-    totalGraduation,
-    totalKeyNote,
-    isLoading: isStatusLearning,
-  } = useLearningStatus();
+  const { username, totalScrap, totalGraduation, isStatusLoading, historyCnt, isHistoryLoading } =
+    useLearningStatus();
 
-  if (isStatusLearning || isDaysLearning) return <div />;
+  if (isStatusLoading || isDaysLearning || isHistoryLoading) return <div />;
 
   return (
     <section className='mx-auto mt-10 flex flex-col items-center'>
@@ -43,14 +38,13 @@ export default function MyWordList() {
         setShowTooltip={setShowTooltip}
       />
       <div className='mx-auto box-content w-[343px] px-4 pb-6 md:w-[353px] desktop:max-w-[812px] desktop:pb-6'>
-        <ProfileSection username={username} totalKeyNote={totalKeyNote} />
+        <ProfileSection username={username} historyCnt={historyCnt} showTooltip={showTooltip} />
         <ScoreBoard totalScrap={totalScrap} totalGraduation={totalGraduation} learningDays={data} />
       </div>
       <div className='h-2.5 w-[343px] bg-custom-gray-lighter md:w-[353px] desktop:w-[812px]' />
       <MyWordListNavBar activeMenu={activeMenu} setActiveMenu={setActiveMenu} isTutorial={false} />
       <WordList
         activeMenu={activeMenu}
-        showTooltip={showTooltip}
         setShowTooltip={setShowTooltip}
         setShowModal={setShowModal}
         showModal={showModal}

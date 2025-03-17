@@ -13,7 +13,7 @@ import QuizPage from './pages/quiz/QuizPage';
 import QuizErrorPage from './components/quiz/QuizErrorPage';
 import QuizLayout from './components/common/layout/QuizLayout';
 import QuizResultPage from './pages/quiz/QuizResultPage';
-import MyWordList from './pages/MyWordList';
+import MyWords from './pages/MyWords';
 import RandomQuizResultPage from './pages/quiz/randomQuiz/RandomQuizResultPage';
 import NewsList from './pages/NewsList';
 import NewsDetailLayout from './components/common/layout/NewsDetailLayout';
@@ -57,7 +57,7 @@ export const router = createBrowserRouter(
           children: [
             { path: '/profile', element: <Profile /> },
             { path: '/my-scrap', element: <MyScrap /> },
-            { path: '/my-word-list', element: <MyWordList /> },
+            { path: '/my-word-list', element: <MyWords /> },
           ],
         },
         { path: '*', element: <NotFound /> },
