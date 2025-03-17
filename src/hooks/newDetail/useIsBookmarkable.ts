@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import historyApi from '@/services/historyApi';
 import bookmarkApi from '@/services/bookmarkApi';
 import QUERY_KEYS from '@/constants/queryKeys';
-const useIsScrapable = (wordId: number) => {
+const useIsBookmarkable = (wordId: number) => {
   const { inCorrect, graduation, bookmark, history }: IWholeNote = useQueries({
     queries: [
       { queryKey: QUERY_KEYS.getHistoryList, queryFn: historyApi.getHistory },
@@ -44,4 +44,4 @@ const useIsScrapable = (wordId: number) => {
 
   return { alreadyGraduation, alreadyInCorrect, alreadyBookmark, alreadyHistory };
 };
-export default useIsScrapable;
+export default useIsBookmarkable;

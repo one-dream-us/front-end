@@ -1,4 +1,3 @@
-import Loader from '@/components/common/Loader';
 import ModalButton from '@/components/common/modal/ModalButton';
 import ModalOverlay from '@/components/common/modal/ModalOverlay';
 import Title from '@/components/course/common/Title';
@@ -6,6 +5,7 @@ import CompleteButton from '@/components/course/main/CompleteButton';
 import PaginationBullets from '@/components/course/main/PaginationBullets';
 import Slider from '@/components/course/main/slider/Slider';
 import WordDescription from '@/components/course/main/WordDescription';
+import { WithDrawModalSkeleton } from '@/components/profile/WithdrawButton';
 import { SHOW_NEWS_DETAIL_ONBOARDING } from '@/constants/constants';
 import { lazy, Suspense } from 'react';
 import { useBlocker, useParams } from 'react-router-dom';
@@ -31,7 +31,7 @@ export default function NewsDetailPage() {
       <NavigateBlocker />
 
       {SHOW_NEWS_DETAIL_ONBOARDING && (
-        <Suspense fallback={<Loader size={5} />}>
+        <Suspense fallback={<WithDrawModalSkeleton />}>
           <NewsDetailOnboarding />
         </Suspense>
       )}

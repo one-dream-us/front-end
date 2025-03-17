@@ -2,14 +2,17 @@ import useNewsDetail from '@/hooks/newDetail/useNewsDetail';
 import CompleteWordCard from './CompleteWordCard';
 import { useEffect } from 'react';
 import historyApi from '@/services/historyApi';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AddHistoriesPayload } from '@/types/interface';
+import QUERY_KEYS from '@/constants/queryKeys';
 
 export default function CardContainer() {
   const { news, isLoading } = useNewsDetail((data) => data.descriptions);
 
+  const queryClient = useQueryClient();
   const { mutate: addHistories } = useMutation({
     mutationFn: async (payload: AddHistoriesPayload) => await historyApi.addHistories(payload),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: QUERY_KEYS.getHistoryList }),
   });
 
   useEffect(() => {
