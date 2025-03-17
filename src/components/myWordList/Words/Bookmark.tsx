@@ -29,7 +29,7 @@ export default function Bookmark({
           onClick={() => {
             cancelBookmark();
           }}
-          className='keynote_to_scrap h-5 w-5 bg-keynote bg-contain bg-no-repeat hover:bg-scrap'
+          className='keynote_to_scrap h-5 w-5 bg-keynote bg-contain bg-no-repeat transition-all hover:bg-scrap'
         />
       </div>
       <p className='text-sm leading-160 text-custom-gray-dark'>{cleanedText}</p>
