@@ -18,14 +18,14 @@ export default function WordList({
   return (
     <div className='relative box-content w-[343px] px-4 md:w-[353px] md:px-0 desktop:w-[812px]'>
       <p
-        className={`${activeMenu === '핵심노트' && wordNum < 3 ? '' : 'mb-[23px]'} text-xs font-medium text-custom-gray-700`}
+        className={`${activeMenu === '북마크' && wordNum < 3 ? '' : 'mb-[23px]'} text-xs font-medium text-custom-gray-700`}
       >
         {title}
         <span className='ml-2 font-bold'>{wordNum}</span>
       </p>
-      {activeMenu === '핵심노트' && wordNum < 3 && wordNum > 0 ? (
+      {activeMenu === '북마크' && wordNum < 3 && wordNum > 0 ? (
         <p className='my-5 text-center text-sm leading-170 text-custom-gray-500'>
-          퀴즈를 풀기 위해서는 핵심노트가 더 필요해요.
+          퀴즈를 풀기 위해서는 북마크가 더 필요해요.
         </p>
       ) : null}
       {wordList.length > 0 ? (
