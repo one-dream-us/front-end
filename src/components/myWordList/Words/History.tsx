@@ -1,33 +1,28 @@
 import { MyWordListMenuType } from '@/types/types';
-import useAddKeyNote from '@/hooks/myWordList/api/useAddKeyNote';
-import { ScrapDictionary } from '@/types/interface';
+import { HistoryDictionary } from '@/types/interface';
 import arrowRightIcon from '@/assets/p2/arrow_right.png';
 import { Dispatch, SetStateAction } from 'react';
 import useWordStore from '@/store/useWordStore';
+import bookmarkIcon from '@/assets/P2_5d/icon_Keynote.svg';
+import historyIcon from '@/assets/P2_5d/icon_scrap.svg';
 
-export default function ScrapWord({
-  activeMenu,
+export default function History({
   word,
   setShowModal,
 }: {
   activeMenu: MyWordListMenuType;
-  word: ScrapDictionary;
+  word: HistoryDictionary;
   setShowModal: Dispatch<SetStateAction<boolean>>;
 }) {
-  const { addKeyNote } = useAddKeyNote(word.dictionaryId, activeMenu);
+  const { term, description, isBookmarked } = word;
   const { setDefinition, setDescription } = useWordStore();
   const cleanedText = word.definition.replace(/<\/?mark>/g, '');
+
   return (
     <div className='flex flex-col justify-center gap-y-2 rounded-[10px] border border-custom-gray-200 p-4'>
       <div className='flex justify-between'>
-        <p className='font-bold text-custom-black'>{word.term}</p>
-        <button
-          type='button'
-          onClick={() => {
-            addKeyNote();
-          }}
-          className='scrap_to_keynote h-5 w-5 bg-scrap bg-contain bg-no-repeat hover:bg-keynote'
-        />
+        <p className='font-bold text-custom-black'>{term}</p>
+        <img className='scrap_to_keynote h-5 w-5' src={isBookmarked ? bookmarkIcon : historyIcon} />
       </div>
       <p className='text-sm leading-160 text-custom-gray-dark'>{cleanedText}</p>
       <button
@@ -35,7 +30,7 @@ export default function ScrapWord({
         className='view_commentary flex items-center self-end'
         onClick={() => {
           setDefinition(cleanedText);
-          setDescription(word.description);
+          setDescription(description);
           setShowModal(true);
         }}
       >

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 export default function EmptyWordState({ activeMenu }: { activeMenu: MyWordListMenuType }) {
   const navigate = useNavigate();
 
-  if (activeMenu === '스크랩') {
+  if (activeMenu === '히스토리') {
     return (
       <div className='mb-[71px] mt-[30px] flex h-[270px] w-full flex-col items-center justify-between'>
         <h3 className='text-sm leading-170 text-custom-gray-dark'>단어장이 비었어요!</h3>
@@ -21,7 +21,7 @@ export default function EmptyWordState({ activeMenu }: { activeMenu: MyWordListM
       <p className='font-bold'>{myWordListInfo[activeMenu].title}</p>
       <div className='mt-1 text-sm leading-160 text-gray-070'>
         <p dangerouslySetInnerHTML={{ __html: myWordListInfo[activeMenu].description }} />
-        {activeMenu === '핵심노트' ? (
+        {activeMenu === '북마크' ? (
           <p className='font-bold'>3개 이상 모이면 퀴즈가 출제돼요.</p>
         ) : (
           ''

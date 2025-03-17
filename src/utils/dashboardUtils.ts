@@ -24,7 +24,7 @@ export function handleBannerClick({
       setIsNavigate,
     });
   } else {
-    if (isLogin) navigate('/my-word-list?tab="scrap"');
+    if (isLogin) navigate('/my-word-list?tab="HISTORY"');
     else setIsOpen(true);
   }
 }

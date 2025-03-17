@@ -1,30 +1,33 @@
 import { MyWordListMenuType } from '@/types/types';
-import { KeyNoteDictionary } from '@/types/interface';
-import useDeleteKeyNote from '@/hooks/myWordList/api/useDeleteKeyNote';
+import { BookmarkDictionary } from '@/types/interface';
+import useCancelBookmark from '@/hooks/myWordList/api/useCancelBookmark';
 import arrowRightIcon from '@/assets/p2/arrow_right.png';
 import { Dispatch, SetStateAction } from 'react';
 import useWordStore from '@/store/useWordStore';
 
-export default function KeyNote({
+export default function Bookmark({
   activeMenu,
   word,
   setShowModal,
 }: {
   activeMenu: MyWordListMenuType;
-  word: KeyNoteDictionary;
+  word: BookmarkDictionary;
   setShowModal: Dispatch<SetStateAction<boolean>>;
 }) {
-  const { deleteKeyNote } = useDeleteKeyNote(word.keyNoteId, activeMenu);
+  const { definition, term, description } = word.dictionary;
+  const { cancelBookmark } = useCancelBookmark(word.bookmarkId, activeMenu);
   const { setDefinition, setDescription } = useWordStore();
-  const cleanedText = word.dictionary.definition.replace(/<\/?mark>/g, '');
+  const cleanedText = definition.replace(/<\/?mark>/g, '');
+
   return (
     <div className='flex flex-col justify-center gap-y-2 rounded-[10px] border border-custom-gray-200 p-4'>
       <div className='flex justify-between'>
-        <p className='font-bold text-custom-black'>{word.dictionary.term}</p>
+        <p className='font-bold text-custom-black'>{term}</p>
         <button
           type='button'
+          aria-label='북마크 취소'
           onClick={() => {
-            deleteKeyNote();
+            cancelBookmark();
           }}
           className='keynote_to_scrap h-5 w-5 bg-keynote bg-contain bg-no-repeat hover:bg-scrap'
         />
@@ -35,7 +38,7 @@ export default function KeyNote({
         className='view_commentary flex items-center self-end'
         onClick={() => {
           setDefinition(cleanedText);
-          setDescription(word.dictionary.description);
+          setDescription(description);
           setShowModal(true);
         }}
       >

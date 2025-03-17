@@ -10,15 +10,15 @@ export default function useMyWordList() {
   useFirstLogin(setShowTutorial);
 
   const parameters: Record<string, MyWordListMenuType> = {
-    SCRAP: '스크랩',
-    KEY_NOTE: '핵심노트',
+    HISTORY: '히스토리',
+    BOOKMARK: '북마크',
     WRONG_ANSWER_NOTE: '오답노트',
     GRADUATION_NOTE: '졸업노트',
   };
 
   const queryParams = new URLSearchParams(location.search);
-  const initialMenuKey = queryParams.get('tab') || 'SCRAP';
-  const initialMenu = parameters[initialMenuKey ?? ''] || '스크랩';
+  const initialMenuKey = queryParams.get('tab') || 'HISTORY';
+  const initialMenu = parameters[initialMenuKey ?? ''] || '히스토리';
 
   const [activeMenu, setActiveMenu] = useState<MyWordListMenuType>(initialMenu);
   const [showTooltip, setShowTooltip] = useState(false);
@@ -31,7 +31,7 @@ export default function useMyWordList() {
     if (parameters[currentTab ?? ''] !== activeMenu) {
       currentParams.set(
         'tab',
-        Object.keys(parameters).find((key) => parameters[key] === activeMenu) || 'SCRAP',
+        Object.keys(parameters).find((key) => parameters[key] === activeMenu) || 'HISTORY',
       );
       navigate({ search: currentParams.toString() }, { replace: true });
     }

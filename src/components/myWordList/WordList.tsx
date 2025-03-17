@@ -1,17 +1,17 @@
 import { WordListProps } from '@/types/interface';
-import useWordList from '@/hooks/myWordList/useWordList';
+import useGetWordListData from '@/hooks/myWordList/api/useGetWordListData';
 import EmptyWordState from './Words/EmptyWordState';
 import WordListContent from './Words/WordListContent';
 
 export default function WordList({
   activeMenu,
-  showTooltip,
   setShowTooltip,
   setShowModal,
   showModal,
   showTutorial,
 }: WordListProps) {
-  const { title, wordList, wordNum, isLoading } = useWordList(activeMenu);
+  const { wordList, isLoading } = useGetWordListData(activeMenu);
+  const wordNum = wordList.length;
 
   if (isLoading) return <div />;
 
@@ -20,8 +20,7 @@ export default function WordList({
       <p
         className={`${activeMenu === '북마크' && wordNum < 3 ? '' : 'mb-[23px]'} text-xs font-medium text-custom-gray-700`}
       >
-        {title}
-        <span className='ml-2 font-bold'>{wordNum}</span>
+        단어 수<span className='ml-2 font-bold'>{wordNum}</span>
       </p>
       {activeMenu === '북마크' && wordNum < 3 && wordNum > 0 ? (
         <p className='my-5 text-center text-sm leading-170 text-custom-gray-500'>
@@ -32,9 +31,7 @@ export default function WordList({
         <WordListContent
           activeMenu={activeMenu}
           wordList={wordList}
-          wordNum={wordNum}
           showTutorial={showTutorial}
-          showTooltip={showTooltip}
           setShowTooltip={setShowTooltip}
           showModal={showModal}
           setShowModal={setShowModal}

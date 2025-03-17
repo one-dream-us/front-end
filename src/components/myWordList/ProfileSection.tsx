@@ -5,13 +5,15 @@ import quizIcon from '@/assets/p2/icon_quiz.png';
 
 export default function ProfileSection({
   username,
-  totalKeyNote,
+  historyCnt,
+  showTooltip,
 }: {
   username: string;
-  totalKeyNote: number;
+  historyCnt: number;
+  showTooltip: boolean;
 }) {
   const { text, mobileStatusWidth, tabStatusWidth, navigate, wrongNoteListLen } =
-    useProfileSectionLogic(totalKeyNote);
+    useProfileSectionLogic(historyCnt);
 
   return (
     <div className='mx-auto flex w-[300px] flex-col items-end gap-y-2 md:w-[312px]'>
@@ -23,7 +25,7 @@ export default function ProfileSection({
         </div>
       </div>
       <div
-        className={`flex h-8 w-full items-center justify-between rounded-full border border-custom-gray-300 px-4 ${totalKeyNote + wrongNoteListLen < 3 ? 'gap-x-5' : 'gap-x-3.5'}`}
+        className={`flex h-8 w-full items-center justify-between rounded-full border border-custom-gray-300 px-4 ${historyCnt + wrongNoteListLen < 3 ? 'gap-x-5' : 'gap-x-3.5'}`}
       >
         <div className='flex items-center gap-x-1'>
           <div className='h-2 w-[163px] rounded-full bg-custom-gray-300 md:w-[175px]'>
@@ -37,10 +39,17 @@ export default function ProfileSection({
             />
           </div>
         </div>
-        {wrongNoteListLen + totalKeyNote < 3 ? (
-          <p className='whitespace-nowrap text-sm font-medium leading-170 text-gray-070'>
-            핵심노트 {totalKeyNote} <span className='text-custom-gray-500'>/ 3</span>
-          </p>
+        {wrongNoteListLen + historyCnt < 3 ? (
+          <div className='relative'>
+            <p className='whitespace-nowrap text-sm font-medium leading-170 text-gray-070'>
+              히스토리 {historyCnt} <span className='text-custom-gray-500'>/ 3</span>
+            </p>
+            {showTooltip && (
+              <div className='tooltip absolute right-2 top-[30px] z-40 whitespace-nowrap rounded bg-custom-gray-dark px-2.5 py-2 text-xs text-primary after:right-12'>
+                머니뉴스를 보고 단어를 모아 퀴즈를 풀어봐요!
+              </div>
+            )}
+          </div>
         ) : (
           <div className='text-sm font-medium text-custom-gray-dark'>
             <button

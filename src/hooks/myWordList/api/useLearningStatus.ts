@@ -1,25 +1,38 @@
 import wordListAPi from '@/services/wordListApi';
 import { useQuery } from '@tanstack/react-query';
+import historyApi from '@/services/historyApi';
 
 export default function useLearningStatus() {
-  const { data, refetch, isLoading } = useQuery({
+  const {
+    data: userInfo,
+    refetch: refetchStatus,
+    isLoading: isStatusLoading,
+  } = useQuery({
     queryKey: ['learningStatus'],
     queryFn: wordListAPi.getLearningStatus,
   });
 
-  const username = data?.username ?? '';
-  const totalScrap = data?.totalScrap ?? 0;
-  const totalGraduation = data?.totalGraduation ?? 0;
-  const totalKeyNote = data?.totalKeyNote ?? 0;
-  const accuracyRate = data?.accuracyRate ?? 0;
+  const {
+    data: history,
+    refetch: refetchHistory,
+    isLoading: isHistoryLoading,
+  } = useQuery({
+    queryKey: ['getHistory'],
+    queryFn: historyApi.getHistory,
+  });
+
+  const { username = '', totalScrap = 0, totalGraduation = 0, accuracyRate = 0 } = userInfo ?? {};
+  const { historyCnt = 0 } = history ?? {};
 
   return {
     username,
     totalScrap,
     totalGraduation,
-    totalKeyNote,
     accuracyRate,
-    refetch,
-    isLoading,
+    refetchStatus,
+    isStatusLoading,
+    historyCnt,
+    refetchHistory,
+    isHistoryLoading,
   };
 }
