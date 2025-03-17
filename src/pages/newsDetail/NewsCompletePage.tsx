@@ -8,7 +8,7 @@ import { SHOW_NEWS_COMPLETE_ONBOARDING } from '@/constants/constants';
 import MissionCheckComponent from '@/components/common/MissionCheckComponent';
 import ImgContainer from '@/components/common/ImgContainer';
 import { lazy, Suspense } from 'react';
-import Loader from '@/components/common/Loader';
+import { WithDrawModalSkeleton } from '@/components/profile/WithdrawButton';
 
 // const MissionCheckComponent = lazy(
 //   () => import('@/components/course/onboarding/completePage/NewsCompleteOnboarding'),
@@ -53,7 +53,7 @@ export default function NewsCompletePage() {
       </div>
 
       {SHOW_NEWS_COMPLETE_ONBOARDING && (
-        <Suspense fallback={<Loader size={5} />}>
+        <Suspense fallback={<WithDrawModalSkeleton />}>
           <NewsCompleteOnboarding />
         </Suspense>
       )}
