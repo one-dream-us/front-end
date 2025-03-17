@@ -13,27 +13,21 @@ export default function CompleteWordCard({
 }: Pick<IDescription, 'term' | 'dictionaryId'>) {
   const bookmark = useBookmarkWord();
   const bookmarkCancel = useRemoveBookmark();
-  const { data } = useAuthCheckQuery();
+  const { data: isLogin } = useAuthCheckQuery();
   const { setIsOpen, setIsNavigate } = useLoginConfirmModalState();
-  const { alreadyGraduation, alreadyInCorrect, alreadyBookmark } = useIsBookmarkable(dictionaryId);
+  const { alreadyBookmark } = useIsBookmarkable(dictionaryId);
 
   const handleScrap = () => {
-    if (!data) {
+    if (!isLogin) {
       // 비로그인 시 로그인 모달 띄우기
       setIsOpen(true);
       setIsNavigate(false);
     } else {
       // 로그인 시
       if (alreadyBookmark) {
-        // 스크랩 삭제
         bookmarkCancel(alreadyBookmark.bookmarkId);
         console.log('북마크 취소 : ', term);
-      } else if (alreadyGraduation) {
-        return alert('이미 졸업노트에 등록 된 단어입니다.');
-      } else if (alreadyInCorrect) {
-        return alert('이미 오답노트에 등록 된 단어입니다.');
       } else {
-        // 스크랩 추가
         console.log('북마크', term);
         bookmark(dictionaryId);
       }
