@@ -3,6 +3,7 @@ import bookmarkApi from '@/services/bookmarkApi';
 import { BookMark } from '@/types/interface';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useGetWordListData from '@/hooks/myWordList/api/useGetWordListData';
+import { AxiosError } from 'axios';
 
 const useBookmarkWord = () => {
   const queryClient = useQueryClient();
@@ -27,15 +28,18 @@ const useBookmarkWord = () => {
       );
       return { prevData };
     },
-    onError: (_e, _newData, context) =>
-      queryClient.setQueryData(QUERY_KEYS.getBookmarkList, context?.prevData),
+    onError: (e, _newData, context) => {
+      if (e instanceof AxiosError) {
+        return alert(e.response?.data?.errorMessage);
+      }
+      return queryClient.setQueryData(QUERY_KEYS.getBookmarkList, context?.prevData);
+    },
     onSettled: async () => {
       await queryClient.invalidateQueries({ queryKey: QUERY_KEYS.getBookmarkList });
       refetch();
     },
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: QUERY_KEYS.learningStatus });
-    },
+    onSuccess: async () =>
+      await queryClient.invalidateQueries({ queryKey: QUERY_KEYS.learningStatus }),
   });
   return mutate;
 };

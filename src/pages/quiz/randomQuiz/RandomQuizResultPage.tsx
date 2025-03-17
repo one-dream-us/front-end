@@ -43,7 +43,7 @@ export default function RandomQuizResultPage() {
         id='quiz-result-status'
         className='m-auto mb-[24px] grid h-[60px] max-w-[353px] grid-cols-3 grid-rows-1'
       >
-        <QuizResultItem quantity={results.graduationCnt} status='졸업단어' unit='개' />
+        <QuizResultItem quantity={5} status='학습단어' unit='개' />
         <QuizResultItem quantity={results.totalWrong} status='오답단어' unit='개' />
         <QuizResultItem quantity={results.accuracyRate} status='정답률' unit='%' />
       </div>
