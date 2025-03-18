@@ -1,5 +1,5 @@
-import cony_mobile from '@/assets/P2_5d/cony_mo_img.png';
 import cony_web from '@/assets/P2_5d/cony_web_img.png';
+import cony_tab from '@/assets/P2_5d/cony_TAB_img.png';
 import { useState } from 'react';
 export default function QuizIntroPage() {
   const [hidden, setHidden] = useState(false);
@@ -8,7 +8,7 @@ export default function QuizIntroPage() {
       className={`fixed left-0 top-0 z-50 min-h-screen w-full bg-quiz-bg ${hidden && 'invisible'}`}
     >
       <div className='m-auto mt-[100px] desktop:mt-[160px]'>
-        <div className='m-auto mb-[20px] min-w-[236px] text-center desktop:mb-[22px]'>
+        <div className='m-auto mb-[20px] min-w-[236px] text-center md:mb-[60px] desktop:mb-[22px]'>
           <h1 className='mb-[8px] text-[22px] font-bold text-[#222222]'>
             이게머니의 첫 퀴즈는 <br />
             랜덤퀴즈를 준비해 봤어요!
@@ -21,15 +21,20 @@ export default function QuizIntroPage() {
         </div>
 
         {/* mobile */}
-        <img
-          className='absolute bottom-0 left-0 right-0 m-auto w-full border desktop:hidden'
+        {/* <img
+          className='absolute bottom-0 left-0 right-0 m-auto md:hidden'
           src={cony_mobile}
           alt='cony bg'
-        />
+        /> */}
 
         {/* web */}
-        <div className='chat-bubble relative m-auto hidden h-[270px] w-[510px] rounded-[12px] bg-white desktop:block'>
-          <img className='absolute bottom-0 left-0' src={cony_web} alt='cony' />
+        <div className='chat-bubble relative m-auto h-[270px] w-[343px] rounded-[12px] bg-white md:block md:w-[353px] desktop:w-[510px]'>
+          <img
+            className='absolute bottom-0 left-0 md:hidden desktop:block'
+            src={cony_web}
+            alt='cony'
+          />
+          <img className='absolute bottom-0 left-0 desktop:hidden' src={cony_tab} alt='cony' />
         </div>
 
         <button
