@@ -121,7 +121,7 @@ export const showStatus = ({
   isCorrect: boolean;
 }) => {
   if (!correctCnt && !wrongCnt) {
-    return '스크랩함에 추가됨';
+    return '히스토리에 추가됨';
   }
 
   return isCorrect && correctCnt >= 3
