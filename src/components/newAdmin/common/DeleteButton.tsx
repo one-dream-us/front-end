@@ -1,8 +1,11 @@
 import adminApi from '@/services/adminApi';
-import { useLocation } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function DeleteButton({ id }: { id: number }) {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const isScheduledPage = pathname.includes('content');
   const handleRemoveContents = async () => {
     if (!confirm('컨텐츠를 삭제합니다.')) return;
@@ -13,7 +16,10 @@ export default function DeleteButton({ id }: { id: number }) {
       } else {
         await adminApi.deleteDraftContents(+id);
       }
-      location.pathname = '/admin/home';
+      navigate('/admin/home');
+      queryClient.invalidateQueries({ queryKey: ['uploaded-list'] });
+      queryClient.invalidateQueries({ queryKey: ['scheduled-upload-list'] });
+      queryClient.invalidateQueries({ queryKey: ['draft-upload-list'] });
     } catch (e) {
       console.log(e);
     }

@@ -10,8 +10,13 @@ import { useShallow } from 'zustand/shallow';
 import adminApi from '@/services/adminApi';
 import { DictionarySentenceList } from '@/types/interface';
 import UploadForm from './UploadForm';
+import { useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 
 export default function UploadFormContainer() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const title = useInput();
   const originalLink = useInput();
   const newsAgency = useInput();
@@ -102,11 +107,18 @@ export default function UploadFormContainer() {
           await adminApi.updateDraftContents(formData);
           alert(`임시 저장 완료`);
       }
+      queryClient.invalidateQueries({ queryKey: ['uploaded-list'] });
+      queryClient.invalidateQueries({ queryKey: ['scheduled-upload-list'] });
+      queryClient.invalidateQueries({ queryKey: ['draft-upload-list'] });
+      navigate('/admin/home');
     } catch (e) {
-      console.log(e);
-      alert('오류입니다. 다시 시도해주세요');
+      let msg;
+      if (e instanceof AxiosError) {
+        msg = e.response?.data?.errorMessage ?? '오류 ㅜ';
+      }
+      alert(msg);
     } finally {
-      location.pathname = '/admin/home';
+      // location.pathname = '/admin/home';
     }
   };
   return (
