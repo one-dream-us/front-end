@@ -1,6 +1,7 @@
 import wordListAPi from '@/services/wordListApi';
 import { useQuery } from '@tanstack/react-query';
 import historyApi from '@/services/historyApi';
+import QUERY_KEYS from '@/constants/queryKeys';
 
 export default function useLearningStatus() {
   const {
@@ -17,7 +18,7 @@ export default function useLearningStatus() {
     refetch: refetchHistory,
     isLoading: isHistoryLoading,
   } = useQuery({
-    queryKey: ['getHistory'],
+    queryKey: QUERY_KEYS.getHistoryList,
     queryFn: historyApi.getHistory,
   });
 
