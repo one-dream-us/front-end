@@ -12,8 +12,13 @@ import { FormEvent, useEffect } from 'react';
 import adminApi from '@/services/adminApi';
 import { DictionarySentenceList } from '@/types/interface';
 import DeleteButton from '@/components/newAdmin/common/DeleteButton';
+import { useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 
 export default function UpdateFormContainer() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const { data, isLoading, id, status } = useDetailInfo();
 
   const title = useInput();
@@ -67,6 +72,7 @@ export default function UpdateFormContainer() {
         title: title.value,
         originalLink: originalLink.value,
         newsAgency: newsAgency.value,
+        thumbnailUrl: fileUpdated ? '' : data?.thumbnailUrl,
       };
       const dictionarySentenceList: DictionarySentenceList[] = dictList.map(
         ({ definition, desc, endIndex, sentence, startIndex, word, wordId }) => ({
@@ -90,8 +96,6 @@ export default function UpdateFormContainer() {
       formData.append('dictionarySentenceList', dictionarySentenceListBlob);
       if (fileUpdated) {
         formData.append('thumbnailImage', file!);
-      } else {
-        formData.append('thumbnailImage', new Blob([JSON.stringify(data?.thumbnailUrl!)]));
       }
     }
 
@@ -118,11 +122,19 @@ export default function UpdateFormContainer() {
           await adminApi.updateScheduledContent(+id!, data?.scheduledAt as string, formData);
           alert(`예약 수정 완료`);
       }
+      queryClient.invalidateQueries({ queryKey: ['uploaded-list'] });
+      queryClient.invalidateQueries({ queryKey: ['scheduled-upload-list'] });
+      queryClient.invalidateQueries({ queryKey: ['draft-upload-list'] });
+      queryClient.invalidateQueries({ queryKey: ['admin-detail', id, status] });
+      navigate('/admin/home');
     } catch (e) {
-      console.log(e);
-      alert('오류입니다. 다시 시도해주세요');
+      let msg;
+      if (e instanceof AxiosError) {
+        msg = e.response?.data?.errorMessage ?? '오류 ㅜ';
+      }
+      alert(msg);
     } finally {
-      location.pathname = '/admin/home';
+      // location.pathname = '/admin/home';
     }
   };
   useEffect(() => {
