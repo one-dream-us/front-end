@@ -18,5 +18,13 @@ const DashboardApi = {
     });
     return response;
   },
+  getPopular: async (size: number = 4) => {
+    const { data } = await client.get('/contents/news/popular', {
+      params: {
+        size,
+      },
+    });
+    return data;
+  },
 };
 export default DashboardApi;

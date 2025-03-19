@@ -7,7 +7,16 @@ import NewsCard from '@/components/common/NewsCard';
 import { News } from '@/types/interface';
 
 export default function Dashboard() {
-  const { showOnboarding, setShowOnboarding, latestNews, newsList, latestNewsId } = useDashboard();
+  const {
+    showOnboarding,
+    setShowOnboarding,
+    latestNews,
+    popularNews,
+    latestNewsId,
+    isLatestLoading,
+    isPopularLoading,
+  } = useDashboard();
+  if (isLatestLoading || isPopularLoading || !latestNews || !popularNews) return null;
 
   return (
     <div>
@@ -29,9 +38,10 @@ export default function Dashboard() {
         </section>
         <div className='mb-6 mt-9 h-2.5 w-full bg-custom-gray-lighter' />
         <section className='mb-[76px] md:mb-8 desktop:mb-[54px]'>
-          <p className='mb-3 text-lg font-bold text-custom-gray-dark'>인기 뉴스</p>
+          <p className='mb-3 text-lg font-bold text-custom-gray-dark'>주간 인기 뉴스</p>
           <div className='grid grid-cols-1 gap-y-10 desktop:grid-cols-2 desktop:gap-x-5 desktop:gap-y-10'>
-            {newsList && newsList.map((news: News) => <NewsCard news={news} key={news.newsId} />)}
+            {popularNews &&
+              popularNews.map((news: News) => <NewsCard news={news} key={news.newsId} />)}
           </div>
         </section>
       </div>
