@@ -3,10 +3,10 @@ import DashboardApi from '@/services/DashboardApi';
 import { News } from '@/types/interface';
 
 export default function useLatestNews() {
-  const { data } = useQuery<News>({
+  const { data: latestNews, isLoading: isLatestLoading } = useQuery<News>({
     queryKey: ['getLatestNews'],
     queryFn: DashboardApi.getLatestNews,
   });
 
-  return { latestNews: data || null };
+  return { latestNews, isLatestLoading };
 }
