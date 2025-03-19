@@ -13,23 +13,31 @@ import toobad from '@/assets/mp3/G-DRAGON - TOO BAD (feat. Anderson .Paak).mp3';
 import blueSong from '@/assets/mp3/blue.mp3';
 import fourseason from '@/assets/mp3/stillLife.mp3';
 import goodboy from '@/assets/mp3/goodboy.mp3';
+import fxxkit from '@/assets/mp3/fxxkit.mp3';
+import haruharu from '@/assets/mp3/haruharu.mp3';
+import lalala from '@/assets/mp3/lalala.mp3';
+import bangabangbang from '@/assets/mp3/bangbangbang.mp3';
 
 const Player = () => {
   const songs = [
-    { title: 'BAE BAE', file: bebe },
-    { title: 'GOOD BOY', file: goodboy },
-    { title: '꽃길', file: flowerroad },
-    { title: '마지막 인사', file: lastfarewell },
+    { title: 'La La La', file: lalala },
     { title: '거짓말', file: lie },
-    { title: 'BLUE', file: blueSong },
-    { title: 'POWER', file: power },
-    { title: 'IF YOU', file: ifyou },
-    { title: 'TOO BAD', file: toobad },
-    { title: '봄여가겨', file: fourseason },
+    { title: '마지막 인사', file: lastfarewell },
+    { title: '하루하루', file: haruharu },
     { title: '붉은 노을', file: sunset },
-    { title: 'IBELONGIIU', file: ibeing2you },
+    { title: 'BLUE', file: blueSong },
+    { title: 'GOOD BOY', file: goodboy },
+    { title: 'BAE BAE', file: bebe },
+    { title: 'IF YOU', file: ifyou },
+    { title: '뱅뱅뱅', file: bangabangbang },
     { title: '쩔어', file: zutter },
+    { title: '에라 모르겠다', file: fxxkit },
+    { title: '꽃길', file: flowerroad },
+    { title: '봄여가겨', file: fourseason },
+    { title: 'POWER', file: power },
     { title: 'HOME SWEET HOME', file: hsh },
+    { title: 'TOO BAD', file: toobad },
+    { title: 'IBELONGIIU', file: ibeing2you },
   ];
 
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
@@ -38,6 +46,7 @@ const Player = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [progress, setProgress] = useState(0); // 진행 상황
   const [showList, setShowList] = useState(false);
+  const listRef = useRef<HTMLLIElement>(null);
 
   // 노래 재생/정지
   const togglePlayPause = () => {
@@ -97,6 +106,12 @@ const Player = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (!listRef.current) return;
+
+    listRef.current.scrollIntoView({ behavior: 'smooth' });
+  }, [showList]);
+
   return (
     <div className='music-player relative ml-auto hidden items-center gap-x-3 md:flex'>
       <button onClick={() => setShowList((prev) => !prev)}>
@@ -122,8 +137,10 @@ const Player = () => {
         >
           {songs.map((item, index) => (
             <li
+              ref={index === currentSongIndex ? listRef : null}
+              data-index={index}
               onClick={() => setCurrentSongIndex(index)}
-              className='mb-2 line-clamp-1 cursor-pointer p-1 hover:bg-black hover:bg-opacity-25'
+              className={`mb-2 line-clamp-1 cursor-pointer p-1 hover:bg-black hover:bg-opacity-25 ${index === currentSongIndex && 'bg-hover-30'}`}
               key={item.title}
             >
               {item.title}
