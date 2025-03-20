@@ -84,7 +84,7 @@ const OnboardingModal = ({
       </Swiper>
       <button
         onClick={handleModal}
-        className={`z-[100] h-[48px] w-full rounded-bl-[10px] rounded-br-[10px] bg-custom-gray-dark text-[14px] font-bold transition-all duration-200 hover:bg-hover-80 ${isLast ? 'text-primary' : 'text-white'}`}
+        className={`z-[100] h-[48px] w-full rounded-bl-[10px] rounded-br-[10px] bg-custom-gray-dark text-[14px] font-bold transition-all duration-200 desktop:hover:bg-hover-80 ${isLast ? 'text-primary' : 'text-white'}`}
       >
         {isLast ? '학습 시작하기' : '다음'}
       </button>
