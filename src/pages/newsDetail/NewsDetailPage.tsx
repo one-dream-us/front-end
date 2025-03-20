@@ -5,7 +5,7 @@ import CompleteButton from '@/components/course/main/CompleteButton';
 import PaginationBullets from '@/components/course/main/PaginationBullets';
 import Slider from '@/components/course/main/slider/Slider';
 import WordDescription from '@/components/course/main/WordDescription';
-import { WithDrawModalSkeleton } from '@/components/profile/WithdrawButton';
+import OnboardingSkeletion from '@/components/course/onboarding/common/OnboardingSkeletion';
 import { SHOW_NEWS_DETAIL_ONBOARDING } from '@/constants/constants';
 import { lazy, Suspense } from 'react';
 import { useBlocker, useParams } from 'react-router-dom';
@@ -31,7 +31,7 @@ export default function NewsDetailPage() {
       <NavigateBlocker />
 
       {SHOW_NEWS_DETAIL_ONBOARDING && (
-        <Suspense fallback={<WithDrawModalSkeleton />}>
+        <Suspense fallback={<OnboardingSkeletion type='detail' />}>
           <NewsDetailOnboarding />
         </Suspense>
       )}
