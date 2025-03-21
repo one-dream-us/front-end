@@ -14,6 +14,10 @@ export default function QuizLoadingPage() {
 
     return () => clearTimeout(timer);
   }, []);
+  return <QuizLoading />;
+}
+
+export const QuizLoading = () => {
   return (
     <div className='m-auto mt-[160px] h-[158px] min-w-[168px] md:mt-[180px]'>
       <img className='m-auto h-[98px] w-[98px] border-black' src={quizLoading} alt='loading' />
@@ -23,4 +27,4 @@ export default function QuizLoadingPage() {
       </h1>
     </div>
   );
-}
+};

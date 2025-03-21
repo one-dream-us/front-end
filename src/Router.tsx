@@ -21,6 +21,7 @@ import NewsCompletePage from './pages/newsDetail/NewsCompletePage';
 import NewsDetailContainer from './components/course/main/NewsDetailContainer';
 import { lazy, Suspense } from 'react';
 import Loader from './components/common/Loader';
+import { QuizLoading } from './pages/quiz/QuizLoadingPage';
 
 const PageLoader = () => (
   <div className='absolute left-0 top-0 flex h-screen w-full items-center justify-center'>
@@ -74,7 +75,7 @@ export const router = createBrowserRouter(
             {
               path: '/quiz-loading',
               element: (
-                <Suspense fallback={<Loader size={5} />}>
+                <Suspense fallback={<QuizLoading />}>
                   <QuizLoadingPage />
                 </Suspense>
               ),
