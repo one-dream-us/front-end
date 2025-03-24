@@ -36,12 +36,7 @@ export default function NewsCard({
           <span>{formatDate(createdAt)}</span>
         </div>
         <p className='mb-2 font-bold text-custom-gray-dark'>{title}</p>
-        <Keywords tags={tags} />
-        <p
-          className={`tooltip absolute -bottom-11 left-0 z-20 h-8 shrink-0 whitespace-nowrap rounded bg-custom-gray-dark px-2.5 py-2 text-xs text-custom-cream-light after:left-12 desktop:!top-[108px] ${isToday && showTooltip ? 'block' : 'hidden'}`}
-        >
-          해당 머니뉴스를 통해 공부할 수 있는 단어에요.
-        </p>
+        <Keywords tags={tags} isToday={isToday} showTooltip={showTooltip} />
       </div>
     </Link>
   );
