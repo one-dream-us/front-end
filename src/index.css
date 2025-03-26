@@ -110,7 +110,8 @@ mark {
 #banner-continuous {
   width: 100%;
   height: 70px;
-  background-image: url('../src/assets/P2_5d/banner_Continuous_Learning_343.png');
+  /* background-image: url('../src/assets/P2_5d/banner_Continuous_Learning_343.png'); */
+  background-image: url('../src/assets/webps/banner_Continuous-Learning_343.webp');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -120,26 +121,48 @@ mark {
 #banner-not-continuous {
   width: 100%;
   height: 70px;
-  background-image: url('../src/assets/P2_5d/banner_Not_Continuous_Learning_343.png');
+  /* background-image: url('../src/assets/P2_5d/banner_Not_Continuous_Learning_343.png'); */
+  background-image: url('../src/assets/webps/banner_Not_Continuous_Learning_343.webp');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
   color: white;
   position: relative;
 }
-.tooltip {
-  @apply shadow-md shadow-zinc-400 after:absolute after:bottom-full after:border-x-[6px] after:border-b-[9px] after:border-transparent after:border-b-custom-gray-dark after:content-[''];
+@supports not (background-image: url('../src/assets/webps/banner_Continuous-Learning_343.webp')) {
+  #banner-continuous {
+    background-image: url('../src/assets/P2_5d/banner_Continuous_Learning_343.png');
+  }
+}
+@supports not (background-image: url('../src/assets/webps/banner_Not_Continuous_Learning_343.webp')) {
+  #banner-not-continuous {
+    background-image: url('../src/assets/P2_5d/banner_Not_Continuous_Learning_343.png')
+  }
 }
 @media screen and (min-width: 768px) {
   .mission-check-list {
     width: 342px;
   }
   #banner-continuous {
-    background-image: url('../src/assets/P2_5d/banner_Continuous_Learning_353.png');
+    /* background-image: url('../src/assets/P2_5d/banner_Continuous_Learning_353.png'); */
+    background-image: url('../src/assets/webps/banner_Continuous-Learning_353.webp');
   }
   #banner-not-continuous {
-    background-image: url('../src/assets/P2_5d/banner_Not_Continuous_Learning_353.png');
+    /* background-image: url('../src/assets/P2_5d/banner_Not_Continuous_Learning_353.png'); */
+    background-image: url('../src/assets/webps/banner_Not_Continuous-Learning_353.webp');
+
   }
+
+  @supports not (background-image: url('../src/assets/webps/banner_Continuous-Learning_353.webp')) {
+  #banner-continuous {
+    background-image: url('../src/assets/P2_5d/banner_Continuous-Learning_353.png');
+  }
+}
+@supports not (background-image: url('../src/assets/webps/banner_Not_Continuous-Learning_353.webp')) {
+  #banner-not-continuous {
+    background-image: url('../src/assets/P2_5d/banner_Not_Continuous-Learning_353.png')
+  }
+}
 }
 
 @media screen and (min-width: 1440px) {

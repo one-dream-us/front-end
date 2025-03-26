@@ -7,7 +7,7 @@ import useGetWordListData from '../myWordList/api/useGetWordListData';
 const useRemoveBookmark = () => {
   const queryClient = useQueryClient();
   const { refetch } = useGetWordListData('히스토리');
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: async (bookmarkId: number) => await bookmarkApi.removeBookmark(bookmarkId),
     onMutate: async (bookmarkId) => {
       const start = performance.now();
@@ -37,7 +37,7 @@ const useRemoveBookmark = () => {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: QUERY_KEYS.learningStatus }),
   });
 
-  return mutate;
+  return { mutate, isPending };
 };
 export default useRemoveBookmark;
 
