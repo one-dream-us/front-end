@@ -8,7 +8,7 @@ import { AxiosError } from 'axios';
 const useBookmarkWord = () => {
   const queryClient = useQueryClient();
   const { refetch } = useGetWordListData('히스토리');
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: async (wordId: number) => await bookmarkApi.addBookmark(wordId),
     onMutate: async (data) => {
       const start = performance.now();
@@ -41,7 +41,7 @@ const useBookmarkWord = () => {
     onSuccess: async () =>
       await queryClient.invalidateQueries({ queryKey: QUERY_KEYS.learningStatus }),
   });
-  return mutate;
+  return { mutate, isPending };
 };
 export default useBookmarkWord;
 

@@ -25,11 +25,11 @@ export default function CompleteWordCard({
     } else {
       // 로그인 시
       if (alreadyBookmark) {
-        bookmarkCancel(alreadyBookmark.bookmarkId);
+        bookmarkCancel.mutate(alreadyBookmark.bookmarkId);
         console.log('북마크 취소 : ', term);
       } else {
         console.log('북마크', term);
-        bookmark(dictionaryId);
+        bookmark.mutate(dictionaryId);
       }
     }
   };
@@ -39,7 +39,11 @@ export default function CompleteWordCard({
     >
       <h1 className='line-clamp-1 text-[16px] font-medium text-custom-gray-dark'>{term}</h1>
 
-      <button onClick={handleScrap} className={`${!alreadyBookmark && 'word_scrap'}`}>
+      <button
+        onClick={handleScrap}
+        disabled={bookmark.isPending || bookmarkCancel.isPending}
+        className={`${!alreadyBookmark && 'word_scrap'}`}
+      >
         <img
           className={`h-[19px] w-[18px]`}
           src={alreadyBookmark ? scrapActive : scrapDisable}
