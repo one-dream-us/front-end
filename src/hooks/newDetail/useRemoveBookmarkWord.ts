@@ -2,11 +2,9 @@ import QUERY_KEYS from '@/constants/queryKeys';
 import bookmarkApi from '@/services/bookmarkApi';
 import { BookMark } from '@/types/interface';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import useGetWordListData from '../myWordList/api/useGetWordListData';
 
 const useRemoveBookmark = () => {
   const queryClient = useQueryClient();
-  const { refetch } = useGetWordListData('히스토리');
   const { mutate, isPending } = useMutation({
     mutationFn: async (bookmarkId: number) => await bookmarkApi.removeBookmark(bookmarkId),
     onMutate: async (bookmarkId) => {
@@ -31,7 +29,7 @@ const useRemoveBookmark = () => {
       queryClient.setQueryData(QUERY_KEYS.getBookmarkList, context?.prevData),
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.getBookmarkList });
-      refetch();
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.getHistoryList });
     },
   });
 

@@ -7,9 +7,10 @@ import NormalQuizResultCard from '@/components/quiz/quizResult/NormalQuizResultC
 import { useUserInfoQuery } from '@/hooks/auth/useUserInfoQuery';
 import MissionCheckComponent from '@/components/common/MissionCheckComponent';
 import { useEffect } from 'react';
-import useGetWordListData from '@/hooks/myWordList/api/useGetWordListData';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ImgContainer from '@/components/common/ImgContainer';
+import QUERY_KEYS from '@/constants/queryKeys';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function QuizResultPage() {
   const location = useLocation();
@@ -26,10 +27,7 @@ export default function QuizResultPage() {
   const { data } = useUserInfoQuery(!isGraduate);
   const title = createTitle(accuracyRate, isGraduate, !isGraduate ? data?.name : undefined);
 
-  const { refetch: refetchScrap } = useGetWordListData('히스토리');
-  const { refetch: refetchWrongNote } = useGetWordListData('오답노트');
-  const { refetch: refetchGradNote } = useGetWordListData('졸업노트');
-
+  const queryClient = useQueryClient();
   useEffect(() => {
     return () => {
       localStorage.removeItem(NORMAL_QUIZ_RESULT_KEY);
@@ -37,9 +35,15 @@ export default function QuizResultPage() {
   }, [location]);
 
   useEffect(() => {
-    refetchScrap();
-    refetchWrongNote();
-    refetchGradNote();
+    queryClient.invalidateQueries({
+      queryKey: QUERY_KEYS.getGradList,
+    });
+    queryClient.invalidateQueries({
+      queryKey: QUERY_KEYS.getHistoryList,
+    });
+    queryClient.invalidateQueries({
+      queryKey: QUERY_KEYS.getWrongList,
+    });
   }, []);
   return (
     <div className='m-auto'>

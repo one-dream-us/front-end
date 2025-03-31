@@ -1,7 +1,7 @@
 import wordListAPi from '@/services/wordListApi';
 import { useQuery } from '@tanstack/react-query';
-import historyApi from '@/services/historyApi';
 import QUERY_KEYS from '@/constants/queryKeys';
+import useGetWordListData from './useGetWordListData';
 
 export default function useLearningStatus() {
   const {
@@ -13,17 +13,9 @@ export default function useLearningStatus() {
     queryFn: wordListAPi.getLearningStatus,
   });
 
-  const {
-    data: history,
-    refetch: refetchHistory,
-    isLoading: isHistoryLoading,
-  } = useQuery({
-    queryKey: QUERY_KEYS.getHistoryList,
-    queryFn: historyApi.getHistory,
-  });
-
+  const { wordList, isLoading: isHistoryLoading } = useGetWordListData('히스토리');
   const { username = '', totalScrap = 0, totalGraduation = 0, accuracyRate = 0 } = userInfo ?? {};
-  const { historyCnt = 0 } = history ?? {};
+  const historyCnt = wordList.length;
 
   return {
     username,
@@ -33,7 +25,6 @@ export default function useLearningStatus() {
     refetchStatus,
     isStatusLoading,
     historyCnt,
-    refetchHistory,
     isHistoryLoading,
   };
 }

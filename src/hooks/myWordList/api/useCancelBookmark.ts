@@ -12,15 +12,12 @@ export default function useCancelBookmark(bookmarkId: number) {
       if (!isLogin) throw new Error();
       await bookmarkApi.removeBookmark(bookmarkId);
     },
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: QUERY_KEYS.getHistoryList,
-      });
-      await queryClient.invalidateQueries({
+    onSuccess: () => {
+      queryClient.invalidateQueries({
         queryKey: QUERY_KEYS.getBookmarkList,
       });
-      await queryClient.invalidateQueries({
-        queryKey: QUERY_KEYS.learningStatus,
+      queryClient.invalidateQueries({
+        queryKey: QUERY_KEYS.getHistoryList,
       });
     },
   });
