@@ -1,4 +1,3 @@
-import { MyWordListMenuType } from '@/types/types';
 import { BookmarkDictionary } from '@/types/interface';
 import useCancelBookmark from '@/hooks/myWordList/api/useCancelBookmark';
 import arrowRightIcon from '@/assets/p2/arrow_right.png';
@@ -6,16 +5,14 @@ import { Dispatch, SetStateAction } from 'react';
 import useWordStore from '@/store/useWordStore';
 
 export default function Bookmark({
-  activeMenu,
   word,
   setShowModal,
 }: {
-  activeMenu: MyWordListMenuType;
   word: BookmarkDictionary;
   setShowModal: Dispatch<SetStateAction<boolean>>;
 }) {
   const { definition, term, description } = word.dictionary;
-  const { cancelBookmark } = useCancelBookmark(word.bookmarkId, activeMenu);
+  const { cancelBookmark } = useCancelBookmark(word.bookmarkId);
   const { setDefinition, setDescription } = useWordStore();
   const cleanedText = definition.replace(/<\/?mark>/g, '');
 

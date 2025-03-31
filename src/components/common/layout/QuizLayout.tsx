@@ -1,6 +1,5 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from '../header/Header';
-import TrackRoute from '../TrackRoute';
 import LoginModal from '../LoginModal';
 import LoginConfirmModal from '../LoginConfirmModal';
 
@@ -16,7 +15,6 @@ export default function QuizLayout() {
           <Outlet />
         </main>
       </div>
-      <TrackRoute />
       <LoginModal />
       <LoginConfirmModal />
     </>

@@ -26,22 +26,10 @@ export default function WordListContent({
 
       switch (activeMenu) {
         case '히스토리':
-          return (
-            <History
-              activeMenu={activeMenu}
-              word={word as HistoryDictionary}
-              key={key}
-              setShowModal={setShowModal}
-            />
-          );
+          return <History word={word as HistoryDictionary} key={key} setShowModal={setShowModal} />;
         case '북마크':
           return (
-            <Bookmark
-              activeMenu={activeMenu}
-              word={word as BookmarkDictionary}
-              key={key}
-              setShowModal={setShowModal}
-            />
+            <Bookmark word={word as BookmarkDictionary} key={key} setShowModal={setShowModal} />
           );
         case '졸업노트':
         case '오답노트':

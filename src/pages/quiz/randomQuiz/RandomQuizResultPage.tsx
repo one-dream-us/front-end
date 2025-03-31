@@ -8,17 +8,26 @@ import { RANDOM_QUIZ_RESULT_KEY } from '@/constants/constants';
 import { IQuizResult } from '@/types/interface';
 import MissionCheckComponent from '@/components/common/MissionCheckComponent';
 import { useEffect } from 'react';
-
+import { useQueryClient } from '@tanstack/react-query';
+import QUERY_KEYS from '@/constants/queryKeys';
 export default function RandomQuizResultPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const results: IQuizResult = JSON.parse(localStorage.getItem(RANDOM_QUIZ_RESULT_KEY) as string);
 
+  const queryClient = useQueryClient();
   useEffect(() => {
     return () => {
       localStorage.removeItem(RANDOM_QUIZ_RESULT_KEY);
     };
   }, [location]);
+
+  useEffect(() => {
+    queryClient.invalidateQueries({
+      queryKey: QUERY_KEYS.getHistoryList,
+    });
+  }, []);
+
   return (
     <div className='m-auto'>
       <div className='mb-[16px] mt-[40px] text-center'>

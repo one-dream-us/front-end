@@ -1,6 +1,5 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from '../header/Header';
-import TrackRoute from '../TrackRoute';
 import Toast from '../Toast';
 import LoginModal from '../LoginModal';
 import LoginConfirmModal from '../LoginConfirmModal';
@@ -17,7 +16,6 @@ export default function NewsDetailLayout() {
           <Outlet />
         </main>
       </div>
-      <TrackRoute />
       <Toast />
       <LoginModal />
       <LoginConfirmModal />

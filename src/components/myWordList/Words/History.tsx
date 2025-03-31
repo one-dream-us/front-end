@@ -1,4 +1,3 @@
-import { MyWordListMenuType } from '@/types/types';
 import { HistoryDictionary } from '@/types/interface';
 import arrowRightIcon from '@/assets/p2/arrow_right.png';
 import { Dispatch, SetStateAction } from 'react';
@@ -10,7 +9,6 @@ export default function History({
   word,
   setShowModal,
 }: {
-  activeMenu: MyWordListMenuType;
   word: HistoryDictionary;
   setShowModal: Dispatch<SetStateAction<boolean>>;
 }) {
