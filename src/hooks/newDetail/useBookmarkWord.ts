@@ -38,8 +38,6 @@ const useBookmarkWord = () => {
       await queryClient.invalidateQueries({ queryKey: QUERY_KEYS.getBookmarkList });
       refetch();
     },
-    onSuccess: async () =>
-      await queryClient.invalidateQueries({ queryKey: QUERY_KEYS.learningStatus }),
   });
   return { mutate, isPending };
 };

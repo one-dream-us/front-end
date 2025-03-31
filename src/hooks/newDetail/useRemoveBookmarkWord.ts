@@ -33,8 +33,6 @@ const useRemoveBookmark = () => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.getBookmarkList });
       refetch();
     },
-
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: QUERY_KEYS.learningStatus }),
   });
 
   return { mutate, isPending };

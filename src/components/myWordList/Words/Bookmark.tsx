@@ -15,7 +15,7 @@ export default function Bookmark({
   setShowModal: Dispatch<SetStateAction<boolean>>;
 }) {
   const { definition, term, description } = word.dictionary;
-  const { cancelBookmark } = useCancelBookmark(word.bookmarkId, activeMenu);
+  const { cancelBookmark } = useCancelBookmark(word.bookmarkId);
   const { setDefinition, setDescription } = useWordStore();
   const cleanedText = definition.replace(/<\/?mark>/g, '');
 

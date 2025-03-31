@@ -9,7 +9,7 @@ export default function useLearningStatus() {
     refetch: refetchStatus,
     isLoading: isStatusLoading,
   } = useQuery({
-    queryKey: ['learningStatus'],
+    queryKey: QUERY_KEYS.learningStatus,
     queryFn: wordListAPi.getLearningStatus,
   });
 
