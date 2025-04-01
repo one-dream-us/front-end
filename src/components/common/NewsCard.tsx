@@ -32,6 +32,7 @@ export default function NewsCard({
         className='mb-3 h-[172px] w-full rounded bg-gray-200 md:h-[177px] md:w-[353px] desktop:h-[198px] desktop:w-[396px]'
         src={thumbnailUrl}
         alt={title + ' 썸네일'}
+        loading='lazy'
       />
       <div className='relative'>
         <div className='mb-1 flex items-center text-[10px] leading-120 text-custom-gray-500'>
