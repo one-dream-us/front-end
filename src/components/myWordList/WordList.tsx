@@ -14,7 +14,7 @@ export default function WordList({
   const { wordList, isLoading } = useGetWordListData(activeMenu);
   const wordNum = wordList.length;
 
-  if (isLoading) return <div />;
+  if (isLoading) return null;
 
   return (
     <div className='relative box-content w-[343px] px-4 md:w-[353px] md:px-0 desktop:w-[812px]'>

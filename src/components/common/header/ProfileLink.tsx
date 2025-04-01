@@ -21,6 +21,7 @@ export default function ProfileLink() {
               : profile_main
         }
         alt='profile-img'
+        loading='lazy'
       />
     </Link>
   );

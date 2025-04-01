@@ -17,15 +17,13 @@ export default function MyScrap() {
   useImagePreloader([EmptyTerm, EmptyContent]);
   useTimeOut(() => setIsDelayedLoading(false), 100);
 
-  if (isDelayedLoading) {
-    return <div />;
-  }
+  if (isDelayedLoading) return null;
 
   return (
     <section className='mx-auto mt-10 flex w-full max-w-[1182px] flex-col gap-y-5 px-4 md:px-6 desktop:px-0'>
       <h1 className='text-[22px] font-medium text-custom-black md:hidden'>MY 스크랩</h1>
       <hr className='hidden h-[1px] w-[1182px] bg-custom-gray-300 desktop:block' />
-      <div className='flex flex-col items-center w-full desktop:flex-row'>
+      <div className='flex w-full flex-col items-center desktop:flex-row'>
         <MenuWithUnderbar activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
         <DesktopMenu activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
         {activeMenu === '콘텐츠' ? (

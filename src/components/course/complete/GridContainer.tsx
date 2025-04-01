@@ -14,7 +14,7 @@ export default function GridContainer() {
   })();
 
   const { data, isLoading } = useQuery({
-    queryKey: [QUERY_KEYS.learngingDays],
+    queryKey: [QUERY_KEYS.learningDays],
     queryFn: newsApi.getLearningDays,
   });
   return (

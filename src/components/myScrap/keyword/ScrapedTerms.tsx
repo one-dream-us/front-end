@@ -13,9 +13,7 @@ export default function ScrapedTerms({ termsList }: { termsList: ScrapedTermData
 
   useAllScrapedIds(scrapedTerms);
 
-  if (isLoading) {
-    return <div />;
-  }
+  if (isLoading) return null;
 
   return (
     <div className='mb-[60px] flex w-full flex-col desktop:ml-auto desktop:w-[811px]'>

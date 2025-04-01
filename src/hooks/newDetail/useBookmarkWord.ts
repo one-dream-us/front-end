@@ -2,12 +2,10 @@ import QUERY_KEYS from '@/constants/queryKeys';
 import bookmarkApi from '@/services/bookmarkApi';
 import { BookMark } from '@/types/interface';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import useGetWordListData from '@/hooks/myWordList/api/useGetWordListData';
 import { AxiosError } from 'axios';
 
 const useBookmarkWord = () => {
   const queryClient = useQueryClient();
-  const { refetch } = useGetWordListData('히스토리');
   const { mutate, isPending } = useMutation({
     mutationFn: async (wordId: number) => await bookmarkApi.addBookmark(wordId),
     onMutate: async (data) => {
@@ -34,12 +32,15 @@ const useBookmarkWord = () => {
       }
       return queryClient.setQueryData(QUERY_KEYS.getBookmarkList, context?.prevData);
     },
-    onSettled: async () => {
-      await queryClient.invalidateQueries({ queryKey: QUERY_KEYS.getBookmarkList });
-      refetch();
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: QUERY_KEYS.getBookmarkList,
+      });
+      queryClient.invalidateQueries({
+        queryKey: QUERY_KEYS.getHistoryList,
+      });
     },
-    onSuccess: async () =>
-      await queryClient.invalidateQueries({ queryKey: QUERY_KEYS.learningStatus }),
   });
   return { mutate, isPending };
 };
