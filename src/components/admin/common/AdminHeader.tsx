@@ -2,6 +2,7 @@ import logo from '@/assets/imgs_v2/Logo_Icon+text_32_hor.png';
 import Player from '@/components/newAdmin/player/Player';
 import { adminMenuList } from '@/constants/constants';
 import { Link, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function AdminHeader() {
   const { pathname } = useLocation();
@@ -15,13 +16,20 @@ export default function AdminHeader() {
 
         <ul className='flex items-center justify-center gap-x-[32px] text-[14px] font-bold leading-170'>
           {adminMenuList.map((item) => (
-            <li key={item.id}>
+            <li className='relative' key={item.id}>
               <Link
                 className={pathname === item.to ? 'text-custom-gray-dark' : 'text-custom-gray-400'}
                 to={item.to}
               >
                 {item.title}
               </Link>
+              {pathname === item.to && (
+                <motion.div
+                  layoutId='admin-header-dot'
+                  layout
+                  className='absolute left-0 right-0 m-auto h-2 w-2 rounded-full bg-red-700'
+                ></motion.div>
+              )}
             </li>
           ))}
         </ul>

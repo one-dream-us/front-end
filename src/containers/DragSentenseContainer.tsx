@@ -1,4 +1,3 @@
-import Input from '@/components/newAdmin/common/Input';
 import { useNewsListStore, useUplodTypeStore } from '@/store/newAdmin/useFormStore';
 import { AdminInputProps } from '@/types/interface';
 import { SyntheticEvent, TouchEvent } from 'react';
@@ -8,7 +7,7 @@ export default function DragSentenseContainer(props: AdminInputProps & { index: 
   const setDictList = useNewsListStore(useShallow((s) => s.setDictList));
   const { uploadType } = useUplodTypeStore();
 
-  const handleSelect = (e: SyntheticEvent<HTMLInputElement>) => {
+  const handleSelect = (e: SyntheticEvent<HTMLTextAreaElement>) => {
     const start = e.currentTarget.selectionStart as number;
     const end = e.currentTarget.selectionEnd as number;
 
@@ -25,7 +24,7 @@ export default function DragSentenseContainer(props: AdminInputProps & { index: 
     setDictList({ key: 'draggedWord', value: draggedWord, index: props.index });
   };
 
-  const handleTouchEnd = (e: TouchEvent<HTMLInputElement>) => {
+  const handleTouchEnd = (e: TouchEvent<HTMLTextAreaElement>) => {
     const start = e.currentTarget.selectionStart as number;
     const end = e.currentTarget.selectionEnd as number;
 
@@ -43,11 +42,27 @@ export default function DragSentenseContainer(props: AdminInputProps & { index: 
   };
 
   return (
-    <Input
-      {...props}
-      onSelect={handleSelect}
-      onTouchEnd={handleTouchEnd}
-      required={uploadType !== 'draft'}
-    />
+    // <Input
+    //   {...props}
+    //   onSelect={handleSelect}
+    //   onTouchEnd={handleTouchEnd}
+    //   required={uploadType !== 'draft'}
+    // />
+    <div>
+      <label htmlFor={props.id} className='mb-1 block text-sm font-medium text-gray-700'>
+        {props.label}
+      </label>
+      <textarea
+        id={props.id}
+        value={props.value}
+        onChange={props.onChange}
+        placeholder={props.placeholder}
+        className='w-full resize-none rounded-md border p-2'
+        rows={3}
+        required={uploadType !== 'draft'}
+        onSelect={handleSelect}
+        onTouchEnd={handleTouchEnd}
+      />
+    </div>
   );
 }
