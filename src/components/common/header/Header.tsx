@@ -14,15 +14,17 @@ export default function Header() {
   return (
     <header className='fixed left-0 top-0 z-[999] h-[52px] w-full bg-white text-sm drop-shadow-[0_1px_1px_rgba(0,0,0,0.05)] desktop:right-0 desktop:h-20'>
       <div className='flex h-full items-center justify-between bg-white px-4 md:px-6 md:py-[11px] desktop:m-auto desktop:max-w-[1440px] desktop:px-[129px]'>
-        {' '}
         <div className='flex items-center justify-start'>
           <Link
             className='flex items-center justify-center gap-x-1 text-xl font-extrabold md:mr-[84px] desktop:mr-[68px]'
             to={'/'}
           >
-            <img className='h-[24px] desktop:h-[28px]' src={logo} alt='logo' />
+            <img
+              className='h-6 w-[100px] desktop:h-7 desktop:w-[117px]'
+              src={logo}
+              alt='이게머니 로고'
+            />
           </Link>
-
           <MenuTab />
         </div>
         {data ? (
@@ -33,7 +35,6 @@ export default function Header() {
             className={`hidden h-[30px] w-[96px] items-center justify-center rounded-[10px] bg-custom-gray-medium py-2 md:flex ${isLoading ? 'animate-pulse' : 'bg-custom-green-money transition-all duration-200 hover:bg-green-hover'}`}
             state={{ prevPage: location.href }}
           >
-            {' '}
             {isLoading ? '' : '로그인'}
           </Link>
         )}
