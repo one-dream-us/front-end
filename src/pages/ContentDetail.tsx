@@ -7,9 +7,7 @@ import useDetailData from '@/hooks/contentDetail/useDetailData';
 export default function ContentDetail() {
   const { contentDetails, isLoading, playerRef, playing, setPlaying } = useDetailData();
 
-  if (isLoading || !contentDetails.tags) {
-    return <div />;
-  }
+  if (isLoading || !contentDetails.tags) return null;
 
   return (
     <article className='mx-auto h-full w-full px-4 pb-10 md:px-6 desktop:w-[1182px] desktop:px-0'>

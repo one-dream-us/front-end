@@ -28,7 +28,7 @@ export default function MyWordList() {
   const { username, totalScrap, totalGraduation, isStatusLoading, historyCnt, isHistoryLoading } =
     useLearningStatus();
 
-  if (isStatusLoading || isDaysLearning || isHistoryLoading) return <div />;
+  if (isStatusLoading || isDaysLearning || isHistoryLoading) return null;
 
   return (
     <section className='mx-auto mt-10 flex flex-col items-center'>
