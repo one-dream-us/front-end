@@ -35,7 +35,32 @@ export default function useBanner() {
         },
       },
     ],
+    beforeChange: (next: number) => {
+      handleSlideChange(next);
+    },
+    afterChange: (index: number) => {
+      handleSlideChange(index);
+    },
   };
+
+  const handleSlideChange = (currentSlide: number) => {
+    const allSlides = document.querySelectorAll('.slick-slide');
+
+    allSlides.forEach((slide, index) => {
+      const button = slide.querySelector('button');
+
+      if (button) {
+        if (index === currentSlide) {
+          button.setAttribute('tabindex', '0');
+          slide.setAttribute('aria-hidden', 'false');
+        } else {
+          button.setAttribute('tabindex', '-1');
+          slide.setAttribute('aria-hidden', 'true');
+        }
+      }
+    });
+  };
+
   const { keyNoteListLen } = useGetWordListData('북마크');
   const { wordList } = useGetWordListData('히스토리');
   const isKeynote = keyNoteListLen < 3 && wordList.length >= 3;

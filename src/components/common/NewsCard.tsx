@@ -23,11 +23,16 @@ export default function NewsCard({
       to={`/news/${newsId}`}
       className={`flex flex-col ${(isToday || isDesktop) && 'desktop:flex-row desktop:gap-x-5'}`}
     >
-      <img src={WaterMark} className='absolute left-2 top-2 h-11 w-11 object-cover' />
+      <img
+        src={WaterMark}
+        alt='이게 머니 워터마크'
+        className='absolute left-2 top-2 h-11 w-11 object-cover'
+      />
       <img
         className='mb-3 h-[172px] w-full rounded bg-gray-200 md:h-[177px] md:w-[353px] desktop:h-[198px] desktop:w-[396px]'
         src={thumbnailUrl}
         alt={title + ' 썸네일'}
+        loading='lazy'
       />
       <div className='relative'>
         <div className='mb-1 flex items-center text-[10px] leading-120 text-custom-gray-500'>

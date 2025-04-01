@@ -14,7 +14,7 @@ import quizStore from '@/store/quiz/quizStore';
 import { IQuiz } from '@/types/interface';
 import { formatQuestion } from '@/utils/quiz/quizHandlers';
 import { useQuizHandler } from '@/hooks/quiz/useQuizHandler';
-import useChoiceQuizType from '@/hooks/quiz/useChioceQuizType';
+import useChoiceQuizType from '@/hooks/quiz/useChoiceQuizType';
 import quizResultStore from '@/store/quiz/quizResultStore';
 import QuizIntroPage from './randomQuiz/QuizIntroPage';
 

@@ -134,9 +134,11 @@ mark {
     background-image: url('../src/assets/P2_5d/banner_Continuous_Learning_343.png');
   }
 }
-@supports not (background-image: url('../src/assets/webps/banner_Not_Continuous_Learning_343.webp')) {
+@supports not (
+  background-image: url('../src/assets/webps/banner_Not_Continuous_Learning_343.webp')
+) {
   #banner-not-continuous {
-    background-image: url('../src/assets/P2_5d/banner_Not_Continuous_Learning_343.png')
+    background-image: url('../src/assets/P2_5d/banner_Not_Continuous_Learning_343.png');
   }
 }
 @media screen and (min-width: 768px) {
@@ -150,19 +152,20 @@ mark {
   #banner-not-continuous {
     /* background-image: url('../src/assets/P2_5d/banner_Not_Continuous_Learning_353.png'); */
     background-image: url('../src/assets/webps/banner_Not_Continuous-Learning_353.webp');
-
   }
 
   @supports not (background-image: url('../src/assets/webps/banner_Continuous-Learning_353.webp')) {
-  #banner-continuous {
-    background-image: url('../src/assets/P2_5d/banner_Continuous-Learning_353.png');
+    #banner-continuous {
+      background-image: url('../src/assets/P2_5d/banner_Continuous-Learning_353.png');
+    }
   }
-}
-@supports not (background-image: url('../src/assets/webps/banner_Not_Continuous-Learning_353.webp')) {
-  #banner-not-continuous {
-    background-image: url('../src/assets/P2_5d/banner_Not_Continuous-Learning_353.png')
+  @supports not (
+    background-image: url('../src/assets/webps/banner_Not_Continuous-Learning_353.webp')
+  ) {
+    #banner-not-continuous {
+      background-image: url('../src/assets/P2_5d/banner_Not_Continuous-Learning_353.png');
+    }
   }
-}
 }
 
 @media screen and (min-width: 1440px) {
@@ -193,4 +196,13 @@ mark {
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   -moz-transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
+}
+.edit-btn {
+  @apply rounded-[10px] bg-custom-gray-200 text-xs transition hover:text-custom-gray-h md:hover:bg-edit;
+}
+.checkbox {
+  @apply h-5 w-5 cursor-pointer bg-unchecked bg-contain checked:bg-checked;
+}
+.primary-btn {
+  @apply bg-custom-gray-dark font-bold text-primary hover:bg-hover-80 hover:text-green-hover;
 }

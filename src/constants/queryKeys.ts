@@ -7,7 +7,7 @@ const QUERY_KEYS = {
   getHistoryList: ['히스토리'] as const,
   getWrongList: ['오답노트'] as const,
   getGradList: ['졸업노트'] as const,
-  learngingDays: ['learngingDays'],
+  learningDays: ['learningDays'],
   learningStatus: ['learningStatus'],
   continuousDays: ['continuousDays'],
   todaysMission: ['todaysMission'],
