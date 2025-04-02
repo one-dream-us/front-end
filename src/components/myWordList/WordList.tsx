@@ -4,13 +4,8 @@ import EmptyWordState from './Words/EmptyWordState';
 import WordListContent from './Words/WordListContent';
 import { Link } from 'react-router-dom';
 import arrowRightIcon from '@/assets/p2/arrow_right.png';
-export default function WordList({
-  activeMenu,
-  setShowTooltip,
-  setShowModal,
-  showModal,
-  showTutorial,
-}: WordListProps) {
+
+export default function WordList({ activeMenu, setShowModal, showModal }: WordListProps) {
   const { wordList, isLoading } = useGetWordListData(activeMenu);
   const wordNum = wordList.length;
 
@@ -39,8 +34,6 @@ export default function WordList({
         <WordListContent
           activeMenu={activeMenu}
           wordList={wordList}
-          showTutorial={showTutorial}
-          setShowTooltip={setShowTooltip}
           showModal={showModal}
           setShowModal={setShowModal}
         />

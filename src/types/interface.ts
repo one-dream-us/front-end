@@ -185,10 +185,8 @@ export interface WordInterface {
 
 export interface WordListProps {
   activeMenu: MyWordListMenuType;
-  setShowTooltip: Dispatch<SetStateAction<boolean>>;
   setShowModal: Dispatch<SetStateAction<boolean>>;
   showModal: boolean;
-  showTutorial: boolean;
 }
 
 // quiz
@@ -292,8 +290,6 @@ export interface IScrapWord {
 export interface WordListContentProps {
   activeMenu: MyWordListMenuType;
   wordList: HistoryDictionary[] | BookmarkDictionary[] | WordInterface[];
-  showTutorial: boolean;
-  setShowTooltip: Dispatch<SetStateAction<boolean>>;
   showModal: boolean;
   setShowModal: Dispatch<SetStateAction<boolean>>;
 }
