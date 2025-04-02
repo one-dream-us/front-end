@@ -16,9 +16,9 @@ export default function NotificationModal({
   return (
     <ModalOverlay isOpen={modalOpen}>
       <section className='flex h-[124px] w-[343px] flex-col items-center gap-y-4 rounded-[10px] bg-white p-5 md:w-[375px]'>
-        <h2 className='flex items-center gap-x-1 text-sm font-medium text-custom-gray-dark'>
+        <h2 className='flex h-6 items-center gap-x-1 text-sm font-medium text-custom-gray-dark'>
           <img src={bookmarkIcon} alt='북마크 아이콘' className='h-5 w-5' />
-          <span className='leading-170'>북마크가 부족해요!</span>
+          북마크가 부족해요!
         </h2>
         <ModalButton
           onClose={() => setModalOpen(false)}
