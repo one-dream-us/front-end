@@ -5,7 +5,6 @@ import './index.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Partytown } from '@qwik.dev/partytown/react';
 
 const App = (): JSX.Element => {
   const queryClient = new QueryClient({
@@ -22,7 +21,6 @@ const App = (): JSX.Element => {
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} future={{ v7_startTransition: true }} />
       <ReactQueryDevtools initialIsOpen={false} />
-      <Partytown debug={true} forward={['dataLayer.push']} />
     </QueryClientProvider>
   );
 };
