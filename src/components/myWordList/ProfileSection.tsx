@@ -2,6 +2,7 @@ import useProfileSectionLogic from '@/hooks/myWordList/useProfileSectionLogic';
 import profileImg from '@/assets/P2_5d/wordlist_icon_profile_56.png';
 import arrowRightIcon from '@/assets/p2/arrow_right_black.svg';
 import quizIcon from '@/assets/p2/icon_quiz.png';
+import NotificationModal from '../dashboard/NotificationModal';
 
 export default function ProfileSection({
   username,
@@ -12,8 +13,16 @@ export default function ProfileSection({
   historyCnt: number;
   showTooltip: boolean;
 }) {
-  const { text, mobileStatusWidth, tabStatusWidth, navigate, wrongNoteListLen } =
-    useProfileSectionLogic(historyCnt);
+  const {
+    text,
+    mobileStatusWidth,
+    tabStatusWidth,
+    navigate,
+    wrongNoteListLen,
+    keyNoteListLen,
+    modalOpen,
+    setModalOpen,
+  } = useProfileSectionLogic(historyCnt);
 
   return (
     <div className='mx-auto flex w-[300px] flex-col items-end gap-y-2 md:w-[312px]'>
@@ -25,7 +34,7 @@ export default function ProfileSection({
         </div>
       </div>
       <div
-        className={`flex h-8 w-full items-center justify-between rounded-full border border-custom-gray-300 px-4 ${historyCnt + wrongNoteListLen < 3 ? 'gap-x-5' : 'gap-x-3.5'}`}
+        className={`flex h-8 w-full items-center justify-between rounded-full border border-custom-gray-300 px-4 ${historyCnt < 3 ? 'gap-x-5' : 'gap-x-3.5'}`}
       >
         <div className='flex items-center gap-x-1'>
           <div className='h-2 w-[163px] rounded-full bg-custom-gray-300 md:w-[175px]'>
@@ -39,7 +48,7 @@ export default function ProfileSection({
             />
           </div>
         </div>
-        {wrongNoteListLen + historyCnt < 3 ? (
+        {historyCnt < 3 ? (
           <div className='relative'>
             <p className='whitespace-nowrap text-sm font-medium leading-170 text-gray-070'>
               히스토리 {historyCnt} <span className='text-custom-gray-500'>/ 3</span>
@@ -55,7 +64,12 @@ export default function ProfileSection({
             <button
               type='button'
               className='flex items-center'
-              onClick={() => navigate('/quiz')}
+              onClick={() => {
+                if (wrongNoteListLen + keyNoteListLen < 3) setModalOpen(true);
+                else {
+                  navigate('/quiz');
+                }
+              }}
               id='go_quiz'
             >
               <img src={quizIcon} alt='퀴즈' className='mr-0.5 h-5 w-5' />
@@ -65,6 +79,7 @@ export default function ProfileSection({
           </div>
         )}
       </div>
+      <NotificationModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </div>
   );
 }
