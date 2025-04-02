@@ -15,7 +15,6 @@ export default function NewsList() {
     isLogin,
     navigate,
     setIsOpen,
-    isKeynote,
     keyNoteListLen,
     isFirstQuizAttempt,
     modalOpen,
@@ -57,11 +56,7 @@ export default function NewsList() {
             <img src={quizBannerM} alt='퀴즈 배너' className='h-[88px] w-full' />
           </picture>
         </button>
-        <NotificationModal
-          modalOpen={modalOpen}
-          isKeynote={isKeynote}
-          setModalOpen={setModalOpen}
-        />
+        <NotificationModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
       </section>
       <section className='grid grid-cols-1 gap-y-10 desktop:grid-cols-2 desktop:gap-x-5 desktop:gap-y-10'>
         {newsList && newsList.map((news: News) => <NewsCard news={news} key={news.newsId} />)}

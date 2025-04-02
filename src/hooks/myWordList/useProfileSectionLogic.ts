@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import useGetWordListData from './api/useGetWordListData';
+import { useState } from 'react';
 
 export default function useProfileSectionLogic(historyCnt: number) {
   const randomTexts = [
@@ -15,6 +16,17 @@ export default function useProfileSectionLogic(historyCnt: number) {
   const tabStatusWidth = Math.round(historyCnt * 58.3);
   const navigate = useNavigate();
   const { wrongNoteListLen } = useGetWordListData('오답노트');
+  const { keyNoteListLen } = useGetWordListData('북마크');
+  const [modalOpen, setModalOpen] = useState(false);
 
-  return { text, mobileStatusWidth, tabStatusWidth, navigate, wrongNoteListLen };
+  return {
+    text,
+    mobileStatusWidth,
+    tabStatusWidth,
+    navigate,
+    wrongNoteListLen,
+    keyNoteListLen,
+    modalOpen,
+    setModalOpen,
+  };
 }

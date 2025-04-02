@@ -9,7 +9,6 @@ export default function Banner({ latestNewsId }: { latestNewsId: number }) {
     isLogin,
     setIsOpen,
     settings,
-    isKeynote,
     isFirstQuizAttempt,
     navigate,
     modalOpen,
@@ -55,7 +54,7 @@ export default function Banner({ latestNewsId }: { latestNewsId: number }) {
           );
         })}
       </Slider>
-      <NotificationModal modalOpen={modalOpen} isKeynote={isKeynote} setModalOpen={setModalOpen} />
+      <NotificationModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </section>
   );
 }

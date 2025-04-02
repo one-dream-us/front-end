@@ -47,13 +47,7 @@ export default function MyWordList() {
       </div>
       <div className='h-2.5 w-[343px] bg-custom-gray-lighter md:w-[353px] desktop:w-[812px]' />
       <MyWordListNavBar activeMenu={activeMenu} setActiveMenu={setActiveMenu} isTutorial={false} />
-      <WordList
-        activeMenu={activeMenu}
-        setShowTooltip={setShowTooltip}
-        setShowModal={setShowModal}
-        showModal={showModal}
-        showTutorial={showTutorial}
-      />
+      <WordList activeMenu={activeMenu} setShowModal={setShowModal} showModal={showModal} />
     </section>
   );
 }
