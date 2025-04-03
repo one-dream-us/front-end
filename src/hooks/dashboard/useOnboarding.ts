@@ -13,7 +13,7 @@ export default function useOnboarding({
 }) {
   const [currentStep, setCurrentStep] = useState(0);
   const { setShowTooltip } = useTooltipState();
-  useDisableScroll(showOnboarding);
+  useDisableScroll(showOnboarding, localStorage.getItem('hasCheckedOnboarding') === 'true');
 
   const handleNext = () => {
     if (currentStep < onboardingStepsLen - 1) {

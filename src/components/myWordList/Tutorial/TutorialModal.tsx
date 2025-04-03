@@ -17,7 +17,7 @@ export default function TutorialModal({
   setShowTooltip: Dispatch<SetStateAction<boolean>>;
 }) {
   const [menu, setMenu] = useState<MyWordListMenuType>('히스토리');
-  useDisableScroll(showTutorial);
+  useDisableScroll(showTutorial, localStorage.getItem('isTutorialCompleted') === 'true');
 
   return (
     <ModalOverlay isOpen={showTutorial}>

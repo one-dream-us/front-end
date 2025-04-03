@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-export default function useDisableScroll(isModalOpen: boolean) {
+export default function useDisableScroll(isModalOpen: boolean, isShown: boolean) {
   useEffect(() => {
-    if (isModalOpen) {
+    if (isModalOpen && !isShown) {
       const scrollY = window.scrollY;
       document.body.style.position = 'fixed';
       document.body.style.top = `-${scrollY}px`;
