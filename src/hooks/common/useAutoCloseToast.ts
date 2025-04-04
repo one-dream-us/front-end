@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import useToastStore from '@/store/useToastStore';
 
 export function useAutoCloseToast(timeout: number = 3000) {
-  const { isVisible, hideToast } = useToastStore();
+  const { isVisible, hideToast, message } = useToastStore();
 
   useEffect(() => {
     if (!isVisible) return;
@@ -12,5 +12,5 @@ export function useAutoCloseToast(timeout: number = 3000) {
     }, timeout);
 
     return () => clearTimeout(timer);
-  }, [isVisible, hideToast, timeout]);
+  }, [isVisible, hideToast, timeout, message]);
 }

@@ -4,6 +4,7 @@ import EmptyWordState from './Words/EmptyWordState';
 import WordListContent from './Words/WordListContent';
 import { Link } from 'react-router-dom';
 import arrowRightIcon from '@/assets/p2/arrow_right.png';
+import Toast from '../common/Toast';
 
 export default function WordList({ activeMenu, setShowModal, showModal }: WordListProps) {
   const { wordList, isLoading } = useGetWordListData(activeMenu);
@@ -40,6 +41,7 @@ export default function WordList({ activeMenu, setShowModal, showModal }: WordLi
       ) : (
         <EmptyWordState activeMenu={activeMenu} />
       )}
+      <Toast />
     </div>
   );
 }
