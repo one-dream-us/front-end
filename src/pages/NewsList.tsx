@@ -7,6 +7,7 @@ import quizBannerW from '@/assets/p2/P2 에셋_2차전달/quiz banner_web03.png'
 import NotificationModal from '@/components/dashboard/NotificationModal';
 import { handleQuizBannerClick } from '@/utils/dashboardUtils';
 import useImagePreloader from '@/hooks/common/useImagePreloader';
+import useDisableScroll from '@/hooks/common/useDisableScroll';
 
 export default function NewsList() {
   const {
@@ -23,6 +24,7 @@ export default function NewsList() {
     setIsNavigate,
   } = useNewsListLogic();
   useImagePreloader([quizBannerM, quizBannerT, quizBannerW]);
+  useDisableScroll(modalOpen);
 
   return (
     <div className='mx-auto mb-[37px] mt-10 flex w-[343px] flex-col md:mb-8 md:w-[353px] desktop:mb-40 desktop:w-[812px]'>

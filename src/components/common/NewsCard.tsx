@@ -10,13 +10,15 @@ export default function NewsCard({
   news,
   isToday = false,
   isDesktop = false,
+  showOnboarding = false,
 }: {
   news: News;
   isToday?: boolean;
   isDesktop?: boolean;
+  showOnboarding?: boolean;
 }) {
   const { title, viewCount, createdAt, thumbnailUrl, newsId, tags } = news;
-  const showTooltip = useKeywords(isToday);
+  const showTooltip = useKeywords(isToday && showOnboarding);
 
   return (
     <Link

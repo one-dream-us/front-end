@@ -1,15 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
-export default function useDisableScroll(isModalOpen: boolean, isShown: boolean) {
+export default function useDisableScroll(isModalOpen: boolean) {
+  const scrollYRef = useRef(0);
+
   useEffect(() => {
-    if (isModalOpen && !isShown) {
-      const scrollY = window.scrollY;
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.left = '0';
-      document.body.style.width = '100%';
+    if (isModalOpen) {
+      scrollYRef.current = window.scrollY;
+
+      requestAnimationFrame(() => {
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollYRef.current}px`;
+        document.body.style.left = '0';
+        document.body.style.width = '100%';
+      });
     } else {
-      const scrollY = Math.abs(parseInt(document.body.style.top || '0', 10));
+      const scrollY = scrollYRef.current;
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.left = '';
@@ -18,7 +23,8 @@ export default function useDisableScroll(isModalOpen: boolean, isShown: boolean)
     }
 
     return () => {
-      const scrollY = Math.abs(parseInt(document.body.style.top || '0', 10));
+      if (!isModalOpen) return;
+      const scrollY = scrollYRef.current;
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.left = '';
