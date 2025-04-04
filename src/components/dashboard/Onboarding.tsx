@@ -12,11 +12,10 @@ export default function OnBoarding({
   const onboardingStepsLen = onboardingSteps.length;
   const { currentStep, handleNext, setShowTooltip, handleCheck } = useOnboarding({
     onboardingStepsLen,
-    showOnboarding,
     setShowOnboarding,
   });
-  if (localStorage.getItem('hasCheckedOnboarding') || !showOnboarding) return null;
 
+  if (!showOnboarding) return null;
   const { mobileImage, tabletImage, title, description } = onboardingSteps[currentStep];
 
   return (

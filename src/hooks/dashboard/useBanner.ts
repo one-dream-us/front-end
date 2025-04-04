@@ -3,7 +3,6 @@ import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
 import useGetWordListData from '../myWordList/api/useGetWordListData';
 import useCheckFirstQuiz from './useCheckFirstQuiz';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 export default function useBanner() {
   const { isLogin } = useLoginStore();
@@ -64,7 +63,6 @@ export default function useBanner() {
   const { keyNoteListLen } = useGetWordListData('북마크');
   const { isFirstQuizAttempt } = useCheckFirstQuiz();
   const navigate = useNavigate();
-  const [modalOpen, setModalOpen] = useState(false);
 
   return {
     isLogin,
@@ -72,8 +70,6 @@ export default function useBanner() {
     settings,
     isFirstQuizAttempt,
     navigate,
-    modalOpen,
-    setModalOpen,
     keyNoteListLen,
     setIsNavigate,
   };

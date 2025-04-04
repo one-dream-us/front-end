@@ -8,7 +8,6 @@ import History from './History';
 import Bookmark from './Bookmark';
 import WordNote from './WordNote';
 import ExplanationModal from '../ExplanationModal';
-import Toast from '@/components/common/Toast';
 
 export default function WordListContent({
   activeMenu,
@@ -48,7 +47,6 @@ export default function WordListContent({
     >
       {renderContent()}
       {showModal && <ExplanationModal showModal={showModal} setShowModal={setShowModal} />}
-      <Toast />
     </div>
   );
 }

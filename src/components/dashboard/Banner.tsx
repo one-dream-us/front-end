@@ -3,16 +3,24 @@ import { Banners } from '@/constants/constants';
 import useBanner from '@/hooks/dashboard/useBanner';
 import NotificationModal from './NotificationModal';
 import { handleBannerClick } from '@/utils/dashboardUtils';
+import { Dispatch, SetStateAction } from 'react';
 
-export default function Banner({ latestNewsId }: { latestNewsId: number }) {
+export default function Banner({
+  latestNewsId,
+  modalOpen,
+  setModalOpen,
+}: {
+  latestNewsId: number;
+  modalOpen: boolean;
+  setModalOpen: Dispatch<SetStateAction<boolean>>;
+}) {
   const {
     isLogin,
     setIsOpen,
     settings,
     isFirstQuizAttempt,
     navigate,
-    modalOpen,
-    setModalOpen,
+
     keyNoteListLen,
     setIsNavigate,
   } = useBanner();

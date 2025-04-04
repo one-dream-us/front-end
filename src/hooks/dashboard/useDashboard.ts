@@ -1,9 +1,17 @@
-import { useOnboardingStore } from '@/store/useOnBoardingStore';
 import useLatestNews from './useLatestNews';
 import usePopularNews from './usePopularNews';
+import { useState, useEffect } from 'react';
 
 export default function useDashboard() {
-  const { showOnboarding, setShowOnboarding } = useOnboardingStore();
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    const value = localStorage.getItem('hasCheckedOnboarding');
+    console.log(showOnboarding);
+    setShowOnboarding(value !== 'true');
+  }, []);
+
   const { latestNews, isLatestLoading } = useLatestNews();
   const { popularNews, isPopularLoading } = usePopularNews(4);
   const latestNewsId = latestNews ? latestNews.newsId : 0;
@@ -16,5 +24,7 @@ export default function useDashboard() {
     latestNewsId,
     isLatestLoading,
     isPopularLoading,
+    modalOpen,
+    setModalOpen,
   };
 }

@@ -3,6 +3,7 @@ import profileImg from '@/assets/P2_5d/wordlist_icon_profile_56.png';
 import arrowRightIcon from '@/assets/p2/arrow_right_black.svg';
 import quizIcon from '@/assets/p2/icon_quiz.png';
 import NotificationModal from '../dashboard/NotificationModal';
+import useDisableScroll from '@/hooks/common/useDisableScroll';
 
 export default function ProfileSection({
   username,
@@ -23,6 +24,7 @@ export default function ProfileSection({
     modalOpen,
     setModalOpen,
   } = useProfileSectionLogic(historyCnt);
+  useDisableScroll(modalOpen);
 
   return (
     <div className='mx-auto flex w-[300px] flex-col items-end gap-y-2 md:w-[312px]'>
