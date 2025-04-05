@@ -8,7 +8,6 @@ export default function useDashboard() {
 
   useEffect(() => {
     const value = localStorage.getItem('hasCheckedOnboarding');
-    console.log(showOnboarding);
     setShowOnboarding(value !== 'true');
   }, []);
 

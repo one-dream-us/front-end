@@ -14,16 +14,8 @@ export default function Banner({
   modalOpen: boolean;
   setModalOpen: Dispatch<SetStateAction<boolean>>;
 }) {
-  const {
-    isLogin,
-    setIsOpen,
-    settings,
-    isFirstQuizAttempt,
-    navigate,
-
-    keyNoteListLen,
-    setIsNavigate,
-  } = useBanner();
+  const { isLogin, setIsOpen, settings, isFirstQuiz, navigate, keyNoteListLen, setIsNavigate } =
+    useBanner();
 
   return (
     <section className='mx-auto mb-10 mt-3 w-[347px] overflow-hidden md:w-[357px] desktop:mb-7 desktop:w-[814px]'>
@@ -38,7 +30,7 @@ export default function Banner({
                   handleBannerClick({
                     index,
                     isLogin,
-                    isFirstQuizAttempt,
+                    isFirstQuiz,
                     keyNoteListLen,
                     navigate,
                     setIsOpen,

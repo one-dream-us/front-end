@@ -1,7 +1,7 @@
 import { useLoginStore } from '@/store/useIsLoginStore';
 import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
 import useGetWordListData from '../myWordList/api/useGetWordListData';
-import useCheckFirstQuiz from './useCheckFirstQuiz';
+import useIsFirstQuiz from '../myWordList/api/useIsFirstQuiz';
 import { useNavigate } from 'react-router-dom';
 
 export default function useBanner() {
@@ -61,14 +61,14 @@ export default function useBanner() {
   };
 
   const { keyNoteListLen } = useGetWordListData('북마크');
-  const { isFirstQuizAttempt } = useCheckFirstQuiz();
+  const { isFirstQuiz } = useIsFirstQuiz();
   const navigate = useNavigate();
 
   return {
     isLogin,
     setIsOpen,
     settings,
-    isFirstQuizAttempt,
+    isFirstQuiz,
     navigate,
     keyNoteListLen,
     setIsNavigate,

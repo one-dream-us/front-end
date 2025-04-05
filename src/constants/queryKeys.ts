@@ -11,5 +11,6 @@ const QUERY_KEYS = {
   learningStatus: ['learningStatus'],
   continuousDays: ['continuousDays'],
   todaysMission: ['todaysMission'],
+  checkFirstQuiz: ['isFirstQuiz'],
 };
 export default QUERY_KEYS;
