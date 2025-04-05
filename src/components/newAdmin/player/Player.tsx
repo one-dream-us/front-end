@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, MouseEvent, Dispatch, SetStateAction } from 'react';
+import { useState, useRef, useEffect, MouseEvent } from 'react';
 import hsh from '@/assets/mp3/G-DRAGON - HOME SWEET HOME (feat. TAEYANG DAESUNG).mp3';
 import bebe from '@/assets/mp3/baebae.mp3';
 import ifyou from '@/assets/mp3/ifYou.mp3';
@@ -17,7 +17,7 @@ import fxxkit from '@/assets/mp3/fxxkit.mp3';
 import haruharu from '@/assets/mp3/haruharu.mp3';
 import lalala from '@/assets/mp3/lalala.mp3';
 import bangabangbang from '@/assets/mp3/bangbangbang.mp3';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const Player = () => {
   const songs = [
@@ -136,24 +136,24 @@ const Player = () => {
             />
           </svg>
         </button>
-        {/* {showList && (
-      <ul
-        onClick={() => setShowList((prev) => !prev)}
-        className='absolute -bottom-40 left-0 max-h-40 w-full overflow-y-auto border bg-white'
-      >
-        {songs.map((item, index) => (
-          <li
-            ref={index === currentSongIndex ? listRef : null}
-            data-index={index}
-            onClick={() => setCurrentSongIndex(index)}
-            className={`mb-2 line-clamp-1 cursor-pointer p-1 hover:bg-black hover:bg-opacity-25 ${index === currentSongIndex && 'bg-hover-30'}`}
-            key={item.title}
+        {showList && (
+          <ul
+            onClick={() => setShowList((prev) => !prev)}
+            className='absolute -bottom-40 left-0 max-h-40 w-full overflow-y-auto border bg-white'
           >
-            {item.title}
-          </li>
-        ))}
-      </ul>
-    )} */}
+            {songs.map((item, index) => (
+              <li
+                ref={index === currentSongIndex ? listRef : null}
+                data-index={index}
+                onClick={() => setCurrentSongIndex(index)}
+                className={`mb-2 line-clamp-1 cursor-pointer p-1 hover:bg-black hover:bg-opacity-25 ${index === currentSongIndex && 'bg-hover-30'}`}
+                key={item.title}
+              >
+                {item.title}
+              </li>
+            ))}
+          </ul>
+        )}
         <div>
           <h2>
             {songs[currentSongIndex].title} ({currentSongIndex + 1}/{songs.length})
@@ -248,75 +248,65 @@ const Player = () => {
           </div>
         </div>
       </motion.div>
-      <AnimatePresence>
-        {showList && (
-          <PlayerModal
-            closeModal={() => setShowList(false)}
-            songs={songs}
-            setCurrentSongIndex={setCurrentSongIndex}
-            currentSongIndex={currentSongIndex}
-          />
-        )}
-      </AnimatePresence>
     </>
   );
 };
 
 export default Player;
 
-const PlayerModal = ({
-  closeModal,
-  songs,
-  setCurrentSongIndex,
-  currentSongIndex,
-}: {
-  closeModal: () => void;
-  songs: { title: string; file: string }[];
-  setCurrentSongIndex: Dispatch<SetStateAction<number>>;
-  currentSongIndex: number;
-}) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className='fixed left-0 top-0 z-10 flex h-screen w-full items-center justify-center bg-[rgba(0,0,0,.5)]'
-    >
-      <motion.ul
-        layout
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        layoutId='music-player'
-        className='relative flex h-[450px] w-[450px] flex-col gap-y-5 overflow-auto rounded-xl bg-white p-5'
-      >
-        <button onClick={closeModal} className='sticky top-2 ml-auto'>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            strokeWidth={1.5}
-            stroke='currentColor'
-            className='size-6'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='M9 9V4.5M9 9H4.5M9 9 3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5 5.25 5.25'
-            />
-          </svg>
-        </button>
+// const PlayerModal = ({
+//   closeModal,
+//   songs,
+//   setCurrentSongIndex,
+//   currentSongIndex,
+// }: {
+//   closeModal: () => void;
+//   songs: { title: string; file: string }[];
+//   setCurrentSongIndex: Dispatch<SetStateAction<number>>;
+//   currentSongIndex: number;
+// }) => {
+//   return (
+//     <motion.div
+//       initial={{ opacity: 0 }}
+//       animate={{ opacity: 1 }}
+//       exit={{ opacity: 0 }}
+//       className='fixed left-0 top-0 z-10 flex h-screen w-full items-center justify-center bg-[rgba(0,0,0,.5)]'
+//     >
+//       <motion.ul
+//         layout
+//         initial={{ opacity: 0 }}
+//         animate={{ opacity: 1 }}
+//         exit={{ opacity: 0 }}
+//         layoutId='music-player'
+//         className='relative flex h-[450px] w-[450px] flex-col gap-y-5 overflow-auto rounded-xl bg-white p-5'
+//       >
+//         <button onClick={closeModal} className='sticky top-2 ml-auto'>
+//           <svg
+//             xmlns='http://www.w3.org/2000/svg'
+//             fill='none'
+//             viewBox='0 0 24 24'
+//             strokeWidth={1.5}
+//             stroke='currentColor'
+//             className='size-6'
+//           >
+//             <path
+//               strokeLinecap='round'
+//               strokeLinejoin='round'
+//               d='M9 9V4.5M9 9H4.5M9 9 3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5 5.25 5.25'
+//             />
+//           </svg>
+//         </button>
 
-        {songs.map((item, index) => (
-          <li
-            onClick={() => setCurrentSongIndex(index)}
-            className={`cursor-pointer rounded-lg p-2 hover:bg-[rgba(0,0,0,.3)] ${currentSongIndex === index ? 'bg-[rgba(0,0,0,.3)]' : ''}`}
-            key={item.title}
-          >
-            {item.title}
-          </li>
-        ))}
-      </motion.ul>
-    </motion.div>
-  );
-};
+//         {songs.map((item, index) => (
+//           <li
+//             onClick={() => setCurrentSongIndex(index)}
+//             className={`cursor-pointer rounded-lg p-2 hover:bg-[rgba(0,0,0,.3)] ${currentSongIndex === index ? 'bg-[rgba(0,0,0,.3)]' : ''}`}
+//             key={item.title}
+//           >
+//             {item.title}
+//           </li>
+//         ))}
+//       </motion.ul>
+//     </motion.div>
+//   );
+// };
