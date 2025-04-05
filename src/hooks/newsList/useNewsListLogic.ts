@@ -4,7 +4,7 @@ import { useLoginStore } from '@/store/useIsLoginStore';
 import { useNavigate } from 'react-router-dom';
 import useLoginConfirmModalState from '@/store/login/useLoginConfirmModalStore';
 import useGetWordListData from '../myWordList/api/useGetWordListData';
-import useCheckFirstQuiz from '../dashboard/useCheckFirstQuiz';
+import useIsFirstQuiz from '../myWordList/api/useIsFirstQuiz';
 import { useState, useEffect } from 'react';
 import { News } from '@/types/interface';
 
@@ -17,7 +17,7 @@ export default function useNewsListLogic() {
   const navigate = useNavigate();
   const { setIsOpen, setIsNavigate } = useLoginConfirmModalState();
   const { keyNoteListLen } = useGetWordListData('북마크');
-  const { isFirstQuizAttempt } = useCheckFirstQuiz();
+  const { isFirstQuiz } = useIsFirstQuiz();
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export default function useNewsListLogic() {
     navigate,
     setIsOpen,
     keyNoteListLen,
-    isFirstQuizAttempt,
+    isFirstQuiz,
     modalOpen,
     setModalOpen,
     totalElements,

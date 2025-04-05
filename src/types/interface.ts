@@ -235,7 +235,7 @@ export interface HandleBannerClickProps extends HandleQBannerClickProps {
 
 export interface HandleQBannerClickProps {
   isLogin: boolean;
-  isFirstQuizAttempt: boolean;
+  isFirstQuiz: boolean;
   keyNoteListLen: number;
   navigate: NavigateFunction;
   setIsOpen: (open: boolean) => void;

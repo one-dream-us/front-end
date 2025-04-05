@@ -3,7 +3,7 @@ import { HandleBannerClickProps, HandleQBannerClickProps } from '@/types/interfa
 export function handleBannerClick({
   index,
   isLogin,
-  isFirstQuizAttempt,
+  isFirstQuiz,
   keyNoteListLen,
   navigate,
   setIsOpen,
@@ -18,7 +18,7 @@ export function handleBannerClick({
       isLogin,
       setIsOpen,
       keyNoteListLen,
-      isFirstQuizAttempt,
+      isFirstQuiz,
       navigate,
       setModalOpen,
       setIsNavigate,
@@ -33,7 +33,7 @@ export function handleQuizBannerClick({
   isLogin,
   setIsOpen,
   keyNoteListLen,
-  isFirstQuizAttempt,
+  isFirstQuiz,
   navigate,
   setModalOpen,
   setIsNavigate,
@@ -42,7 +42,8 @@ export function handleQuizBannerClick({
     setIsNavigate(false);
     setIsOpen(true);
   } else if (isLogin && keyNoteListLen < 3) {
-    if (isFirstQuizAttempt) navigate('/quiz');
+    console.log(isFirstQuiz);
+    if (isFirstQuiz) navigate('/quiz');
     else setModalOpen(true);
   } else if (isLogin && keyNoteListLen >= 3) navigate('/quiz');
 }
