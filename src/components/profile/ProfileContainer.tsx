@@ -47,12 +47,12 @@ export default function ProfileContainer() {
         </div>
         <Calendar createdAt={String(data?.userInfo?.createdAt).split('T')[0]} />
         <div className='flex h-[40px] w-full items-center justify-center gap-x-[28px] rounded-[10px] border-[0.5px] border-[#F3F3F3] bg-white'>
-          <div className='flex h-[16px] w-[124px] items-center justify-between text-[12px] text-[#797979]'>
+          <div className='flex h-[16px] min-w-[124px] items-center justify-between text-[12px] text-[#797979]'>
             <div className='size-4 rounded-full bg-[#BBFFE0]'></div>
             <span>오늘의 미션 1/2 성공</span>
           </div>
 
-          <div className='flex h-[16px] w-[124px] items-center justify-between text-[12px] text-[#797979]'>
+          <div className='flex h-[16px] min-w-[124px] items-center justify-between text-[12px] text-[#797979]'>
             <img src={iconStarLess} alt='mission clear icon' className='size-4' />
             <span>오늘의 미션 2/2 성공</span>
           </div>

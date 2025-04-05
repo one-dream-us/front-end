@@ -2,7 +2,6 @@ import logo from '@/assets/imgs_v2/Logo_Icon+text_32_hor.png';
 import Player from '@/components/newAdmin/player/Player';
 import { adminMenuList } from '@/constants/constants';
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
 export default function AdminHeader() {
   const { pathname } = useLocation();
@@ -23,13 +22,6 @@ export default function AdminHeader() {
               >
                 {item.title}
               </Link>
-              {pathname === item.to && (
-                <motion.div
-                  layoutId='admin-header-dot'
-                  layout
-                  className='absolute left-0 right-0 m-auto h-2 w-2 rounded-full bg-red-700'
-                ></motion.div>
-              )}
             </li>
           ))}
         </ul>
