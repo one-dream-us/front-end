@@ -1,26 +1,30 @@
+import useUpdateAdminParams from '@/hooks/admin/useAdminListParams';
 import currentTabState from '@/store/admin/adminHome/currentTabState';
 import pageState from '@/store/admin/adminHome/pageState';
 import { CurrentTabType } from '@/types/interface';
-import { ChangeEvent, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { ChangeEvent } from 'react';
 import { useStore } from 'zustand';
 
-export default function NavigateTabButton() {
+export default function NavigateTabButtonContainer() {
   const { currentTab, setCurrentTab } = useStore(currentTabState);
-  const { setPage } = useStore(pageState);
-  const [_searchParams, setSearchParams] = useSearchParams();
+  const { resetPage } = useStore(pageState);
+  useUpdateAdminParams();
 
   const handleTabChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setCurrentTab(e.target.value as CurrentTabType);
-    setPage(0);
+    resetPage();
   };
 
-  useEffect(() => {
-    setSearchParams((prev) => {
-      prev.set('status', currentTab);
-      return prev;
-    });
-  }, [currentTab]);
+  return <NavigationTabButton currentTab={currentTab} handleTabChange={handleTabChange} />;
+}
+
+const NavigationTabButton = ({
+  currentTab,
+  handleTabChange,
+}: {
+  currentTab: CurrentTabType;
+  handleTabChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+}) => {
   return (
     <div className='mb-5 w-full max-w-[200px]'>
       <div className='relative'>
@@ -51,4 +55,4 @@ export default function NavigateTabButton() {
       </div>
     </div>
   );
-}
+};
