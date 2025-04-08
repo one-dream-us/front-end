@@ -1,20 +1,55 @@
 import { ADMIN_UPLOAD_LIST_PAGE_SIZE } from '@/constants/constants';
+import useUpdateAdminParams from '@/hooks/admin/useAdminListParams';
+
 import useUploadList from '@/hooks/admin/useUploadList';
 import pageState from '@/store/admin/adminHome/pageState';
 import { useStore } from 'zustand';
 
-export default function PaginationButton() {
+export default function PaginationButtonContainer() {
   const { page, handleNextPage, handlePrevPage } = useStore(pageState);
   const { data } = useUploadList(page, ADMIN_UPLOAD_LIST_PAGE_SIZE);
+  useUpdateAdminParams();
 
   const lastPage = Math.ceil((data?.totalElements as number) / ADMIN_UPLOAD_LIST_PAGE_SIZE);
+
+  const isFirstPage = page === 1;
+
+  const isLastPage = page >= lastPage;
+
+  return (
+    <PaginationButton
+      currentPage={page}
+      handleNextPage={handleNextPage}
+      handlePrevPage={handlePrevPage}
+      isFirstPage={isFirstPage}
+      isLastPage={isLastPage}
+      lastPage={lastPage}
+    />
+  );
+}
+
+const PaginationButton = ({
+  isFirstPage,
+  currentPage,
+  isLastPage,
+  lastPage,
+  handleNextPage,
+  handlePrevPage,
+}: {
+  isFirstPage: boolean;
+  currentPage: number;
+  isLastPage: boolean;
+  lastPage: number;
+  handleNextPage: (lastPage: number) => void;
+  handlePrevPage: () => void;
+}) => {
   return (
     <div className='flex items-center justify-between border-t border-gray-200 px-6 py-3'>
       <div className='flex items-center'>
         <button
           onClick={handlePrevPage}
-          disabled={page === 0}
-          className={`mr-2 rounded-lg p-2 ${page === 0 ? 'cursor-not-allowed text-gray-300' : 'text-gray-600 hover:bg-gray-100'}`}
+          disabled={isFirstPage}
+          className={`mr-2 rounded-lg p-2 ${isFirstPage ? 'cursor-not-allowed text-gray-300' : 'text-gray-600 hover:bg-gray-100'}`}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -28,12 +63,12 @@ export default function PaginationButton() {
           </svg>
         </button>
         <span className='text-sm text-gray-700'>
-          페이지 {page + 1} / {lastPage === 0 ? 1 : lastPage}
+          페이지 {currentPage} / {lastPage === 0 ? 1 : lastPage}
         </span>
         <button
           onClick={() => handleNextPage(lastPage)}
-          disabled={page + 1 === lastPage}
-          className={`ml-2 rounded-lg p-2 ${page === lastPage - 1 ? 'cursor-not-allowed text-gray-300' : 'text-gray-600 hover:bg-gray-100'}`}
+          disabled={isLastPage}
+          className={`ml-2 rounded-lg p-2 ${isLastPage ? 'cursor-not-allowed text-gray-300' : 'text-gray-600 hover:bg-gray-100'}`}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -49,4 +84,4 @@ export default function PaginationButton() {
       </div>
     </div>
   );
-}
+};

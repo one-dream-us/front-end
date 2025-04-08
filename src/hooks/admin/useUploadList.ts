@@ -26,7 +26,7 @@ export default useUploadList;
 const useGetUploadedList = (page: number, size: number = 10) => {
   return useQuery<AdminUploadListResult<UploadedListContent>>({
     queryKey: ['uploaded-list', page + '', size + ''],
-    queryFn: async () => await adminApi.getUploadedList(page, size),
+    queryFn: async () => await adminApi.getUploadedList(page - 1, size),
     placeholderData: keepPreviousData,
   });
 };
@@ -34,7 +34,7 @@ const useGetUploadedList = (page: number, size: number = 10) => {
 const useGetSheduledUploadList = (page: number, size: number = 10) => {
   return useQuery<AdminUploadListResult<ScheduledListContent>>({
     queryKey: ['scheduled-upload-list', page + '', size + ''],
-    queryFn: async () => await adminApi.getScheduledUploadList(page, size),
+    queryFn: async () => await adminApi.getScheduledUploadList(page - 1, size),
     placeholderData: keepPreviousData,
   });
 };
@@ -42,7 +42,7 @@ const useGetSheduledUploadList = (page: number, size: number = 10) => {
 const useGetDraftUploadList = (page: number, size: number = 10) => {
   return useQuery<AdminUploadListResult<DraftListContent>>({
     queryKey: ['draft-upload-list', page + '', size + ''],
-    queryFn: async () => await adminApi.getDraftList(page, size),
+    queryFn: async () => await adminApi.getDraftList(page - 1, size),
     placeholderData: keepPreviousData,
   });
 };

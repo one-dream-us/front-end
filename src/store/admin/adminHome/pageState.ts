@@ -2,17 +2,17 @@ import { create } from 'zustand';
 
 interface PageState {
   page: number;
-  setPage: (page: number) => void;
+  resetPage: () => void;
   handleNextPage: (lastPage: number) => void;
   handlePrevPage: () => void;
 }
 
 const pageState = create<PageState>((set) => ({
-  page: 0,
-  setPage: (page: number) => set({ page }),
+  page: Number(new URLSearchParams(location.search).get('page')) || 1,
+  resetPage: () => set({ page: 1 }),
   handleNextPage: (lastPage: number) =>
     set((prev) => ({ page: prev.page === lastPage ? lastPage : prev.page + 1 })),
-  handlePrevPage: () => set((prev) => ({ page: prev.page === 0 ? 0 : prev.page - 1 })),
+  handlePrevPage: () => set((prev) => ({ page: prev.page === 1 ? 1 : prev.page - 1 })),
 }));
 
 export default pageState;
