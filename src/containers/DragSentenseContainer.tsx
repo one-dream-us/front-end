@@ -19,6 +19,7 @@ export default function DragSentenseContainer(props: AdminInputProps & { index: 
         }
       })
       .join('');
+    console.log('selected : ', draggedWord);
     setDictList({ key: 'startIndex', value: start, index: props.index });
     setDictList({ key: 'endIndex', value: end - 1, index: props.index });
     setDictList({ key: 'draggedWord', value: draggedWord, index: props.index });
@@ -36,6 +37,7 @@ export default function DragSentenseContainer(props: AdminInputProps & { index: 
         }
       })
       .join('');
+    console.log('touchend : ', draggedWord);
     setDictList({ key: 'startIndex', value: start, index: props.index });
     setDictList({ key: 'endIndex', value: end - 1, index: props.index });
     setDictList({ key: 'draggedWord', value: draggedWord, index: props.index });
