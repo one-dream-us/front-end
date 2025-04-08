@@ -1,8 +1,10 @@
 import ContentTable from '@/components/admin/home/ContentTable';
 import NavigateTabButtonContainer from '@/components/admin/home/NavigateTabButton';
 import PaginationButtonContainer from '@/components/admin/home/PaginationButton';
+import useUpdateAdminParams from '@/hooks/admin/useAdminListParams';
 
 export default function AdminHome() {
+  useUpdateAdminParams();
   return (
     <div style={{ height: 'calc(100vh - 80px)' }} className='w-full bg-gray-50 p-6'>
       <div className='mx-auto max-w-6xl'>

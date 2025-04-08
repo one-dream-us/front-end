@@ -9,19 +9,20 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useStore } from 'zustand';
 import currentTabState from '@/store/admin/adminHome/currentTabState';
 
-const useUploadList = (page: number, size: number) => {
-  const { currentTab } = useStore(currentTabState);
+// const useUploadList = (page: number, size: number) => {
+//   console.log('call', page);
+//   const { currentTab } = useStore(currentTabState);
 
-  switch (currentTab) {
-    case 'scheduled':
-      return useGetSheduledUploadList(page, size);
-    case 'uploaded':
-      return useGetUploadedList(page, size);
-    case 'draft':
-      return useGetDraftUploadList(page, size);
-  }
-};
-export default useUploadList;
+//   switch (currentTab) {
+//     case 'scheduled':
+//       return useGetSheduledUploadList(page, size);
+//     case 'uploaded':
+//       return useGetUploadedList(page, size);
+//     case 'draft':
+//       return useGetDraftUploadList(page, size);
+//   }
+// };
+// export default useUploadList;
 
 const useGetUploadedList = (page: number, size: number = 10) => {
   return useQuery<AdminUploadListResult<UploadedListContent>>({
@@ -46,3 +47,18 @@ const useGetDraftUploadList = (page: number, size: number = 10) => {
     placeholderData: keepPreviousData,
   });
 };
+
+const uploadListQueryMap = {
+  scheduled: useGetSheduledUploadList,
+  draft: useGetDraftUploadList,
+  uploaded: useGetUploadedList,
+};
+
+const useUploadList = (page: number, size: number) => {
+  const { currentTab } = useStore(currentTabState);
+
+  const queryFn = uploadListQueryMap[currentTab](page, size);
+
+  return queryFn;
+};
+export default useUploadList;
