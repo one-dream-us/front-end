@@ -11,7 +11,7 @@ export default function AdminContentDetail() {
     return <h1>에러 :(</h1>;
   }
   return (
-    <div className='m-auto max-w-6xl p-6'>
+    <div className='admin-detail m-auto max-w-6xl p-6'>
       <ContentActionButtons id={id!} status={status} />
       <img
         src={data.thumbnailUrl as string}

@@ -9,7 +9,7 @@ export default function ScheduleForm({
   return (
     <>
       {isSchedule && (
-        <div className='rounded-md border bg-gray-50 p-4'>
+        <div className='admin-schedule-form rounded-md border bg-gray-50 p-4'>
           <div className='flex items-center gap-4'>
             <div className='flex-1'>
               <label className='mb-1 block text-sm font-medium text-gray-700'>예약 날짜</label>

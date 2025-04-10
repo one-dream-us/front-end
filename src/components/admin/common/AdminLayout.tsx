@@ -6,7 +6,7 @@ export default function AdminLayout() {
     <div className=''>
       <AdminHeader />
 
-      <main className='pt-[80px]'>
+      <main className='admin-layout pt-[80px]'>
         <Outlet />
       </main>
     </div>

@@ -209,3 +209,83 @@ mark {
 .tooltip {
   @apply shadow-md shadow-zinc-400 after:absolute after:bottom-full after:border-x-[6px] after:border-b-[9px] after:border-transparent after:border-b-custom-gray-dark after:content-[''];
 }
+
+/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+/* admin dark mode */
+.admin-layout {
+  @apply dark:bg-custom-black;
+  input,
+  textarea {
+    @apply dark:bg-black dark:text-white;
+  }
+}
+.admin-header {
+  @apply dark:bg-custom-black;
+}
+.admin-home-container {
+  @apply dark:bg-custom-black;
+
+  h1 {
+    @apply dark:text-white;
+  }
+  select {
+    @apply dark:text-white;
+  }
+}
+.admin-table {
+  thead {
+    @apply dark:bg-black;
+  }
+  th {
+    @apply dark:text-white;
+  }
+  tbody {
+    @apply dark:bg-black;
+    tr {
+      @apply dark:hover:bg-slate-900;
+      td {
+        @apply dark:text-white;
+      }
+    }
+  }
+}
+.admin-pagination-btn {
+  @apply dark:bg-black;
+
+  span,
+  button {
+    @apply dark:text-white;
+  }
+  button:disabled {
+    @apply dark:text-gray-500;
+  }
+  button:hover {
+    @apply dark:bg-slate-900;
+  }
+}
+
+.music-player {
+  @apply dark:text-white;
+
+  ul {
+    @apply dark:bg-black;
+    li {
+      @apply dark:hover:bg-slate-900;
+    }
+  }
+}
+.admin-detail {
+  @apply dark:bg-custom-black dark:text-white;
+  mark {
+    @apply dark:bg-custom-black dark:text-white;
+  }
+}
+
+.admin-news-box,
+.admin-schedule-form {
+  @apply dark:bg-custom-black;
+  h3,
+  label {
+    @apply dark:text-white;
+  }
+}

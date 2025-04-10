@@ -26,7 +26,7 @@ export default function NewsBox({
   required: boolean;
 }) {
   return (
-    <div className='rounded-md border bg-gray-50 p-4'>
+    <div className='admin-news-box rounded-md border bg-gray-50 p-4'>
       <h3 className='mb-3 flex items-center gap-2 font-medium'>
         <span className='flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 text-sm text-white'>
           {index + 1}

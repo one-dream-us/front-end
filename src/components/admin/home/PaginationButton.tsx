@@ -42,7 +42,7 @@ const PaginationButton = ({
   handlePrevPage: () => void;
 }) => {
   return (
-    <div className='flex items-center justify-between border-t border-gray-200 px-6 py-3'>
+    <div className='admin-pagination-btn flex items-center justify-between border-t border-gray-200 px-6 py-3'>
       <div className='flex items-center'>
         <button
           onClick={handlePrevPage}
