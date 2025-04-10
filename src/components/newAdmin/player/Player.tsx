@@ -16,11 +16,15 @@ import goodboy from '@/assets/mp3/goodboy.mp3';
 import fxxkit from '@/assets/mp3/fxxkit.mp3';
 import haruharu from '@/assets/mp3/haruharu.mp3';
 import lalala from '@/assets/mp3/lalala.mp3';
+import universe from '@/assets/mp3/universe.mp3';
+import usbefore from '@/assets/mp3/usbefore.mp3';
 import bangabangbang from '@/assets/mp3/bangbangbang.mp3';
 import { motion } from 'framer-motion';
 
 const Player = () => {
   const songs = [
+    { title: 'Universe', file: universe },
+    { title: '그 시절의 우리', file: usbefore },
     { title: 'La La La', file: lalala },
     { title: '거짓말', file: lie },
     { title: '마지막 인사', file: lastfarewell },
