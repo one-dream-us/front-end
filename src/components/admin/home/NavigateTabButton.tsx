@@ -1,4 +1,3 @@
-import useUpdateAdminParams from '@/hooks/admin/useAdminListParams';
 import currentTabState from '@/store/admin/adminHome/currentTabState';
 import pageState from '@/store/admin/adminHome/pageState';
 import { CurrentTabType } from '@/types/interface';
@@ -7,8 +6,8 @@ import { useStore } from 'zustand';
 
 export default function NavigateTabButtonContainer() {
   const { currentTab, setCurrentTab } = useStore(currentTabState);
+
   const { resetPage } = useStore(pageState);
-  useUpdateAdminParams();
 
   const handleTabChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setCurrentTab(e.target.value as CurrentTabType);

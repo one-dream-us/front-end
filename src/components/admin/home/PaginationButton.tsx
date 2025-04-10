@@ -1,14 +1,12 @@
 import { ADMIN_UPLOAD_LIST_PAGE_SIZE } from '@/constants/constants';
-import useUpdateAdminParams from '@/hooks/admin/useAdminListParams';
-
 import useUploadList from '@/hooks/admin/useUploadList';
 import pageState from '@/store/admin/adminHome/pageState';
 import { useStore } from 'zustand';
 
 export default function PaginationButtonContainer() {
   const { page, handleNextPage, handlePrevPage } = useStore(pageState);
+
   const { data } = useUploadList(page, ADMIN_UPLOAD_LIST_PAGE_SIZE);
-  useUpdateAdminParams();
 
   const lastPage = Math.ceil((data?.totalElements as number) / ADMIN_UPLOAD_LIST_PAGE_SIZE);
 
@@ -44,7 +42,7 @@ const PaginationButton = ({
   handlePrevPage: () => void;
 }) => {
   return (
-    <div className='flex items-center justify-between border-t border-gray-200 px-6 py-3'>
+    <div className='admin-pagination-btn flex items-center justify-between border-t border-gray-200 px-6 py-3'>
       <div className='flex items-center'>
         <button
           onClick={handlePrevPage}

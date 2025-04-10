@@ -261,5 +261,5 @@ export default function ContentTable() {
       );
     }
   };
-  return <table className='min-w-full divide-y divide-gray-200'>{renderTable()}</table>;
+  return <table className='admin-table min-w-full divide-y divide-gray-200'>{renderTable()}</table>;
 }
