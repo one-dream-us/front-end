@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 import OnboardingCheckBox from '../common/OnboardingCheckBox';
+import useDisableScrollOnModal from '@/hooks/common/useDisableScrollOnModal';
 
 export default function NewsDetailOnboarding() {
   const { setShowOnboarding, showOnboarding, closeModal, visible } = useCheckShowOnboarding(
@@ -12,6 +13,7 @@ export default function NewsDetailOnboarding() {
   const [activeIndex, setActiveIndex] = useState(0);
   const isLast = activeIndex === 2;
 
+  useDisableScrollOnModal(visible);
   return (
     <>
       {visible && (
