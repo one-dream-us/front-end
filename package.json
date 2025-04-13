@@ -9,7 +9,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test":"vitest run"
+    "test":"vitest run",
+    "testWatch":"vitest"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.62.0",
