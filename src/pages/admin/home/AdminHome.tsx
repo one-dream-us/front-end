@@ -1,6 +1,6 @@
 import ContentTable from '@/components/admin/home/ContentTable';
-import NavigateTabButtonContainer from '@/components/admin/home/NavigateTabButton';
-import PaginationButtonContainer from '@/components/admin/home/PaginationButton';
+import NavigateTabButtonContainer from '@/components/admin/home/navigateTab/NavigateTabButton';
+import PaginationButtonContainer from '@/components/admin/home/pagination/PaginationButton';
 import useUpdateAdminParams from '@/hooks/admin/useAdminListParams';
 
 export default function AdminHome() {
