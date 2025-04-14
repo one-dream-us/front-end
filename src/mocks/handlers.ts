@@ -1,6 +1,7 @@
 import contents from './data/contents';
 import scrapedTerms from '@/mocks/data/scrapedTerms.json';
 import { http, HttpResponse } from 'msw';
+import { uploadedListData } from './data/admin/contentTable/uploadedListData';
 
 export const handlers = [
   http.get('/contents', () => {
@@ -27,12 +28,8 @@ export const handlers = [
   // server mocking
   http.get(
     `${import.meta.env.VITE_BACKEND_SERVER_URL}v1/back-office/contents/news?page=${0}&size=${5}`,
-    ({ request }) => {
-      const url = new URL(request.url);
-      if (url.searchParams.get('page') === '0' && url.searchParams.get('size') === '5') {
-        return HttpResponse.json({ totalElements: 10 });
-      }
-      return HttpResponse.json({ totalElements: 0 });
+    () => {
+      return HttpResponse.json(uploadedListData);
     },
   ),
 ];
