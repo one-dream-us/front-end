@@ -5,12 +5,14 @@ import onboardingImg_scrap_tab from '@/assets/completepage_tutorial/scrap_tab.pn
 import useCheckShowOnboarding from '@/hooks/newDetail/useCheckShowOnboarding';
 import { SHOW_NEWS_COMPLETE_ONBOARDING_KEY } from '@/constants/constants';
 import OnboardingCheckBox from '../common/OnboardingCheckBox';
+import useDisableScrollOnModal from '@/hooks/common/useDisableScrollOnModal';
 
 export default function NewsCompleteOnboarding() {
   const { setShowOnboarding, closeModal, visible, showOnboarding } = useCheckShowOnboarding(
     SHOW_NEWS_COMPLETE_ONBOARDING_KEY,
   );
 
+  useDisableScrollOnModal(visible);
   return (
     <>
       {visible && (

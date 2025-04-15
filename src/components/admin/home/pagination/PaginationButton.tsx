@@ -26,7 +26,7 @@ export default function PaginationButtonContainer() {
   );
 }
 
-const PaginationButton = ({
+export const PaginationButton = ({
   isFirstPage,
   currentPage,
   isLastPage,
@@ -45,6 +45,7 @@ const PaginationButton = ({
     <div className='admin-pagination-btn flex items-center justify-between border-t border-gray-200 px-6 py-3'>
       <div className='flex items-center'>
         <button
+          data-testid='prev btn'
           onClick={handlePrevPage}
           disabled={isFirstPage}
           className={`mr-2 rounded-lg p-2 ${isFirstPage ? 'cursor-not-allowed text-gray-300' : 'text-gray-600 hover:bg-gray-100'}`}
@@ -64,6 +65,7 @@ const PaginationButton = ({
           페이지 {currentPage} / {lastPage === 0 ? 1 : lastPage}
         </span>
         <button
+          data-testid='next btn'
           onClick={() => handleNextPage(lastPage)}
           disabled={isLastPage}
           className={`ml-2 rounded-lg p-2 ${isLastPage ? 'cursor-not-allowed text-gray-300' : 'text-gray-600 hover:bg-gray-100'}`}

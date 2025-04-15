@@ -1,6 +1,6 @@
-import ContentTable from '@/components/admin/home/ContentTable';
-import NavigateTabButtonContainer from '@/components/admin/home/NavigateTabButton';
-import PaginationButtonContainer from '@/components/admin/home/PaginationButton';
+import ContentTableContainer from '@/components/admin/home/contentTable/ContentTable';
+import NavigateTabButtonContainer from '@/components/admin/home/navigateTab/NavigateTabButton';
+import PaginationButtonContainer from '@/components/admin/home/pagination/PaginationButton';
 import useUpdateAdminParams from '@/hooks/admin/useAdminListParams';
 
 export default function AdminHome() {
@@ -15,7 +15,7 @@ export default function AdminHome() {
 
         <NavigateTabButtonContainer />
         <div className='overflow-x-auto rounded-lg bg-white shadow'>
-          <ContentTable />
+          <ContentTableContainer />
           <PaginationButtonContainer />
         </div>
       </div>

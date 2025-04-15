@@ -1,20 +1,15 @@
 import '@testing-library/jest-dom';
 import { expect, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter } from 'react-router-dom';
 import { userEvent } from '@testing-library/user-event';
 import Login from './Login';
+import ProviderWrapper from '@/utils/test/ProviderWrapper';
 
 const renderLogin = () => {
-  const queryClient = new QueryClient();
-
   render(
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <Login />
-      </QueryClientProvider>
-    </BrowserRouter>,
+    <ProviderWrapper>
+      <Login />
+    </ProviderWrapper>,
   );
 };
 test('로그인 페이지 테스트', async () => {
