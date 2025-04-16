@@ -1,4 +1,4 @@
-import { UploadedListContent } from '@/types/interface';
+import { CurrentTabType, UploadedListContent } from '@/types/interface';
 import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,18 +9,17 @@ function ContentTableItem({
   newsAgency,
   link,
   createdAt,
-}: UploadedListContent) {
+  currentTab,
+}: UploadedListContent & { currentTab: CurrentTabType }) {
   // 실제 UploadedListContent 데이터 x, 타입만 맞춰줌
   const navigate = useNavigate();
+  const navigateUrl =
+    currentTab === 'draft'
+      ? `/admin/update/${id}?status=draft`
+      : `/admin/content/
+            ${id}?status=${currentTab}`;
   return (
-    <tr
-      onClick={() =>
-        navigate(`/admin/content/
-            ${id}?status=uploaded`)
-      }
-      key={id}
-      className='cursor-pointer hover:bg-gray-50'
-    >
+    <tr onClick={() => navigate(navigateUrl)} key={id} className='cursor-pointer hover:bg-gray-50'>
       <td className='whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900'>
         {thumbnailUrl ? (
           <img className='h-12 min-w-20 rounded object-cover' src={thumbnailUrl} alt='thumbnail' />
