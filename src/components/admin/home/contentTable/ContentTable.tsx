@@ -29,6 +29,7 @@ export default function ContentTableContainer() {
               newsAgency={content?.newsAgency || ''}
               link={content?.link}
               createdAt={content?.createdAt?.split('T')[0]}
+              currentTab={currentTab}
             />
           ))}
         </>
@@ -50,6 +51,7 @@ export default function ContentTableContainer() {
               newsAgency={content?.newsContent?.newsAgency || ''}
               link={content?.newsContent?.originalLink}
               createdAt={content?.scheduledAt?.split('T')[0] || ''}
+              currentTab={currentTab}
             />
           ))}
         </>
@@ -71,6 +73,7 @@ export default function ContentTableContainer() {
               newsAgency={content?.newsContent?.newsAgency || ''}
               link={content?.newsContent?.originalLink}
               createdAt={content?.createdAt?.split('T')[0] || ''}
+              currentTab={currentTab}
             />
           ))}
         </>
