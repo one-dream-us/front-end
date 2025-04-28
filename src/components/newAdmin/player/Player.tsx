@@ -19,10 +19,21 @@ import lalala from '@/assets/mp3/lalala.mp3';
 import universe from '@/assets/mp3/universe.mp3';
 import usbefore from '@/assets/mp3/usbefore.mp3';
 import bangabangbang from '@/assets/mp3/bangbangbang.mp3';
+import heartbreaker from '@/assets/mp3/Heartbreaker.mp3';
+import goodDay from '@/assets/mp3/goodDay.mp3';
+import whoyou from '@/assets/mp3/whoyou.mp3';
+import drama from '@/assets/mp3/drama.mp3';
+import middleFingersUp from '@/assets/mp3/MiddleFingersUp.mp3';
+
 import { motion } from 'framer-motion';
 
 const Player = () => {
   const songs = [
+    { title: '굿 데이', file: goodDay },
+    { title: 'Heartbreaker', file: heartbreaker },
+    { title: '네가 뭔데', file: whoyou },
+    { title: 'Drama', file: drama },
+    { title: 'Middle Fingers-Up', file: middleFingersUp },
     { title: 'Universe', file: universe },
     { title: '그 시절의 우리', file: usbefore },
     { title: 'La La La', file: lalala },
