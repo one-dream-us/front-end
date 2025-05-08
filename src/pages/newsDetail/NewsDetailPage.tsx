@@ -2,6 +2,7 @@ import ModalButton from '@/components/common/modal/ModalButton';
 import ModalOverlay from '@/components/common/modal/ModalOverlay';
 import Title from '@/components/course/common/Title';
 import CompleteButton from '@/components/course/main/CompleteButton';
+import GuestUserLoginModal from '@/components/course/main/guest/GuestUserLoginModal';
 import PaginationBullets from '@/components/course/main/PaginationBullets';
 import Slider from '@/components/course/main/slider/Slider';
 import WordDescription from '@/components/course/main/WordDescription';
@@ -29,6 +30,8 @@ export default function NewsDetailPage() {
       <CompleteButton />
 
       <NavigateBlocker />
+
+      <GuestUserLoginModal />
 
       {SHOW_NEWS_DETAIL_ONBOARDING && (
         <Suspense fallback={<OnboardingSkeletion type='detail' />}>
