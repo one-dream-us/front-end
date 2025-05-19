@@ -18,11 +18,11 @@ export default function Banner({
     useBanner();
 
   return (
-    <section className='mx-auto mb-10 mt-3 w-[347px] overflow-hidden md:w-[357px] desktop:mb-7 desktop:w-[814px]'>
+    <section className='w-full overflow-hidden'>
       <Slider {...settings}>
         {Banners.map((banner, index) => {
           return (
-            <div key={index} className='slick-slide'>
+            <div key={index} className='desktop:px-[1px]'>
               <button
                 id={`${index === 0 ? 'banner_news' : index === 1 ? 'banner_wordlist' : 'banner_quiz'}`}
                 rel='noopener noreferrer'
@@ -42,11 +42,14 @@ export default function Banner({
               >
                 <picture>
                   <source srcSet={banner.webImage} media='(min-width: 1440px)' />
-                  <source srcSet={banner.tabImage} media='(min-width: 768px)' />
+                  <source
+                    srcSet={banner.tabImage}
+                    media='(min-width: 768px) and (max-width: 1439px)'
+                  />
                   <img
                     src={banner.mobileImage}
                     alt={`배너 ${index + 1}`}
-                    className='h-[150px] w-full desktop:h-[180px]'
+                    className='h-[150px] w-[343px] overflow-hidden object-cover md:w-[353px] desktop:h-[180px] desktop:w-[812px]'
                   />
                 </picture>
               </button>

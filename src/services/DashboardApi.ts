@@ -26,5 +26,9 @@ const DashboardApi = {
     });
     return data;
   },
+  getEvents: async () => {
+    const { data } = await client.get('/economic-event');
+    return data;
+  },
 };
 export default DashboardApi;

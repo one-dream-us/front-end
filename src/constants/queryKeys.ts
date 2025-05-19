@@ -12,5 +12,6 @@ const QUERY_KEYS = {
   continuousDays: ['continuousDays'],
   todaysMission: ['todaysMission'],
   checkFirstQuiz: ['isFirstQuiz'],
+  getEvents: ['economic-events'],
 };
 export default QUERY_KEYS;
