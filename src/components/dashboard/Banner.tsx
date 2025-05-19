@@ -18,11 +18,11 @@ export default function Banner({
     useBanner();
 
   return (
-    <section className='slick-list w-full overflow-hidden desktop:mb-7'>
+    <section className='w-full overflow-hidden'>
       <Slider {...settings}>
         {Banners.map((banner, index) => {
           return (
-            <div key={index} className='slick-slide'>
+            <div key={index} className='desktop:px-[1px]'>
               <button
                 id={`${index === 0 ? 'banner_news' : index === 1 ? 'banner_wordlist' : 'banner_quiz'}`}
                 rel='noopener noreferrer'
@@ -49,7 +49,7 @@ export default function Banner({
                   <img
                     src={banner.mobileImage}
                     alt={`배너 ${index + 1}`}
-                    className='h-[150px] w-full desktop:h-[180px]'
+                    className='h-[150px] w-[343px] overflow-hidden object-cover md:w-[353px] desktop:h-[180px] desktop:w-[812px]'
                   />
                 </picture>
               </button>
