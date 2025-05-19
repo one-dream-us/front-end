@@ -18,7 +18,7 @@ export default function Banner({
     useBanner();
 
   return (
-    <section className='mx-auto mb-10 mt-3 w-[347px] overflow-hidden md:w-[357px] desktop:mb-7 desktop:w-[814px]'>
+    <section className='slick-list w-full overflow-hidden desktop:mb-7'>
       <Slider {...settings}>
         {Banners.map((banner, index) => {
           return (
@@ -42,7 +42,10 @@ export default function Banner({
               >
                 <picture>
                   <source srcSet={banner.webImage} media='(min-width: 1440px)' />
-                  <source srcSet={banner.tabImage} media='(min-width: 768px)' />
+                  <source
+                    srcSet={banner.tabImage}
+                    media='(min-width: 768px) and (max-width: 1439px)'
+                  />
                   <img
                     src={banner.mobileImage}
                     alt={`배너 ${index + 1}`}

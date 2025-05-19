@@ -47,6 +47,7 @@ export default {
         'new-green': '#06EA82',
         'active-green': '#1bba71',
         inactive: '#d9d9d9',
+        'calendar-gray': '#999999',
       },
       screens: {
         desktop: { min: '1440px' },
@@ -55,6 +56,7 @@ export default {
         custom: '0px 4px 8px rgba(0, 0, 0, 0.3)',
         login: '0px 6px 12px rgba(0, 0, 0, 0.3)',
         top: '0 -4px 8px rgba(0, 0, 0, 0.2)',
+        'wcal-both': '2px 2px 10px rgba(0,0,0,0.05), -2px -2px 10px rgba(0,0,0,0.05)',
       },
       backgroundImage: {
         unchecked: "url('@/assets/icons/icon_checkbox_false.svg')",
@@ -64,6 +66,7 @@ export default {
         'play-disabled': "url('@/assets/icons/video_btn_style=disabled.svg')",
         keynote: "url('@/assets/P2_5d/icon_Keynote.svg')",
         scrap: "url('@/assets/P2_5d/icon_scrap.svg')",
+        event: "url('@/assets/icons/star.svg')",
       },
       lineHeight: {
         170: '1.7',
@@ -87,5 +90,5 @@ export default {
     },
   },
   plugins: [],
-  darkMode:'class'
+  darkMode: 'class',
 };

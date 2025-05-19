@@ -191,3 +191,4 @@ export const tutorialTitleList = [
 ];
 
 export const ADMIN_UPLOAD_LIST_PAGE_SIZE = 5;
+export const WEEK_DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];

@@ -9,8 +9,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test":"vitest run",
-    "testWatch":"vitest"
+    "test": "vitest run",
+    "testWatch": "vitest"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.62.0",
@@ -21,6 +21,7 @@
     "@typescript-eslint/eslint-plugin": "^8.14.0",
     "@typescript-eslint/parser": "^8.14.0",
     "axios": "^1.7.8",
+    "dayjs": "^1.11.13",
     "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
@@ -33,6 +34,7 @@
     "react-ga4": "^2.1.0",
     "react-intersection-observer": "^9.13.1",
     "react-player": "^2.16.0",
+    "react-responsive": "^10.0.1",
     "react-router-dom": "^6.28.0",
     "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1",
